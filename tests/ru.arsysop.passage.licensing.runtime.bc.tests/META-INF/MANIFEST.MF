@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: ru.arsysop.passage.licensing.runtime.bc.tests
+Bundle-Version: 0.2.0.qualifier
+Automatic-Module-Name: ru.arsysop.passage.licensing.runtime.bc.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ ru.arsysop.passage.licensing.runtime;bundle-version="0.0.0",
+ ru.arsysop.passage.licensing.runtime.bc;bundle-version="0.0.0"

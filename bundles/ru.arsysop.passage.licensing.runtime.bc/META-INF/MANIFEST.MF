@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: ru.arsysop.passage.licensing.runtime.bc
+Bundle-Version: 0.2.0.qualifier
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Automatic-Module-Name: ru.arsysop.passage.licensing.runtime.openpgp
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Require-Bundle: ru.arsysop.passage.brc.bc;bundle-version="0.0.0",
+ ru.arsysop.passage.licensing.runtime;bundle-version="0.0.0"
+Service-Component: OSGI-INF/ru.arsysop.passage.licensing.runtime.bc.BcConditionCodec.xml
+Export-Package: ru.arsysop.passage.licensing.runtime.bc;x-internal:=true

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: ru.arsysop.passage.licensing.runtime.model.ecore
+Bundle-Version: 0.2.0.qualifier
+Bundle-ClassPath: .
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: ru.arsysop.passage.rt.licensing.model.ecore
