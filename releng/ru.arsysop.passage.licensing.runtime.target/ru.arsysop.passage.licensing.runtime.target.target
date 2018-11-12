@@ -45,7 +45,7 @@
 			<unit id="ru.arsysop.passage.brc.license.feature.feature.group" version="0.0.0"/>
 			<unit id="ru.arsysop.passage.brc.bc.feature.feature.group" version="0.0.0"/>
 			<unit id="ru.arsysop.passage.brc.oshi.feature.feature.group" version="0.0.0"/>
-			<repository location="http://dl.bintray.com/arsysop/passage-brc/latest/"/>
+			<repository location="http://dl.bintray.com/arsysop/passage-brc/0.3.1/"/>
 		</location>
 	</locations>
 </target>
