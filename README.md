@@ -5,4 +5,3 @@ Passage Licensing Runtime layer includes interfaces and its implementation for E
 
   Copyright (c) 2018 ArSysOp
 
-
