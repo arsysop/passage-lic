@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: ru.arsysop.passage.licensing.runtime.model;singleton:=true
 Automatic-Module-Name: ru.arsysop.passage.licensing.runtime.model
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Copyright: %pluginCopyright
