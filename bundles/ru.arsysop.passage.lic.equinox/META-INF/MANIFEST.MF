@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
  ru.arsysop.passage.lic.base;bundle-version="0.0.0"
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
-Export-Package: ru.arsysop.passage.licensing.runtime.equinox,
- ru.arsysop.passage.licensing.runtime.internal.equinox;x-internal:=true
+Export-Package: ru.arsysop.passage.lic.equinox,
+ ru.arsysop.passage.lic.internal.equinox;x-internal:=true
 Provide-Capability: licensing.am
 

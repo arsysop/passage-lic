@@ -11,4 +11,4 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: ru.arsysop.passage.brc.bc;bundle-version="0.0.0",
  ru.arsysop.passage.lic.runtime;bundle-version="0.0.0"
 Service-Component: OSGI-INF/*.xml
-Export-Package: ru.arsysop.passage.licensing.runtime.bc;x-internal:=true
+Export-Package: ru.arsysop.passage.lic.bc;x-internal:=true

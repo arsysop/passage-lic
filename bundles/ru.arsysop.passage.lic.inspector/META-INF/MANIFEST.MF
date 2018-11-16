@@ -7,4 +7,4 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: ru.arsysop.passage.licensing.runtime.inspector
+Export-Package: ru.arsysop.passage.lic.inspector
