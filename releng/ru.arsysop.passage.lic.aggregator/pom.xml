@@ -26,14 +26,36 @@
 >
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>ru.arsysop.passage.lic.bundles</artifactId>
+	<artifactId>ru.arsysop.passage.licensing.runtime.aggregator</artifactId>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>ru.arsysop.passage.lic</groupId>
 		<artifactId>ru.arsysop.passage.lic.parent</artifactId>
 		<version>0.3.0-SNAPSHOT</version>
-		<relativePath>../releng/ru.arsysop.passage.lic.parent</relativePath>
+		<relativePath>../../releng/ru.arsysop.passage.lic.parent</relativePath>
 	</parent>
+
+	<modules>
+		<module>../../releng/ru.arsysop.passage.lic.target</module>
+
+		<module>../../bundles/ru.arsysop.passage.lic.runtime</module>
+		<module>../../bundles/ru.arsysop.passage.lic.base</module>
+		<module>../../bundles/ru.arsysop.passage.lic.inspector</module>
+		<module>../../bundles/ru.arsysop.passage.lic.equinox</module>
+		<module>../../bundles/ru.arsysop.passage.lic.bc</module>
+		<module>../../bundles/ru.arsysop.passage.lic.net</module>
+		<module>../../bundles/ru.arsysop.passage.lic.oshi</module>
+
+		<module>../../bundles/ru.arsysop.passage.lic.model.ecore</module>
+		<module>../../bundles/ru.arsysop.passage.lic.model</module>
+
+		<module>../../features/ru.arsysop.passage.lic.feature</module>
+		<module>../../releng/ru.arsysop.passage.lic.repository</module>
+
+		<module>../../tests/ru.arsysop.passage.lic.base.tests</module>
+		<module>../../tests/ru.arsysop.passage.lic.bc.tests</module>
+		<module>../../tests/ru.arsysop.passage.lic.equinox.tests</module>
+	</modules>
 
 </project>
