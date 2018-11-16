@@ -38,10 +38,10 @@ import java.util.Properties;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 
-import ru.arsysop.passage.licensing.runtime.ConditionDescriptor;
-import ru.arsysop.passage.licensing.runtime.ConditionMiner;
-import ru.arsysop.passage.licensing.runtime.io.ConditionCodec;
-import ru.arsysop.passage.licensing.runtime.io.KeyKeeper;
+import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.ConditionMiner;
+import ru.arsysop.passage.lic.runtime.io.ConditionCodec;
+import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
 public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 

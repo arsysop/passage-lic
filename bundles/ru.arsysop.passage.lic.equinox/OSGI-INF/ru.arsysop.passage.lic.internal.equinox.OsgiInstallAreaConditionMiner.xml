@@ -22,9 +22,9 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.internal.equinox.OsgiInstallAreaConditionMiner">
    <implementation class="ru.arsysop.passage.lic.internal.equinox.OsgiInstallAreaConditionMiner"/>
    <service>
-      <provide interface="ru.arsysop.passage.licensing.runtime.ConditionMiner"/>
+      <provide interface="ru.arsysop.passage.lic.runtime.ConditionMiner"/>
    </service>
    <reference bind="bindEnvironmentInfo" cardinality="1..1" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" policy="static" unbind="unbindEnvironmentInfo"/>
-   <reference bind="bindConditionCodec" cardinality="1..1" interface="ru.arsysop.passage.licensing.runtime.io.ConditionCodec" name="ConditionCodec" policy="static" unbind="unbindConditionCodec"/>
-   <reference bind="bindKeyKeeper" cardinality="1..1" interface="ru.arsysop.passage.licensing.runtime.io.KeyKeeper" name="KeyKeeper" policy="static" unbind="unbindKeyKeeper"/>
+   <reference bind="bindConditionCodec" cardinality="1..1" interface="ru.arsysop.passage.lic.runtime.io.ConditionCodec" name="ConditionCodec" policy="static" unbind="unbindConditionCodec"/>
+   <reference bind="bindKeyKeeper" cardinality="1..1" interface="ru.arsysop.passage.lic.runtime.io.KeyKeeper" name="KeyKeeper" policy="static" unbind="unbindKeyKeeper"/>
 </scr:component>

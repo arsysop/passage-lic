@@ -29,7 +29,7 @@ import org.osgi.service.component.runtime.ServiceComponentRuntime;
 import org.osgi.service.log.LoggerFactory;
 
 import ru.arsysop.passage.lic.internal.equinox.ComponentConfigurationResolver;
-import ru.arsysop.passage.licensing.runtime.ConfigurationRequirement;
+import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 
 @SuppressWarnings("restriction")
 public class ComponentConfigurationResolverTest {

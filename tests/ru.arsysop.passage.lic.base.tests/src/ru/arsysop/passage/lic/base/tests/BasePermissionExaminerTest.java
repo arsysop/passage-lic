@@ -35,9 +35,9 @@ import ru.arsysop.passage.lic.base.BasePermissionExaminer;
 import ru.arsysop.passage.lic.base.ConfigurationRequirements;
 import ru.arsysop.passage.lic.base.FeaturePermissions;
 import ru.arsysop.passage.lic.base.LicensingProperties;
-import ru.arsysop.passage.licensing.runtime.ConfigurationRequirement;
-import ru.arsysop.passage.licensing.runtime.FeaturePermission;
-import ru.arsysop.passage.licensing.runtime.RestrictionVerdict;
+import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
+import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
 public class BasePermissionExaminerTest {
 	

@@ -29,16 +29,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ru.arsysop.passage.licensing.runtime.AccessManager;
-import ru.arsysop.passage.licensing.runtime.ConditionDescriptor;
-import ru.arsysop.passage.licensing.runtime.ConditionEvaluator;
-import ru.arsysop.passage.licensing.runtime.ConditionMiner;
-import ru.arsysop.passage.licensing.runtime.ConfigurationRequirement;
-import ru.arsysop.passage.licensing.runtime.ConfigurationResolver;
-import ru.arsysop.passage.licensing.runtime.FeaturePermission;
-import ru.arsysop.passage.licensing.runtime.PermissionExaminer;
-import ru.arsysop.passage.licensing.runtime.RestrictionExecutor;
-import ru.arsysop.passage.licensing.runtime.RestrictionVerdict;
+import ru.arsysop.passage.lic.runtime.AccessManager;
+import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
+import ru.arsysop.passage.lic.runtime.ConditionMiner;
+import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
+import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
+import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.PermissionExaminer;
+import ru.arsysop.passage.lic.runtime.RestrictionExecutor;
+import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
 public class BaseAccessManager implements AccessManager {
 

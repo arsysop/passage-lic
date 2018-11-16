@@ -30,7 +30,7 @@ import java.nio.file.Paths;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 
-import ru.arsysop.passage.licensing.runtime.io.KeyKeeper;
+import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
 public class OsgiInstallAreaKeyKeeper implements KeyKeeper {
 

@@ -22,7 +22,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.internal.equinox.OsgiInstallAreaKeyKeeper">
    <implementation class="ru.arsysop.passage.lic.internal.equinox.OsgiInstallAreaKeyKeeper"/>
    <service>
-      <provide interface="ru.arsysop.passage.licensing.runtime.io.KeyKeeper"/>
+      <provide interface="ru.arsysop.passage.lic.runtime.io.KeyKeeper"/>
    </service>
    <reference bind="bindEnvironmentInfo" cardinality="1..1" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" policy="static" unbind="unbindEnvironmentInfo"/>
 </scr:component>

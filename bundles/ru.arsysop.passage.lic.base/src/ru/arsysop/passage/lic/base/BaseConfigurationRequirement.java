@@ -22,7 +22,7 @@ package ru.arsysop.passage.lic.base;
 
 import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
-import ru.arsysop.passage.licensing.runtime.ConfigurationRequirement;
+import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 
 public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	

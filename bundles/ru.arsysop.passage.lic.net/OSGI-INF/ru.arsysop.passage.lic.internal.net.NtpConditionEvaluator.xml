@@ -22,7 +22,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.internal.net.NtpConditionEvaluator">
    <implementation class="ru.arsysop.passage.lic.internal.net.NtpConditionEvaluator"/>
    <service>
-      <provide interface="ru.arsysop.passage.licensing.runtime.ConditionEvaluator"/>
+      <provide interface="ru.arsysop.passage.lic.runtime.ConditionEvaluator"/>
    </service>
    <property name="licensing.runtime.condition.type" type="String" value="ntp"/>
 </scr:component>

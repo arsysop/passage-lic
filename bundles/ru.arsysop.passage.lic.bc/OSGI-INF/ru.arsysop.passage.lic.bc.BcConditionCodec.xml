@@ -22,6 +22,6 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.bc.BcConditionCodec">
    <implementation class="ru.arsysop.passage.lic.bc.BcConditionCodec"/>
    <service>
-      <provide interface="ru.arsysop.passage.licensing.runtime.io.ConditionCodec"/>
+      <provide interface="ru.arsysop.passage.lic.runtime.io.ConditionCodec"/>
    </service>
 </scr:component>

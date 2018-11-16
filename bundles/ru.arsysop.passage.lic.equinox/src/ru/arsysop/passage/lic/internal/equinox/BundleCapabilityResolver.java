@@ -39,8 +39,8 @@ import ru.arsysop.passage.lic.base.BaseConfigurationRequirement;
 import ru.arsysop.passage.lic.base.ConfigurationRequirements;
 import ru.arsysop.passage.lic.base.LicensingNamespaces;
 import ru.arsysop.passage.lic.equinox.LicensingRuntimeWiring;
-import ru.arsysop.passage.licensing.runtime.ConfigurationRequirement;
-import ru.arsysop.passage.licensing.runtime.ConfigurationResolver;
+import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
+import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
 
 @Component
 public class BundleCapabilityResolver implements ConfigurationResolver {

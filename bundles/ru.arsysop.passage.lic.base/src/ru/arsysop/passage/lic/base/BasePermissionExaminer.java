@@ -26,10 +26,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ru.arsysop.passage.licensing.runtime.ConfigurationRequirement;
-import ru.arsysop.passage.licensing.runtime.FeaturePermission;
-import ru.arsysop.passage.licensing.runtime.PermissionExaminer;
-import ru.arsysop.passage.licensing.runtime.RestrictionVerdict;
+import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
+import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.PermissionExaminer;
+import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
 public class BasePermissionExaminer implements PermissionExaminer {
 

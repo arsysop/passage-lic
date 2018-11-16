@@ -26,7 +26,7 @@
       <!-- @generated passage -->
       <package
             uri="http://www.arsysop.ru/passage/licensing/0.2.0/"
-            class="ru.arsysop.passage.licensing.runtime.model.meta.LicensingPackage"
+            class="ru.arsysop.passage.lic.runtime.model.meta.LicensingPackage"
             genModel="model/licensing.genmodel"/>
    </extension>
 

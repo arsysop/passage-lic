@@ -81,7 +81,7 @@ import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyDecryptorBuilder;
 import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyEncryptorBuilder;
 import org.osgi.service.component.annotations.Component;
 
-import ru.arsysop.passage.licensing.runtime.io.ConditionCodec;
+import ru.arsysop.passage.lic.runtime.io.ConditionCodec;
 
 @Component
 public class BcConditionCodec implements ConditionCodec {

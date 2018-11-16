@@ -23,9 +23,9 @@ package ru.arsysop.passage.lic.internal.net;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.arsysop.passage.licensing.runtime.ConditionDescriptor;
-import ru.arsysop.passage.licensing.runtime.ConditionEvaluator;
-import ru.arsysop.passage.licensing.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
+import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public class NtpConditionEvaluator implements ConditionEvaluator {
 

@@ -7,6 +7,6 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: ru.arsysop.passage.licensing.runtime,
- ru.arsysop.passage.licensing.runtime.io,
- ru.arsysop.passage.licensing.runtime.registry
+Export-Package: ru.arsysop.passage.lic.registry,
+ ru.arsysop.passage.lic.runtime,
+ ru.arsysop.passage.lic.runtime.io

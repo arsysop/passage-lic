@@ -23,7 +23,7 @@ package ru.arsysop.passage.lic.base;
 import java.util.HashMap;
 import java.util.Map;
 
-import ru.arsysop.passage.licensing.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 
 public class ConditionDescriptors {
 	

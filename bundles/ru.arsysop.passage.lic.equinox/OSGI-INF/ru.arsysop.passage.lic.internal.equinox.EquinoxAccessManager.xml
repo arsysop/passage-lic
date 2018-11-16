@@ -22,9 +22,9 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="ru.arsysop.passage.lic.internal.equinox.EquinoxAccessManager">
    <implementation class="ru.arsysop.passage.lic.internal.equinox.EquinoxAccessManager"/>
    <service>
-      <provide interface="ru.arsysop.passage.licensing.runtime.AccessManager"/>
+      <provide interface="ru.arsysop.passage.lic.runtime.AccessManager"/>
    </service>
-   <reference bind="bindConfigurationResolver" cardinality="0..n" interface="ru.arsysop.passage.licensing.runtime.ConfigurationResolver" name="ConfigurationResolver" policy="static" unbind="unbindConfigurationResolver"/>
-   <reference bind="bindConditionMiner" cardinality="0..n" interface="ru.arsysop.passage.licensing.runtime.ConditionMiner" name="ConditionMiner" policy="static" unbind="unbindConditionMiner"/>
-   <reference bind="bindConditionEvaluator" cardinality="0..n" interface="ru.arsysop.passage.licensing.runtime.ConditionEvaluator" name="ConditionEvaluator" policy="static" unbind="unbindConditionEvaluator"/>
+   <reference bind="bindConfigurationResolver" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.ConfigurationResolver" name="ConfigurationResolver" policy="static" unbind="unbindConfigurationResolver"/>
+   <reference bind="bindConditionMiner" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.ConditionMiner" name="ConditionMiner" policy="static" unbind="unbindConditionMiner"/>
+   <reference bind="bindConditionEvaluator" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.ConditionEvaluator" name="ConditionEvaluator" policy="static" unbind="unbindConditionEvaluator"/>
 </scr:component>

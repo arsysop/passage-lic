@@ -27,7 +27,7 @@ import org.osgi.framework.BundleListener;
 
 import ru.arsysop.passage.lic.base.BaseAccessManager;
 import ru.arsysop.passage.lic.equinox.LicensingRuntimeWiring;
-import ru.arsysop.passage.licensing.runtime.AccessManager;
+import ru.arsysop.passage.lic.runtime.AccessManager;
 
 public class EquinoxAccessManager extends BaseAccessManager implements AccessManager, BundleListener {
 	

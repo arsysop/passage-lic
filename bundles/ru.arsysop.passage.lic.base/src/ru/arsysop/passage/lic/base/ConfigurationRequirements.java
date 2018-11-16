@@ -26,7 +26,7 @@ import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 import java.util.Collections;
 import java.util.Map;
 
-import ru.arsysop.passage.licensing.runtime.ConfigurationRequirement;
+import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 
 public class ConfigurationRequirements {
 
