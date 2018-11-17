@@ -22,7 +22,7 @@ package ru.arsysop.passage.lic.model.api;
 
 import org.eclipse.emf.ecore.EObject;
 
-import ru.arsysop.passage.lic.registry.LicenseeDescriptor;
+import ru.arsysop.passage.lic.registry.UserDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +42,7 @@ import ru.arsysop.passage.lic.registry.LicenseeDescriptor;
  * @model superTypes="ru.arsysop.passage.licensing.runtime.model.api.LicenseeDescriptor"
  * @generated
  */
-public interface Licensee extends EObject, LicenseeDescriptor {
+public interface Licensee extends EObject, UserDescriptor {
   /**
 	 * Returns the value of the '<em><b>Email</b></em>' attribute.
 	 * <!-- begin-user-doc -->

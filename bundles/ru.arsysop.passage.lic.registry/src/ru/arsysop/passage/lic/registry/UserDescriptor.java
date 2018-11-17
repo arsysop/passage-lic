@@ -20,12 +20,12 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-import java.util.List;
+public interface UserDescriptor {
+	
+	String getEmail();
 
-public interface LicenseeRegistry {
+	String getFullName();
 
-	List<LicenseeDescriptor> getLicenseeDescriptors();
-
-	void registerLicensee(LicenseeDescriptor user);
+	String getDescription();
 
 }

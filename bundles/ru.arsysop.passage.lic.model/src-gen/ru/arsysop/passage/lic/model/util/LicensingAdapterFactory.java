@@ -30,7 +30,7 @@ import ru.arsysop.passage.lic.model.api.Licensee;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicensingPackage;
 import ru.arsysop.passage.lic.registry.FeatureDescriptor;
-import ru.arsysop.passage.lic.registry.LicenseeDescriptor;
+import ru.arsysop.passage.lic.registry.UserDescriptor;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
 
 /**
@@ -98,7 +98,7 @@ public class LicensingAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseLicenseeDescriptor(LicenseeDescriptor object) {
+			public Adapter caseLicenseeDescriptor(UserDescriptor object) {
 				return createLicenseeDescriptorAdapter();
 			}
 			@Override
@@ -162,13 +162,13 @@ public class LicensingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.registry.LicenseeDescriptor <em>Licensee Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>Licensee Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ru.arsysop.passage.lic.registry.LicenseeDescriptor
+	 * @see ru.arsysop.passage.lic.registry.UserDescriptor
 	 * @generated
 	 */
 	public Adapter createLicenseeDescriptorAdapter() {

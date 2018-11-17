@@ -130,10 +130,10 @@ public interface LicensingPackage extends EPackage {
 	int FEATURE_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.LicenseeDescriptor <em>Licensee Descriptor</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>Licensee Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ru.arsysop.passage.lic.registry.LicenseeDescriptor
+	 * @see ru.arsysop.passage.lic.registry.UserDescriptor
 	 * @see ru.arsysop.passage.lic.model.impl.LicensingPackageImpl#getLicenseeDescriptor()
 	 * @generated
 	 */
@@ -382,11 +382,11 @@ public interface LicensingPackage extends EPackage {
 	EClass getFeatureDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.LicenseeDescriptor <em>Licensee Descriptor</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>Licensee Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Licensee Descriptor</em>'.
-	 * @see ru.arsysop.passage.lic.registry.LicenseeDescriptor
+	 * @see ru.arsysop.passage.lic.registry.UserDescriptor
 	 * @model instanceClass="ru.arsysop.passage.licensing.runtime.registry.LicenseeDescriptor"
 	 * @generated
 	 */
@@ -609,10 +609,10 @@ public interface LicensingPackage extends EPackage {
 		EClass FEATURE_DESCRIPTOR = eINSTANCE.getFeatureDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.LicenseeDescriptor <em>Licensee Descriptor</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>Licensee Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ru.arsysop.passage.lic.registry.LicenseeDescriptor
+		 * @see ru.arsysop.passage.lic.registry.UserDescriptor
 		 * @see ru.arsysop.passage.lic.model.impl.LicensingPackageImpl#getLicenseeDescriptor()
 		 * @generated
 		 */

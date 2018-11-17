@@ -29,7 +29,7 @@ import ru.arsysop.passage.lic.model.api.Licensee;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicensingPackage;
 import ru.arsysop.passage.lic.registry.FeatureDescriptor;
-import ru.arsysop.passage.lic.registry.LicenseeDescriptor;
+import ru.arsysop.passage.lic.registry.UserDescriptor;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
 
 /**
@@ -102,7 +102,7 @@ public class LicensingSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case LicensingPackage.LICENSEE_DESCRIPTOR: {
-				LicenseeDescriptor licenseeDescriptor = (LicenseeDescriptor)theEObject;
+				UserDescriptor licenseeDescriptor = (UserDescriptor)theEObject;
 				T result = caseLicenseeDescriptor(licenseeDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -173,7 +173,7 @@ public class LicensingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLicenseeDescriptor(LicenseeDescriptor object) {
+	public T caseLicenseeDescriptor(UserDescriptor object) {
 		return null;
 	}
 

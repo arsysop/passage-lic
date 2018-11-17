@@ -31,7 +31,7 @@ import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicensingFactory;
 import ru.arsysop.passage.lic.model.meta.LicensingPackage;
 import ru.arsysop.passage.lic.registry.FeatureDescriptor;
-import ru.arsysop.passage.lic.registry.LicenseeDescriptor;
+import ru.arsysop.passage.lic.registry.UserDescriptor;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
 
 /**
@@ -406,7 +406,7 @@ public class LicensingPackageImpl extends EPackageImpl implements LicensingPacka
 
 		initEClass(featureDescriptorEClass, FeatureDescriptor.class, "FeatureDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(licenseeDescriptorEClass, LicenseeDescriptor.class, "LicenseeDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(licenseeDescriptorEClass, UserDescriptor.class, "LicenseeDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(productEClass, Product.class, "Product", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getProduct_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, Product.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
