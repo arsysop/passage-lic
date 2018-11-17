@@ -47,7 +47,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNAME = "licensing";
+  String eNAME = "lic";
 
   /**
 	 * The package namespace URI.
@@ -55,7 +55,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNS_URI = "http://www.arsysop.ru/passage/licensing/0.2.0";
+  String eNS_URI = "http://www.arsysop.ru/passage/lic/0.3.0";
 
   /**
 	 * The package namespace name.
@@ -63,7 +63,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNS_PREFIX = "ru.arsysop.passage.licensing";
+  String eNS_PREFIX = "ru.arsysop.passage.lic";
 
   /**
 	 * The singleton instance of the package.
@@ -130,32 +130,32 @@ public interface LicPackage extends EPackage {
 	int FEATURE_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>Licensee Descriptor</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>User Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see ru.arsysop.passage.lic.registry.UserDescriptor
-	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseeDescriptor()
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUserDescriptor()
 	 * @generated
 	 */
-	int LICENSEE_DESCRIPTOR = 2;
+	int USER_DESCRIPTOR = 2;
 
 		/**
-	 * The number of structural features of the '<em>Licensee Descriptor</em>' class.
+	 * The number of structural features of the '<em>User Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSEE_DESCRIPTOR_FEATURE_COUNT = 0;
+	int USER_DESCRIPTOR_FEATURE_COUNT = 0;
 
 		/**
-	 * The number of operations of the '<em>Licensee Descriptor</em>' class.
+	 * The number of operations of the '<em>User Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSEE_DESCRIPTOR_OPERATION_COUNT = 0;
+	int USER_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.ProductImpl <em>Product</em>}' class.
@@ -305,14 +305,14 @@ public interface LicPackage extends EPackage {
 	int FEATURE_OPERATION_COUNT = FEATURE_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.UserImpl <em>Licensee</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.UserImpl <em>User</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see ru.arsysop.passage.lic.model.impl.UserImpl
-	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicensee()
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUser()
 	 * @generated
 	 */
-	int LICENSEE = 5;
+	int USER = 5;
 
 		/**
 	 * The feature id for the '<em><b>Email</b></em>' attribute.
@@ -321,7 +321,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSEE__EMAIL = LICENSEE_DESCRIPTOR_FEATURE_COUNT + 0;
+	int USER__EMAIL = USER_DESCRIPTOR_FEATURE_COUNT + 0;
 
 		/**
 	 * The feature id for the '<em><b>Full Name</b></em>' attribute.
@@ -330,7 +330,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSEE__FULL_NAME = LICENSEE_DESCRIPTOR_FEATURE_COUNT + 1;
+	int USER__FULL_NAME = USER_DESCRIPTOR_FEATURE_COUNT + 1;
 
 		/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -339,25 +339,25 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSEE__DESCRIPTION = LICENSEE_DESCRIPTOR_FEATURE_COUNT + 2;
+	int USER__DESCRIPTION = USER_DESCRIPTOR_FEATURE_COUNT + 2;
 
 		/**
-	 * The number of structural features of the '<em>Licensee</em>' class.
+	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSEE_FEATURE_COUNT = LICENSEE_DESCRIPTOR_FEATURE_COUNT + 3;
+	int USER_FEATURE_COUNT = USER_DESCRIPTOR_FEATURE_COUNT + 3;
 
 		/**
-	 * The number of operations of the '<em>Licensee</em>' class.
+	 * The number of operations of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSEE_OPERATION_COUNT = LICENSEE_DESCRIPTOR_OPERATION_COUNT + 0;
+	int USER_OPERATION_COUNT = USER_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
 	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.ProductDescriptor <em>Product Descriptor</em>}'.
@@ -365,7 +365,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Descriptor</em>'.
 	 * @see ru.arsysop.passage.lic.registry.ProductDescriptor
-	 * @model instanceClass="ru.arsysop.passage.licensing.runtime.registry.ProductDescriptor"
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.ProductDescriptor"
 	 * @generated
 	 */
 	EClass getProductDescriptor();
@@ -376,21 +376,21 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Descriptor</em>'.
 	 * @see ru.arsysop.passage.lic.registry.FeatureDescriptor
-	 * @model instanceClass="ru.arsysop.passage.licensing.runtime.registry.FeatureDescriptor"
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.FeatureDescriptor"
 	 * @generated
 	 */
 	EClass getFeatureDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>Licensee Descriptor</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>User Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Licensee Descriptor</em>'.
+	 * @return the meta object for class '<em>User Descriptor</em>'.
 	 * @see ru.arsysop.passage.lic.registry.UserDescriptor
-	 * @model instanceClass="ru.arsysop.passage.licensing.runtime.registry.LicenseeDescriptor"
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.UserDescriptor"
 	 * @generated
 	 */
-	EClass getLicenseeDescriptor();
+	EClass getUserDescriptor();
 
 		/**
 	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.Product <em>Product</em>}'.
@@ -512,14 +512,14 @@ public interface LicPackage extends EPackage {
 	EAttribute getFeature_Description();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.User <em>Licensee</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Licensee</em>'.
+	 * @return the meta object for class '<em>User</em>'.
 	 * @see ru.arsysop.passage.lic.model.api.User
 	 * @generated
 	 */
-	EClass getLicensee();
+	EClass getUser();
 
 		/**
 	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.User#getEmail <em>Email</em>}'.
@@ -527,10 +527,10 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Email</em>'.
 	 * @see ru.arsysop.passage.lic.model.api.User#getEmail()
-	 * @see #getLicensee()
+	 * @see #getUser()
 	 * @generated
 	 */
-	EAttribute getLicensee_Email();
+	EAttribute getUser_Email();
 
 		/**
 	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.User#getFullName <em>Full Name</em>}'.
@@ -538,10 +538,10 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Full Name</em>'.
 	 * @see ru.arsysop.passage.lic.model.api.User#getFullName()
-	 * @see #getLicensee()
+	 * @see #getUser()
 	 * @generated
 	 */
-	EAttribute getLicensee_FullName();
+	EAttribute getUser_FullName();
 
 		/**
 	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.User#getDescription <em>Description</em>}'.
@@ -549,10 +549,10 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see ru.arsysop.passage.lic.model.api.User#getDescription()
-	 * @see #getLicensee()
+	 * @see #getUser()
 	 * @generated
 	 */
-	EAttribute getLicensee_Description();
+	EAttribute getUser_Description();
 
 		/**
 	 * Returns the factory that creates the instances of the model.
@@ -561,7 +561,7 @@ public interface LicPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	LicFactory getLicensingFactory();
+	LicFactory getLicFactory();
 
 		/**
 	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.Product#getDescription <em>Description</em>}'.
@@ -609,14 +609,14 @@ public interface LicPackage extends EPackage {
 		EClass FEATURE_DESCRIPTOR = eINSTANCE.getFeatureDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>Licensee Descriptor</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>User Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see ru.arsysop.passage.lic.registry.UserDescriptor
-		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseeDescriptor()
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUserDescriptor()
 		 * @generated
 		 */
-		EClass LICENSEE_DESCRIPTOR = eINSTANCE.getLicenseeDescriptor();
+		EClass USER_DESCRIPTOR = eINSTANCE.getUserDescriptor();
 
 				/**
 		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.ProductImpl <em>Product</em>}' class.
@@ -711,14 +711,14 @@ public interface LicPackage extends EPackage {
 		EAttribute FEATURE__DESCRIPTION = eINSTANCE.getFeature_Description();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.UserImpl <em>Licensee</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.UserImpl <em>User</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see ru.arsysop.passage.lic.model.impl.UserImpl
-		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicensee()
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUser()
 		 * @generated
 		 */
-		EClass LICENSEE = eINSTANCE.getLicensee();
+		EClass USER = eINSTANCE.getUser();
 
 				/**
 		 * The meta object literal for the '<em><b>Email</b></em>' attribute feature.
@@ -726,7 +726,7 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSEE__EMAIL = eINSTANCE.getLicensee_Email();
+		EAttribute USER__EMAIL = eINSTANCE.getUser_Email();
 
 				/**
 		 * The meta object literal for the '<em><b>Full Name</b></em>' attribute feature.
@@ -734,7 +734,7 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSEE__FULL_NAME = eINSTANCE.getLicensee_FullName();
+		EAttribute USER__FULL_NAME = eINSTANCE.getUser_FullName();
 
 				/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -742,7 +742,7 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSEE__DESCRIPTION = eINSTANCE.getLicensee_Description();
+		EAttribute USER__DESCRIPTION = eINSTANCE.getUser_Description();
 
 				/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.

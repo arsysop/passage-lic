@@ -60,7 +60,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass licenseeDescriptorEClass = null;
+	private EClass userDescriptorEClass = null;
 
 		/**
 	 * <!-- begin-user-doc -->
@@ -81,7 +81,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass licenseeEClass = null;
+	private EClass userEClass = null;
 
 		/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -125,23 +125,23 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		if (isInited) return (LicPackage)EPackage.Registry.INSTANCE.getEPackage(LicPackage.eNS_URI);
 
 		// Obtain or create and register package
-		Object registeredLicensingPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		LicPackageImpl theLicensingPackage = registeredLicensingPackage instanceof LicPackageImpl ? (LicPackageImpl)registeredLicensingPackage : new LicPackageImpl();
+		Object registeredLicPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		LicPackageImpl theLicPackage = registeredLicPackage instanceof LicPackageImpl ? (LicPackageImpl)registeredLicPackage : new LicPackageImpl();
 
 		isInited = true;
 
 		// Create package meta-data objects
-		theLicensingPackage.createPackageContents();
+		theLicPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theLicensingPackage.initializePackageContents();
+		theLicPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theLicensingPackage.freeze();
+		theLicPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(LicPackage.eNS_URI, theLicensingPackage);
-		return theLicensingPackage;
+		EPackage.Registry.INSTANCE.put(LicPackage.eNS_URI, theLicPackage);
+		return theLicPackage;
 	}
 
   /**
@@ -167,8 +167,8 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLicenseeDescriptor() {
-		return licenseeDescriptorEClass;
+	public EClass getUserDescriptor() {
+		return userDescriptorEClass;
 	}
 
 		/**
@@ -275,8 +275,8 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLicensee() {
-		return licenseeEClass;
+	public EClass getUser() {
+		return userEClass;
 	}
 
 		/**
@@ -284,8 +284,8 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLicensee_Email() {
-		return (EAttribute)licenseeEClass.getEStructuralFeatures().get(0);
+	public EAttribute getUser_Email() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
 	}
 
 		/**
@@ -293,8 +293,8 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLicensee_FullName() {
-		return (EAttribute)licenseeEClass.getEStructuralFeatures().get(1);
+	public EAttribute getUser_FullName() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
 	}
 
 		/**
@@ -302,8 +302,8 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLicensee_Description() {
-		return (EAttribute)licenseeEClass.getEStructuralFeatures().get(2);
+	public EAttribute getUser_Description() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(2);
 	}
 
 		/**
@@ -311,7 +311,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicFactory getLicensingFactory() {
+	public LicFactory getLicFactory() {
 		return (LicFactory)getEFactoryInstance();
 	}
 
@@ -347,7 +347,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 
 		featureDescriptorEClass = createEClass(FEATURE_DESCRIPTOR);
 
-		licenseeDescriptorEClass = createEClass(LICENSEE_DESCRIPTOR);
+		userDescriptorEClass = createEClass(USER_DESCRIPTOR);
 
 		productEClass = createEClass(PRODUCT);
 		createEAttribute(productEClass, PRODUCT__IDENTIFIER);
@@ -363,10 +363,10 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		createEAttribute(featureEClass, FEATURE__NAME);
 		createEAttribute(featureEClass, FEATURE__DESCRIPTION);
 
-		licenseeEClass = createEClass(LICENSEE);
-		createEAttribute(licenseeEClass, LICENSEE__EMAIL);
-		createEAttribute(licenseeEClass, LICENSEE__FULL_NAME);
-		createEAttribute(licenseeEClass, LICENSEE__DESCRIPTION);
+		userEClass = createEClass(USER);
+		createEAttribute(userEClass, USER__EMAIL);
+		createEAttribute(userEClass, USER__FULL_NAME);
+		createEAttribute(userEClass, USER__DESCRIPTION);
 	}
 
   /**
@@ -399,14 +399,14 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		// Add supertypes to classes
 		productEClass.getESuperTypes().add(this.getProductDescriptor());
 		featureEClass.getESuperTypes().add(this.getFeatureDescriptor());
-		licenseeEClass.getESuperTypes().add(this.getLicenseeDescriptor());
+		userEClass.getESuperTypes().add(this.getUserDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(productDescriptorEClass, ProductDescriptor.class, "ProductDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(featureDescriptorEClass, FeatureDescriptor.class, "FeatureDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(licenseeDescriptorEClass, UserDescriptor.class, "LicenseeDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(userDescriptorEClass, UserDescriptor.class, "UserDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(productEClass, Product.class, "Product", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getProduct_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, Product.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -422,10 +422,10 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		initEAttribute(getFeature_Name(), ecorePackage.getEString(), "name", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getFeature_Description(), ecorePackage.getEString(), "description", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(licenseeEClass, User.class, "Licensee", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getLicensee_Email(), ecorePackage.getEString(), "email", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getLicensee_FullName(), ecorePackage.getEString(), "fullName", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getLicensee_Description(), ecorePackage.getEString(), "description", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getUser_Email(), ecorePackage.getEString(), "email", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getUser_FullName(), ecorePackage.getEString(), "fullName", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getUser_Description(), ecorePackage.getEString(), "description", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

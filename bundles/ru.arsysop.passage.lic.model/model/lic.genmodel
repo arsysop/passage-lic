@@ -26,7 +26,7 @@
     modelName="Lic" editPluginClass="ru.arsysop.passage.lic.model.edit.LicEditPlugin"
     editorPluginClass="ru.arsysop.passage.lic.model.editor.LicEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    testSuiteClass="ru.arsysop.passage.lic.model.tests.LicensingAllTests"
+    testSuiteClass="ru.arsysop.passage.lic.model.tests.LicAllTests"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     editPluginID="ru.arsysop.passage.lic.model.edit" editorPluginID="ru.arsysop.passage.lic.model.editor"
     language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"

@@ -23,7 +23,6 @@ package ru.arsysop.passage.lic.model.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-
 import ru.arsysop.passage.lic.model.api.Feature;
 import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.Product;
@@ -101,9 +100,9 @@ public class LicSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicPackage.LICENSEE_DESCRIPTOR: {
-				UserDescriptor licenseeDescriptor = (UserDescriptor)theEObject;
-				T result = caseUserDescriptor(licenseeDescriptor);
+			case LicPackage.USER_DESCRIPTOR: {
+				UserDescriptor userDescriptor = (UserDescriptor)theEObject;
+				T result = caseUserDescriptor(userDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -121,10 +120,10 @@ public class LicSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicPackage.LICENSEE: {
-				User licensee = (User)theEObject;
-				T result = caseUser(licensee);
-				if (result == null) result = caseUserDescriptor(licensee);
+			case LicPackage.USER: {
+				User user = (User)theEObject;
+				T result = caseUser(user);
+				if (result == null) result = caseUserDescriptor(user);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -163,13 +162,13 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>Licensee Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>User Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Licensee Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>User Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -208,13 +207,13 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>Licensee</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>User</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Licensee</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>User</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */

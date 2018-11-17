@@ -38,8 +38,8 @@ import ru.arsysop.passage.lic.registry.UserDescriptor;
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getDescription <em>Description</em>}</li>
  * </ul>
  *
- * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensee()
- * @model superTypes="ru.arsysop.passage.licensing.runtime.model.api.LicenseeDescriptor"
+ * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser()
+ * @model superTypes="ru.arsysop.passage.lic.model.api.UserDescriptor"
  * @generated
  */
 public interface User extends EObject, UserDescriptor {
@@ -53,7 +53,7 @@ public interface User extends EObject, UserDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Email</em>' attribute.
 	 * @see #setEmail(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensee_Email()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_Email()
 	 * @model
 	 * @generated
 	 */
@@ -79,7 +79,7 @@ public interface User extends EObject, UserDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Full Name</em>' attribute.
 	 * @see #setFullName(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensee_FullName()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_FullName()
 	 * @model
 	 * @generated
 	 */
@@ -105,7 +105,7 @@ public interface User extends EObject, UserDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensee_Description()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_Description()
 	 * @model
 	 * @generated
 	 */

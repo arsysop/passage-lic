@@ -42,7 +42,7 @@ import ru.arsysop.passage.lic.registry.ProductDescriptor;
  * </ul>
  *
  * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProduct()
- * @model superTypes="ru.arsysop.passage.licensing.runtime.model.api.ProductDescriptor"
+ * @model superTypes="ru.arsysop.passage.lic.model.api.ProductDescriptor"
  * @generated
  */
 public interface Product extends EObject, ProductDescriptor {

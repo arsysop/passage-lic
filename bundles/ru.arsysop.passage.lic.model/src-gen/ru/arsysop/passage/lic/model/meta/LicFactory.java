@@ -62,10 +62,10 @@ public interface LicFactory extends EFactory {
 	Feature createFeature();
 
 		/**
-	 * Returns a new object of class '<em>Licensee</em>'.
+	 * Returns a new object of class '<em>User</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Licensee</em>'.
+	 * @return a new object of class '<em>User</em>'.
 	 * @generated
 	 */
 	User createUser();

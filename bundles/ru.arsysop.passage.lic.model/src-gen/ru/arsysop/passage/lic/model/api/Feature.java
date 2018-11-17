@@ -40,7 +40,7 @@ import ru.arsysop.passage.lic.registry.FeatureDescriptor;
  * </ul>
  *
  * @see ru.arsysop.passage.lic.model.meta.LicPackage#getFeature()
- * @model superTypes="ru.arsysop.passage.licensing.runtime.model.api.FeatureDescriptor"
+ * @model superTypes="ru.arsysop.passage.lic.model.api.FeatureDescriptor"
  * @generated
  */
 public interface Feature extends EObject, FeatureDescriptor {

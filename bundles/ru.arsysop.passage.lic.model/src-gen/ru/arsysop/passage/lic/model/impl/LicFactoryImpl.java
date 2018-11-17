@@ -47,9 +47,9 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 */
   public static LicFactory init() {
 		try {
-			LicFactory theLicensingFactory = (LicFactory)EPackage.Registry.INSTANCE.getEFactory(LicPackage.eNS_URI);
-			if (theLicensingFactory != null) {
-				return theLicensingFactory;
+			LicFactory theLicFactory = (LicFactory)EPackage.Registry.INSTANCE.getEFactory(LicPackage.eNS_URI);
+			if (theLicFactory != null) {
+				return theLicFactory;
 			}
 		}
 		catch (Exception exception) {
@@ -78,7 +78,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 		switch (eClass.getClassifierID()) {
 			case LicPackage.PRODUCT: return createProduct();
 			case LicPackage.FEATURE: return createFeature();
-			case LicPackage.LICENSEE: return createUser();
+			case LicPackage.USER: return createUser();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -110,8 +110,8 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * @generated
 	 */
 	public User createUser() {
-		UserImpl licensee = new UserImpl();
-		return licensee;
+		UserImpl user = new UserImpl();
+		return user;
 	}
 
 		/**

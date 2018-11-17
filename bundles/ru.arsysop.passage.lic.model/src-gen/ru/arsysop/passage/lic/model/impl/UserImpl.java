@@ -122,7 +122,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 */
   @Override
   protected EClass eStaticClass() {
-		return LicPackage.Literals.LICENSEE;
+		return LicPackage.Literals.USER;
 	}
 
   /**
@@ -143,7 +143,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		String oldEmail = email;
 		email = newEmail;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSEE__EMAIL, oldEmail, email));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.USER__EMAIL, oldEmail, email));
 	}
 
   /**
@@ -164,7 +164,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		String oldFullName = fullName;
 		fullName = newFullName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSEE__FULL_NAME, oldFullName, fullName));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.USER__FULL_NAME, oldFullName, fullName));
 	}
 
 		/**
@@ -185,7 +185,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSEE__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.USER__DESCRIPTION, oldDescription, description));
 	}
 
 		/**
@@ -196,11 +196,11 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LicPackage.LICENSEE__EMAIL:
+			case LicPackage.USER__EMAIL:
 				return getEmail();
-			case LicPackage.LICENSEE__FULL_NAME:
+			case LicPackage.USER__FULL_NAME:
 				return getFullName();
-			case LicPackage.LICENSEE__DESCRIPTION:
+			case LicPackage.USER__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -214,13 +214,13 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
   @Override
   public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LicPackage.LICENSEE__EMAIL:
+			case LicPackage.USER__EMAIL:
 				setEmail((String)newValue);
 				return;
-			case LicPackage.LICENSEE__FULL_NAME:
+			case LicPackage.USER__FULL_NAME:
 				setFullName((String)newValue);
 				return;
-			case LicPackage.LICENSEE__DESCRIPTION:
+			case LicPackage.USER__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -235,13 +235,13 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
   @Override
   public void eUnset(int featureID) {
 		switch (featureID) {
-			case LicPackage.LICENSEE__EMAIL:
+			case LicPackage.USER__EMAIL:
 				setEmail(EMAIL_EDEFAULT);
 				return;
-			case LicPackage.LICENSEE__FULL_NAME:
+			case LicPackage.USER__FULL_NAME:
 				setFullName(FULL_NAME_EDEFAULT);
 				return;
-			case LicPackage.LICENSEE__DESCRIPTION:
+			case LicPackage.USER__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -256,11 +256,11 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
   @Override
   public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LicPackage.LICENSEE__EMAIL:
+			case LicPackage.USER__EMAIL:
 				return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT.equals(email);
-			case LicPackage.LICENSEE__FULL_NAME:
+			case LicPackage.USER__FULL_NAME:
 				return FULL_NAME_EDEFAULT == null ? fullName != null : !FULL_NAME_EDEFAULT.equals(fullName);
-			case LicPackage.LICENSEE__DESCRIPTION:
+			case LicPackage.USER__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);

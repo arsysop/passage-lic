@@ -24,7 +24,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-
 import ru.arsysop.passage.lic.model.api.Feature;
 import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.Product;
@@ -99,7 +98,7 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 			}
 			@Override
 			public Adapter caseUserDescriptor(UserDescriptor object) {
-				return createLicenseeDescriptorAdapter();
+				return createUserDescriptorAdapter();
 			}
 			@Override
 			public Adapter caseProduct(Product object) {
@@ -111,7 +110,7 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 			}
 			@Override
 			public Adapter caseUser(User object) {
-				return createLicenseeAdapter();
+				return createUserAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -162,7 +161,7 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>Licensee Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>User Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -171,7 +170,7 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	 * @see ru.arsysop.passage.lic.registry.UserDescriptor
 	 * @generated
 	 */
-	public Adapter createLicenseeDescriptorAdapter() {
+	public Adapter createUserDescriptorAdapter() {
 		return null;
 	}
 
@@ -204,7 +203,7 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.User <em>Licensee</em>}'.
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -213,7 +212,7 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	 * @see ru.arsysop.passage.lic.model.api.User
 	 * @generated
 	 */
-	public Adapter createLicenseeAdapter() {
+	public Adapter createUserAdapter() {
 		return null;
 	}
 
