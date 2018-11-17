@@ -26,9 +26,9 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import ru.arsysop.passage.lic.model.api.Feature;
-import ru.arsysop.passage.lic.model.api.Licensee;
+import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.Product;
-import ru.arsysop.passage.lic.model.meta.LicensingPackage;
+import ru.arsysop.passage.lic.model.meta.LicPackage;
 import ru.arsysop.passage.lic.registry.FeatureDescriptor;
 import ru.arsysop.passage.lic.registry.UserDescriptor;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
@@ -38,17 +38,17 @@ import ru.arsysop.passage.lic.registry.ProductDescriptor;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see ru.arsysop.passage.lic.model.meta.LicensingPackage
+ * @see ru.arsysop.passage.lic.model.meta.LicPackage
  * @generated
  */
-public class LicensingAdapterFactory extends AdapterFactoryImpl {
+public class LicAdapterFactory extends AdapterFactoryImpl {
   /**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected static LicensingPackage modelPackage;
+  protected static LicPackage modelPackage;
 
   /**
 	 * Creates an instance of the adapter factory.
@@ -56,9 +56,9 @@ public class LicensingAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public LicensingAdapterFactory() {
+  public LicAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = LicensingPackage.eINSTANCE;
+			modelPackage = LicPackage.eINSTANCE;
 		}
 	}
 
@@ -87,8 +87,8 @@ public class LicensingAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected LicensingSwitch<Adapter> modelSwitch =
-    new LicensingSwitch<Adapter>() {
+  protected LicSwitch<Adapter> modelSwitch =
+    new LicSwitch<Adapter>() {
 			@Override
 			public Adapter caseProductDescriptor(ProductDescriptor object) {
 				return createProductDescriptorAdapter();
@@ -98,7 +98,7 @@ public class LicensingAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseLicenseeDescriptor(UserDescriptor object) {
+			public Adapter caseUserDescriptor(UserDescriptor object) {
 				return createLicenseeDescriptorAdapter();
 			}
 			@Override
@@ -110,7 +110,7 @@ public class LicensingAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureAdapter();
 			}
 			@Override
-			public Adapter caseLicensee(Licensee object) {
+			public Adapter caseUser(User object) {
 				return createLicenseeAdapter();
 			}
 			@Override
@@ -204,13 +204,13 @@ public class LicensingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.Licensee <em>Licensee</em>}'.
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.User <em>Licensee</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ru.arsysop.passage.lic.model.api.Licensee
+	 * @see ru.arsysop.passage.lic.model.api.User
 	 * @generated
 	 */
 	public Adapter createLicenseeAdapter() {

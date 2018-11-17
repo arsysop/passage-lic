@@ -25,9 +25,9 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated passage -->
       <package
-            uri="http://www.arsysop.ru/passage/licensing/0.2.0/"
-            class="ru.arsysop.passage.lic.model.meta.LicensingPackage"
-            genModel="model/licensing.genmodel"/>
+            uri="http://www.arsysop.ru/passage/lic/0.3.0/"
+            class="ru.arsysop.passage.lic.model.meta.LicPackage"
+            genModel="model/lic.genmodel"/>
    </extension>
 
 </plugin>

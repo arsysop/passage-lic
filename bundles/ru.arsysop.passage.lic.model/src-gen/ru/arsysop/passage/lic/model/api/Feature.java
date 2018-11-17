@@ -39,7 +39,7 @@ import ru.arsysop.passage.lic.registry.FeatureDescriptor;
  *   <li>{@link ru.arsysop.passage.lic.model.api.Feature#getDescription <em>Description</em>}</li>
  * </ul>
  *
- * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getFeature()
+ * @see ru.arsysop.passage.lic.model.meta.LicPackage#getFeature()
  * @model superTypes="ru.arsysop.passage.licensing.runtime.model.api.FeatureDescriptor"
  * @generated
  */
@@ -54,7 +54,7 @@ public interface Feature extends EObject, FeatureDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getFeature_Name()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getFeature_Name()
 	 * @model
 	 * @generated
 	 */
@@ -80,7 +80,7 @@ public interface Feature extends EObject, FeatureDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Version</em>' attribute.
 	 * @see #setVersion(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getFeature_Version()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getFeature_Version()
 	 * @model
 	 * @generated
 	 */
@@ -106,7 +106,7 @@ public interface Feature extends EObject, FeatureDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getFeature_Description()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getFeature_Description()
 	 * @model
 	 * @generated
 	 */
@@ -132,7 +132,7 @@ public interface Feature extends EObject, FeatureDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getFeature_Identifier()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getFeature_Identifier()
 	 * @model
 	 * @generated
 	 */

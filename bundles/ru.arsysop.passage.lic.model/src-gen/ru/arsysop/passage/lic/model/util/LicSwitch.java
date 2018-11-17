@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import ru.arsysop.passage.lic.model.api.Feature;
-import ru.arsysop.passage.lic.model.api.Licensee;
+import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.Product;
-import ru.arsysop.passage.lic.model.meta.LicensingPackage;
+import ru.arsysop.passage.lic.model.meta.LicPackage;
 import ru.arsysop.passage.lic.registry.FeatureDescriptor;
 import ru.arsysop.passage.lic.registry.UserDescriptor;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
@@ -42,17 +42,17 @@ import ru.arsysop.passage.lic.registry.ProductDescriptor;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see ru.arsysop.passage.lic.model.meta.LicensingPackage
+ * @see ru.arsysop.passage.lic.model.meta.LicPackage
  * @generated
  */
-public class LicensingSwitch<T> extends Switch<T> {
+public class LicSwitch<T> extends Switch<T> {
   /**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected static LicensingPackage modelPackage;
+  protected static LicPackage modelPackage;
 
   /**
 	 * Creates an instance of the switch.
@@ -60,9 +60,9 @@ public class LicensingSwitch<T> extends Switch<T> {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public LicensingSwitch() {
+  public LicSwitch() {
 		if (modelPackage == null) {
-			modelPackage = LicensingPackage.eINSTANCE;
+			modelPackage = LicPackage.eINSTANCE;
 		}
 	}
 
@@ -89,42 +89,42 @@ public class LicensingSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case LicensingPackage.PRODUCT_DESCRIPTOR: {
+			case LicPackage.PRODUCT_DESCRIPTOR: {
 				ProductDescriptor productDescriptor = (ProductDescriptor)theEObject;
 				T result = caseProductDescriptor(productDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicensingPackage.FEATURE_DESCRIPTOR: {
+			case LicPackage.FEATURE_DESCRIPTOR: {
 				FeatureDescriptor featureDescriptor = (FeatureDescriptor)theEObject;
 				T result = caseFeatureDescriptor(featureDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicensingPackage.LICENSEE_DESCRIPTOR: {
+			case LicPackage.LICENSEE_DESCRIPTOR: {
 				UserDescriptor licenseeDescriptor = (UserDescriptor)theEObject;
-				T result = caseLicenseeDescriptor(licenseeDescriptor);
+				T result = caseUserDescriptor(licenseeDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicensingPackage.PRODUCT: {
+			case LicPackage.PRODUCT: {
 				Product product = (Product)theEObject;
 				T result = caseProduct(product);
 				if (result == null) result = caseProductDescriptor(product);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicensingPackage.FEATURE: {
+			case LicPackage.FEATURE: {
 				Feature feature = (Feature)theEObject;
 				T result = caseFeature(feature);
 				if (result == null) result = caseFeatureDescriptor(feature);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicensingPackage.LICENSEE: {
-				Licensee licensee = (Licensee)theEObject;
-				T result = caseLicensee(licensee);
-				if (result == null) result = caseLicenseeDescriptor(licensee);
+			case LicPackage.LICENSEE: {
+				User licensee = (User)theEObject;
+				T result = caseUser(licensee);
+				if (result == null) result = caseUserDescriptor(licensee);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -173,7 +173,7 @@ public class LicensingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLicenseeDescriptor(UserDescriptor object) {
+	public T caseUserDescriptor(UserDescriptor object) {
 		return null;
 	}
 
@@ -218,7 +218,7 @@ public class LicensingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLicensee(Licensee object) {
+	public T caseUser(User object) {
 		return null;
 	}
 

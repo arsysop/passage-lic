@@ -33,16 +33,16 @@ import ru.arsysop.passage.lic.registry.UserDescriptor;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.arsysop.passage.lic.model.api.Licensee#getEmail <em>Email</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.Licensee#getFullName <em>Full Name</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.Licensee#getDescription <em>Description</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.User#getEmail <em>Email</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.User#getFullName <em>Full Name</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.User#getDescription <em>Description</em>}</li>
  * </ul>
  *
- * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getLicensee()
+ * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensee()
  * @model superTypes="ru.arsysop.passage.licensing.runtime.model.api.LicenseeDescriptor"
  * @generated
  */
-public interface Licensee extends EObject, UserDescriptor {
+public interface User extends EObject, UserDescriptor {
   /**
 	 * Returns the value of the '<em><b>Email</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,14 +53,14 @@ public interface Licensee extends EObject, UserDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Email</em>' attribute.
 	 * @see #setEmail(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getLicensee_Email()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensee_Email()
 	 * @model
 	 * @generated
 	 */
   String getEmail();
 
   /**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.Licensee#getEmail <em>Email</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.User#getEmail <em>Email</em>}' attribute.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Email</em>' attribute.
@@ -79,14 +79,14 @@ public interface Licensee extends EObject, UserDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Full Name</em>' attribute.
 	 * @see #setFullName(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getLicensee_FullName()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensee_FullName()
 	 * @model
 	 * @generated
 	 */
   String getFullName();
 
   /**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.Licensee#getFullName <em>Full Name</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.User#getFullName <em>Full Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Full Name</em>' attribute.
@@ -105,14 +105,14 @@ public interface Licensee extends EObject, UserDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getLicensee_Description()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensee_Description()
 	 * @model
 	 * @generated
 	 */
   String getDescription();
 
   /**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.Licensee#getDescription <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.User#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Description</em>' attribute.

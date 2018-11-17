@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.arsysop.passage.lic.model.api.Product;
-import ru.arsysop.passage.lic.model.meta.LicensingPackage;
+import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -185,7 +185,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	 */
   @Override
   protected EClass eStaticClass() {
-		return LicensingPackage.Literals.PRODUCT;
+		return LicPackage.Literals.PRODUCT;
 	}
 
   /**
@@ -206,7 +206,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.PRODUCT__IDENTIFIER, oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__IDENTIFIER, oldIdentifier, identifier));
 	}
 
   /**
@@ -227,7 +227,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.PRODUCT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__NAME, oldName, name));
 	}
 
   /**
@@ -248,7 +248,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		String oldVersion = version;
 		version = newVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.PRODUCT__VERSION, oldVersion, version));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__VERSION, oldVersion, version));
 	}
 
   /**
@@ -269,7 +269,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		String oldInstallationToken = installationToken;
 		installationToken = newInstallationToken;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.PRODUCT__INSTALLATION_TOKEN, oldInstallationToken, installationToken));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__INSTALLATION_TOKEN, oldInstallationToken, installationToken));
 	}
 
   /**
@@ -290,7 +290,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		String oldSecureToken = secureToken;
 		secureToken = newSecureToken;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.PRODUCT__SECURE_TOKEN, oldSecureToken, secureToken));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__SECURE_TOKEN, oldSecureToken, secureToken));
 	}
 
   /**
@@ -311,7 +311,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.PRODUCT__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__DESCRIPTION, oldDescription, description));
 	}
 
   /**
@@ -322,17 +322,17 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LicensingPackage.PRODUCT__IDENTIFIER:
+			case LicPackage.PRODUCT__IDENTIFIER:
 				return getIdentifier();
-			case LicensingPackage.PRODUCT__VERSION:
+			case LicPackage.PRODUCT__VERSION:
 				return getVersion();
-			case LicensingPackage.PRODUCT__NAME:
+			case LicPackage.PRODUCT__NAME:
 				return getName();
-			case LicensingPackage.PRODUCT__DESCRIPTION:
+			case LicPackage.PRODUCT__DESCRIPTION:
 				return getDescription();
-			case LicensingPackage.PRODUCT__INSTALLATION_TOKEN:
+			case LicPackage.PRODUCT__INSTALLATION_TOKEN:
 				return getInstallationToken();
-			case LicensingPackage.PRODUCT__SECURE_TOKEN:
+			case LicPackage.PRODUCT__SECURE_TOKEN:
 				return getSecureToken();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -346,22 +346,22 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
   @Override
   public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LicensingPackage.PRODUCT__IDENTIFIER:
+			case LicPackage.PRODUCT__IDENTIFIER:
 				setIdentifier((String)newValue);
 				return;
-			case LicensingPackage.PRODUCT__VERSION:
+			case LicPackage.PRODUCT__VERSION:
 				setVersion((String)newValue);
 				return;
-			case LicensingPackage.PRODUCT__NAME:
+			case LicPackage.PRODUCT__NAME:
 				setName((String)newValue);
 				return;
-			case LicensingPackage.PRODUCT__DESCRIPTION:
+			case LicPackage.PRODUCT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case LicensingPackage.PRODUCT__INSTALLATION_TOKEN:
+			case LicPackage.PRODUCT__INSTALLATION_TOKEN:
 				setInstallationToken((String)newValue);
 				return;
-			case LicensingPackage.PRODUCT__SECURE_TOKEN:
+			case LicPackage.PRODUCT__SECURE_TOKEN:
 				setSecureToken((String)newValue);
 				return;
 		}
@@ -376,22 +376,22 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
   @Override
   public void eUnset(int featureID) {
 		switch (featureID) {
-			case LicensingPackage.PRODUCT__IDENTIFIER:
+			case LicPackage.PRODUCT__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
-			case LicensingPackage.PRODUCT__VERSION:
+			case LicPackage.PRODUCT__VERSION:
 				setVersion(VERSION_EDEFAULT);
 				return;
-			case LicensingPackage.PRODUCT__NAME:
+			case LicPackage.PRODUCT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case LicensingPackage.PRODUCT__DESCRIPTION:
+			case LicPackage.PRODUCT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case LicensingPackage.PRODUCT__INSTALLATION_TOKEN:
+			case LicPackage.PRODUCT__INSTALLATION_TOKEN:
 				setInstallationToken(INSTALLATION_TOKEN_EDEFAULT);
 				return;
-			case LicensingPackage.PRODUCT__SECURE_TOKEN:
+			case LicPackage.PRODUCT__SECURE_TOKEN:
 				setSecureToken(SECURE_TOKEN_EDEFAULT);
 				return;
 		}
@@ -406,17 +406,17 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
   @Override
   public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LicensingPackage.PRODUCT__IDENTIFIER:
+			case LicPackage.PRODUCT__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-			case LicensingPackage.PRODUCT__VERSION:
+			case LicPackage.PRODUCT__VERSION:
 				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
-			case LicensingPackage.PRODUCT__NAME:
+			case LicPackage.PRODUCT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case LicensingPackage.PRODUCT__DESCRIPTION:
+			case LicPackage.PRODUCT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case LicensingPackage.PRODUCT__INSTALLATION_TOKEN:
+			case LicPackage.PRODUCT__INSTALLATION_TOKEN:
 				return INSTALLATION_TOKEN_EDEFAULT == null ? installationToken != null : !INSTALLATION_TOKEN_EDEFAULT.equals(installationToken);
-			case LicensingPackage.PRODUCT__SECURE_TOKEN:
+			case LicPackage.PRODUCT__SECURE_TOKEN:
 				return SECURE_TOKEN_EDEFAULT == null ? secureToken != null : !SECURE_TOKEN_EDEFAULT.equals(secureToken);
 		}
 		return super.eIsSet(featureID);

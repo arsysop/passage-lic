@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.arsysop.passage.lic.model.api.Feature;
-import ru.arsysop.passage.lic.model.meta.LicensingPackage;
+import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -142,7 +142,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 */
   @Override
   protected EClass eStaticClass() {
-		return LicensingPackage.Literals.FEATURE;
+		return LicPackage.Literals.FEATURE;
 	}
 
   /**
@@ -163,7 +163,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.FEATURE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__NAME, oldName, name));
 	}
 
   /**
@@ -184,7 +184,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		String oldVersion = version;
 		version = newVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.FEATURE__VERSION, oldVersion, version));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__VERSION, oldVersion, version));
 	}
 
   /**
@@ -205,7 +205,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.FEATURE__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__DESCRIPTION, oldDescription, description));
 	}
 
   /**
@@ -226,7 +226,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.FEATURE__IDENTIFIER, oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__IDENTIFIER, oldIdentifier, identifier));
 	}
 
   /**
@@ -237,13 +237,13 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LicensingPackage.FEATURE__IDENTIFIER:
+			case LicPackage.FEATURE__IDENTIFIER:
 				return getIdentifier();
-			case LicensingPackage.FEATURE__VERSION:
+			case LicPackage.FEATURE__VERSION:
 				return getVersion();
-			case LicensingPackage.FEATURE__NAME:
+			case LicPackage.FEATURE__NAME:
 				return getName();
-			case LicensingPackage.FEATURE__DESCRIPTION:
+			case LicPackage.FEATURE__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -257,16 +257,16 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
   @Override
   public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LicensingPackage.FEATURE__IDENTIFIER:
+			case LicPackage.FEATURE__IDENTIFIER:
 				setIdentifier((String)newValue);
 				return;
-			case LicensingPackage.FEATURE__VERSION:
+			case LicPackage.FEATURE__VERSION:
 				setVersion((String)newValue);
 				return;
-			case LicensingPackage.FEATURE__NAME:
+			case LicPackage.FEATURE__NAME:
 				setName((String)newValue);
 				return;
-			case LicensingPackage.FEATURE__DESCRIPTION:
+			case LicPackage.FEATURE__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -281,16 +281,16 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
   @Override
   public void eUnset(int featureID) {
 		switch (featureID) {
-			case LicensingPackage.FEATURE__IDENTIFIER:
+			case LicPackage.FEATURE__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
-			case LicensingPackage.FEATURE__VERSION:
+			case LicPackage.FEATURE__VERSION:
 				setVersion(VERSION_EDEFAULT);
 				return;
-			case LicensingPackage.FEATURE__NAME:
+			case LicPackage.FEATURE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case LicensingPackage.FEATURE__DESCRIPTION:
+			case LicPackage.FEATURE__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -305,13 +305,13 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
   @Override
   public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LicensingPackage.FEATURE__IDENTIFIER:
+			case LicPackage.FEATURE__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-			case LicensingPackage.FEATURE__VERSION:
+			case LicPackage.FEATURE__VERSION:
 				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
-			case LicensingPackage.FEATURE__NAME:
+			case LicPackage.FEATURE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case LicensingPackage.FEATURE__DESCRIPTION:
+			case LicPackage.FEATURE__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);

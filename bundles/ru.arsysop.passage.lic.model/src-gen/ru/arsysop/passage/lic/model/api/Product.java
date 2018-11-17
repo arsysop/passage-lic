@@ -41,7 +41,7 @@ import ru.arsysop.passage.lic.registry.ProductDescriptor;
  *   <li>{@link ru.arsysop.passage.lic.model.api.Product#getSecureToken <em>Secure Token</em>}</li>
  * </ul>
  *
- * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getProduct()
+ * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProduct()
  * @model superTypes="ru.arsysop.passage.licensing.runtime.model.api.ProductDescriptor"
  * @generated
  */
@@ -56,7 +56,7 @@ public interface Product extends EObject, ProductDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getProduct_Identifier()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProduct_Identifier()
 	 * @model
 	 * @generated
 	 */
@@ -82,7 +82,7 @@ public interface Product extends EObject, ProductDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getProduct_Name()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProduct_Name()
 	 * @model
 	 * @generated
 	 */
@@ -108,7 +108,7 @@ public interface Product extends EObject, ProductDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Version</em>' attribute.
 	 * @see #setVersion(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getProduct_Version()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProduct_Version()
 	 * @model
 	 * @generated
 	 */
@@ -134,7 +134,7 @@ public interface Product extends EObject, ProductDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Installation Token</em>' attribute.
 	 * @see #setInstallationToken(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getProduct_InstallationToken()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProduct_InstallationToken()
 	 * @model
 	 * @generated
 	 */
@@ -160,7 +160,7 @@ public interface Product extends EObject, ProductDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Secure Token</em>' attribute.
 	 * @see #setSecureToken(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getProduct_SecureToken()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProduct_SecureToken()
 	 * @model
 	 * @generated
 	 */
@@ -186,7 +186,7 @@ public interface Product extends EObject, ProductDescriptor {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#getProduct_Description()
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProduct_Description()
 	 * @model
 	 * @generated
 	 */

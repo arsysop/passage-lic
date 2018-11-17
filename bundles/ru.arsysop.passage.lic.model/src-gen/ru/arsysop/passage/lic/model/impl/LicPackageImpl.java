@@ -26,10 +26,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import ru.arsysop.passage.lic.model.api.Feature;
-import ru.arsysop.passage.lic.model.api.Licensee;
+import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.Product;
-import ru.arsysop.passage.lic.model.meta.LicensingFactory;
-import ru.arsysop.passage.lic.model.meta.LicensingPackage;
+import ru.arsysop.passage.lic.model.meta.LicFactory;
+import ru.arsysop.passage.lic.model.meta.LicPackage;
 import ru.arsysop.passage.lic.registry.FeatureDescriptor;
 import ru.arsysop.passage.lic.registry.UserDescriptor;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
@@ -40,7 +40,7 @@ import ru.arsysop.passage.lic.registry.ProductDescriptor;
  * <!-- end-user-doc -->
  * @generated
  */
-public class LicensingPackageImpl extends EPackageImpl implements LicensingPackage {
+public class LicPackageImpl extends EPackageImpl implements LicPackage {
   /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,12 +94,12 @@ public class LicensingPackageImpl extends EPackageImpl implements LicensingPacka
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see ru.arsysop.passage.lic.model.meta.LicensingPackage#eNS_URI
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-  private LicensingPackageImpl() {
-		super(eNS_URI, LicensingFactory.eINSTANCE);
+  private LicPackageImpl() {
+		super(eNS_URI, LicFactory.eINSTANCE);
 	}
 
   /**
@@ -112,7 +112,7 @@ public class LicensingPackageImpl extends EPackageImpl implements LicensingPacka
   /**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
-	 * <p>This method is used to initialize {@link LicensingPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link LicPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -121,12 +121,12 @@ public class LicensingPackageImpl extends EPackageImpl implements LicensingPacka
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-  public static LicensingPackage init() {
-		if (isInited) return (LicensingPackage)EPackage.Registry.INSTANCE.getEPackage(LicensingPackage.eNS_URI);
+  public static LicPackage init() {
+		if (isInited) return (LicPackage)EPackage.Registry.INSTANCE.getEPackage(LicPackage.eNS_URI);
 
 		// Obtain or create and register package
 		Object registeredLicensingPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		LicensingPackageImpl theLicensingPackage = registeredLicensingPackage instanceof LicensingPackageImpl ? (LicensingPackageImpl)registeredLicensingPackage : new LicensingPackageImpl();
+		LicPackageImpl theLicensingPackage = registeredLicensingPackage instanceof LicPackageImpl ? (LicPackageImpl)registeredLicensingPackage : new LicPackageImpl();
 
 		isInited = true;
 
@@ -140,7 +140,7 @@ public class LicensingPackageImpl extends EPackageImpl implements LicensingPacka
 		theLicensingPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(LicensingPackage.eNS_URI, theLicensingPackage);
+		EPackage.Registry.INSTANCE.put(LicPackage.eNS_URI, theLicensingPackage);
 		return theLicensingPackage;
 	}
 
@@ -311,8 +311,8 @@ public class LicensingPackageImpl extends EPackageImpl implements LicensingPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicensingFactory getLicensingFactory() {
-		return (LicensingFactory)getEFactoryInstance();
+	public LicFactory getLicensingFactory() {
+		return (LicFactory)getEFactoryInstance();
 	}
 
 		/**
@@ -422,10 +422,10 @@ public class LicensingPackageImpl extends EPackageImpl implements LicensingPacka
 		initEAttribute(getFeature_Name(), ecorePackage.getEString(), "name", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getFeature_Description(), ecorePackage.getEString(), "description", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(licenseeEClass, Licensee.class, "Licensee", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getLicensee_Email(), ecorePackage.getEString(), "email", null, 0, 1, Licensee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getLicensee_FullName(), ecorePackage.getEString(), "fullName", null, 0, 1, Licensee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getLicensee_Description(), ecorePackage.getEString(), "description", null, 0, 1, Licensee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(licenseeEClass, User.class, "Licensee", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getLicensee_Email(), ecorePackage.getEString(), "email", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getLicensee_FullName(), ecorePackage.getEString(), "fullName", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getLicensee_Description(), ecorePackage.getEString(), "description", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

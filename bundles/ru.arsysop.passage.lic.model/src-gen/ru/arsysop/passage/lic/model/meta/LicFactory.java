@@ -23,7 +23,7 @@ package ru.arsysop.passage.lic.model.meta;
 import org.eclipse.emf.ecore.EFactory;
 
 import ru.arsysop.passage.lic.model.api.Feature;
-import ru.arsysop.passage.lic.model.api.Licensee;
+import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.Product;
 
 /**
@@ -31,17 +31,17 @@ import ru.arsysop.passage.lic.model.api.Product;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see ru.arsysop.passage.lic.model.meta.LicensingPackage
+ * @see ru.arsysop.passage.lic.model.meta.LicPackage
  * @generated
  */
-public interface LicensingFactory extends EFactory {
+public interface LicFactory extends EFactory {
   /**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  LicensingFactory eINSTANCE = ru.arsysop.passage.lic.model.impl.LicensingFactoryImpl.init();
+  LicFactory eINSTANCE = ru.arsysop.passage.lic.model.impl.LicFactoryImpl.init();
 
   /**
 	 * Returns a new object of class '<em>Product</em>'.
@@ -68,7 +68,7 @@ public interface LicensingFactory extends EFactory {
 	 * @return a new object of class '<em>Licensee</em>'.
 	 * @generated
 	 */
-	Licensee createLicensee();
+	User createUser();
 
 		/**
 	 * Returns the package supported by this factory.
@@ -77,6 +77,6 @@ public interface LicensingFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	LicensingPackage getLicensingPackage();
+	LicPackage getLicPackage();
 
 } //PassageFactory

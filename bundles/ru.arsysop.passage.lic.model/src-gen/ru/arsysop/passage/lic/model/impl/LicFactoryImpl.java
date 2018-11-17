@@ -29,8 +29,8 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import ru.arsysop.passage.lic.model.api.*;
-import ru.arsysop.passage.lic.model.meta.LicensingFactory;
-import ru.arsysop.passage.lic.model.meta.LicensingPackage;
+import ru.arsysop.passage.lic.model.meta.LicFactory;
+import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,16 +38,16 @@ import ru.arsysop.passage.lic.model.meta.LicensingPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class LicensingFactoryImpl extends EFactoryImpl implements LicensingFactory {
+public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
   /**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static LicensingFactory init() {
+  public static LicFactory init() {
 		try {
-			LicensingFactory theLicensingFactory = (LicensingFactory)EPackage.Registry.INSTANCE.getEFactory(LicensingPackage.eNS_URI);
+			LicFactory theLicensingFactory = (LicFactory)EPackage.Registry.INSTANCE.getEFactory(LicPackage.eNS_URI);
 			if (theLicensingFactory != null) {
 				return theLicensingFactory;
 			}
@@ -55,7 +55,7 @@ public class LicensingFactoryImpl extends EFactoryImpl implements LicensingFacto
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new LicensingFactoryImpl();
+		return new LicFactoryImpl();
 	}
 
   /**
@@ -64,7 +64,7 @@ public class LicensingFactoryImpl extends EFactoryImpl implements LicensingFacto
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public LicensingFactoryImpl() {
+  public LicFactoryImpl() {
 		super();
 	}
 
@@ -76,9 +76,9 @@ public class LicensingFactoryImpl extends EFactoryImpl implements LicensingFacto
   @Override
   public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LicensingPackage.PRODUCT: return createProduct();
-			case LicensingPackage.FEATURE: return createFeature();
-			case LicensingPackage.LICENSEE: return createLicensee();
+			case LicPackage.PRODUCT: return createProduct();
+			case LicPackage.FEATURE: return createFeature();
+			case LicPackage.LICENSEE: return createUser();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -109,8 +109,8 @@ public class LicensingFactoryImpl extends EFactoryImpl implements LicensingFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Licensee createLicensee() {
-		LicenseeImpl licensee = new LicenseeImpl();
+	public User createUser() {
+		UserImpl licensee = new UserImpl();
 		return licensee;
 	}
 
@@ -119,8 +119,8 @@ public class LicensingFactoryImpl extends EFactoryImpl implements LicensingFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicensingPackage getLicensingPackage() {
-		return (LicensingPackage)getEPackage();
+	public LicPackage getLicPackage() {
+		return (LicPackage)getEPackage();
 	}
 
 		/**
@@ -130,8 +130,8 @@ public class LicensingFactoryImpl extends EFactoryImpl implements LicensingFacto
 	 * @generated
 	 */
   @Deprecated
-  public static LicensingPackage getPackage() {
-		return LicensingPackage.eINSTANCE;
+  public static LicPackage getPackage() {
+		return LicPackage.eINSTANCE;
 	}
 
 } //PassageFactoryImpl

@@ -27,8 +27,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import ru.arsysop.passage.lic.model.api.Licensee;
-import ru.arsysop.passage.lic.model.meta.LicensingPackage;
+import ru.arsysop.passage.lic.model.api.User;
+import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,14 +38,14 @@ import ru.arsysop.passage.lic.model.meta.LicensingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseeImpl#getEmail <em>Email</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseeImpl#getFullName <em>Full Name</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseeImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getEmail <em>Email</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getFullName <em>Full Name</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licensee {
+public class UserImpl extends MinimalEObjectImpl.Container implements User {
   /**
 	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -111,7 +111,7 @@ public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licens
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected LicenseeImpl() {
+  protected UserImpl() {
 		super();
 	}
 
@@ -122,7 +122,7 @@ public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licens
 	 */
   @Override
   protected EClass eStaticClass() {
-		return LicensingPackage.Literals.LICENSEE;
+		return LicPackage.Literals.LICENSEE;
 	}
 
   /**
@@ -143,7 +143,7 @@ public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licens
 		String oldEmail = email;
 		email = newEmail;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.LICENSEE__EMAIL, oldEmail, email));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSEE__EMAIL, oldEmail, email));
 	}
 
   /**
@@ -164,7 +164,7 @@ public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licens
 		String oldFullName = fullName;
 		fullName = newFullName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.LICENSEE__FULL_NAME, oldFullName, fullName));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSEE__FULL_NAME, oldFullName, fullName));
 	}
 
 		/**
@@ -185,7 +185,7 @@ public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licens
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.LICENSEE__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSEE__DESCRIPTION, oldDescription, description));
 	}
 
 		/**
@@ -196,11 +196,11 @@ public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licens
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LicensingPackage.LICENSEE__EMAIL:
+			case LicPackage.LICENSEE__EMAIL:
 				return getEmail();
-			case LicensingPackage.LICENSEE__FULL_NAME:
+			case LicPackage.LICENSEE__FULL_NAME:
 				return getFullName();
-			case LicensingPackage.LICENSEE__DESCRIPTION:
+			case LicPackage.LICENSEE__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -214,13 +214,13 @@ public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licens
   @Override
   public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LicensingPackage.LICENSEE__EMAIL:
+			case LicPackage.LICENSEE__EMAIL:
 				setEmail((String)newValue);
 				return;
-			case LicensingPackage.LICENSEE__FULL_NAME:
+			case LicPackage.LICENSEE__FULL_NAME:
 				setFullName((String)newValue);
 				return;
-			case LicensingPackage.LICENSEE__DESCRIPTION:
+			case LicPackage.LICENSEE__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -235,13 +235,13 @@ public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licens
   @Override
   public void eUnset(int featureID) {
 		switch (featureID) {
-			case LicensingPackage.LICENSEE__EMAIL:
+			case LicPackage.LICENSEE__EMAIL:
 				setEmail(EMAIL_EDEFAULT);
 				return;
-			case LicensingPackage.LICENSEE__FULL_NAME:
+			case LicPackage.LICENSEE__FULL_NAME:
 				setFullName(FULL_NAME_EDEFAULT);
 				return;
-			case LicensingPackage.LICENSEE__DESCRIPTION:
+			case LicPackage.LICENSEE__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -256,11 +256,11 @@ public class LicenseeImpl extends MinimalEObjectImpl.Container implements Licens
   @Override
   public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LicensingPackage.LICENSEE__EMAIL:
+			case LicPackage.LICENSEE__EMAIL:
 				return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT.equals(email);
-			case LicensingPackage.LICENSEE__FULL_NAME:
+			case LicPackage.LICENSEE__FULL_NAME:
 				return FULL_NAME_EDEFAULT == null ? fullName != null : !FULL_NAME_EDEFAULT.equals(fullName);
-			case LicensingPackage.LICENSEE__DESCRIPTION:
+			case LicPackage.LICENSEE__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
