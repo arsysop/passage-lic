@@ -122,13 +122,13 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 				ConditionDescriptor conditionDescriptor = new ConditionDescriptor() {
 					
 					@Override
-					public String getType() {
+					public String getConditionType() {
 						// TODO Auto-generated method stub
 						return "user";
 					}
 					
 					@Override
-					public String getExpression() {
+					public String getConditionExpression() {
 						// TODO Auto-generated method stub
 						return properties.getProperty("email");
 					}
@@ -154,7 +154,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 					@Override
 					public String toString() {
 						StringBuilder sb = new StringBuilder();
-						sb.append("email").append('=').append(getExpression()).append(';');
+						sb.append("email").append('=').append(getConditionExpression()).append(';');
 						sb.append("component").append('=').append(getAllowedFeatureId()).append(';');
 						sb.append("componentVersion").append('=').append(getAllowedFeatureMatchVersion()).append(';');
 						return sb.toString();

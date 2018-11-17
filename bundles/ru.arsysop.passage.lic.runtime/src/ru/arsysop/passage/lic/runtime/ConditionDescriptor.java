@@ -39,7 +39,7 @@ public interface ConditionDescriptor {
 	 * 
 	 * @return
 	 */
-	String getType();
+	String getConditionType();
 
-	String getExpression();
+	String getConditionExpression();
 }

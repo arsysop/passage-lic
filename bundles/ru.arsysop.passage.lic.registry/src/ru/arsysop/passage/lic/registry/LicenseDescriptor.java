@@ -20,13 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-import java.util.List;
+public interface LicenseDescriptor {
+	
+	public int getCapacity();
 
-public interface ProductRegistry {
-
-	List<ProductDescriptor> getProductDescriptors();
-
-	void registerProduct(ProductDescriptor product);
-
-	String createPassword(ProductVersionDescriptor productVersion);
 }

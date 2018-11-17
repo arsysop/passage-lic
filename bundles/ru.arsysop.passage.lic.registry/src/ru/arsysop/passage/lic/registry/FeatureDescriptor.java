@@ -24,8 +24,6 @@ public interface FeatureDescriptor {
 
 	public String getIdentifier();
 
-	public String getVersion();
-
 	public String getName();
 	
 	public String getDescription();

@@ -24,14 +24,8 @@ public interface ProductDescriptor {
 	
 	String getIdentifier();
 
-	String getVersion();
-
 	String getName();
 	
 	String getDescription();
-
-	String getInstallationToken();
-
-	String getSecureToken();
 
 }
