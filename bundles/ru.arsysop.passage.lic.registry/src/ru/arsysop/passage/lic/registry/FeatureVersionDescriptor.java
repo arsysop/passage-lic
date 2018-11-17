@@ -18,28 +18,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.runtime;
+package ru.arsysop.passage.lic.registry;
 
-/**
- * 
- * Defines the condition to be evaluated {@link ConditionEvaluator} <br/>
- * Obtained from {@link ConditionMiner}
- *
- */
-public interface ConditionDescriptor {
+public interface FeatureVersionDescriptor {
 
-	String getAllowedFeatureId();
+	public String getVersion();
 
-	String getAllowedFeatureMatchVersion();
+	public String getNews();
 
-	String getAllowedFeatureMatchRule();
+	public FeatureDescriptor getFeature();
 
-	/**
-	 * the type of condition like "nist" for time or "hdd" for disk-locked
-	 * 
-	 * @return
-	 */
-	String getConditionType();
-
-	String getConditionExpression();
 }

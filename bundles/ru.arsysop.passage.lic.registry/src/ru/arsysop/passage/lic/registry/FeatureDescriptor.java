@@ -20,13 +20,12 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-import java.util.List;
+public interface FeatureDescriptor {
 
-public interface ProductRegistry {
+	public String getIdentifier();
 
-	List<ProductDescriptor> getProductDescriptors();
-
-	void registerProduct(ProductDescriptor product);
-
-	String createPassword(ProductDescriptor product);
+	public String getName();
+	
+	public String getDescription();
+	
 }

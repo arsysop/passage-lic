@@ -20,14 +20,16 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface FeatureDescriptor {
+public interface ProductVersionDescriptor {
 
-	public String getIdentifier();
+	String getVersion();
 
-	public String getVersion();
+	public String getNews();
 
-	public String getName();
+	String getInstallationToken();
+
+	String getSecureToken();
 	
-	public String getDescription();
-	
+	ProductDescriptor getProduct();
+
 }

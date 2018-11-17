@@ -20,12 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-import java.util.List;
-
-public interface LicenseeRegistry {
-
-	List<LicenseeDescriptor> getLicenseeDescriptors();
-
-	void registerLicensee(LicenseeDescriptor user);
+public interface LicenseDescriptor {
+	
+	public int getCapacity();
 
 }

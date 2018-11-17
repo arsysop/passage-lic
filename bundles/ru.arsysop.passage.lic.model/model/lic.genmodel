@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&#x9;Copyright (c) 2018 ArSysOp&#xA;&#xA;&#x9;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xA;&#x9;you may not use this file except in compliance with the License.&#xA;&#x9;You may obtain a copy of the License at&#xA;&#xA;&#x9;&#x9;http://www.apache.org/licenses/LICENSE-2.0&#xA;&#xA;&#x9;Unless required by applicable law or agreed to in writing, software&#xA;&#x9;distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xA;&#x9;WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xA;&#x9;See the License for the specific language governing permissions and&#xA;&#x9;limitations under the License.&#xA;&#xA;&#x9;SPDX-License-Identifier: Apache-2.0&#xA;&#xA;&#x9;Contributors:&#xA;&#x9;&#x9;ArSysOp - initial API and implementation&#xA;"
+    modelDirectory="/ru.arsysop.passage.lic.model/src-gen" editDirectory="ru.arsysop.passage.lic.model.edit/src-gen"
+    editorDirectory="ru.arsysop.passage.lic.model.editor/src-gen" modelPluginID="ru.arsysop.passage.lic.model"
+    modelName="Lic" editPluginClass="ru.arsysop.passage.lic.model.edit.LicEditPlugin"
+    editorPluginClass="ru.arsysop.passage.lic.model.editor.LicEditorPlugin" nonNLSMarkers="true"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testSuiteClass="ru.arsysop.passage.lic.model.tests.LicAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="ru.arsysop.passage.lic.model.edit" editorPluginID="ru.arsysop.passage.lic.model.editor"
+    language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"
+    oSGiCompatible="true">
+  <foreignModel>platform:/resource/ru.arsysop.passage.lic.model.ecore/model/lic.ecore</foreignModel>
+  <genPackages prefix="Lic" basePackage="ru.arsysop.passage" disposableProviderFactory="true"
+      interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
+      utilityPackageSuffix="model.util" providerPackageSuffix="model.edit.providers"
+      presentationPackageSuffix="model.editor" testsPackageSuffix="model.tests" ecorePackage="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#/">
+    <genClasses image="false" ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//FeatureDescriptor"/>
+    <genClasses image="false" ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//FeatureVersionDescriptor"/>
+    <genClasses image="false" ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductDescriptor"/>
+    <genClasses image="false" ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersionDescriptor"/>
+    <genClasses image="false" ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//UserDescriptor"/>
+    <genClasses image="false" ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//LicenseDescriptor"/>
+    <genClasses image="false" ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ConditionDescriptor"/>
+    <genClasses ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Feature/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Feature/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Feature/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Feature/featureVersions"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//FeatureVersion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//FeatureVersion/version"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//FeatureVersion/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//FeatureVersion/news"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Product">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Product/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Product/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Product/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//Product/productVersions"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/version"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/product"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/installationToken"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/secureToken"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/productVersionFeatures"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/news"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature/featureIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature/featureVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature/restrictionLevel"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature/productVersion"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//User">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//User/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//User/email"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//User/fullName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//User/description"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//License">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//License/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//License/issueDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//License/expireDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//License/productIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//License/productVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//License/userIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//License/capacity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//License/licenseConditions"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//LicenseCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//LicenseCondition/allowedFeatureId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//LicenseCondition/allowedFeatureMatchVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//LicenseCondition/allowedFeatureMatchRule"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//LicenseCondition/conditionType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ru.arsysop.passage.lic.model.ecore/model/lic.ecore#//LicenseCondition/conditionExpression"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

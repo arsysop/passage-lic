@@ -20,18 +20,12 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface ProductDescriptor {
+public interface UserDescriptor {
 	
-	String getIdentifier();
+	String getEmail();
 
-	String getVersion();
+	String getFullName();
 
-	String getName();
-	
 	String getDescription();
-
-	String getInstallationToken();
-
-	String getSecureToken();
 
 }

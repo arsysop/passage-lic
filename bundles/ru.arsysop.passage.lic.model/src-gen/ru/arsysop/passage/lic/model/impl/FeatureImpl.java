@@ -20,14 +20,21 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.model.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import ru.arsysop.passage.lic.model.api.Feature;
-import ru.arsysop.passage.lic.model.meta.LicensingPackage;
+import ru.arsysop.passage.lic.model.api.FeatureVersion;
+import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,9 +45,9 @@ import ru.arsysop.passage.lic.model.meta.LicensingPackage;
  * </p>
  * <ul>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getFeatureVersions <em>Feature Versions</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,26 +72,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * @ordered
 	 */
   protected String identifier = IDENTIFIER_EDEFAULT;
-
-		/**
-	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-  protected static final String VERSION_EDEFAULT = null;
-
-		/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-  protected String version = VERSION_EDEFAULT;
 
 		/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -127,6 +114,16 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
   protected String description = DESCRIPTION_EDEFAULT;
 
   /**
+	 * The cached value of the '{@link #getFeatureVersions() <em>Feature Versions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeatureVersions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FeatureVersion> featureVersions;
+
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -142,7 +139,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 */
   @Override
   protected EClass eStaticClass() {
-		return LicensingPackage.Literals.FEATURE;
+		return LicPackage.Literals.FEATURE;
 	}
 
   /**
@@ -163,28 +160,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.FEATURE__NAME, oldName, name));
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public String getVersion() {
-		return version;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public void setVersion(String newVersion) {
-		String oldVersion = version;
-		version = newVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.FEATURE__VERSION, oldVersion, version));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__NAME, oldName, name));
 	}
 
   /**
@@ -205,10 +181,51 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.FEATURE__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__DESCRIPTION, oldDescription, description));
 	}
 
   /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<FeatureVersion> getFeatureVersions() {
+		if (featureVersions == null) {
+			featureVersions = new EObjectContainmentWithInverseEList<FeatureVersion>(FeatureVersion.class, this, LicPackage.FEATURE__FEATURE_VERSIONS, LicPackage.FEATURE_VERSION__FEATURE);
+		}
+		return featureVersions;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LicPackage.FEATURE__FEATURE_VERSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFeatureVersions()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LicPackage.FEATURE__FEATURE_VERSIONS:
+				return ((InternalEList<?>)getFeatureVersions()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -226,7 +243,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensingPackage.FEATURE__IDENTIFIER, oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__IDENTIFIER, oldIdentifier, identifier));
 	}
 
   /**
@@ -237,14 +254,14 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LicensingPackage.FEATURE__IDENTIFIER:
+			case LicPackage.FEATURE__IDENTIFIER:
 				return getIdentifier();
-			case LicensingPackage.FEATURE__VERSION:
-				return getVersion();
-			case LicensingPackage.FEATURE__NAME:
+			case LicPackage.FEATURE__NAME:
 				return getName();
-			case LicensingPackage.FEATURE__DESCRIPTION:
+			case LicPackage.FEATURE__DESCRIPTION:
 				return getDescription();
+			case LicPackage.FEATURE__FEATURE_VERSIONS:
+				return getFeatureVersions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -254,20 +271,22 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
+  @SuppressWarnings("unchecked")
+		@Override
   public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LicensingPackage.FEATURE__IDENTIFIER:
+			case LicPackage.FEATURE__IDENTIFIER:
 				setIdentifier((String)newValue);
 				return;
-			case LicensingPackage.FEATURE__VERSION:
-				setVersion((String)newValue);
-				return;
-			case LicensingPackage.FEATURE__NAME:
+			case LicPackage.FEATURE__NAME:
 				setName((String)newValue);
 				return;
-			case LicensingPackage.FEATURE__DESCRIPTION:
+			case LicPackage.FEATURE__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case LicPackage.FEATURE__FEATURE_VERSIONS:
+				getFeatureVersions().clear();
+				getFeatureVersions().addAll((Collection<? extends FeatureVersion>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -281,17 +300,17 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
   @Override
   public void eUnset(int featureID) {
 		switch (featureID) {
-			case LicensingPackage.FEATURE__IDENTIFIER:
+			case LicPackage.FEATURE__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
-			case LicensingPackage.FEATURE__VERSION:
-				setVersion(VERSION_EDEFAULT);
-				return;
-			case LicensingPackage.FEATURE__NAME:
+			case LicPackage.FEATURE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case LicensingPackage.FEATURE__DESCRIPTION:
+			case LicPackage.FEATURE__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case LicPackage.FEATURE__FEATURE_VERSIONS:
+				getFeatureVersions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -305,14 +324,14 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
   @Override
   public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LicensingPackage.FEATURE__IDENTIFIER:
+			case LicPackage.FEATURE__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-			case LicensingPackage.FEATURE__VERSION:
-				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
-			case LicensingPackage.FEATURE__NAME:
+			case LicPackage.FEATURE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case LicensingPackage.FEATURE__DESCRIPTION:
+			case LicPackage.FEATURE__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case LicPackage.FEATURE__FEATURE_VERSIONS:
+				return featureVersions != null && !featureVersions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -329,8 +348,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifier);
-		result.append(", version: "); //$NON-NLS-1$
-		result.append(version);
 		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$

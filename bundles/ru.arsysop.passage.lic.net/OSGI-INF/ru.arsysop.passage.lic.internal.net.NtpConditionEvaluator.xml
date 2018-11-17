@@ -24,5 +24,5 @@
    <service>
       <provide interface="ru.arsysop.passage.lic.runtime.ConditionEvaluator"/>
    </service>
-   <property name="licensing.runtime.condition.type" type="String" value="ntp"/>
+   <property name="passage.lic.condition.type" type="String" value="ntp"/>
 </scr:component>
