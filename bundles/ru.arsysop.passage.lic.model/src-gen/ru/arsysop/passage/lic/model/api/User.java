@@ -33,6 +33,7 @@ import ru.arsysop.passage.lic.registry.UserDescriptor;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.User#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getEmail <em>Email</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getFullName <em>Full Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getDescription <em>Description</em>}</li>
@@ -44,6 +45,21 @@ import ru.arsysop.passage.lic.registry.UserDescriptor;
  */
 public interface User extends EObject, UserDescriptor {
   /**
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_Identifier()
+	 * @model id="true" required="true" changeable="false"
+	 * @generated
+	 */
+	String getIdentifier();
+
+		/**
 	 * Returns the value of the '<em><b>Email</b></em>' attribute.
 	 * <!-- begin-user-doc -->
    * <p>
@@ -54,7 +70,7 @@ public interface User extends EObject, UserDescriptor {
 	 * @return the value of the '<em>Email</em>' attribute.
 	 * @see #setEmail(String)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_Email()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
   String getEmail();

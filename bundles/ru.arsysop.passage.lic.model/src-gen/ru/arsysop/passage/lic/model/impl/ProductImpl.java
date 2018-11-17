@@ -20,14 +20,21 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.model.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import ru.arsysop.passage.lic.model.api.Product;
+import ru.arsysop.passage.lic.model.api.ProductVersion;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
@@ -39,11 +46,9 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  * </p>
  * <ul>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getInstallationToken <em>Installation Token</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getSecureToken <em>Secure Token</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getProductVersions <em>Product Versions</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,26 +75,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
   protected String identifier = IDENTIFIER_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-  protected static final String VERSION_EDEFAULT = null;
-
-  /**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-  protected String version = VERSION_EDEFAULT;
-
-		/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -130,46 +115,16 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
   protected String description = DESCRIPTION_EDEFAULT;
 
 		/**
-	 * The default value of the '{@link #getInstallationToken() <em>Installation Token</em>}' attribute.
+	 * The cached value of the '{@link #getProductVersions() <em>Product Versions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @see #getInstallationToken()
+	 * <!-- end-user-doc -->
+	 * @see #getProductVersions()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String INSTALLATION_TOKEN_EDEFAULT = null;
+	protected EList<ProductVersion> productVersions;
 
 		/**
-	 * The cached value of the '{@link #getInstallationToken() <em>Installation Token</em>}' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @see #getInstallationToken()
-	 * @generated
-	 * @ordered
-	 */
-  protected String installationToken = INSTALLATION_TOKEN_EDEFAULT;
-
-		/**
-	 * The default value of the '{@link #getSecureToken() <em>Secure Token</em>}' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @see #getSecureToken()
-	 * @generated
-	 * @ordered
-	 */
-  protected static final String SECURE_TOKEN_EDEFAULT = null;
-
-		/**
-	 * The cached value of the '{@link #getSecureToken() <em>Secure Token</em>}' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @see #getSecureToken()
-	 * @generated
-	 * @ordered
-	 */
-  protected String secureToken = SECURE_TOKEN_EDEFAULT;
-
-  /**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -235,69 +190,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getVersion() {
-		return version;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public void setVersion(String newVersion) {
-		String oldVersion = version;
-		version = newVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__VERSION, oldVersion, version));
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public String getInstallationToken() {
-		return installationToken;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public void setInstallationToken(String newInstallationToken) {
-		String oldInstallationToken = installationToken;
-		installationToken = newInstallationToken;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__INSTALLATION_TOKEN, oldInstallationToken, installationToken));
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public String getSecureToken() {
-		return secureToken;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public void setSecureToken(String newSecureToken) {
-		String oldSecureToken = secureToken;
-		secureToken = newSecureToken;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__SECURE_TOKEN, oldSecureToken, secureToken));
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
   public String getDescription() {
 		return description;
 	}
@@ -316,6 +208,47 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
   /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ProductVersion> getProductVersions() {
+		if (productVersions == null) {
+			productVersions = new EObjectContainmentWithInverseEList<ProductVersion>(ProductVersion.class, this, LicPackage.PRODUCT__PRODUCT_VERSIONS, LicPackage.PRODUCT_VERSION__PRODUCT);
+		}
+		return productVersions;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProductVersions()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
+				return ((InternalEList<?>)getProductVersions()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -324,16 +257,12 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		switch (featureID) {
 			case LicPackage.PRODUCT__IDENTIFIER:
 				return getIdentifier();
-			case LicPackage.PRODUCT__VERSION:
-				return getVersion();
 			case LicPackage.PRODUCT__NAME:
 				return getName();
 			case LicPackage.PRODUCT__DESCRIPTION:
 				return getDescription();
-			case LicPackage.PRODUCT__INSTALLATION_TOKEN:
-				return getInstallationToken();
-			case LicPackage.PRODUCT__SECURE_TOKEN:
-				return getSecureToken();
+			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
+				return getProductVersions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -343,14 +272,12 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
+  @SuppressWarnings("unchecked")
+		@Override
   public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case LicPackage.PRODUCT__IDENTIFIER:
 				setIdentifier((String)newValue);
-				return;
-			case LicPackage.PRODUCT__VERSION:
-				setVersion((String)newValue);
 				return;
 			case LicPackage.PRODUCT__NAME:
 				setName((String)newValue);
@@ -358,11 +285,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 			case LicPackage.PRODUCT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case LicPackage.PRODUCT__INSTALLATION_TOKEN:
-				setInstallationToken((String)newValue);
-				return;
-			case LicPackage.PRODUCT__SECURE_TOKEN:
-				setSecureToken((String)newValue);
+			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
+				getProductVersions().clear();
+				getProductVersions().addAll((Collection<? extends ProductVersion>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -379,20 +304,14 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 			case LicPackage.PRODUCT__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
-			case LicPackage.PRODUCT__VERSION:
-				setVersion(VERSION_EDEFAULT);
-				return;
 			case LicPackage.PRODUCT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case LicPackage.PRODUCT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case LicPackage.PRODUCT__INSTALLATION_TOKEN:
-				setInstallationToken(INSTALLATION_TOKEN_EDEFAULT);
-				return;
-			case LicPackage.PRODUCT__SECURE_TOKEN:
-				setSecureToken(SECURE_TOKEN_EDEFAULT);
+			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
+				getProductVersions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -408,16 +327,12 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		switch (featureID) {
 			case LicPackage.PRODUCT__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-			case LicPackage.PRODUCT__VERSION:
-				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
 			case LicPackage.PRODUCT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case LicPackage.PRODUCT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case LicPackage.PRODUCT__INSTALLATION_TOKEN:
-				return INSTALLATION_TOKEN_EDEFAULT == null ? installationToken != null : !INSTALLATION_TOKEN_EDEFAULT.equals(installationToken);
-			case LicPackage.PRODUCT__SECURE_TOKEN:
-				return SECURE_TOKEN_EDEFAULT == null ? secureToken != null : !SECURE_TOKEN_EDEFAULT.equals(secureToken);
+			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
+				return productVersions != null && !productVersions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -434,26 +349,12 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifier);
-		result.append(", version: "); //$NON-NLS-1$
-		result.append(version);
 		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$
 		result.append(description);
-		result.append(", installationToken: "); //$NON-NLS-1$
-		result.append(installationToken);
-		result.append(", secureToken: "); //$NON-NLS-1$
-		result.append(secureToken);
 		result.append(')');
 		return result.toString();
 	}
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public String createPassword() {
-     return name+"###"+version;
-  }
 
 } //ProductImpl

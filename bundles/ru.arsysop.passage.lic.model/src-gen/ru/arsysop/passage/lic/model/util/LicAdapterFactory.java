@@ -24,13 +24,18 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import ru.arsysop.passage.lic.model.api.*;
 import ru.arsysop.passage.lic.model.api.Feature;
 import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 import ru.arsysop.passage.lic.registry.FeatureDescriptor;
+import ru.arsysop.passage.lic.registry.FeatureVersionDescriptor;
+import ru.arsysop.passage.lic.registry.LicenseDescriptor;
 import ru.arsysop.passage.lic.registry.UserDescriptor;
+import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
+import ru.arsysop.passage.lic.registry.ProductVersionDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,28 +94,64 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
   protected LicSwitch<Adapter> modelSwitch =
     new LicSwitch<Adapter>() {
 			@Override
+			public Adapter caseFeatureDescriptor(FeatureDescriptor object) {
+				return createFeatureDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseFeatureVersionDescriptor(FeatureVersionDescriptor object) {
+				return createFeatureVersionDescriptorAdapter();
+			}
+			@Override
 			public Adapter caseProductDescriptor(ProductDescriptor object) {
 				return createProductDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseFeatureDescriptor(FeatureDescriptor object) {
-				return createFeatureDescriptorAdapter();
+			public Adapter caseProductVersionDescriptor(ProductVersionDescriptor object) {
+				return createProductVersionDescriptorAdapter();
 			}
 			@Override
 			public Adapter caseUserDescriptor(UserDescriptor object) {
 				return createUserDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseProduct(Product object) {
-				return createProductAdapter();
+			public Adapter caseLicenseDescriptor(LicenseDescriptor object) {
+				return createLicenseDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseConditionDescriptor(ConditionDescriptor object) {
+				return createConditionDescriptorAdapter();
 			}
 			@Override
 			public Adapter caseFeature(Feature object) {
 				return createFeatureAdapter();
 			}
 			@Override
+			public Adapter caseFeatureVersion(FeatureVersion object) {
+				return createFeatureVersionAdapter();
+			}
+			@Override
+			public Adapter caseProduct(Product object) {
+				return createProductAdapter();
+			}
+			@Override
+			public Adapter caseProductVersion(ProductVersion object) {
+				return createProductVersionAdapter();
+			}
+			@Override
+			public Adapter caseProductVersionFeature(ProductVersionFeature object) {
+				return createProductVersionFeatureAdapter();
+			}
+			@Override
 			public Adapter caseUser(User object) {
 				return createUserAdapter();
+			}
+			@Override
+			public Adapter caseLicense(License object) {
+				return createLicenseAdapter();
+			}
+			@Override
+			public Adapter caseLicenseCondition(LicenseCondition object) {
+				return createLicenseConditionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -147,6 +188,20 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.registry.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ru.arsysop.passage.lic.registry.ProductVersionDescriptor
+	 * @generated
+	 */
+	public Adapter createProductVersionDescriptorAdapter() {
+		return null;
+	}
+
+		/**
 	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.registry.FeatureDescriptor <em>Feature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -157,6 +212,20 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFeatureDescriptorAdapter() {
+		return null;
+	}
+
+		/**
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.registry.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ru.arsysop.passage.lic.registry.FeatureVersionDescriptor
+	 * @generated
+	 */
+	public Adapter createFeatureVersionDescriptorAdapter() {
 		return null;
 	}
 
@@ -175,6 +244,34 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.registry.LicenseDescriptor <em>License Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ru.arsysop.passage.lic.registry.LicenseDescriptor
+	 * @generated
+	 */
+	public Adapter createLicenseDescriptorAdapter() {
+		return null;
+	}
+
+		/**
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.runtime.ConditionDescriptor <em>Condition Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ru.arsysop.passage.lic.runtime.ConditionDescriptor
+	 * @generated
+	 */
+	public Adapter createConditionDescriptorAdapter() {
+		return null;
+	}
+
+		/**
 	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.Product <em>Product</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -189,6 +286,34 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
   /**
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.ProductVersion <em>Product Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ru.arsysop.passage.lic.model.api.ProductVersion
+	 * @generated
+	 */
+	public Adapter createProductVersionAdapter() {
+		return null;
+	}
+
+		/**
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.ProductVersionFeature <em>Product Version Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ru.arsysop.passage.lic.model.api.ProductVersionFeature
+	 * @generated
+	 */
+	public Adapter createProductVersionFeatureAdapter() {
+		return null;
+	}
+
+		/**
 	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.Feature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -203,6 +328,20 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.FeatureVersion <em>Feature Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ru.arsysop.passage.lic.model.api.FeatureVersion
+	 * @generated
+	 */
+	public Adapter createFeatureVersionAdapter() {
+		return null;
+	}
+
+		/**
 	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -213,6 +352,34 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserAdapter() {
+		return null;
+	}
+
+		/**
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.License <em>License</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ru.arsysop.passage.lic.model.api.License
+	 * @generated
+	 */
+	public Adapter createLicenseAdapter() {
+		return null;
+	}
+
+		/**
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.model.api.LicenseCondition <em>License Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition
+	 * @generated
+	 */
+	public Adapter createLicenseConditionAdapter() {
 		return null;
 	}
 

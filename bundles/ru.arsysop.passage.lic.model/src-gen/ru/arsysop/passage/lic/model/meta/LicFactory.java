@@ -23,8 +23,13 @@ package ru.arsysop.passage.lic.model.meta;
 import org.eclipse.emf.ecore.EFactory;
 
 import ru.arsysop.passage.lic.model.api.Feature;
+import ru.arsysop.passage.lic.model.api.FeatureVersion;
+import ru.arsysop.passage.lic.model.api.License;
+import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.Product;
+import ru.arsysop.passage.lic.model.api.ProductVersion;
+import ru.arsysop.passage.lic.model.api.ProductVersionFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,6 +58,24 @@ public interface LicFactory extends EFactory {
   Product createProduct();
 
   /**
+	 * Returns a new object of class '<em>Product Version</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Product Version</em>'.
+	 * @generated
+	 */
+	ProductVersion createProductVersion();
+
+		/**
+	 * Returns a new object of class '<em>Product Version Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Product Version Feature</em>'.
+	 * @generated
+	 */
+	ProductVersionFeature createProductVersionFeature();
+
+		/**
 	 * Returns a new object of class '<em>Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,6 +85,15 @@ public interface LicFactory extends EFactory {
 	Feature createFeature();
 
 		/**
+	 * Returns a new object of class '<em>Feature Version</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Version</em>'.
+	 * @generated
+	 */
+	FeatureVersion createFeatureVersion();
+
+		/**
 	 * Returns a new object of class '<em>User</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,6 +101,24 @@ public interface LicFactory extends EFactory {
 	 * @generated
 	 */
 	User createUser();
+
+		/**
+	 * Returns a new object of class '<em>License</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>License</em>'.
+	 * @generated
+	 */
+	License createLicense();
+
+		/**
+	 * Returns a new object of class '<em>License Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>License Condition</em>'.
+	 * @generated
+	 */
+	LicenseCondition createLicenseCondition();
 
 		/**
 	 * Returns the package supported by this factory.

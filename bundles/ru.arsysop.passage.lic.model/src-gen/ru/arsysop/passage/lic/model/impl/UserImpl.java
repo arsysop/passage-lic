@@ -38,6 +38,7 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getEmail <em>Email</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getFullName <em>Full Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getDescription <em>Description</em>}</li>
@@ -47,6 +48,26 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  */
 public class UserImpl extends MinimalEObjectImpl.Container implements User {
   /**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String identifier = IDENTIFIER_EDEFAULT;
+
+		/**
 	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -127,6 +148,15 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 
   /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIdentifier() {
+		return identifier;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -196,6 +226,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case LicPackage.USER__IDENTIFIER:
+				return getIdentifier();
 			case LicPackage.USER__EMAIL:
 				return getEmail();
 			case LicPackage.USER__FULL_NAME:
@@ -256,6 +288,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
   @Override
   public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case LicPackage.USER__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case LicPackage.USER__EMAIL:
 				return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT.equals(email);
 			case LicPackage.USER__FULL_NAME:
@@ -276,7 +310,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (email: "); //$NON-NLS-1$
+		result.append(" (identifier: "); //$NON-NLS-1$
+		result.append(identifier);
+		result.append(", email: "); //$NON-NLS-1$
 		result.append(email);
 		result.append(", fullName: "); //$NON-NLS-1$
 		result.append(fullName);

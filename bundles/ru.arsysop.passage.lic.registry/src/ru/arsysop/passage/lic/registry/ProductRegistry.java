@@ -28,5 +28,7 @@ public interface ProductRegistry {
 
 	void registerProduct(ProductDescriptor product);
 
+	void registerProductVersion(ProductVersionDescriptor product);
+
 	String createPassword(ProductVersionDescriptor productVersion);
 }

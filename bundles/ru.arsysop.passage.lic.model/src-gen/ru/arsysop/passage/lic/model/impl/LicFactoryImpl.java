@@ -76,9 +76,14 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
   @Override
   public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LicPackage.PRODUCT: return createProduct();
 			case LicPackage.FEATURE: return createFeature();
+			case LicPackage.FEATURE_VERSION: return createFeatureVersion();
+			case LicPackage.PRODUCT: return createProduct();
+			case LicPackage.PRODUCT_VERSION: return createProductVersion();
+			case LicPackage.PRODUCT_VERSION_FEATURE: return createProductVersionFeature();
 			case LicPackage.USER: return createUser();
+			case LicPackage.LICENSE: return createLicense();
+			case LicPackage.LICENSE_CONDITION: return createLicenseCondition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -99,6 +104,26 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ProductVersion createProductVersion() {
+		ProductVersionImpl productVersion = new ProductVersionImpl();
+		return productVersion;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProductVersionFeature createProductVersionFeature() {
+		ProductVersionFeatureImpl productVersionFeature = new ProductVersionFeatureImpl();
+		return productVersionFeature;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Feature createFeature() {
 		FeatureImpl feature = new FeatureImpl();
 		return feature;
@@ -109,9 +134,39 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FeatureVersion createFeatureVersion() {
+		FeatureVersionImpl featureVersion = new FeatureVersionImpl();
+		return featureVersion;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public License createLicense() {
+		LicenseImpl license = new LicenseImpl();
+		return license;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LicenseCondition createLicenseCondition() {
+		LicenseConditionImpl licenseCondition = new LicenseConditionImpl();
+		return licenseCondition;
 	}
 
 		/**
