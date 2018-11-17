@@ -22,11 +22,11 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="licensing" nsURI="http://www.arsysop.ru/passage/licensing/0.2.0"
     nsPrefix="ru.arsysop.passage.licensing">
-  <eClassifiers xsi:type="ecore:EClass" name="ProductDescriptor" instanceClassName="ru.arsysop.passage.licensing.runtime.registry.ProductDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="ProductDescriptor" instanceClassName="ru.arsysop.passage.lic.registry.ProductDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureDescriptor" instanceClassName="ru.arsysop.passage.licensing.runtime.registry.FeatureDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureDescriptor" instanceClassName="ru.arsysop.passage.lic.registry.FeatureDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LicenseeDescriptor" instanceClassName="ru.arsysop.passage.licensing.runtime.registry.LicenseeDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="LicenseeDescriptor" instanceClassName="ru.arsysop.passage.lic.registry.LicenseeDescriptor"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//ProductDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
