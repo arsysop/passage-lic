@@ -20,7 +20,7 @@
 		ArSysOp - initial API and implementation
 -->
 <feature
-      id="ru.arsysop.passage.lic.feature"
+      id="ru.arsysop.passage.lic.inspector.feature"
       label="%featureName"
       version="0.3.0.qualifier"
       provider-name="%providerName"
@@ -39,28 +39,16 @@
       %license
    </license>
 
-   <includes
-         id="ru.arsysop.passage.lic.equinox.feature"
-         version="0.0.0"/>
+   <requires>
+      <import feature="ru.arsysop.passage.lic.equinox.feature" version="0.0.0"/>
+      <import feature="ru.arsysop.passage.lic.model.feature" version="0.0.0"/>
+   </requires>
 
-   <includes
-         id="ru.arsysop.passage.lic.bc.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="ru.arsysop.passage.lic.net.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="ru.arsysop.passage.lic.oshi.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="ru.arsysop.passage.lic.model.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="ru.arsysop.passage.lic.inspector.feature"
-         version="0.0.0"/>
+   <plugin
+         id="ru.arsysop.passage.lic.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

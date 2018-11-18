@@ -20,7 +20,7 @@
 		ArSysOp - initial API and implementation
 -->
 <projectDescription>
-	<name>ru.arsysop.passage.lic.base</name>
+	<name>ru.arsysop.passage.lic.model.edit</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -37,6 +37,11 @@
 		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.pde.SchemaBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.pde.ds.core.builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>

@@ -19,30 +19,35 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<projectDescription>
-	<name>ru.arsysop.passage.lic.base</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.pde.ManifestBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.pde.SchemaBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>org.eclipse.pde.PluginNature</nature>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
-</projectDescription>
+<feature
+      id="ru.arsysop.passage.lic.oshi.feature"
+      label="%featureName"
+      version="0.3.0.qualifier"
+      provider-name="%providerName"
+      license-feature="ru.arsysop.passage.brc.license.feature"
+      license-feature-version="0.3.1">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="ru.arsysop.passage.lic.equinox.feature" version="0.0.0"/>
+   </requires>
+
+   <plugin
+         id="ru.arsysop.passage.lic.oshi"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
