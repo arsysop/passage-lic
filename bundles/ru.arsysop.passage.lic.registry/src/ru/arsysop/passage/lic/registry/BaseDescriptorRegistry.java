@@ -30,12 +30,12 @@ public interface BaseDescriptorRegistry<D extends BaseDescriptor> {
 
 	Iterable<D> getDescriptors();
 	
-	Iterable<D> selectDescriptors(String filter);
+	Iterable<D> selectDescriptors(String filter) throws Exception;
 
-	void insertDescriptors(Iterable<D> descriptors);
+	void insertDescriptors(Iterable<D> descriptors) throws Exception;
 	
-	void updateDescriptors(Iterable<D> descriptors);
+	void updateDescriptors(Iterable<D> descriptors) throws Exception;
 
-	void deleteDescriptors(Iterable<D> descriptors);
+	void deleteDescriptors(Iterable<D> descriptors) throws Exception;
 
 }
