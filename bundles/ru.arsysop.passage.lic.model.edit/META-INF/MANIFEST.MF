@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: ru.arsysop.passage.lic.model.edit;singleton:=true
 Automatic-Module-Name: ru.arsysop.passage.lic.model.edit
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: ru.arsysop.passage.lic.model.edit.LicEditPlugin$Implementation$Activator
 Bundle-Vendor: %providerName
