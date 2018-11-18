@@ -20,8 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface LicenseDescriptor extends BaseDescriptor {
+public interface BaseDescriptor {
 	
-	public int getCapacity();
+	String getIdentifier();
 
 }

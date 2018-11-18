@@ -20,12 +20,6 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-import java.util.List;
-
-public interface FeatureRegistry {
-
-	List<FeatureDescriptor> getFeatureDescriptors();
-
-	void registerFeature(FeatureDescriptor component);
+public interface FeatureRegistry extends BaseDescriptorRegistry<FeatureDescriptor> {
 
 }

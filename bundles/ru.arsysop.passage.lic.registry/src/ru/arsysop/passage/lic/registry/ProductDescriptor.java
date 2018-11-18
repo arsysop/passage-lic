@@ -20,10 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface ProductDescriptor {
+public interface ProductDescriptor extends BaseDescriptor {
 	
-	String getIdentifier();
-
 	String getName();
 	
 	String getDescription();

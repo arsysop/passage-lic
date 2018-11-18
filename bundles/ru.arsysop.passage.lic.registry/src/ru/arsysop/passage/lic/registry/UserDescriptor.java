@@ -20,7 +20,7 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface UserDescriptor {
+public interface UserDescriptor extends BaseDescriptor {
 	
 	String getEmail();
 
