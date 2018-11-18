@@ -24,16 +24,18 @@ public interface BaseDescriptorRegistry<D extends BaseDescriptor> {
 	
 	void loadSource(String source) throws Exception;
 
-	void saveSource(String source) throws Exception;
-	
 	void unloadSource(String source) throws Exception;
 	
 	D getDescriptor(String identifier);
 
 	Iterable<D> getDescriptors();
 	
-	void registerDescriptor(D descriptro);
+	Iterable<D> selectDescriptors(String filter);
 
-	void unregisterDescriptor(D descriptro);
+	void insertDescriptors(Iterable<D> descriptors);
+	
+	void updateDescriptors(Iterable<D> descriptors);
+
+	void deleteDescriptors(Iterable<D> descriptors);
 
 }
