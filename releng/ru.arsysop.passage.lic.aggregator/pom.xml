@@ -43,13 +43,26 @@
 		<module>../../bundles/ru.arsysop.passage.lic.base</module>
 		<module>../../bundles/ru.arsysop.passage.lic.inspector</module>
 		<module>../../bundles/ru.arsysop.passage.lic.equinox</module>
+		<module>../../features/ru.arsysop.passage.lic.equinox.feature</module>
+
 		<module>../../bundles/ru.arsysop.passage.lic.bc</module>
+		<module>../../features/ru.arsysop.passage.lic.bc.feature</module>
+
 		<module>../../bundles/ru.arsysop.passage.lic.net</module>
+		<module>../../features/ru.arsysop.passage.lic.net.feature</module>
+
 		<module>../../bundles/ru.arsysop.passage.lic.oshi</module>
+		<module>../../features/ru.arsysop.passage.lic.oshi.feature</module>
 
 		<module>../../bundles/ru.arsysop.passage.lic.registry</module>
 		<module>../../bundles/ru.arsysop.passage.lic.model.ecore</module>
 		<module>../../bundles/ru.arsysop.passage.lic.model</module>
+		<module>../../bundles/ru.arsysop.passage.lic.model.core</module>
+		<module>../../features/ru.arsysop.passage.lic.model.feature</module>
+
+		<module>../../bundles/ru.arsysop.passage.lic.model.edit</module>
+		<module>../../bundles/ru.arsysop.passage.lic.inspector.ui</module>
+		<module>../../features/ru.arsysop.passage.lic.inspector.feature</module>
 
 		<module>../../features/ru.arsysop.passage.lic.feature</module>
 		<module>../../releng/ru.arsysop.passage.lic.repository</module>
@@ -57,6 +70,7 @@
 		<module>../../tests/ru.arsysop.passage.lic.base.tests</module>
 		<module>../../tests/ru.arsysop.passage.lic.bc.tests</module>
 		<module>../../tests/ru.arsysop.passage.lic.equinox.tests</module>
+		<module>../../tests/ru.arsysop.passage.lic.model.core.tests</module>
 	</modules>
 
 </project>

@@ -48,7 +48,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNAME = "lic";
+  String eNAME = "lic"; //$NON-NLS-1$
 
   /**
 	 * The package namespace URI.
@@ -56,7 +56,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNS_URI = "http://www.arsysop.ru/passage/lic/0.3.0";
+  String eNS_URI = "http://www.arsysop.ru/passage/lic/0.3.0"; //$NON-NLS-1$
 
   /**
 	 * The package namespace name.
@@ -64,7 +64,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNS_PREFIX = "ru.arsysop.passage.lic";
+  String eNS_PREFIX = "ru.arsysop.passage.lic"; //$NON-NLS-1$
 
   /**
 	 * The singleton instance of the package.

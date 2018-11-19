@@ -20,12 +20,6 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-import java.util.List;
-
-public interface UserRegistry {
-
-	List<UserDescriptor> getUserDescriptors();
-
-	void registerUser(UserDescriptor user);
+public interface UserRegistry extends BaseDescriptorRegistry<UserDescriptor> {
 
 }

@@ -24,7 +24,8 @@
    <service>
       <provide interface="ru.arsysop.passage.lic.runtime.ConditionMiner"/>
    </service>
-   <reference bind="bindEnvironmentInfo" cardinality="1..1" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" policy="static" unbind="unbindEnvironmentInfo"/>
-   <reference bind="bindConditionCodec" cardinality="1..1" interface="ru.arsysop.passage.lic.runtime.io.ConditionCodec" name="ConditionCodec" policy="static" unbind="unbindConditionCodec"/>
-   <reference bind="bindKeyKeeper" cardinality="1..1" interface="ru.arsysop.passage.lic.runtime.io.KeyKeeper" name="KeyKeeper" policy="static" unbind="unbindKeyKeeper"/>
+   <reference bind="bindConditionCodec" interface="ru.arsysop.passage.lic.runtime.io.ConditionCodec" name="ConditionCodec" unbind="unbindConditionCodec"/>
+   <reference bind="bindConditionExtractor" interface="ru.arsysop.passage.lic.runtime.io.ConditionExtractor" name="ConditionExtractor" unbind="unbindConditionExtractor"/>
+   <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
+   <reference bind="bindKeyKeeper" interface="ru.arsysop.passage.lic.runtime.io.KeyKeeper" name="KeyKeeper" unbind="unbindKeyKeeper"/>
 </scr:component>

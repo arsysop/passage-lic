@@ -39,74 +39,28 @@
       %license
    </license>
 
-   <plugin
-         id="ru.arsysop.passage.lic.runtime"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <includes
+         id="ru.arsysop.passage.lic.equinox.feature"
+         version="0.0.0"/>
 
-   <plugin
-         id="ru.arsysop.passage.lic.base"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <includes
+         id="ru.arsysop.passage.lic.bc.feature"
+         version="0.0.0"/>
 
-   <plugin
-         id="ru.arsysop.passage.lic.inspector"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <includes
+         id="ru.arsysop.passage.lic.net.feature"
+         version="0.0.0"/>
 
-   <plugin
-         id="ru.arsysop.passage.lic.equinox"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <includes
+         id="ru.arsysop.passage.lic.oshi.feature"
+         version="0.0.0"/>
 
-   <plugin
-         id="ru.arsysop.passage.lic.bc"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <includes
+         id="ru.arsysop.passage.lic.model.feature"
+         version="0.0.0"/>
 
-   <plugin
-         id="ru.arsysop.passage.lic.net"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="ru.arsysop.passage.lic.oshi"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="ru.arsysop.passage.lic.registry"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="ru.arsysop.passage.lic.model.ecore"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="ru.arsysop.passage.lic.model"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <includes
+         id="ru.arsysop.passage.lic.inspector.feature"
+         version="0.0.0"/>
 
 </feature>
