@@ -65,11 +65,11 @@ public class BaseAccessManager implements AccessManager {
 		conditionMiners.remove(conditionMiner);
 	}
 
-	public void bindConditionMiner(ConditionEvaluator conditionEvaluator) {
+	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator) {
 		conditionEvaluators.add(conditionEvaluator);
 	}
 
-	public void unbindConditionMiner(ConditionEvaluator conditionEvaluator) {
+	public void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator) {
 		conditionEvaluators.remove(conditionEvaluator);
 	}
 

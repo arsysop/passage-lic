@@ -22,12 +22,19 @@ package ru.arsysop.passage.lic.integration.tests;
 
 import java.io.File;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 
-public class LicIntegrationTest {
+import ru.arsysop.passage.lic.runtime.AccessManager;
 
+public abstract class LicIntegrationTestsBase {
+	
 	/**
 	 * Passed through maven-surefire-plugin configuration
 	 */
@@ -45,7 +52,24 @@ public class LicIntegrationTest {
 		return outDir;
 	}
 	
-	@Test
-	public void testAccessManager() {
+	private static ServiceReference<AccessManager> accessManagerReference;
+	protected static AccessManager accessManager;
+
+	@BeforeClass
+	public static void startup() {
+		Bundle bundle = FrameworkUtil.getBundle(LicIntegrationTestsBase.class);
+		BundleContext bundleContext = bundle.getBundleContext();
+		accessManagerReference = bundleContext.getServiceReference(AccessManager.class);
+		accessManager = bundleContext.getService(accessManagerReference);
 	}
+
+	@AfterClass
+	public static void shutdown() {
+		accessManager = null;
+		Bundle bundle = FrameworkUtil.getBundle(LicIntegrationTestsBase.class);
+		BundleContext bundleContext = bundle.getBundleContext();
+		bundleContext.ungetService(accessManagerReference);
+		accessManagerReference = null;
+	}
+
 }
