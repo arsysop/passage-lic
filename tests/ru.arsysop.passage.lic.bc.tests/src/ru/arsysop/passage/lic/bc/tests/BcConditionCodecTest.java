@@ -45,11 +45,10 @@ public class BcConditionCodecTest {
 
 	private static final String MVN_PROJECT_OUTPUT_VALUE = "target"; //$NON-NLS-1$
 
-	@SuppressWarnings("nls")
-	private static final String TEST_CONTENT = "#some test content" + //
-			"my.product=cool one" + //
-			"my.feature.1=essential one" +
-			"my.feature.2=special one";
+	private static final String TEST_CONTENT = "#some test content" + //$NON-NLS-1$
+			"my.product=cool one" + //$NON-NLS-1$
+			"my.feature.1=essential one" +//$NON-NLS-1$
+			"my.feature.2=special one";//$NON-NLS-1$
 
 	@Rule
 	public TemporaryFolder keyFolder = new TemporaryFolder(new File(resolveOutputDirName()));
