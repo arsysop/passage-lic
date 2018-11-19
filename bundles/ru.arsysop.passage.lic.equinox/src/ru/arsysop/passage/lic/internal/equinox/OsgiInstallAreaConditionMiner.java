@@ -95,8 +95,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 			return mined;
 		}
 		String areaValue = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path passagePath = LicensingPaths.getBasePath(areaValue);
-		Path configurationPath = passagePath.resolve(String.valueOf(configuration));
+		Path configurationPath = LicensingPaths.resolveConfigurationPath(areaValue, configuration);
 		if (!Files.isDirectory(configurationPath)) {
 			return mined;
 		}

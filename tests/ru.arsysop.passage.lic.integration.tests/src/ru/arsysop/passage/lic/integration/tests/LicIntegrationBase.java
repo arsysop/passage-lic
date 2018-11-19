@@ -38,6 +38,12 @@ import ru.arsysop.passage.lic.runtime.AccessManager;
 
 public abstract class LicIntegrationBase {
 	
+	static final String SOME_BUNDLE_ID = "some.licensed.bundle"; //$NON-NLS-1$
+	static final String SOME_COMPONENT_ID = "some.licensed.component"; //$NON-NLS-1$
+	static final String SOME_COMPONENT_VERSION = "1.2.0"; //$NON-NLS-1$
+
+	static final String SOME_PRODUCT_ID = "1.2.0"; //$NON-NLS-1$
+
 	/**
 	 * Passed through maven-surefire-plugin configuration
 	 */
