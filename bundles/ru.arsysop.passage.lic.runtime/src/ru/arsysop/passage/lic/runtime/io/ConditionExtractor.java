@@ -33,6 +33,6 @@ import ru.arsysop.passage.lic.runtime.ConditionMiner;
  */
 public interface ConditionExtractor {
 
-	Iterable<ConditionDescriptor> extractConditions(InputStream in) throws IOException;
+	Iterable<ConditionDescriptor> extractConditions(InputStream input) throws IOException;
 
 }

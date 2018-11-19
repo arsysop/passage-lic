@@ -23,13 +23,12 @@ package ru.arsysop.passage.lic.internal.equinox;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 
+import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
 public class OsgiInstallAreaKeyKeeper implements KeyKeeper {
@@ -47,9 +46,8 @@ public class OsgiInstallAreaKeyKeeper implements KeyKeeper {
 	@Override
 	public InputStream openKeyStream(Object configuration) throws IOException {
 		//FIXME: add ability to use env properties to resolve keyring
-		String areaValue = environmentInfo.getProperty("osgi.install.area");
-		Path areaPath = Paths.get(URI.create(areaValue));
-		Path passagePath = areaPath.resolve(".passage");
+		String areaValue = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
+		Path passagePath = LicensingPaths.getBasePath(areaValue);
 		String productId = String.valueOf(configuration);
 		Path configurationPath = passagePath.resolve(productId);
 		if (!configurationPath.toFile().isDirectory()) {

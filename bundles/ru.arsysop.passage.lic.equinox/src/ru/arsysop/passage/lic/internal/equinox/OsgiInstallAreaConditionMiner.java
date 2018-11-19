@@ -25,30 +25,34 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
+import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
 import ru.arsysop.passage.lic.runtime.io.ConditionCodec;
+import ru.arsysop.passage.lic.runtime.io.ConditionExtractor;
 import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
+@Component
 public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 
 	private EnvironmentInfo environmentInfo;
 	private ConditionCodec conditionCodec;
 	private KeyKeeper keyKeeper;
+	private ConditionExtractor conditionExtractor;
 
+	@Reference
 	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
 		this.environmentInfo = environmentInfo;
 	}
@@ -57,6 +61,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 		this.environmentInfo = null;
 	}
 
+	@Reference
 	public void bindKeyKeeper(KeyKeeper keyKeeper) {
 		this.keyKeeper = keyKeeper;
 	}
@@ -65,6 +70,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 		this.keyKeeper = null;
 	}
 
+	@Reference
 	public void bindConditionCodec(ConditionCodec conditionCodec) {
 		this.conditionCodec = conditionCodec;
 	}
@@ -73,18 +79,26 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 		this.conditionCodec = null;
 	}
 
+	@Reference
+	public void bindConditionExtractor(ConditionExtractor conditionExtractor) {
+		this.conditionExtractor = conditionExtractor;
+	}
+
+	public void unbindConditionExtractor(ConditionExtractor conditionExtractor) {
+		this.conditionExtractor = null;
+	}
+
 	@Override
 	public Iterable<ConditionDescriptor> extractConditionDescriptors(Object configuration) {
-		List<ConditionDescriptor> conditionDescriptors = new ArrayList<>();
+		List<ConditionDescriptor> mined = new ArrayList<>();
 		if (environmentInfo == null) {
-			return conditionDescriptors;
+			return mined;
 		}
-		String areaValue = environmentInfo.getProperty("osgi.install.area");
-		Path areaPath = Paths.get(URI.create(areaValue));
-		Path passagePath = areaPath.resolve(".passage");
+		String areaValue = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
+		Path passagePath = LicensingPaths.getBasePath(areaValue);
 		Path configurationPath = passagePath.resolve(String.valueOf(configuration));
 		if (!Files.isDirectory(configurationPath)) {
-			return conditionDescriptors;
+			return mined;
 		}
 		List<Path> licenseFiles = new ArrayList<>();
 		try {
@@ -92,11 +106,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-					if (file.toString().toLowerCase().endsWith(".cr")) {
-						licenseFiles.add(file);
-					}
-					String licenseFileExtension = ".elcd"; //Encrypted License Condition Description
-					if (file.toString().toLowerCase().endsWith(licenseFileExtension)) {
+					if (file.toString().toLowerCase().endsWith(LicensingPaths.EXTENSION_LICENSE_ENCRYPTED)) {
 						licenseFiles.add(file);
 					}
 					return FileVisitResult.CONTINUE;
@@ -108,65 +118,21 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 			e.printStackTrace();
 		}
 		for (Path path : licenseFiles) {
-			System.out.println("OsgiInstallAreaMiner found: " + path);
 			try (FileInputStream encoded = new FileInputStream(path.toFile()); ByteArrayOutputStream decoded = new ByteArrayOutputStream(); InputStream keyRing = keyKeeper.openKeyStream(configuration)){
-				
 				conditionCodec.decodeStream(encoded, decoded, keyRing, null);
-				final Properties properties = new Properties();
 				byte[] byteArray = decoded.toByteArray();
-				try (ByteArrayInputStream propInput = new ByteArrayInputStream(byteArray)) {
-					properties.load(propInput);
+				try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
+					Iterable<ConditionDescriptor> extracted = conditionExtractor.extractConditions(input);
+					for (ConditionDescriptor condition : extracted) {
+						mined.add(condition);
+					}
 				}
-				System.out.println("OsgiInstallAreaMiner decoded: ");
-				System.out.println(new String(byteArray));
-				ConditionDescriptor conditionDescriptor = new ConditionDescriptor() {
-					
-					@Override
-					public String getConditionType() {
-						// TODO Auto-generated method stub
-						return "user";
-					}
-					
-					@Override
-					public String getConditionExpression() {
-						// TODO Auto-generated method stub
-						return properties.getProperty("email");
-					}
-					
-					@Override
-					public String getAllowedFeatureMatchVersion() {
-						// TODO Auto-generated method stub
-						return properties.getProperty("componentVersion");
-					}
-					
-					@Override
-					public String getAllowedFeatureMatchRule() {
-						// TODO Auto-generated method stub
-						return null;
-					}
-					
-					@Override
-					public String getAllowedFeatureId() {
-						// TODO Auto-generated method stub
-						return properties.getProperty("component");
-					}
-					
-					@Override
-					public String toString() {
-						StringBuilder sb = new StringBuilder();
-						sb.append("email").append('=').append(getConditionExpression()).append(';');
-						sb.append("component").append('=').append(getAllowedFeatureId()).append(';');
-						sb.append("componentVersion").append('=').append(getAllowedFeatureMatchVersion()).append(';');
-						return sb.toString();
-					}
-				};
-				conditionDescriptors.add(conditionDescriptor);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
 		}
-		return conditionDescriptors;
+		return mined;
 	}
 
 }

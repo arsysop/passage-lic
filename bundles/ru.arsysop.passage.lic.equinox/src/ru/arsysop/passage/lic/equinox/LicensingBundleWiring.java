@@ -29,7 +29,7 @@ import org.osgi.framework.wiring.BundleWiring;
 
 import ru.arsysop.passage.lic.base.LicensingNamespaces;
 
-public class LicensingRuntimeWiring {
+public class LicensingBundleWiring {
 
 	public static Iterable<BundleRequirement> extractLicensingRequirements(Bundle bundle) {
 		BundleWiring wiring = bundle.adapt(BundleWiring.class);

@@ -38,7 +38,7 @@ import org.osgi.service.log.LoggerFactory;
 import ru.arsysop.passage.lic.base.BaseConfigurationRequirement;
 import ru.arsysop.passage.lic.base.ConfigurationRequirements;
 import ru.arsysop.passage.lic.base.LicensingNamespaces;
-import ru.arsysop.passage.lic.equinox.LicensingRuntimeWiring;
+import ru.arsysop.passage.lic.equinox.LicensingBundleWiring;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
 
@@ -77,7 +77,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
 		for (Bundle bundle : bundles) {
-			Iterable<BundleCapability> capabilities = LicensingRuntimeWiring.extractLicensingCapabilities(bundle);
+			Iterable<BundleCapability> capabilities = LicensingBundleWiring.extractLicensingCapabilities(bundle);
 			for (BundleCapability capability : capabilities) {
 				Map<String, Object> attributes = capability.getAttributes();
 				Map<String, String> directives = capability.getDirectives();
