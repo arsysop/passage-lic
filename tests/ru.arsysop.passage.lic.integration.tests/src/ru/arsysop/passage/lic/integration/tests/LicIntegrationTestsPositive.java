@@ -21,7 +21,6 @@
 package ru.arsysop.passage.lic.integration.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,18 +32,13 @@ import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 public class LicIntegrationTestsPositive extends LicIntegrationTestsBase {
 
 	@Test
-	public void testAccessManager() {
-		assertNotNull(accessManager);
-	}
-
-	@Test
 	public void testResolveRequirements() {
 		Iterable<ConfigurationRequirement> resolved = accessManager.resolveRequirements(null);
 		List<ConfigurationRequirement> requirements = new ArrayList<>();
 		for (ConfigurationRequirement requirement : resolved) {
 			requirements.add(requirement);
 		}
-		assertEquals(0, requirements.size());
+		assertEquals(2, requirements.size());
 	}
 
 }

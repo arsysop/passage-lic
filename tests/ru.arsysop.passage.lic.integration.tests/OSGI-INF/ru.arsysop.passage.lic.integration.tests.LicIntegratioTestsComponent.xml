@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.integration.tests.LicIntegratioTestsComponent">
+   <property name="licensing.feature.id" value="some.component.id"/>
+   <property name="licensing.match.version" value="1.2.0"/>
+   <property name="licensing.match.rule" value="exact"/>
+   <property name="licensing.restriction.level" value="error"/>
+   <implementation class="ru.arsysop.passage.lic.integration.tests.LicIntegratioTestsComponent"/>
+</scr:component>

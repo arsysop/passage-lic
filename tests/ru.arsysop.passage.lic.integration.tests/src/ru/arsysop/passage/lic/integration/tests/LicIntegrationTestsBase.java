@@ -20,11 +20,14 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.integration.tests;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -70,6 +73,11 @@ public abstract class LicIntegrationTestsBase {
 		BundleContext bundleContext = bundle.getBundleContext();
 		bundleContext.ungetService(accessManagerReference);
 		accessManagerReference = null;
+	}
+
+	@Test
+	public void testAccessManager() {
+		assertNotNull(accessManager);
 	}
 
 }
