@@ -29,7 +29,7 @@ import org.junit.Test;
 
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 
-public class LicIntegrationTestsPositive extends LicIntegrationTestsBase {
+public class LicIntegrationPositiveTest extends LicIntegrationBase {
 
 	@Test
 	public void testResolveRequirements() {

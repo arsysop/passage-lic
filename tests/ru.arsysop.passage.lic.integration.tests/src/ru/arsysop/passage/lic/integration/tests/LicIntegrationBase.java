@@ -36,7 +36,7 @@ import org.osgi.framework.ServiceReference;
 
 import ru.arsysop.passage.lic.runtime.AccessManager;
 
-public abstract class LicIntegrationTestsBase {
+public abstract class LicIntegrationBase {
 	
 	/**
 	 * Passed through maven-surefire-plugin configuration
@@ -60,7 +60,7 @@ public abstract class LicIntegrationTestsBase {
 
 	@BeforeClass
 	public static void startup() {
-		Bundle bundle = FrameworkUtil.getBundle(LicIntegrationTestsBase.class);
+		Bundle bundle = FrameworkUtil.getBundle(LicIntegrationBase.class);
 		BundleContext bundleContext = bundle.getBundleContext();
 		accessManagerReference = bundleContext.getServiceReference(AccessManager.class);
 		accessManager = bundleContext.getService(accessManagerReference);
@@ -69,7 +69,7 @@ public abstract class LicIntegrationTestsBase {
 	@AfterClass
 	public static void shutdown() {
 		accessManager = null;
-		Bundle bundle = FrameworkUtil.getBundle(LicIntegrationTestsBase.class);
+		Bundle bundle = FrameworkUtil.getBundle(LicIntegrationBase.class);
 		BundleContext bundleContext = bundle.getBundleContext();
 		bundleContext.ungetService(accessManagerReference);
 		accessManagerReference = null;
