@@ -20,20 +20,19 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.internal.net;
 
-import java.util.ArrayList;
-import java.util.List;
+import ru.arsysop.passage.lic.base.BaseConditionEvaluator;
+import ru.arsysop.passage.lic.net.TimeConditions;
 
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
-import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
-import ru.arsysop.passage.lic.runtime.FeaturePermission;
-
-public class NtpConditionEvaluator implements ConditionEvaluator {
+public class NtpConditionEvaluator extends BaseConditionEvaluator {
 
 	@Override
-	public Iterable<FeaturePermission> evaluate(Iterable<ConditionDescriptor> conditions) {
-		List<FeaturePermission> result = new ArrayList<>();
-		//FIXME:AF:implement timestamp checks
-		return result;
+	protected boolean evaluateSegment(String key, String value) {
+		switch (key) {
+		case TimeConditions.LICENSING_CONDITION_KEY_LOCALTIMESTAMP:
+			return TimeConditions.isFutureLocalDateTime(value);
+		default:
+			return false;
+		}
 	}
 
 }

@@ -34,7 +34,7 @@ public class LicensingBundleWiring {
 	public static Iterable<BundleRequirement> extractLicensingRequirements(Bundle bundle) {
 		BundleWiring wiring = bundle.adapt(BundleWiring.class);
 		if (wiring != null) {
-			return wiring.getRequirements(LicensingNamespaces.LICENSING_ACCESS_MANAGER);
+			return wiring.getRequirements(LicensingNamespaces.LICENSING_AM);
 		}
 		return Collections.emptyList();
 	}
@@ -42,7 +42,7 @@ public class LicensingBundleWiring {
 	public static Iterable<BundleCapability> extractLicensingCapabilities(Bundle bundle) {
 		BundleWiring wiring = bundle.adapt(BundleWiring.class);
 		if (wiring != null) {
-			return wiring.getCapabilities(LicensingNamespaces.LICENSING_CONFIGRATION_REQUIREMENT);
+			return wiring.getCapabilities(LicensingNamespaces.LICENSING_CR);
 		}
 		return Collections.emptyList();
 	}

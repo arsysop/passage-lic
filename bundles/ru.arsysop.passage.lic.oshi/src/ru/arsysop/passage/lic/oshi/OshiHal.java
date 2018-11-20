@@ -38,6 +38,10 @@ import oshi.util.FormatUtil;
 
 //FIXME: AF: extract tests
 public class OshiHal {
+	
+	public static final String LICENSING_CONDITION_TYPE_HARDWARE = "hardware"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_KEY_MAC = "mac"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_VALUE_ANY = "*"; //$NON-NLS-1$
 
 	public static void logHardwareInfo() {
 
@@ -140,5 +144,12 @@ public class OshiHal {
 			sb.append(String.format("%02X%s", macAddress[i], (i < macAddress.length - 1) ? "-" : ""));
 		}
 		return sb.toString();
+	}
+
+	public static boolean evaluateMac(String value) {
+		if (LICENSING_CONDITION_VALUE_ANY.equals(value)) {
+			return true;
+		}
+		return false;
 	}
 }

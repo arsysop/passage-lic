@@ -22,22 +22,24 @@ package ru.arsysop.passage.lic.base;
 
 public final class LicensingNamespaces {
 
-	public static final String LICENSING_ACCESS_MANAGER = "licensing.am"; //$NON-NLS-1$
+	public static final String LICENSING_AM = "licensing.am"; //$NON-NLS-1$
 	
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT = "licensing.cr"; //$NON-NLS-1$
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_ID = "id"; //$NON-NLS-1$
+	public static final String LICENSING_CR = "licensing.cr"; //$NON-NLS-1$
+	public static final String LICENSING_CR_ID = "id"; //$NON-NLS-1$
 
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_VERSION = "version"; //$NON-NLS-1$
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
+	public static final String LICENSING_CR_VERSION = "version"; //$NON-NLS-1$
+	public static final String LICENSING_CR_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
 
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_RULE = "rule"; //$NON-NLS-1$
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_RULE_DEFAULT = "greaterOrEqual"; //$NON-NLS-1$
+	public static final String LICENSING_CR_RULE = "rule"; //$NON-NLS-1$
+	public static final String LICENSING_CR_RULE_COMPATIBLE = "compatible"; //$NON-NLS-1$
+	public static final String LICENSING_CR_RULE_EXACT = "exact"; //$NON-NLS-1$
+	public static final String LICENSING_CR_RULE_DEFAULT = LICENSING_CR_RULE_COMPATIBLE;
 
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_LEVEL = "level"; //$NON-NLS-1$
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_LEVEL_ERROR = "error"; //$NON-NLS-1$
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_LEVEL_WARN = "warn"; //$NON-NLS-1$
-	public static final String LICENSING_CONFIGRATION_REQUIREMENT_LEVEL_DEFAULT = LICENSING_CONFIGRATION_REQUIREMENT_LEVEL_WARN;
+	public static final String LICENSING_CR_LEVEL = "level"; //$NON-NLS-1$
+	public static final String LICENSING_CR_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
+	public static final String LICENSING_CR_LEVEL_ERROR = "error"; //$NON-NLS-1$
+	public static final String LICENSING_CR_LEVEL_WARN = "warn"; //$NON-NLS-1$
+	public static final String LICENSING_CR_LEVEL_DEFAULT = LICENSING_CR_LEVEL_WARN;
 
 	private LicensingNamespaces() {
 		// block

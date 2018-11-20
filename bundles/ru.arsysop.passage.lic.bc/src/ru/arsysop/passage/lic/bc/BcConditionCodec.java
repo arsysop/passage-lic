@@ -109,7 +109,8 @@ public class BcConditionCodec implements ConditionCodec {
 
 			KeyPair keyPair = generator.generateKeyPair();
 
-			PGPDigestCalculator sha1Calc = new JcaPGPDigestCalculatorProviderBuilder().build().get(HashAlgorithmTags.SHA1);
+			PGPDigestCalculator sha1Calc = new JcaPGPDigestCalculatorProviderBuilder().build()
+					.get(HashAlgorithmTags.SHA1);
 
 			PGPKeyPair pgpKeyPair = new JcaPGPKeyPair(PGPPublicKey.RSA_GENERAL, keyPair, new Date());
 
@@ -122,8 +123,8 @@ public class BcConditionCodec implements ConditionCodec {
 			PBESecretKeyEncryptor secretKeyEcriptor = jcePBESecretKeyEncryptorBuilder.setProvider(BOUNCY_CASTLE_ID)
 					.build(password.toCharArray());
 
-			PGPSecretKey secretKey = new PGPSecretKey(PGPSignature.DEFAULT_CERTIFICATION, pgpKeyPair, username, sha1Calc,
-					null, null, certificationSignerBuilder, secretKeyEcriptor);
+			PGPSecretKey secretKey = new PGPSecretKey(PGPSignature.DEFAULT_CERTIFICATION, pgpKeyPair, username,
+					sha1Calc, null, null, certificationSignerBuilder, secretKeyEcriptor);
 
 			PGPSignatureSubpacketGenerator subpacketGenerator = new PGPSignatureSubpacketGenerator();
 
@@ -133,8 +134,8 @@ public class BcConditionCodec implements ConditionCodec {
 
 			subpacketVector = subpacketGenerator.generate();
 
-			keyRingGen = new PGPKeyRingGenerator(PGPSignature.POSITIVE_CERTIFICATION, pgpKeyPair,
-					username, sha1Calc, subpacketVector, null, certificationSignerBuilder, secretKeyEcriptor);
+			keyRingGen = new PGPKeyRingGenerator(PGPSignature.POSITIVE_CERTIFICATION, pgpKeyPair, username, sha1Calc,
+					subpacketVector, null, certificationSignerBuilder, secretKeyEcriptor);
 
 			keyRingGen.addSubKey(pgpKeyPair);
 		} catch (Exception e) {
@@ -145,16 +146,17 @@ public class BcConditionCodec implements ConditionCodec {
 		PGPSecretKeyRing keyRingSecret = keyRingGen.generateSecretKeyRing();
 
 		File privateKey = pathPrivateKey.toFile();
-		try (ArmoredOutputStream output = new ArmoredOutputStream(
-				new BufferedOutputStream(new FileOutputStream(privateKey)))) {
+
+		try (FileOutputStream fos = new FileOutputStream(privateKey);
+				ArmoredOutputStream output = new ArmoredOutputStream(new BufferedOutputStream(fos))) {
 			keyRingSecret.encode(output);
 		} catch (IOException e) {
 			throw new IOException("Error writing private key", e);
 		}
 
 		File publicKey = pathPublicKey.toFile();
-		try (ArmoredOutputStream output = new ArmoredOutputStream(
-				new BufferedOutputStream(new FileOutputStream(publicKey)))) {
+		try (FileOutputStream fos = new FileOutputStream(publicKey);
+				ArmoredOutputStream output = new ArmoredOutputStream(new BufferedOutputStream(fos))) {
 			keyRingPublic.encode(output);
 		} catch (IOException e) {
 			throw new IOException("Error writing public key", e);
@@ -179,7 +181,7 @@ public class BcConditionCodec implements ConditionCodec {
 					.setProvider(BouncyCastleProvider.PROVIDER_NAME).build(password.toCharArray());
 			PGPPrivateKey privateKey = key.extractPrivateKey(decryptor);
 			signatureGenerator.init(PGPSignature.BINARY_DOCUMENT, privateKey);
-			
+
 			final Iterator<String> it = key.getPublicKey().getUserIDs();
 			if (it.hasNext()) {
 				final PGPSignatureSubpacketGenerator generator1 = new PGPSignatureSubpacketGenerator();
@@ -206,8 +208,7 @@ public class BcConditionCodec implements ConditionCodec {
 	}
 
 	private PGPSecretKey findKey(InputStream key, String username) throws IOException {
-		final InputStream decoder = PGPUtil.getDecoderStream(key);
-		try {
+		try (InputStream decoder = PGPUtil.getDecoderStream(key)) {
 			final PGPSecretKeyRingCollection keyRingCollection = new JcaPGPSecretKeyRingCollection(decoder);
 			Iterator<PGPSecretKeyRing> keyRings = keyRingCollection.getKeyRings();
 			while (keyRings.hasNext()) {
@@ -234,7 +235,8 @@ public class BcConditionCodec implements ConditionCodec {
 	}
 
 	@Override
-	public Object decodeStream(InputStream input, OutputStream output, InputStream key, byte[] digest) throws IOException {
+	public Object decodeStream(InputStream input, OutputStream output, InputStream key, byte[] digest)
+			throws IOException {
 		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		int chk;
 		while ((chk = key.read()) >= 0) {
@@ -268,7 +270,7 @@ public class BcConditionCodec implements ConditionCodec {
 			final PGPPublicKey decodeKey = pgpRing.getPublicKey(decodeKeyId);
 			final PGPContentVerifierBuilderProvider cvBuilder = new JcaPGPContentVerifierBuilderProvider();
 			slist1s1.init(cvBuilder, decodeKey);
-			
+
 			ByteArrayOutputStream untrusted = new ByteArrayOutputStream();
 			int ch;
 			while ((ch = literalStream.read()) >= 0) {

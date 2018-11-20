@@ -18,15 +18,27 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.runtime;
+package ru.arsysop.passage.lic.internal.oshi;
 
-/**
- * Evaluates the collection of {@link ConditionDescriptor} to obtain a
- * collection of {@link FeaturePermission}
- *
- */
-public interface ConditionEvaluator {
+import org.osgi.service.component.annotations.Component;
 
-	Iterable<FeaturePermission> evaluateConditions(Iterable<ConditionDescriptor> conditions);
+import ru.arsysop.passage.lic.base.BaseConditionEvaluator;
+import ru.arsysop.passage.lic.base.LicensingProperties;
+import ru.arsysop.passage.lic.oshi.OshiHal;
+import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
+
+@Component(property = {
+		LicensingProperties.LICENSING_CONDITION_TYPE + '=' + OshiHal.LICENSING_CONDITION_TYPE_HARDWARE })
+public class OshiConditionEvaluator extends BaseConditionEvaluator implements ConditionEvaluator {
+
+	@Override
+	protected boolean evaluateSegment(String key, String value) {
+		switch (key) {
+		case OshiHal.LICENSING_CONDITION_KEY_MAC:
+			return OshiHal.evaluateMac(value);
+		default:
+			return false;
+		}
+	}
 
 }

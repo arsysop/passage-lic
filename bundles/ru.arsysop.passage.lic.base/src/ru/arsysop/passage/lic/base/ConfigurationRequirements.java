@@ -35,21 +35,21 @@ public class ConfigurationRequirements {
 	}
 
 	public static BaseConfigurationRequirement extractFromCapability(Map<String, Object> attributes, Map<String, String> directives, Object source) {
-		Object feature = attributes.get(LICENSING_CONFIGRATION_REQUIREMENT);
+		Object feature = attributes.get(LICENSING_CR);
 		if (feature instanceof String) {
 			String featureId = (String) feature;
-			String version = LICENSING_CONFIGRATION_REQUIREMENT_VERSION_DEFAULT;
-			String rule = LICENSING_CONFIGRATION_REQUIREMENT_RULE_DEFAULT;
-			String level = LICENSING_CONFIGRATION_REQUIREMENT_LEVEL_DEFAULT;
-			Object matchVersion = attributes.get(LICENSING_CONFIGRATION_REQUIREMENT_VERSION);
+			String version = LICENSING_CR_VERSION_DEFAULT;
+			String rule = LICENSING_CR_RULE_DEFAULT;
+			String level = LICENSING_CR_LEVEL_DEFAULT;
+			Object matchVersion = attributes.get(LICENSING_CR_VERSION);
 			if (matchVersion instanceof String) {
 				version = (String) matchVersion;
 			}
-			Object matchRule = attributes.get(LICENSING_CONFIGRATION_REQUIREMENT_RULE);
+			Object matchRule = attributes.get(LICENSING_CR_RULE);
 			if (matchRule instanceof String) {
 				rule = (String) matchRule;
 			}
-			Object restrictionLevel = attributes.get(LICENSING_CONFIGRATION_REQUIREMENT_LEVEL);
+			Object restrictionLevel = attributes.get(LICENSING_CR_LEVEL);
 			if (restrictionLevel instanceof String) {
 				level = (String) restrictionLevel;
 			}

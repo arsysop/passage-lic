@@ -23,16 +23,30 @@ package ru.arsysop.passage.lic.base;
 import java.util.HashMap;
 import java.util.Map;
 
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
-
 public class ConditionDescriptors {
 	
+	private static final String SEGMENT_SEPARATOR = ";"; //$NON-NLS-1$
+	private static final String VALUE_SEPARATOR = "="; //$NON-NLS-1$
+
 	private ConditionDescriptors() {
 		// block
 	}
 
-	public static Map<String, String> asMap(ConditionDescriptor condition) {
+	public static Map<String, String> parseExpression(String expression) {
 		Map<String, String> map = new HashMap<>();
+		if (expression == null) {
+			//FIXME: report error;
+			return map;
+		}
+		String[] segments = expression.split(SEGMENT_SEPARATOR);
+		for (String segment : segments) {
+			String[] split = segment.split(VALUE_SEPARATOR);
+			if (split.length != 2) {
+				//FIXME: report error;
+				continue;
+			}
+			map.put(split[0], split[1]);
+		}
 		return map;
 	}
 

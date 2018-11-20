@@ -60,7 +60,7 @@ public class XmiLicenseConditionExtractorTest {
 	private static final String MVN_PROJECT_OUTPUT_VALUE = "target"; //$NON-NLS-1$
 
 	@Rule
-	public TemporaryFolder keyFolder = new TemporaryFolder(new File(resolveOutputDirName()));
+	public TemporaryFolder baseFolder = new TemporaryFolder(new File(resolveOutputDirName()));
 
 	public static String resolveOutputDirName() {
 		String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
@@ -87,7 +87,7 @@ public class XmiLicenseConditionExtractorTest {
 		cond2.setConditionExpression(COND2_CONDITION_EXPRESSION);
 		conditions.add(cond2);
 
-		File file = keyFolder.newFile("some.lic"); //$NON-NLS-1$
+		File file = baseFolder.newFile("some.lic"); //$NON-NLS-1$
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			Resource saved = new XMIResourceImpl();
 			saved.getContents().add(license);

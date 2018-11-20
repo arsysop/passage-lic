@@ -28,7 +28,9 @@ public final class LicensingProperties {
 	public static final String LICENSING_MATCH_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
 	
 	public static final String LICENSING_MATCH_RULE = "licensing.match.rule"; //$NON-NLS-1$
-	public static final String LICENSING_MATCH_RULE_DEFAULT = "greaterOrEqual"; //$NON-NLS-1$
+	public static final String LICENSING_MATCH_RULE_COMPATIBLE = "compatible"; //$NON-NLS-1$
+	public static final String LICENSING_MATCH_RULE_EXACT = "exact"; //$NON-NLS-1$
+	public static final String LICENSING_MATCH_RULE_DEFAULT = LICENSING_MATCH_RULE_COMPATIBLE;
 	
 	public static final String LICENSING_RESTRICTION_LEVEL = "licensing.restriction.level"; //$NON-NLS-1$
 	public static final String LICENSING_RESTRICTION_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
@@ -38,6 +40,8 @@ public final class LicensingProperties {
 	
 	public static final String LICENSING_LEASE_TIME = "licensing.lease.time"; //$NON-NLS-1$
 	public static final String LICENSING_EXPIRE_TIME = "licensing.expire.time"; //$NON-NLS-1$
+
+	public static final String LICENSING_CONDITION_TYPE = "licensing.condition.type"; //$NON-NLS-1$
 
 	private LicensingProperties() {
 		// block

@@ -71,6 +71,9 @@
 		<module>../../tests/ru.arsysop.passage.lic.bc.tests</module>
 		<module>../../tests/ru.arsysop.passage.lic.equinox.tests</module>
 		<module>../../tests/ru.arsysop.passage.lic.model.core.tests</module>
+
+		<module>../../tests/ru.arsysop.passage.lic.integration.tests</module>
+
 	</modules>
 
 </project>
