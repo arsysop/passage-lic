@@ -33,6 +33,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.bc.BcConditionCodec;
 
 @SuppressWarnings("restriction")
@@ -63,9 +64,10 @@ public class BcConditionCodecTest {
 	@Test
 	public void testCodecPositive() throws Exception {
 		BcConditionCodec codec = new BcConditionCodec();
-		File publicFile = keyFolder.newFile("key.pub"); //$NON-NLS-1$
+		String keyName = "key"; ////$NON-NLS-1$
+		File publicFile = keyFolder.newFile(keyName + LicensingPaths.EXTENSION_PRODUCT_PUBLIC);
 		String publicKey = publicFile.getPath();
-		File privateFile = keyFolder.newFile("key.scr"); //$NON-NLS-1$
+		File privateFile = keyFolder.newFile(keyName + ".scr"); //$NON-NLS-1$
 		String privateKey = privateFile.getPath();
 		String username = "user"; //$NON-NLS-1$
 		String password = "password"; //$NON-NLS-1$
@@ -76,14 +78,20 @@ public class BcConditionCodecTest {
 		byte[] source = TEST_CONTENT.getBytes();
 		ByteArrayInputStream openInput = new ByteArrayInputStream(source);
 		ByteArrayOutputStream encodedOutput = new ByteArrayOutputStream();
-		codec.encodeStream(openInput, encodedOutput, new FileInputStream(privateFile), username, password);
+		try (FileInputStream key = new FileInputStream(privateFile)) {
+			codec.encodeStream(openInput, encodedOutput, key, username, password);
+		}
+		assertTrue(privateFile.delete());
 
 		ByteArrayInputStream encodedSource = new ByteArrayInputStream(encodedOutput.toByteArray());
 		ByteArrayOutputStream openOutput = new ByteArrayOutputStream();
-		Object decodeKey = codec.decodeStream(encodedSource, openOutput, new FileInputStream(publicFile), null);
-		assertNotNull(decodeKey);
+		try (FileInputStream key = new FileInputStream(publicFile)) {
+			Object decodeKey = codec.decodeStream(encodedSource, openOutput, key, null);
+			assertNotNull(decodeKey);
+		}
 		byte[] target = openOutput.toByteArray();
 		assertArrayEquals(source, target);
+		assertTrue(publicFile.delete());
 	}
 
 }

@@ -21,11 +21,16 @@
 package ru.arsysop.passage.lic.integration.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
+import ru.arsysop.passage.lic.model.api.License;
+import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
+import ru.arsysop.passage.lic.oshi.OshiHal;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 
 public class ConditionDescriptorIntegrationTest extends LicIntegrationBase {
@@ -45,6 +50,26 @@ public class ConditionDescriptorIntegrationTest extends LicIntegrationBase {
 		product.setIdentifier(SOME_PRODUCT_ID);
 		Iterable<ConditionDescriptor> conditions = accessManager.extractConditions(product);
 		assertFalse(conditions.iterator().hasNext());
+	}
+
+	@Test
+	public void testExtractConditionsPositive() throws Exception {
+		LicFactory factory = LicFactory.eINSTANCE;
+		Product product = factory.createProduct();
+		product.setIdentifier(SOME_PRODUCT_ID);
+
+		License license = factory.createLicense();
+		EList<LicenseCondition> licenseConditions = license.getLicenseConditions();
+		LicenseCondition conditionBundle = factory.createLicenseCondition();
+		conditionBundle.setAllowedFeatureId(SOME_BUNDLE_ID);
+		conditionBundle.setConditionType(OshiHal.LICENSING_CONDITION_TYPE_HARDWARE);
+		conditionBundle.setConditionExpression(OshiHal.LICENSING_CONDITION_KEY_MAC + '=' + '*');
+		licenseConditions.add(conditionBundle);
+
+		createProductLicense(product, license);
+		Iterable<ConditionDescriptor> conditions = accessManager.extractConditions(product);
+		assertTrue(conditions.iterator().hasNext());
+		deleteProductLicense(product);
 	}
 
 }

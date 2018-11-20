@@ -38,6 +38,9 @@ import oshi.util.FormatUtil;
 
 //FIXME: AF: extract tests
 public class OshiHal {
+	
+	public static final String LICENSING_CONDITION_TYPE_HARDWARE = "hardware"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_KEY_MAC = "mac"; //$NON-NLS-1$
 
 	public static void logHardwareInfo() {
 

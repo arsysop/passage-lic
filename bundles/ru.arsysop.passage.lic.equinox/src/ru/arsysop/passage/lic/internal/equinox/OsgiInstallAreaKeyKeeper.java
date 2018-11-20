@@ -45,15 +45,17 @@ public class OsgiInstallAreaKeyKeeper implements KeyKeeper {
 
 	@Override
 	public InputStream openKeyStream(Object configuration) throws IOException {
-		//FIXME: add ability to use env properties to resolve keyring
 		String areaValue = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path passagePath = LicensingPaths.getBasePath(areaValue);
-		String productId = String.valueOf(configuration);
-		Path configurationPath = passagePath.resolve(productId);
+		Path configurationPath = LicensingPaths.resolveConfigurationPath(areaValue, configuration);
 		if (!configurationPath.toFile().isDirectory()) {
 			throw new FileNotFoundException(configurationPath.toString());
 		}
-		Path keyRingPath = configurationPath.resolve(productId);
+		String productKey = LicensingPaths.EXTENSION_PRODUCT_PUBLIC;
+		String productId = LicensingPaths.resolveProductIdentifier(configuration);
+		if (productId != null) {
+			productKey = productId + productKey;
+		}
+		Path keyRingPath = configurationPath.resolve(productKey);
 		return Files.newInputStream(keyRingPath);
 	}
 
