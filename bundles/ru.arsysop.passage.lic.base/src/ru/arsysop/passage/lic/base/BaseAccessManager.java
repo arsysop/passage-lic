@@ -155,7 +155,7 @@ public class BaseAccessManager implements AccessManager {
 				//FIXME: log error;
 				continue;
 			}
-			Iterable<FeaturePermission> permissions = evaluator.evaluate(map.get(type));
+			Iterable<FeaturePermission> permissions = evaluator.evaluateConditions(map.get(type));
 			for (FeaturePermission permission : permissions) {
 				result.add(permission);
 			}

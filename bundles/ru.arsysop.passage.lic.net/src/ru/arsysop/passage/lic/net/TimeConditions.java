@@ -18,27 +18,25 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.internal.oshi;
+package ru.arsysop.passage.lic.net;
 
-import org.osgi.service.component.annotations.Component;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import ru.arsysop.passage.lic.base.BaseConditionEvaluator;
-import ru.arsysop.passage.lic.base.LicensingProperties;
-import ru.arsysop.passage.lic.oshi.OshiHal;
-import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
+public class TimeConditions {
 
-@Component(property = {
-		LicensingProperties.LICENSING_CONDITION_TYPE + '=' + OshiHal.LICENSING_CONDITION_TYPE_HARDWARE })
-public class OshiConditionEvaluator extends BaseConditionEvaluator implements ConditionEvaluator {
+	public static final String LICENSING_CONDITION_TYPE_TIME = "time"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_KEY_LOCALTIMESTAMP = "localtimestamp"; //$NON-NLS-1$
 
-	@Override
-	protected boolean evaluateSegment(String key, String value) {
-		switch (key) {
-		case OshiHal.LICENSING_CONDITION_KEY_MAC:
-			return OshiHal.evaluateMac(value);
-		default:
-			return false;
-		}
+	public static final String LOCALTIMESTAMP_PATTERN_DEFAULT = "yyyy-MM-dd HH:mm"; //$NON-NLS-1$
+
+	public static boolean isFutureLocalDateTime(String value) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TimeConditions.LOCALTIMESTAMP_PATTERN_DEFAULT);
+		LocalDateTime dateTime = LocalDateTime.parse(value, formatter);
+		LocalDateTime now = LocalDateTime.now();
+		Duration duration = Duration.between(now, dateTime);
+		return (!duration.isNegative() && !duration.isZero());
 	}
 
 }
