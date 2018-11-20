@@ -20,14 +20,12 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-import java.util.List;
-
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 
 public interface LicenseDescriptor extends BaseDescriptor {
 	
 	public int getCapacity();
 	
-	List<? extends ConditionDescriptor> getLicenseConditions();
+	Iterable<? extends ConditionDescriptor> getLicenseConditions();
 
 }

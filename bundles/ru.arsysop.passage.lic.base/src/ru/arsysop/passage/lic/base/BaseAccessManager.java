@@ -44,8 +44,8 @@ public class BaseAccessManager implements AccessManager {
 
 	private final List<ConfigurationResolver> configurationResolvers = new ArrayList<>();
 	private final List<ConditionMiner> conditionMiners = new ArrayList<>();
-	private final List<ConditionEvaluator> conditionEvaluators = new ArrayList<>();
-	private final Map<String, RestrictionExecutor> restrictionExecutors = new HashMap<>();
+	private final Map<String, ConditionEvaluator> conditionEvaluators = new HashMap<>();
+	private final Map<String, List<RestrictionExecutor>> restrictionExecutors = new HashMap<>();
 
 	private PermissionExaminer examiner;
 
@@ -65,24 +65,36 @@ public class BaseAccessManager implements AccessManager {
 		conditionMiners.remove(conditionMiner);
 	}
 
-	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator) {
-		conditionEvaluators.add(conditionEvaluator);
+	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
+		String type = String.valueOf(conditionType);
+		//FIXME: check permissions
+		conditionEvaluators.put(type, conditionEvaluator);
 	}
 
-	public void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator) {
-		conditionEvaluators.remove(conditionEvaluator);
+	public void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
+		String type = String.valueOf(conditionType);
+		conditionEvaluators.remove(type);
 	}
 
 	public void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor, Map<String, Object> properties) {
 		Object restrictionType = properties.get(LICENSING_RESTRICTION_LEVEL);
 		String type = String.valueOf(restrictionType);
-		restrictionExecutors.put(type, restrictionExecutor);
+		List<RestrictionExecutor> list = restrictionExecutors.computeIfAbsent(type, key -> new ArrayList<>());
+		list.add(restrictionExecutor);
 	}
 
 	public void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor, Map<String, Object> properties) {
 		Object restrictionType = properties.get(LICENSING_RESTRICTION_LEVEL);
 		String type = String.valueOf(restrictionType);
-		restrictionExecutors.remove(type, restrictionExecutor);
+		List<RestrictionExecutor> list = restrictionExecutors.get(type);
+		if (list != null) {
+			list.remove(restrictionExecutor);
+			if (list.isEmpty()) {
+				restrictionExecutors.remove(type);
+			}
+		}
 	}
 
 	@Override
@@ -122,9 +134,29 @@ public class BaseAccessManager implements AccessManager {
 	@Override
 	public Iterable<FeaturePermission> evaluateConditions(Iterable<ConditionDescriptor> conditions) {
 		Collection<FeaturePermission> result = new ArrayList<>();
-		for (ConditionEvaluator conditionEvaluator : conditionEvaluators) {
-			Iterable<FeaturePermission> permissons = conditionEvaluator.evaluate(conditions);
-			for (FeaturePermission permission : permissons) {
+		if (conditions == null) {
+			//FIXME: log error;
+			return result;
+		}
+		Map<String, List<ConditionDescriptor>> map = new HashMap<>();
+		for (ConditionDescriptor condition : conditions) {
+			if (condition == null) {
+				//FIXME: log error;
+				continue;
+			}
+			String type = condition.getConditionType();
+			List<ConditionDescriptor> list = map.computeIfAbsent(type, key -> new ArrayList<>());
+			list.add(condition);
+		}
+		Set<String> types = map.keySet();
+		for (String type : types) {
+			ConditionEvaluator evaluator = conditionEvaluators.get(type);
+			if (evaluator == null) {
+				//FIXME: log error;
+				continue;
+			}
+			Iterable<FeaturePermission> permissions = evaluator.evaluate(map.get(type));
+			for (FeaturePermission permission : permissions) {
 				result.add(permission);
 			}
 		}
@@ -151,8 +183,8 @@ public class BaseAccessManager implements AccessManager {
 		Set<String> keySet = map.keySet();
 		for (String level : keySet) {
 			List<RestrictionVerdict> verdicts = map.get(level);
-			RestrictionExecutor executor = restrictionExecutors.get(level);
-			if (executor != null) {
+			List<RestrictionExecutor> executors = restrictionExecutors.get(level);
+			for (RestrictionExecutor executor : executors) {
 				executor.execute(verdicts);
 			}
 		}

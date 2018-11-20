@@ -22,6 +22,8 @@ package ru.arsysop.passage.lic.base;
 
 import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
+import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+
 public class FeaturePermissions {
 
 	private FeaturePermissions() {
@@ -34,6 +36,15 @@ public class FeaturePermissions {
 		long leaseTime = System.currentTimeMillis();
 		long expireTime = leaseTime + 60*60*1000;
 		return new BaseFeaturePermission(featureId, version, rule, leaseTime, expireTime);
+	}
+
+	public static BaseFeaturePermission createDefault(ConditionDescriptor condition) {
+		long leaseTime = System.currentTimeMillis();
+		long expireTime = leaseTime + 60*60*1000;
+		String featureId = condition.getAllowedFeatureId();
+		String matchVersion = condition.getAllowedFeatureMatchVersion();
+		String matchRule = condition.getAllowedFeatureMatchVersion();
+		return new BaseFeaturePermission(featureId, matchVersion, matchRule, leaseTime, expireTime);
 	}
 
 }
