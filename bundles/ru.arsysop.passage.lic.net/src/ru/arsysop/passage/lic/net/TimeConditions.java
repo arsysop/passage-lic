@@ -22,21 +22,26 @@ package ru.arsysop.passage.lic.net;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class TimeConditions {
 
-	public static final String LICENSING_CONDITION_TYPE_TIME = "time"; //$NON-NLS-1$
-	public static final String LICENSING_CONDITION_KEY_LOCALTIMESTAMP = "localtimestamp"; //$NON-NLS-1$
+	public static final String LC_TYPE_TIME = "time"; //$NON-NLS-1$
+	public static final String LC_KEY_LOCALTIMESTAMP = "localtimestamp"; //$NON-NLS-1$
 
-	public static final String LOCALTIMESTAMP_PATTERN_DEFAULT = "yyyy-MM-dd HH:mm"; //$NON-NLS-1$
+	private TimeConditions() {
+		//block
+	}
 
 	public static boolean isFutureLocalDateTime(String value) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TimeConditions.LOCALTIMESTAMP_PATTERN_DEFAULT);
-		LocalDateTime dateTime = LocalDateTime.parse(value, formatter);
-		LocalDateTime now = LocalDateTime.now();
-		Duration duration = Duration.between(now, dateTime);
-		return (!duration.isNegative() && !duration.isZero());
+		try {
+			LocalDateTime dateTime = LocalDateTime.parse(value);
+			LocalDateTime now = LocalDateTime.now();
+			Duration duration = Duration.between(now, dateTime);
+			return (!duration.isNegative());
+		} catch (Exception e) {
+			//FIXME: logger.debug(e);
+			return false;
+		}
 	}
 
 }

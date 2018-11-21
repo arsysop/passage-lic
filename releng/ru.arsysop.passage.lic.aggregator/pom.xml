@@ -70,6 +70,8 @@
 		<module>../../tests/ru.arsysop.passage.lic.base.tests</module>
 		<module>../../tests/ru.arsysop.passage.lic.bc.tests</module>
 		<module>../../tests/ru.arsysop.passage.lic.equinox.tests</module>
+		<module>../../tests/ru.arsysop.passage.lic.net.tests</module>
+		<module>../../tests/ru.arsysop.passage.lic.oshi.tests</module>
 		<module>../../tests/ru.arsysop.passage.lic.model.core.tests</module>
 
 		<module>../../tests/ru.arsysop.passage.lic.integration.tests</module>

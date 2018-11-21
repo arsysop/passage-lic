@@ -18,15 +18,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.inspector.ui.dialogs;
+package ru.arsysop.passage.lic.net.tests;
 
-import org.eclipse.jface.dialogs.TrayDialog;
-import org.eclipse.swt.widgets.Shell;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-public class InspectorDialog extends TrayDialog {
+import org.junit.Test;
 
-	protected InspectorDialog(Shell shell) {
-		super(shell);
+import ru.arsysop.passage.lic.net.TimeConditions;
+
+public class TimeConditionsTest {
+	
+	@Test
+	public void testIsFutureLocalTimeNegative() {
+		assertFalse(TimeConditions.isFutureLocalDateTime(null));
+		assertFalse(TimeConditions.isFutureLocalDateTime(new String()));
+	}
+	@Test
+	public void testIsFutureLocalTimePositive() {
+		assertFalse(TimeConditions.isFutureLocalDateTime("2018-11-20T17:00:00")); //$NON-NLS-1$
+		assertTrue(TimeConditions.isFutureLocalDateTime("2028-11-20T17:00:00")); //$NON-NLS-1$
 	}
 
 }

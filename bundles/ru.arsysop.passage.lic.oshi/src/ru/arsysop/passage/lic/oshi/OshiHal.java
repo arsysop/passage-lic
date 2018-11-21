@@ -20,136 +20,192 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.oshi;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import oshi.SystemInfo;
+import oshi.hardware.Baseboard;
 import oshi.hardware.CentralProcessor;
-import oshi.hardware.HWDiskStore;
-import oshi.hardware.HWPartition;
+import oshi.hardware.ComputerSystem;
+import oshi.hardware.Firmware;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OperatingSystem;
-import oshi.util.FormatUtil;
+import oshi.software.os.OperatingSystemVersion;
+import ru.arsysop.passage.lic.inspector.HardwareInspector;
 
-//FIXME: AF: extract tests
 public class OshiHal {
 	
-	public static final String LICENSING_CONDITION_TYPE_HARDWARE = "hardware"; //$NON-NLS-1$
-	public static final String LICENSING_CONDITION_KEY_MAC = "mac"; //$NON-NLS-1$
-	public static final String LICENSING_CONDITION_VALUE_ANY = "*"; //$NON-NLS-1$
+	public static final String LC_TYPE_HARDWARE = "hardware"; //$NON-NLS-1$
+	
+	private static SystemInfo staticSI = new SystemInfo();
 
-	public static void logHardwareInfo() {
+	private static Set<String> knownProperties = new LinkedHashSet<>();
+	
+	static {
+		knownProperties.add(HardwareInspector.PROPERTY_OS_MANUFACTURER);
+		knownProperties.add(HardwareInspector.PROPERTY_OS_FAMILY);
+		knownProperties.add(HardwareInspector.PROPERTY_OS_VERSION);
+		knownProperties.add(HardwareInspector.PROPERTY_OS_BUILDNUMBER);
 
-		System.out.println("Initializing System...");
-		SystemInfo si = new SystemInfo();
+		knownProperties.add(HardwareInspector.PROPERTY_SYSTEM_MANUFACTURER);
+		knownProperties.add(HardwareInspector.PROPERTY_SYSTEM_MODEL);
+		knownProperties.add(HardwareInspector.PROPERTY_SYSTEM_SERIALNUMBER);
 
-		HardwareAbstractionLayer hal = si.getHardware();
-		OperatingSystem os = si.getOperatingSystem();
+		knownProperties.add(HardwareInspector.PROPERTY_BASEBOARD_MANUFACTURER);
+		knownProperties.add(HardwareInspector.PROPERTY_BASEBOARD_MODEL);
+		knownProperties.add(HardwareInspector.PROPERTY_BASEBOARD_VERSION);
+		knownProperties.add(HardwareInspector.PROPERTY_BASEBOARD_SERIALNUMBER);
 
-		System.out.println(os);
+		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_MANUFACTURER);
+		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_VERSION);
+		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_RELEASEDATE);
+		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_NAME);
+		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_DESCRIPTION);
 
-		System.out.println("Checking Processor...");
-		StringBuilder builder = new StringBuilder();
-		dumpProcessorInfo(hal.getProcessor(), builder);
-		System.out.println(builder);
-
-		builder.setLength(0);
-		System.out.println("Checking Disks...");
-		logDisksInfo(hal.getDiskStores(), builder);
+		knownProperties.add(HardwareInspector.PROPERTY_CPU_VENDOR);
+		knownProperties.add(HardwareInspector.PROPERTY_CPU_FAMILY);
+		knownProperties.add(HardwareInspector.PROPERTY_CPU_MODEL);
+		knownProperties.add(HardwareInspector.PROPERTY_CPU_NAME);
+		knownProperties.add(HardwareInspector.PROPERTY_CPU_IDENTIFIER);
+		knownProperties.add(HardwareInspector.PROPERTY_CPU_PROCESSORID);
+	}
+	
+	private OshiHal() {
+		//block
 	}
 
-	public static String getProcessorId(CentralProcessor processor) {
-		if (processor == null) {
-			return "";
-		}
-		return processor.getIdentifier();
+	public static void dumpOperatingSystem(OutputStream output) throws IOException {
+		OperatingSystem os = staticSI.getOperatingSystem();
+		dumpProperty(output, HardwareInspector.PROPERTY_OS_MANUFACTURER, os.getManufacturer());
+		dumpProperty(output, HardwareInspector.PROPERTY_OS_FAMILY, os.getFamily());
+		OperatingSystemVersion version = os.getVersion();
+		dumpProperty(output, HardwareInspector.PROPERTY_OS_VERSION, version.getVersion());
+		dumpProperty(output, HardwareInspector.PROPERTY_OS_BUILDNUMBER, version.getBuildNumber());
 	}
 
-	public static String getHardDiskId(HWDiskStore disk) {
-		if (disk == null) {
-			return "";
-		}
-		return disk.getSerial();
+	public static void dumpComputerSystem(OutputStream output) throws IOException {
+		HardwareAbstractionLayer hal = staticSI.getHardware();
+		ComputerSystem computerSystem = hal.getComputerSystem();
+		dumpProperty(output, HardwareInspector.PROPERTY_SYSTEM_MANUFACTURER, computerSystem.getManufacturer());
+		dumpProperty(output, HardwareInspector.PROPERTY_SYSTEM_MODEL, computerSystem.getModel());
+		dumpProperty(output, HardwareInspector.PROPERTY_SYSTEM_SERIALNUMBER, computerSystem.getSerialNumber());
+
+		Baseboard baseboard = computerSystem.getBaseboard();
+		dumpProperty(output, HardwareInspector.PROPERTY_BASEBOARD_MANUFACTURER, baseboard.getManufacturer());
+		dumpProperty(output, HardwareInspector.PROPERTY_BASEBOARD_MODEL, baseboard.getModel());
+		dumpProperty(output, HardwareInspector.PROPERTY_BASEBOARD_VERSION, baseboard.getVersion());
+		dumpProperty(output, HardwareInspector.PROPERTY_BASEBOARD_SERIALNUMBER, baseboard.getSerialNumber());
+
+		Firmware firmware = computerSystem.getFirmware();
+		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_MANUFACTURER, firmware.getManufacturer());
+		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_VERSION, firmware.getVersion());
+		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_RELEASEDATE, firmware.getReleaseDate());
+		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_NAME, firmware.getName());
+		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_DESCRIPTION, firmware.getDescription());
+	
 	}
 
-	public static String getActiveNetworkAdapterId() throws SocketException, UnknownHostException {
-		InetAddress ipAddress = InetAddress.getLocalHost();
-		if (ipAddress != null) {
-			NetworkInterface network = NetworkInterface.getByInetAddress(ipAddress);
-			byte[] mac = network.getHardwareAddress();
-			return convertHardwareAddressToString(mac);
-		}
-		return "";
+	public static void dumpCentralProcessor(OutputStream output) throws IOException {
+		HardwareAbstractionLayer hal = staticSI.getHardware();
+		CentralProcessor processor = hal.getProcessor();
+		dumpProperty(output, HardwareInspector.PROPERTY_CPU_VENDOR, processor.getVendor());
+		dumpProperty(output, HardwareInspector.PROPERTY_CPU_FAMILY, processor.getFamily());
+		dumpProperty(output, HardwareInspector.PROPERTY_CPU_MODEL, processor.getModel());
+		dumpProperty(output, HardwareInspector.PROPERTY_CPU_NAME, processor.getName());
+		dumpProperty(output, HardwareInspector.PROPERTY_CPU_IDENTIFIER, processor.getIdentifier());
+		dumpProperty(output, HardwareInspector.PROPERTY_CPU_PROCESSORID, processor.getProcessorID());
 	}
 
-	public static List<String> getNetworksAdaptersId() throws SocketException {
-		List<String> lstHwAddresses = new ArrayList<>();
-
-		Enumeration<NetworkInterface> nwAdapters = NetworkInterface.getNetworkInterfaces();
-		if (nwAdapters == null) {
-			return lstHwAddresses;
-		}
-		while (nwAdapters.hasMoreElements()) {
-			NetworkInterface adapter = nwAdapters.nextElement();
-			byte[] hwAddress = adapter.getHardwareAddress();
-			lstHwAddresses.add(convertHardwareAddressToString(hwAddress));
-		}
-		return lstHwAddresses;
+	private static void dumpProperty(OutputStream output, String name, String value) throws IOException {
+		output.write(name.getBytes());
+		output.write('=');
+		output.write(value.getBytes());
+		output.write('\n');
 	}
 
-	public static void logDisksInfo(HWDiskStore[] diskStores, StringBuilder builder) {
-		builder.append("Disks:");
-		for (HWDiskStore disk : diskStores) {
-			boolean readwrite = disk.getReads() > 0 || disk.getWrites() > 0;
-			String format = String.format(" %s: (model: %s - S/N: %s) size: %s, reads: %s (%s), writes: %s (%s), xfer: %s ms%n",
-					disk.getName(), disk.getModel(), disk.getSerial(),
-					disk.getSize() > 0 ? FormatUtil.formatBytesDecimal(disk.getSize()) : "?",
-					readwrite ? disk.getReads() : "?", readwrite ? FormatUtil.formatBytes(disk.getReadBytes()) : "?",
-					readwrite ? disk.getWrites() : "?", readwrite ? FormatUtil.formatBytes(disk.getWriteBytes()) : "?",
-					readwrite ? disk.getTransferTime() : "?");
-			builder.append(format);
-			HWPartition[] partitions = disk.getPartitions();
-			if (partitions == null) {
-				continue;
-			}
-			for (HWPartition part : partitions) {
-				System.out.format(" |-- %s: %s (%s) Maj:Min=%d:%d, size: %s%s%n", part.getIdentification(),
-						part.getName(), part.getType(), part.getMajor(), part.getMinor(),
-						FormatUtil.formatBytesDecimal(part.getSize()),
-						part.getMountPoint().isEmpty() ? "" : " @ " + part.getMountPoint());
-			}
+	public static String extractProperty(String name) {
+		if (name == null) {
+			return null;
+		}
+		OperatingSystem os = staticSI.getOperatingSystem();
+		HardwareAbstractionLayer hardware = staticSI.getHardware();
+		ComputerSystem computerSystem = hardware.getComputerSystem();
+		Baseboard baseboard = computerSystem.getBaseboard();
+		Firmware firmware = computerSystem.getFirmware();
+		CentralProcessor processor = hardware.getProcessor();
+
+		switch (name) {
+		case HardwareInspector.PROPERTY_OS_MANUFACTURER:
+			return os.getManufacturer();
+		case HardwareInspector.PROPERTY_OS_FAMILY:
+			return os.getFamily();
+		case HardwareInspector.PROPERTY_OS_VERSION:
+			return os.getVersion().getVersion();
+		case HardwareInspector.PROPERTY_OS_BUILDNUMBER:
+			return os.getVersion().getBuildNumber();
+
+		case HardwareInspector.PROPERTY_SYSTEM_MANUFACTURER:
+			return computerSystem.getManufacturer();
+		case HardwareInspector.PROPERTY_SYSTEM_MODEL:
+			return computerSystem.getModel();
+		case HardwareInspector.PROPERTY_SYSTEM_SERIALNUMBER:
+			return computerSystem.getSerialNumber();
+
+		case HardwareInspector.PROPERTY_BASEBOARD_MANUFACTURER:
+			return baseboard.getManufacturer();
+		case HardwareInspector.PROPERTY_BASEBOARD_MODEL:
+			return baseboard.getModel();
+		case HardwareInspector.PROPERTY_BASEBOARD_VERSION:
+			return baseboard.getVersion();
+		case HardwareInspector.PROPERTY_BASEBOARD_SERIALNUMBER:
+			return baseboard.getSerialNumber();
+
+		case HardwareInspector.PROPERTY_FIRMWARE_MANUFACTURER:
+			return firmware.getManufacturer();
+		case HardwareInspector.PROPERTY_FIRMWARE_VERSION:
+			return firmware.getVersion();
+		case HardwareInspector.PROPERTY_FIRMWARE_RELEASEDATE:
+			return firmware.getReleaseDate();
+		case HardwareInspector.PROPERTY_FIRMWARE_NAME:
+			return firmware.getName();
+		case HardwareInspector.PROPERTY_FIRMWARE_DESCRIPTION:
+			return firmware.getDescription();
+
+		case HardwareInspector.PROPERTY_CPU_VENDOR:
+			return processor.getVendor();
+		case HardwareInspector.PROPERTY_CPU_FAMILY:
+			return processor.getFamily();
+		case HardwareInspector.PROPERTY_CPU_MODEL:
+			return processor.getModel();
+		case HardwareInspector.PROPERTY_CPU_NAME:
+			return processor.getName();
+		case HardwareInspector.PROPERTY_CPU_IDENTIFIER:
+			return processor.getIdentifier();
+		case HardwareInspector.PROPERTY_CPU_PROCESSORID:
+			return processor.getProcessorID();
+
+		default:
+			return null;
 		}
 	}
 
-	public static void dumpProcessorInfo(CentralProcessor processor, StringBuilder builder) {
-		builder.append(processor).append('\n');
-		builder.append(" " + processor.getPhysicalPackageCount() + " physical CPU package(s)").append('\n');
-		builder.append(" " + processor.getPhysicalProcessorCount() + " physical CPU core(s)").append('\n');
-		builder.append(" " + processor.getLogicalProcessorCount() + " logical CPU(s)").append('\n');
-		builder.append("Identifier: " + processor.getIdentifier()).append('\n');
-		builder.append("ProcessorID: " + processor.getProcessorID()).append('\n');
-	}
-
-	private static String convertHardwareAddressToString(byte[] macAddress) {
-		if (macAddress == null || macAddress.length <= 0) {
-			return "";
+	public static boolean evaluateProperty(String name, String actual) {
+		if (actual == null) {
+			return false;
 		}
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < macAddress.length; i++) {
-			sb.append(String.format("%02X%s", macAddress[i], (i < macAddress.length - 1) ? "-" : ""));
-		}
-		return sb.toString();
-	}
-
-	public static boolean evaluateMac(String value) {
-		if (LICENSING_CONDITION_VALUE_ANY.equals(value)) {
+		if (actual.equals(String.valueOf('*'))) {
 			return true;
 		}
-		return false;
+		String expected = extractProperty(name);
+		return Objects.equals(expected, actual);
 	}
+
+	public static Iterable<String> getKnownProperties() {
+		return new ArrayList<>(knownProperties);
+	}
+
 }

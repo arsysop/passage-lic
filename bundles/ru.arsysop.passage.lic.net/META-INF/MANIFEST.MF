@@ -12,4 +12,5 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
  ru.arsysop.passage.lic.base;bundle-version="0.0.0"
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
-Export-Package: ru.arsysop.passage.lic.net
+Export-Package: ru.arsysop.passage.lic.internal.net;x-internal:=true,
+ ru.arsysop.passage.lic.net

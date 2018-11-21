@@ -18,22 +18,22 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.internal.oshi;
+package ru.arsysop.passage.lic.oshi.tests;
 
-import org.osgi.service.component.annotations.Component;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
-import ru.arsysop.passage.lic.base.BaseConditionEvaluator;
-import ru.arsysop.passage.lic.base.LicensingProperties;
+import org.junit.Test;
+
 import ru.arsysop.passage.lic.oshi.OshiHal;
-import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
 
-@Component(property = {
-		LicensingProperties.LICENSING_CONDITION_TYPE + '=' + OshiHal.LC_TYPE_HARDWARE })
-public class OshiConditionEvaluator extends BaseConditionEvaluator implements ConditionEvaluator {
+public class OshiHalTest {
 
-	@Override
-	protected boolean evaluateSegment(String key, String value) {
-		return OshiHal.evaluateProperty(key, value);
+	@Test
+	public void testExtractPropertyNegative() throws Exception {
+		assertNull(OshiHal.extractProperty(null));
+		assertNull(OshiHal.extractProperty(new String()));
+		assertFalse(OshiHal.evaluateProperty(null, null));
 	}
 
 }

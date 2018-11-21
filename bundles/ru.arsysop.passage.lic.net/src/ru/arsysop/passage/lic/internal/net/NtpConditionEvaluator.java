@@ -28,7 +28,7 @@ public class NtpConditionEvaluator extends BaseConditionEvaluator {
 	@Override
 	protected boolean evaluateSegment(String key, String value) {
 		switch (key) {
-		case TimeConditions.LICENSING_CONDITION_KEY_LOCALTIMESTAMP:
+		case TimeConditions.LC_KEY_LOCALTIMESTAMP:
 			return TimeConditions.isFutureLocalDateTime(value);
 		default:
 			return false;
