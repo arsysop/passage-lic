@@ -68,7 +68,7 @@ public class NtpConditionEvaluatorTest {
 		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
-		assertEquals(NET_TIME_FEATURE_ID, permission.getFeatureId());
+		assertEquals(NET_TIME_FEATURE_ID, permission.getFeatureIdentifier());
 		assertEquals(NET_TIME_MATCH_RULE, permission.getMatchRule());
 		assertEquals(NET_TIME_MATCH_VERSION, permission.getMatchVersion());
 	}
@@ -77,10 +77,10 @@ public class NtpConditionEvaluatorTest {
 	public void testNetCondition() throws Exception {
 		NetCondition netCondition = new NetCondition(EXPRESSION_EXPIRED);
 		assertEquals(EXPRESSION_EXPIRED, netCondition.getConditionExpression());
-		assertEquals(TimeConditions.LC_TYPE_TIME, netCondition.getConditionType());
+		assertEquals(TimeConditions.CONDITION_TYPE_TIME, netCondition.getConditionType());
 		assertEquals(NET_TIME_FEATURE_ID, netCondition.getAllowedFeatureId());
-		assertEquals(NET_TIME_MATCH_RULE, netCondition.getAllowedFeatureMatchRule());
-		assertEquals(NET_TIME_MATCH_VERSION, netCondition.getAllowedFeatureMatchVersion());
+		assertEquals(NET_TIME_MATCH_RULE, netCondition.getAllowedMatchRule());
+		assertEquals(NET_TIME_MATCH_VERSION, netCondition.getAllowedMatchVersion());
 	}
 	
 	private void assertEmpty(Iterable<FeaturePermission> iterable) {
@@ -97,7 +97,7 @@ public class NtpConditionEvaluatorTest {
 
 		@Override
 		public String getConditionType() {
-			return TimeConditions.LC_TYPE_TIME;
+			return TimeConditions.CONDITION_TYPE_TIME;
 		}
 
 		@Override
@@ -106,12 +106,12 @@ public class NtpConditionEvaluatorTest {
 		}
 
 		@Override
-		public String getAllowedFeatureMatchVersion() {
+		public String getAllowedMatchVersion() {
 			return NET_TIME_MATCH_VERSION;
 		}
 
 		@Override
-		public String getAllowedFeatureMatchRule() {
+		public String getAllowedMatchRule() {
 			return NET_TIME_MATCH_RULE;
 		}
 

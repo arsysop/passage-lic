@@ -81,11 +81,11 @@ public class ComponentConfigurationResolver implements ConfigurationResolver {
 	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
 		if (scr == null) {
 			logger.audit(String.format(extractCrAudit, ServiceComponentRuntime.class));
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.LICENSING_AM, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, this);
 		}
 		if (bundleContext == null) {
 			logger.audit(String.format(extractCrAudit, BundleContext.class));
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.LICENSING_AM, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, this);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();

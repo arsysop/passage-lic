@@ -35,7 +35,7 @@ public class LicensingPaths {
 	public static String EXTENSION_PRODUCT_PUBLIC = ".pub"; //$NON-NLS-1$
 	
 	public static final String PROPERTY_OSGI_INSTALL_AREA = "osgi.install.area"; //$NON-NLS-1$
-
+	
 	public static Path getBasePath(String from) {
 		Path path = Paths.get(URI.create(from));
 		return path.resolve(FOLDER_LICENSING_BASE);

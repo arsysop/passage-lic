@@ -42,8 +42,8 @@ public class FeaturePermissions {
 		long leaseTime = System.currentTimeMillis();
 		long expireTime = leaseTime + 60*60*1000;
 		String featureId = condition.getAllowedFeatureId();
-		String matchVersion = condition.getAllowedFeatureMatchVersion();
-		String matchRule = condition.getAllowedFeatureMatchRule();
+		String matchVersion = condition.getAllowedMatchVersion();
+		String matchRule = condition.getAllowedMatchRule();
 		return new BaseFeaturePermission(featureId, matchVersion, matchRule, leaseTime, expireTime);
 	}
 

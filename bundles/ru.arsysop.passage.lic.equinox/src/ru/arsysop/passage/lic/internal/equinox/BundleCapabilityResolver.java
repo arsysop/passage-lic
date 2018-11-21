@@ -38,7 +38,7 @@ import org.osgi.service.log.LoggerFactory;
 import ru.arsysop.passage.lic.base.BaseConfigurationRequirement;
 import ru.arsysop.passage.lic.base.ConfigurationRequirements;
 import ru.arsysop.passage.lic.base.LicensingNamespaces;
-import ru.arsysop.passage.lic.equinox.LicensingBundleWiring;
+import ru.arsysop.passage.lic.equinox.LicensingBundles;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
 
@@ -72,12 +72,12 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
 		if (bundleContext == null) {
 			logger.audit(String.format(extractCrAudit, BundleContext.class));
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.LICENSING_AM, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, this);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
 		for (Bundle bundle : bundles) {
-			Iterable<BundleCapability> capabilities = LicensingBundleWiring.extractLicensingCapabilities(bundle);
+			Iterable<BundleCapability> capabilities = LicensingBundles.extractLicensingFeatures(bundle);
 			for (BundleCapability capability : capabilities) {
 				Map<String, Object> attributes = capability.getAttributes();
 				Map<String, String> directives = capability.getDirectives();
@@ -87,7 +87,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 					result.add(extracted);
 				} else {
 					logger.audit(String.format(extractCrAudit, resource));
-					result.add(ConfigurationRequirements.createError(LicensingNamespaces.LICENSING_AM, resource));
+					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, resource));
 					return result;
 				}
 			}

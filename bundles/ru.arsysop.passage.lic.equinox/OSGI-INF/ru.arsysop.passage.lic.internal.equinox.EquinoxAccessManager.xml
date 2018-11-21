@@ -27,4 +27,5 @@
    <reference bind="bindConfigurationResolver" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.ConfigurationResolver" name="ConfigurationResolver" policy="static" unbind="unbindConfigurationResolver"/>
    <reference bind="bindConditionMiner" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.ConditionMiner" name="ConditionMiner" policy="static" unbind="unbindConditionMiner"/>
    <reference bind="bindConditionEvaluator" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.ConditionEvaluator" name="ConditionEvaluator" policy="static" unbind="unbindConditionEvaluator"/>
+   <reference bind="bindRestrictionExecutor" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.RestrictionExecutor" name="RestrictionExecutor" policy="static" unbind="unbindRestrictionExecutor"/>
 </scr:component>

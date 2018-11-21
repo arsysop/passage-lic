@@ -19,6 +19,6 @@
 #     ArSysOp - initial API and implementation
 ###############################################################################
 
-provides.0.namespace = licensing.am
+provides.0.namespace = licensing.management
 provides.0.name = equinox
 provides.0.version = 0.3.0

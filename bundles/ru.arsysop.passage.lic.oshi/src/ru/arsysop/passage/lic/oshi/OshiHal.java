@@ -39,7 +39,7 @@ import ru.arsysop.passage.lic.inspector.HardwareInspector;
 
 public class OshiHal {
 	
-	public static final String LC_TYPE_HARDWARE = "hardware"; //$NON-NLS-1$
+	public static final String CONDITION_TYPE_HARDWARE = "hardware"; //$NON-NLS-1$
 	
 	private static SystemInfo staticSI = new SystemInfo();
 

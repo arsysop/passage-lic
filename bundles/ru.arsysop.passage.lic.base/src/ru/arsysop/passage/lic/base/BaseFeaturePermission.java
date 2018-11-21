@@ -42,7 +42,7 @@ public class BaseFeaturePermission implements FeaturePermission{
 	}
 
 	@Override
-	public String getFeatureId() {
+	public String getFeatureIdentifier() {
 		return featureId;
 	}
 
@@ -69,7 +69,7 @@ public class BaseFeaturePermission implements FeaturePermission{
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LICENSING_FEATURE_ID).append('=').append(featureId).append(';');
+		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureId).append(';');
 		sb.append(LICENSING_MATCH_VERSION).append('=').append(matchVersion).append(';');
 		sb.append(LICENSING_MATCH_RULE).append('=').append(matchRule).append(';');
 		sb.append(LICENSING_LEASE_TIME).append('=').append(leaseTime).append(';');

@@ -29,20 +29,28 @@ import org.osgi.framework.wiring.BundleWiring;
 
 import ru.arsysop.passage.lic.base.LicensingNamespaces;
 
-public class LicensingBundleWiring {
+public class LicensingBundles {
 
-	public static Iterable<BundleRequirement> extractLicensingRequirements(Bundle bundle) {
+	public static Iterable<BundleRequirement> extractLicensingManagementRequirements(Bundle bundle) {
 		BundleWiring wiring = bundle.adapt(BundleWiring.class);
 		if (wiring != null) {
-			return wiring.getRequirements(LicensingNamespaces.LICENSING_AM);
+			return wiring.getRequirements(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT);
 		}
 		return Collections.emptyList();
 	}
 
-	public static Iterable<BundleCapability> extractLicensingCapabilities(Bundle bundle) {
+	public static Iterable<BundleCapability> extractLicensingFeatures(Bundle bundle) {
 		BundleWiring wiring = bundle.adapt(BundleWiring.class);
 		if (wiring != null) {
-			return wiring.getCapabilities(LicensingNamespaces.LICENSING_CR);
+			return wiring.getCapabilities(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE);
+		}
+		return Collections.emptyList();
+	}
+	
+	public static Iterable<BundleCapability> extractLicensingConfigurations(Bundle bundle) {
+		BundleWiring wiring = bundle.adapt(BundleWiring.class);
+		if (wiring != null) {
+			return wiring.getCapabilities(LicensingNamespaces.CAPABILITY_LICENSING_CONFIGURATION);
 		}
 		return Collections.emptyList();
 	}

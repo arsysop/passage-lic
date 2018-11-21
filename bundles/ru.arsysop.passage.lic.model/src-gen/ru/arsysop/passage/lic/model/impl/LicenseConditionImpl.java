@@ -71,40 +71,40 @@ public class LicenseConditionImpl extends MinimalEObjectImpl.Container implement
 	protected String allowedFeatureId = ALLOWED_FEATURE_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getAllowedFeatureMatchVersion() <em>Allowed Feature Match Version</em>}' attribute.
+	 * The default value of the '{@link #getAllowedMatchVersion() <em>Allowed Feature Match Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAllowedFeatureMatchVersion()
+	 * @see #getAllowedMatchVersion()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String ALLOWED_FEATURE_MATCH_VERSION_EDEFAULT = "0.0.0"; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getAllowedFeatureMatchVersion() <em>Allowed Feature Match Version</em>}' attribute.
+	 * The cached value of the '{@link #getAllowedMatchVersion() <em>Allowed Feature Match Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAllowedFeatureMatchVersion()
+	 * @see #getAllowedMatchVersion()
 	 * @generated
 	 * @ordered
 	 */
 	protected String allowedFeatureMatchVersion = ALLOWED_FEATURE_MATCH_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getAllowedFeatureMatchRule() <em>Allowed Feature Match Rule</em>}' attribute.
+	 * The default value of the '{@link #getAllowedMatchRule() <em>Allowed Feature Match Rule</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAllowedFeatureMatchRule()
+	 * @see #getAllowedMatchRule()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String ALLOWED_FEATURE_MATCH_RULE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getAllowedFeatureMatchRule() <em>Allowed Feature Match Rule</em>}' attribute.
+	 * The cached value of the '{@link #getAllowedMatchRule() <em>Allowed Feature Match Rule</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAllowedFeatureMatchRule()
+	 * @see #getAllowedMatchRule()
 	 * @generated
 	 * @ordered
 	 */
@@ -195,7 +195,7 @@ public class LicenseConditionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAllowedFeatureMatchVersion() {
+	public String getAllowedMatchVersion() {
 		return allowedFeatureMatchVersion;
 	}
 
@@ -216,7 +216,7 @@ public class LicenseConditionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAllowedFeatureMatchRule() {
+	public String getAllowedMatchRule() {
 		return allowedFeatureMatchRule;
 	}
 
@@ -285,9 +285,9 @@ public class LicenseConditionImpl extends MinimalEObjectImpl.Container implement
 			case LicPackage.LICENSE_CONDITION__ALLOWED_FEATURE_ID:
 				return getAllowedFeatureId();
 			case LicPackage.LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_VERSION:
-				return getAllowedFeatureMatchVersion();
+				return getAllowedMatchVersion();
 			case LicPackage.LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_RULE:
-				return getAllowedFeatureMatchRule();
+				return getAllowedMatchRule();
 			case LicPackage.LICENSE_CONDITION__CONDITION_TYPE:
 				return getConditionType();
 			case LicPackage.LICENSE_CONDITION__CONDITION_EXPRESSION:

@@ -63,7 +63,7 @@ public class ConditionDescriptorIntegrationTest extends LicIntegrationBase {
 		EList<LicenseCondition> licenseConditions = license.getLicenseConditions();
 		LicenseCondition conditionBundle = factory.createLicenseCondition();
 		conditionBundle.setAllowedFeatureId(SOME_BUNDLE_ID);
-		conditionBundle.setConditionType(OshiHal.LC_TYPE_HARDWARE);
+		conditionBundle.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
 		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
 		licenseConditions.add(conditionBundle);
 

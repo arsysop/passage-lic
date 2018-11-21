@@ -1220,7 +1220,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Allowed Feature Match Version</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchVersion()
+	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedMatchVersion()
 	 * @see #getLicenseCondition()
 	 * @generated
 	 */
@@ -1231,7 +1231,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Allowed Feature Match Rule</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchRule()
+	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedMatchRule()
 	 * @see #getLicenseCondition()
 	 * @generated
 	 */

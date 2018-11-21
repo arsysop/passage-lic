@@ -30,9 +30,9 @@ public interface ConditionDescriptor {
 
 	String getAllowedFeatureId();
 
-	String getAllowedFeatureMatchVersion();
+	String getAllowedMatchVersion();
 
-	String getAllowedFeatureMatchRule();
+	String getAllowedMatchRule();
 
 	/**
 	 * the type of condition like "nist" for time or "hdd" for disk-locked

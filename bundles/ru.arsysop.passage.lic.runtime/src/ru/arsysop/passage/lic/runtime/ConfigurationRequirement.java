@@ -27,11 +27,11 @@ package ru.arsysop.passage.lic.runtime;
  */
 public interface ConfigurationRequirement {
 
-	String getLicensedFeatureId();
+	String getFeatureIdentifier();
 
-	String getLicensedFeatureMatchVersion();
+	String getMatchVersion();
 
-	String getLicensedFeatureMatchRule();
+	String getMatchRule();
 
 	/**
 	 * The default restriction level, as defined by component vendor, may be
@@ -42,6 +42,6 @@ public interface ConfigurationRequirement {
 	 */
 	String getRestrictionLevel();
 
-	Object getSource();
+	Object getRequirementSource();
 	
 }

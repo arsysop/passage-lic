@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="ru.arsysop.passage.lic.internal.equinox.OsgiKeyKeeper">
+   <implementation class="ru.arsysop.passage.lic.internal.equinox.OsgiKeyKeeper"/>
+   <service>
+      <provide interface="ru.arsysop.passage.lic.runtime.io.KeyKeeper"/>
+   </service>
+   <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
+</scr:component>
