@@ -23,32 +23,31 @@ package ru.arsysop.passage.lic.internal.oshi;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import oshi.SystemInfo;
-import oshi.hardware.HardwareAbstractionLayer;
-import oshi.software.os.OperatingSystem;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.oshi.OshiHal;
 
 public class OshiHardwareInspector implements HardwareInspector {
 
 	@Override
-	public void dumpHardwareInfo(OutputStream outputStream) throws IOException {
-		SystemInfo si = new SystemInfo();
+	public void dumpHardwareInfo(OutputStream output) throws IOException {
 
-		OperatingSystem os = si.getOperatingSystem();
-		outputStream.write(os.toString().getBytes());
-		outputStream.write('\n');
-		outputStream.write('\n');
-		StringBuilder builder = new StringBuilder();
-		HardwareAbstractionLayer hal = si.getHardware();
-		OshiHal.dumpProcessorInfo(hal.getProcessor(), builder);
-		outputStream.write(builder.toString().getBytes());
-		outputStream.write('\n');
-		builder.setLength(0);
-		OshiHal.logDisksInfo(hal.getDiskStores(), builder);
-		outputStream.write(builder.toString().getBytes());
-		outputStream.write('\n');
-		
+		OshiHal.dumpOperatingSystem(output);
+		output.write('\n');
+
+		OshiHal.dumpComputerSystem(output);
+		output.write('\n');
+
+		OshiHal.dumpCentralProcessor(output);;
+	}
+
+	@Override
+	public String inspectProperty(String name) {
+		return OshiHal.extractProperty(name);
+	}
+
+	@Override
+	public Iterable<String> getKnownProperties() {
+		return OshiHal.getKnownProperties();
 	}
 
 }

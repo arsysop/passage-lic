@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
+import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.model.api.License;
 import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.model.api.Product;
@@ -62,8 +63,8 @@ public class ConditionDescriptorIntegrationTest extends LicIntegrationBase {
 		EList<LicenseCondition> licenseConditions = license.getLicenseConditions();
 		LicenseCondition conditionBundle = factory.createLicenseCondition();
 		conditionBundle.setAllowedFeatureId(SOME_BUNDLE_ID);
-		conditionBundle.setConditionType(OshiHal.LICENSING_CONDITION_TYPE_HARDWARE);
-		conditionBundle.setConditionExpression(OshiHal.LICENSING_CONDITION_KEY_MAC + '=' + '*');
+		conditionBundle.setConditionType(OshiHal.LC_TYPE_HARDWARE);
+		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
 		licenseConditions.add(conditionBundle);
 
 		createProductLicense(product, license);

@@ -63,4 +63,9 @@ public class HardwareInspectorDialog extends TrayDialog {
 		return area;
 	}
 
+	@Override
+	protected boolean isResizable() {
+		return true;
+	}
+
 }

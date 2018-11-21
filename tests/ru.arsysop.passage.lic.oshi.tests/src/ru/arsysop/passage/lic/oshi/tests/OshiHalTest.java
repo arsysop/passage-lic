@@ -20,60 +20,20 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.oshi.tests;
 
-import java.util.Collections;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import ru.arsysop.passage.lic.internal.oshi.OshiConditionEvaluator;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.oshi.OshiHal;
 
-@SuppressWarnings("restriction")
 public class OshiHalTest {
 
 	@Test
-	public void testEvaluateConditionNegative() throws Exception {
-		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
-		evaluator.evaluateConditions(null);
+	public void testExtractPropertyNegative() throws Exception {
+		assertNull(OshiHal.extractProperty(null));
+		assertNull(OshiHal.extractProperty(new String()));
+		assertFalse(OshiHal.evaluateProperty(null, null));
 	}
 
-	@Test
-	public void testEvaluateConditionPositive() throws Exception {
-		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
-		ConditionDescriptor cond = new OshiCondition(new String());
-		evaluator.evaluateConditions(Collections.singleton(cond));
-	}
-
-	private final class OshiCondition implements ConditionDescriptor {
-
-		private final String expression;
-
-		public OshiCondition(String expression) {
-			this.expression = expression;
-		}
-
-		@Override
-		public String getConditionType() {
-			return null;
-		}
-
-		@Override
-		public String getConditionExpression() {
-			return expression;
-		}
-
-		@Override
-		public String getAllowedFeatureMatchVersion() {
-			return null;
-		}
-
-		@Override
-		public String getAllowedFeatureMatchRule() {
-			return null;
-		}
-
-		@Override
-		public String getAllowedFeatureId() {
-			return null;
-		}
-	}
 }

@@ -28,17 +28,12 @@ import ru.arsysop.passage.lic.oshi.OshiHal;
 import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
 
 @Component(property = {
-		LicensingProperties.LICENSING_CONDITION_TYPE + '=' + OshiHal.LICENSING_CONDITION_TYPE_HARDWARE })
+		LicensingProperties.LICENSING_CONDITION_TYPE + '=' + OshiHal.LC_TYPE_HARDWARE })
 public class OshiConditionEvaluator extends BaseConditionEvaluator implements ConditionEvaluator {
 
 	@Override
 	protected boolean evaluateSegment(String key, String value) {
-		switch (key) {
-		case OshiHal.LICENSING_CONDITION_KEY_MAC:
-			return OshiHal.evaluateMac(value);
-		default:
-			return false;
-		}
+		return OshiHal.evaluateProperty(key, value);
 	}
 
 }
