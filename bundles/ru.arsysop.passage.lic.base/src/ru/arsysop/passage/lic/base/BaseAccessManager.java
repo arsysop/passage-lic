@@ -45,7 +45,7 @@ public class BaseAccessManager implements AccessManager {
 	private final List<ConfigurationResolver> configurationResolvers = new ArrayList<>();
 	private final List<ConditionMiner> conditionMiners = new ArrayList<>();
 	private final Map<String, ConditionEvaluator> conditionEvaluators = new HashMap<>();
-	private final Map<String, List<RestrictionExecutor>> restrictionExecutors = new HashMap<>();
+	private final List<RestrictionExecutor> restrictionExecutors = new ArrayList<>();
 
 	private PermissionExaminer examiner;
 
@@ -68,7 +68,7 @@ public class BaseAccessManager implements AccessManager {
 	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
 		String type = String.valueOf(conditionType);
-		//FIXME: check permissions
+		// FIXME: check permissions
 		conditionEvaluators.put(type, conditionEvaluator);
 	}
 
@@ -78,23 +78,12 @@ public class BaseAccessManager implements AccessManager {
 		conditionEvaluators.remove(type);
 	}
 
-	public void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor, Map<String, Object> properties) {
-		Object restrictionType = properties.get(LICENSING_RESTRICTION_LEVEL);
-		String type = String.valueOf(restrictionType);
-		List<RestrictionExecutor> list = restrictionExecutors.computeIfAbsent(type, key -> new ArrayList<>());
-		list.add(restrictionExecutor);
+	public void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
+		restrictionExecutors.add(restrictionExecutor);
 	}
 
-	public void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor, Map<String, Object> properties) {
-		Object restrictionType = properties.get(LICENSING_RESTRICTION_LEVEL);
-		String type = String.valueOf(restrictionType);
-		List<RestrictionExecutor> list = restrictionExecutors.get(type);
-		if (list != null) {
-			list.remove(restrictionExecutor);
-			if (list.isEmpty()) {
-				restrictionExecutors.remove(type);
-			}
-		}
+	public void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
+		restrictionExecutors.remove(restrictionExecutor);
 	}
 
 	@Override
@@ -135,13 +124,13 @@ public class BaseAccessManager implements AccessManager {
 	public Iterable<FeaturePermission> evaluateConditions(Iterable<ConditionDescriptor> conditions) {
 		Collection<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
-			//FIXME: log error;
+			// FIXME: log error;
 			return result;
 		}
 		Map<String, List<ConditionDescriptor>> map = new HashMap<>();
 		for (ConditionDescriptor condition : conditions) {
 			if (condition == null) {
-				//FIXME: log error;
+				// FIXME: log error;
 				continue;
 			}
 			String type = condition.getConditionType();
@@ -152,7 +141,7 @@ public class BaseAccessManager implements AccessManager {
 		for (String type : types) {
 			ConditionEvaluator evaluator = conditionEvaluators.get(type);
 			if (evaluator == null) {
-				//FIXME: log error;
+				// FIXME: log error;
 				continue;
 			}
 			Iterable<FeaturePermission> permissions = evaluator.evaluateConditions(map.get(type));
@@ -174,18 +163,11 @@ public class BaseAccessManager implements AccessManager {
 
 	@Override
 	public void executeRestrictions(Iterable<RestrictionVerdict> restrictions) {
-		Map<String, List<RestrictionVerdict>> map = new HashMap<>();
-		for (RestrictionVerdict verdict : restrictions) {
-			String level = verdict.getRestrictionLevel();
-			List<RestrictionVerdict> list = map.computeIfAbsent(level, key -> new ArrayList<>());
-			list.add(verdict);
-		}
-		Set<String> keySet = map.keySet();
-		for (String level : keySet) {
-			List<RestrictionVerdict> verdicts = map.get(level);
-			List<RestrictionExecutor> executors = restrictionExecutors.get(level);
-			for (RestrictionExecutor executor : executors) {
-				executor.execute(verdicts);
+		for (RestrictionExecutor executor : restrictionExecutors) {
+			try {
+				executor.execute(restrictions);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
 		}
 	}

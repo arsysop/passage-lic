@@ -60,6 +60,11 @@ public abstract class LicIntegrationBase {
 	static final String SOME_COMPONENT_VERSION = "1.2.0"; //$NON-NLS-1$
 
 	static final String SOME_PRODUCT_ID = "some.licensed.product"; //$NON-NLS-1$
+	static final String SOME_CONFIGURATION_ID = "some.licensed.configuration"; //$NON-NLS-1$
+
+	static final String EXECUTOR_1 = "executor.1"; //$NON-NLS-1$
+	static final String EXECUTOR_2 = "executor.2"; //$NON-NLS-1$
+	static final String EXECUTOR_3 = "executor.3"; //$NON-NLS-1$
 
 	/**
 	 * Passed through maven-surefire-plugin configuration

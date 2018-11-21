@@ -15,5 +15,6 @@ Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: ru.arsysop.passage.lic.equinox,
  ru.arsysop.passage.lic.internal.equinox;x-internal:=true
-Provide-Capability: licensing.am
+Provide-Capability: licensing.management;licensing.management="equinox"
+
 

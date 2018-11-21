@@ -24,6 +24,7 @@ public final class LicensingNamespaces {
 
 	public static final String CAPABILITY_LICENSING_MANAGEMENT = "licensing.management"; //$NON-NLS-1$
 	
+	public static final String CAPABILITY_LICENSING_CONFIGURATION = "licensing.configuration"; //$NON-NLS-1$
 	public static final String CAPABILITY_LICENSING_FEATURE = "licensing.feature"; //$NON-NLS-1$
 
 	public static final String ATTRIBUTE_VERSION = "version"; //$NON-NLS-1$
@@ -39,6 +40,8 @@ public final class LicensingNamespaces {
 	public static final String ATTRIBUTE_LEVEL_ERROR = "error"; //$NON-NLS-1$
 	public static final String ATTRIBUTE_LEVEL_WARN = "warn"; //$NON-NLS-1$
 	public static final String ATTRIBUTE_LEVEL_DEFAULT = ATTRIBUTE_LEVEL_WARN;
+
+	public static final String ATTRIBUTE_KEYPATH = "keypath"; //$NON-NLS-1$
 
 	private LicensingNamespaces() {
 		// block

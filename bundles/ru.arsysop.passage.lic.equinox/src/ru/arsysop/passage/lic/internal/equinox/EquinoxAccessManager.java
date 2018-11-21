@@ -26,7 +26,7 @@ import org.osgi.framework.BundleEvent;
 import org.osgi.framework.BundleListener;
 
 import ru.arsysop.passage.lic.base.BaseAccessManager;
-import ru.arsysop.passage.lic.equinox.LicensingBundleWiring;
+import ru.arsysop.passage.lic.equinox.LicensingBundles;
 import ru.arsysop.passage.lic.runtime.AccessManager;
 
 public class EquinoxAccessManager extends BaseAccessManager implements AccessManager, BundleListener {
@@ -35,7 +35,7 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 		bundleContext.addBundleListener(this);
 		Bundle[] bundles = bundleContext.getBundles();
 		for (Bundle bundle : bundles) {
-			LicensingBundleWiring.extractLicensingRequirements(bundle);
+			LicensingBundles.extractLicensingManagementRequirements(bundle);
 		}
 	}
 
@@ -47,7 +47,7 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	public void bundleChanged(BundleEvent event) {
 		//FIXME: consider event kind
 		Bundle bundle = event.getBundle();
-		LicensingBundleWiring.extractLicensingRequirements(bundle);
+		LicensingBundles.extractLicensingManagementRequirements(bundle);
 	}
 
 }
