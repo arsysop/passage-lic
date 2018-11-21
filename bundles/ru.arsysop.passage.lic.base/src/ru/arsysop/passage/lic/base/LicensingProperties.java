@@ -22,7 +22,7 @@ package ru.arsysop.passage.lic.base;
 
 public final class LicensingProperties {
 
-	public static final String LICENSING_FEATURE_ID = "licensing.feature.id"; //$NON-NLS-1$
+	public static final String LICENSING_FEATURE_IDENTIFIER = "licensing.feature.identifier"; //$NON-NLS-1$
 	
 	public static final String LICENSING_MATCH_VERSION = "licensing.match.version"; //$NON-NLS-1$
 	public static final String LICENSING_MATCH_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$

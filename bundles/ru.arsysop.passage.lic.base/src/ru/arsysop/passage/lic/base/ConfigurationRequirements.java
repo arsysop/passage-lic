@@ -35,21 +35,21 @@ public class ConfigurationRequirements {
 	}
 
 	public static BaseConfigurationRequirement extractFromCapability(Map<String, Object> attributes, Map<String, String> directives, Object source) {
-		Object feature = attributes.get(LICENSING_CR);
+		Object feature = attributes.get(CAPABILITY_LICENSING_FEATURE);
 		if (feature instanceof String) {
 			String featureId = (String) feature;
-			String version = LICENSING_CR_VERSION_DEFAULT;
-			String rule = LICENSING_CR_RULE_DEFAULT;
-			String level = LICENSING_CR_LEVEL_DEFAULT;
-			Object matchVersion = attributes.get(LICENSING_CR_VERSION);
+			String version = ATTRIBUTE_VERSION_DEFAULT;
+			String rule = ATTRIBUTE_RULE_DEFAULT;
+			String level = ATTRIBUTE_LEVEL_DEFAULT;
+			Object matchVersion = attributes.get(ATTRIBUTE_VERSION);
 			if (matchVersion instanceof String) {
 				version = (String) matchVersion;
 			}
-			Object matchRule = attributes.get(LICENSING_CR_RULE);
+			Object matchRule = attributes.get(ATTRIBUTE_RULE);
 			if (matchRule instanceof String) {
 				rule = (String) matchRule;
 			}
-			Object restrictionLevel = attributes.get(LICENSING_CR_LEVEL);
+			Object restrictionLevel = attributes.get(ATTRIBUTE_LEVEL);
 			if (restrictionLevel instanceof String) {
 				level = (String) restrictionLevel;
 			}
@@ -59,7 +59,7 @@ public class ConfigurationRequirements {
 	}
 
 	public static BaseConfigurationRequirement extractFromProperties(Map<String, Object> properties, Object source) {
-		Object feature = properties.get(LICENSING_FEATURE_ID);
+		Object feature = properties.get(LICENSING_FEATURE_IDENTIFIER);
 		if (feature instanceof String) {
 			String featureId = (String) feature;
 			String version = LICENSING_MATCH_VERSION_DEFAULT;

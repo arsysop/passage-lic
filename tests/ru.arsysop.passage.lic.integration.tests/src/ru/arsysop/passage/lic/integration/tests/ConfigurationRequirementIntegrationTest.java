@@ -39,21 +39,21 @@ public class ConfigurationRequirementIntegrationTest extends LicIntegrationBase 
 		Iterable<ConfigurationRequirement> resolved = accessManager.resolveRequirements(null);
 		Map<String, ConfigurationRequirement> requirements = new HashMap<>();
 		for (ConfigurationRequirement cr : resolved) {
-			requirements.put(cr.getLicensedFeatureId(), cr);
+			requirements.put(cr.getFeatureIdentifier(), cr);
 		}
 		assertEquals(2, requirements.size());
 		ConfigurationRequirement bundleRequirement = requirements.get(SOME_BUNDLE_ID);
 		assertNotNull(bundleRequirement);
-		assertEquals(SOME_BUNDLE_ID, bundleRequirement.getLicensedFeatureId());
-		assertEquals(LICENSING_MATCH_RULE_DEFAULT, bundleRequirement.getLicensedFeatureMatchRule());
-		assertEquals(LICENSING_MATCH_VERSION_DEFAULT, bundleRequirement.getLicensedFeatureMatchVersion());
+		assertEquals(SOME_BUNDLE_ID, bundleRequirement.getFeatureIdentifier());
+		assertEquals(LICENSING_MATCH_RULE_DEFAULT, bundleRequirement.getMatchRule());
+		assertEquals(LICENSING_MATCH_VERSION_DEFAULT, bundleRequirement.getMatchVersion());
 		assertEquals(LICENSING_RESTRICTION_LEVEL_DEFAULT, bundleRequirement.getRestrictionLevel());
 
 		ConfigurationRequirement componentRequirement = requirements.get(SOME_COMPONENT_ID);
 		assertNotNull(componentRequirement);
-		assertEquals(SOME_COMPONENT_ID, componentRequirement.getLicensedFeatureId());
-		assertEquals(LICENSING_MATCH_RULE_EXACT, componentRequirement.getLicensedFeatureMatchRule());
-		assertEquals(SOME_COMPONENT_VERSION, componentRequirement.getLicensedFeatureMatchVersion());
+		assertEquals(SOME_COMPONENT_ID, componentRequirement.getFeatureIdentifier());
+		assertEquals(LICENSING_MATCH_RULE_EXACT, componentRequirement.getMatchRule());
+		assertEquals(SOME_COMPONENT_VERSION, componentRequirement.getMatchVersion());
 		assertEquals(LICENSING_RESTRICTION_LEVEL_ERROR, componentRequirement.getRestrictionLevel());
 	}
 

@@ -22,24 +22,23 @@ package ru.arsysop.passage.lic.base;
 
 public final class LicensingNamespaces {
 
-	public static final String LICENSING_AM = "licensing.am"; //$NON-NLS-1$
+	public static final String CAPABILITY_LICENSING_MANAGEMENT = "licensing.management"; //$NON-NLS-1$
 	
-	public static final String LICENSING_CR = "licensing.cr"; //$NON-NLS-1$
-	public static final String LICENSING_CR_ID = "id"; //$NON-NLS-1$
+	public static final String CAPABILITY_LICENSING_FEATURE = "licensing.feature"; //$NON-NLS-1$
 
-	public static final String LICENSING_CR_VERSION = "version"; //$NON-NLS-1$
-	public static final String LICENSING_CR_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_VERSION = "version"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
 
-	public static final String LICENSING_CR_RULE = "rule"; //$NON-NLS-1$
-	public static final String LICENSING_CR_RULE_COMPATIBLE = "compatible"; //$NON-NLS-1$
-	public static final String LICENSING_CR_RULE_EXACT = "exact"; //$NON-NLS-1$
-	public static final String LICENSING_CR_RULE_DEFAULT = LICENSING_CR_RULE_COMPATIBLE;
+	public static final String ATTRIBUTE_RULE = "rule"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_RULE_COMPATIBLE = "compatible"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_RULE_EXACT = "exact"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_RULE_DEFAULT = ATTRIBUTE_RULE_COMPATIBLE;
 
-	public static final String LICENSING_CR_LEVEL = "level"; //$NON-NLS-1$
-	public static final String LICENSING_CR_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
-	public static final String LICENSING_CR_LEVEL_ERROR = "error"; //$NON-NLS-1$
-	public static final String LICENSING_CR_LEVEL_WARN = "warn"; //$NON-NLS-1$
-	public static final String LICENSING_CR_LEVEL_DEFAULT = LICENSING_CR_LEVEL_WARN;
+	public static final String ATTRIBUTE_LEVEL = "level"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_LEVEL_ERROR = "error"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_LEVEL_WARN = "warn"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_LEVEL_DEFAULT = ATTRIBUTE_LEVEL_WARN;
 
 	private LicensingNamespaces() {
 		// block

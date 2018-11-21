@@ -64,7 +64,7 @@ public class OshiConditionEvaluatorTest {
 		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
-		assertEquals(OSHI_HARDWARE_FEATURE_ID, permission.getFeatureId());
+		assertEquals(OSHI_HARDWARE_FEATURE_ID, permission.getFeatureIdentifier());
 		assertEquals(OSHI_HARDWARE_MATCH_RULE, permission.getMatchRule());
 		assertEquals(OSHI_HARDWARE_MATCH_VERSION, permission.getMatchVersion());
 	}
@@ -75,8 +75,8 @@ public class OshiConditionEvaluatorTest {
 		assertEquals(EXPRESSION_OS_X3, condition.getConditionExpression());
 		assertEquals(OshiHal.LC_TYPE_HARDWARE, condition.getConditionType());
 		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getAllowedFeatureId());
-		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getAllowedFeatureMatchRule());
-		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getAllowedFeatureMatchVersion());
+		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getAllowedMatchRule());
+		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getAllowedMatchVersion());
 	}
 
 	private void assertEmpty(Iterable<FeaturePermission> iterable) {
@@ -102,12 +102,12 @@ public class OshiConditionEvaluatorTest {
 		}
 
 		@Override
-		public String getAllowedFeatureMatchVersion() {
+		public String getAllowedMatchVersion() {
 			return OSHI_HARDWARE_MATCH_VERSION;
 		}
 
 		@Override
-		public String getAllowedFeatureMatchRule() {
+		public String getAllowedMatchRule() {
 			return OSHI_HARDWARE_MATCH_RULE;
 		}
 

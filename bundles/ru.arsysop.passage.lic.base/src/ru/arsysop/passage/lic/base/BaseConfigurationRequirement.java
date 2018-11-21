@@ -26,14 +26,14 @@ import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 
 public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	
-	private final String featureId;
+	private final String featureIdentifier;
 	private final String matchVersion;
 	private final String matchRule;
 	private final String restrictionLevel;
 	private final Object source;
 
 	public BaseConfigurationRequirement(String id, String version, String rule, String level, Object source) {
-		this.featureId = id;
+		this.featureIdentifier = id;
 		this.matchVersion = version;
 		this.matchRule = rule;
 		this.restrictionLevel = level;
@@ -41,22 +41,22 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	}
 
 	@Override
-	public Object getSource() {
+	public Object getRequirementSource() {
 		return source;
 	}
 
 	@Override
-	public String getLicensedFeatureId() {
-		return featureId;
+	public String getFeatureIdentifier() {
+		return featureIdentifier;
 	}
 
 	@Override
-	public String getLicensedFeatureMatchVersion() {
+	public String getMatchVersion() {
 		return matchVersion;
 	}
 
 	@Override
-	public String getLicensedFeatureMatchRule() {
+	public String getMatchRule() {
 		return matchRule;
 	}
 
@@ -68,7 +68,7 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LICENSING_FEATURE_ID).append('=').append(featureId).append(';');
+		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureIdentifier).append(';');
 		sb.append(LICENSING_MATCH_VERSION).append('=').append(matchVersion).append(';');
 		sb.append(LICENSING_MATCH_RULE).append('=').append(matchRule).append(';');
 		sb.append(LICENSING_RESTRICTION_LEVEL).append('=').append(restrictionLevel).append(';');

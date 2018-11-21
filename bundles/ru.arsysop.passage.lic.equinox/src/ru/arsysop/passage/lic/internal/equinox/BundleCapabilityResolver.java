@@ -72,7 +72,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
 		if (bundleContext == null) {
 			logger.audit(String.format(extractCrAudit, BundleContext.class));
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.LICENSING_AM, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, this);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
@@ -87,7 +87,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 					result.add(extracted);
 				} else {
 					logger.audit(String.format(extractCrAudit, resource));
-					result.add(ConfigurationRequirements.createError(LicensingNamespaces.LICENSING_AM, resource));
+					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, resource));
 					return result;
 				}
 			}
