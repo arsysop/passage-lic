@@ -18,30 +18,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.net;
+package ru.arsysop.passage.lic.net.tests;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-public class TimeConditions {
+import org.junit.Test;
 
-	public static final String LICENSING_CONDITION_TYPE_TIME = "time"; //$NON-NLS-1$
-	public static final String LICENSING_CONDITION_KEY_LOCALTIMESTAMP = "localtimestamp"; //$NON-NLS-1$
+import ru.arsysop.passage.lic.net.TimeConditions;
 
-	private TimeConditions() {
-		//block
+public class TimeConditionsTest {
+	
+	@Test
+	public void testIsFutureLocalTimeNegative() {
+		assertFalse(TimeConditions.isFutureLocalDateTime(null));
+		assertFalse(TimeConditions.isFutureLocalDateTime(new String()));
 	}
-
-	public static boolean isFutureLocalDateTime(String value) {
-		try {
-			LocalDateTime dateTime = LocalDateTime.parse(value);
-			LocalDateTime now = LocalDateTime.now();
-			Duration duration = Duration.between(now, dateTime);
-			return (!duration.isNegative());
-		} catch (Exception e) {
-			//FIXME: logger.debug(e);
-			return false;
-		}
+	@Test
+	public void testIsFutureLocalTimePositive() {
+		assertFalse(TimeConditions.isFutureLocalDateTime("2018-11-20T17:00:00")); //$NON-NLS-1$
+		assertTrue(TimeConditions.isFutureLocalDateTime("2028-11-20T17:00:00")); //$NON-NLS-1$
 	}
 
 }
