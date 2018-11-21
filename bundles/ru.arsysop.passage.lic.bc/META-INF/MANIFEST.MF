@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: ru.arsysop.passage.lic.bc
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: ru.arsysop.passage.lic.bc
+Bundle-Version: 0.3.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
+ ru.arsysop.passage.brc.bc;bundle-version="0.0.0",
+ ru.arsysop.passage.lic.runtime;bundle-version="0.0.0"
+Service-Component: OSGI-INF/*.xml
+Export-Package: ru.arsysop.passage.lic.bc;x-internal:=true
