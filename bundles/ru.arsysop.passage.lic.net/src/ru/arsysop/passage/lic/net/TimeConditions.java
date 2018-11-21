@@ -25,8 +25,8 @@ import java.time.LocalDateTime;
 
 public class TimeConditions {
 
-	public static final String LC_TYPE_TIME = "time"; //$NON-NLS-1$
-	public static final String LC_KEY_LOCALTIMESTAMP = "localtimestamp"; //$NON-NLS-1$
+	public static final String CONDITION_TYPE_TIME = "time"; //$NON-NLS-1$
+	public static final String PROPERTY_LOCALTIMESTAMP = "localtimestamp"; //$NON-NLS-1$
 
 	private TimeConditions() {
 		//block

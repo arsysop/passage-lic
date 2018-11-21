@@ -77,7 +77,7 @@ public class NtpConditionEvaluatorTest {
 	public void testNetCondition() throws Exception {
 		NetCondition netCondition = new NetCondition(EXPRESSION_EXPIRED);
 		assertEquals(EXPRESSION_EXPIRED, netCondition.getConditionExpression());
-		assertEquals(TimeConditions.LC_TYPE_TIME, netCondition.getConditionType());
+		assertEquals(TimeConditions.CONDITION_TYPE_TIME, netCondition.getConditionType());
 		assertEquals(NET_TIME_FEATURE_ID, netCondition.getAllowedFeatureId());
 		assertEquals(NET_TIME_MATCH_RULE, netCondition.getAllowedMatchRule());
 		assertEquals(NET_TIME_MATCH_VERSION, netCondition.getAllowedMatchVersion());
@@ -97,7 +97,7 @@ public class NtpConditionEvaluatorTest {
 
 		@Override
 		public String getConditionType() {
-			return TimeConditions.LC_TYPE_TIME;
+			return TimeConditions.CONDITION_TYPE_TIME;
 		}
 
 		@Override

@@ -73,7 +73,7 @@ public class OshiConditionEvaluatorTest {
 	public void testOshiCondition() throws Exception {
 		OshiCondition condition = new OshiCondition(EXPRESSION_OS_X3);
 		assertEquals(EXPRESSION_OS_X3, condition.getConditionExpression());
-		assertEquals(OshiHal.LC_TYPE_HARDWARE, condition.getConditionType());
+		assertEquals(OshiHal.CONDITION_TYPE_HARDWARE, condition.getConditionType());
 		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getAllowedFeatureId());
 		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getAllowedMatchRule());
 		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getAllowedMatchVersion());
@@ -93,7 +93,7 @@ public class OshiConditionEvaluatorTest {
 
 		@Override
 		public String getConditionType() {
-			return OshiHal.LC_TYPE_HARDWARE;
+			return OshiHal.CONDITION_TYPE_HARDWARE;
 		}
 
 		@Override
