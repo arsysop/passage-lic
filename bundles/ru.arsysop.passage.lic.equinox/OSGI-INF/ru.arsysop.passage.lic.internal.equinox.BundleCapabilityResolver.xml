@@ -3,6 +3,5 @@
    <service>
       <provide interface="ru.arsysop.passage.lic.runtime.ConfigurationResolver"/>
    </service>
-   <reference bind="bindLoggerFactory" interface="org.osgi.service.log.LoggerFactory" name="LoggerFactory" unbind="unbindLoggerFactory"/>
    <implementation class="ru.arsysop.passage.lic.internal.equinox.BundleCapabilityResolver"/>
 </scr:component>
