@@ -11,4 +11,3 @@ Require-Bundle: ru.arsysop.passage.lic.base;bundle-version="0.0.0",
  org.apache.httpcomponents.httpcore;bundle-version="0.0.0",
  com.fasterxml.jackson.core.jackson-databind;bundle-version="0.0.0",
  com.fasterxml.jackson.core.jackson-core;bundle-version="0.0.0"
-Export-Package: ru.arsysop.passage.lic.transport

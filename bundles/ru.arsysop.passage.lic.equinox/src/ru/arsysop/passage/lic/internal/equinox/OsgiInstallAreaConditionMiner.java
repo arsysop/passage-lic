@@ -32,6 +32,8 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.osgi.service.component.annotations.Component;
@@ -46,6 +48,8 @@ import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
 @Component
 public class OsgiInstallAreaConditionMiner implements ConditionMiner {
+	
+	Logger logger = Logger.getLogger(OsgiInstallAreaConditionMiner.class.getName());
 
 	private EnvironmentInfo environmentInfo;
 	private ConditionCodec conditionCodec;
@@ -113,8 +117,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 
 			});
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.FINEST, e.getMessage(), e);
 		}
 		for (Path path : licenseFiles) {
 			try (FileInputStream encoded = new FileInputStream(path.toFile()); ByteArrayOutputStream decoded = new ByteArrayOutputStream(); InputStream keyRing = keyKeeper.openKeyStream(configuration)){
@@ -127,8 +130,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
+				logger.log(Level.FINEST, e.getMessage(), e);
 			}
 		}
 		return mined;
