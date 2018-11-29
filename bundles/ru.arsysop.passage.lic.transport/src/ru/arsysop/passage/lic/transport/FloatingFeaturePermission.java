@@ -28,7 +28,7 @@ import static ru.arsysop.passage.lic.base.LicensingProperties.LICENSING_MATCH_VE
 
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
-public class ServerFeaturePermission implements FeaturePermission {
+public class FloatingFeaturePermission implements FeaturePermission {
 
 	private final String featureId;
 	private final String matchVersion;
@@ -36,7 +36,7 @@ public class ServerFeaturePermission implements FeaturePermission {
 	private final long leaseTime;
 	private final long expireTime;
 
-	public ServerFeaturePermission(String featureId, String matchVersion, String matchRule, long leaseTime, long expireTime) {
+	public FloatingFeaturePermission(String featureId, String matchVersion, String matchRule, long leaseTime, long expireTime) {
 		this.featureId = featureId;
 		this.matchVersion = matchVersion;
 		this.matchRule = matchRule;

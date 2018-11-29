@@ -18,33 +18,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
+
 package ru.arsysop.passage.lic.transport;
 
-import java.util.ArrayList;
-import java.util.List;
+public class RequestParameters {
 
-public class TransferObjectDescriptor {
-
-	List<FloatingConditionDescriptor> serverConditions = new ArrayList<>();
-	List<FloatingFeaturePermission> serverPermissions = new ArrayList<>();
-
-	public TransferObjectDescriptor() {
-	}
-
-	public List<FloatingConditionDescriptor> getDescriptors() {
-		return serverConditions;
-	}
-
-	public void addDescriptor(FloatingConditionDescriptor d) {
-		serverConditions.add(d);
-	}
-
-	public void addPermission(FloatingFeaturePermission p) {
-		serverPermissions.add(p);
-	}
-
-	public List<FloatingFeaturePermission> getPermissions() {
-		return serverPermissions;
-	}
+	
+	public static final String CLIENT_ID = "user";
+	public static final String CLIENT_PRODUCT_ID = "product";
+	public static final String CLIENT_FEATURE_ID = "feature";
+	public static final String CLIENT_COMPONENT_ID = "component";
+	public static final String CLIENT_TRUSTED_ID = "clienttrustid";
+	
+	public static final String SERVER_ACTION_ID = "action";
+	public static final String SERVER_ACCESS_MODE_ID = "accessmode";
+	public static final String SERVER_HANDLER_ID = "handler";
+	
+	public static final String LICENSING_DATA = "licensingData";
+	public static final String PROTOCOL_TYPE_ID = "http";
+	public static final String HOST = "host";
+	public static final String PORT = "port";
+	
 
 }

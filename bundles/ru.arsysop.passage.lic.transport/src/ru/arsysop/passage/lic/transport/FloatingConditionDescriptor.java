@@ -22,7 +22,7 @@ package ru.arsysop.passage.lic.transport;
 
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 
-public class ServerConditionDescriptor implements ConditionDescriptor {
+public class FloatingConditionDescriptor implements ConditionDescriptor {
 
 	String allowedFeatureId;
 	String allowedMatchVersion;
@@ -30,10 +30,10 @@ public class ServerConditionDescriptor implements ConditionDescriptor {
 	String conditionType;
 	String conditionExpression;
 
-	public ServerConditionDescriptor() {
+	public FloatingConditionDescriptor() {
 	}
 
-	public ServerConditionDescriptor(String id, String version, String rule, String type, String expresssion) {
+	public FloatingConditionDescriptor(String id, String version, String rule, String type, String expresssion) {
 		super();
 		this.allowedFeatureId = id;
 		this.allowedMatchVersion = version;
