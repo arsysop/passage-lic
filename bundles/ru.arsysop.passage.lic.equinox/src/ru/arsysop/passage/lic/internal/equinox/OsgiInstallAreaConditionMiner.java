@@ -42,8 +42,8 @@ import org.osgi.service.component.annotations.Reference;
 import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
-import ru.arsysop.passage.lic.runtime.io.ConditionCodec;
-import ru.arsysop.passage.lic.runtime.io.ConditionExtractor;
+import ru.arsysop.passage.lic.runtime.io.StreamCodec;
+import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
 import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
 @Component
@@ -52,9 +52,9 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	Logger logger = Logger.getLogger(OsgiInstallAreaConditionMiner.class.getName());
 
 	private EnvironmentInfo environmentInfo;
-	private ConditionCodec conditionCodec;
+	private StreamCodec conditionCodec;
 	private KeyKeeper keyKeeper;
-	private ConditionExtractor conditionExtractor;
+	private ConditionDescriptorTransport conditionExtractor;
 
 	@Reference
 	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
@@ -75,20 +75,20 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	}
 
 	@Reference
-	public void bindConditionCodec(ConditionCodec conditionCodec) {
+	public void bindConditionCodec(StreamCodec conditionCodec) {
 		this.conditionCodec = conditionCodec;
 	}
 
-	public void unbindConditionCodec(ConditionCodec conditionCodec) {
+	public void unbindConditionCodec(StreamCodec conditionCodec) {
 		this.conditionCodec = null;
 	}
 
 	@Reference
-	public void bindConditionExtractor(ConditionExtractor conditionExtractor) {
+	public void bindConditionExtractor(ConditionDescriptorTransport conditionExtractor) {
 		this.conditionExtractor = conditionExtractor;
 	}
 
-	public void unbindConditionExtractor(ConditionExtractor conditionExtractor) {
+	public void unbindConditionExtractor(ConditionDescriptorTransport conditionExtractor) {
 		this.conditionExtractor = null;
 	}
 
@@ -124,7 +124,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 				conditionCodec.decodeStream(encoded, decoded, keyRing, null);
 				byte[] byteArray = decoded.toByteArray();
 				try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
-					Iterable<ConditionDescriptor> extracted = conditionExtractor.extractConditions(input);
+					Iterable<ConditionDescriptor> extracted = conditionExtractor.readConditionDescriptors(input);
 					for (ConditionDescriptor condition : extracted) {
 						mined.add(condition);
 					}

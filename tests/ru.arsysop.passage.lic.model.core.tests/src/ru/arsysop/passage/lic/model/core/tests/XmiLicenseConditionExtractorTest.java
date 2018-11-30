@@ -96,7 +96,7 @@ public class XmiLicenseConditionExtractorTest {
 
 		List<ConditionDescriptor> actual = new ArrayList<>();
 		try (FileInputStream fis = new FileInputStream(file)) {
-			Iterable<ConditionDescriptor> extracted = extractor.extractConditions(fis);
+			Iterable<ConditionDescriptor> extracted = extractor.readConditionDescriptors(fis);
 			for (ConditionDescriptor descriptor : extracted) {
 				actual.add(descriptor);
 			}

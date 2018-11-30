@@ -44,6 +44,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import ru.arsysop.passage.lic.internal.net.FloatingConditionDescriptor;
 import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
+import ru.arsysop.passage.lic.base.LicensingProperties;
 import ru.arsysop.passage.lic.internal.net.ConditionDescriptorTransport;
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionTransport;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
@@ -54,7 +55,6 @@ public class RequestProducer {
 	private static final String REQUEST_ACTION_CONDITIONS_EXTRACT = "extractConditions"; // NLS-$1
 	private static final String REQUEST_ACTION_CONDITIONS_EVALUATE = "evaluateConditions"; // NLS-$1
 	private static final String CHARSET_UTF_8 = "UTF-8"; // NLS-$1
-	private static final String APPLICATION_JSON = "application/json"; // NLS-$1
 
 	public static final String PARAMETER_CONFIGURATION = "configuration";
 
@@ -141,7 +141,7 @@ public class RequestProducer {
 		String objectAsString = mapper.writeValueAsString(transferObject);
 		StringEntity entity = new StringEntity(objectAsString, CHARSET_UTF_8);
 		httpPost.setEntity(entity);
-		httpPost.setHeader("Content-type", APPLICATION_JSON);
+		httpPost.setHeader("Content-type", LicensingProperties.LICENSING_CONTENT_TYPE_JSON);
 
 		ResponseHandler<FeaturePermissionTransport> responseHandler = new ResponseHandler<FeaturePermissionTransport>() {
 

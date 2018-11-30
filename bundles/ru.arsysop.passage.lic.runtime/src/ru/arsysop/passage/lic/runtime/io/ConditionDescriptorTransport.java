@@ -22,17 +22,25 @@ package ru.arsysop.passage.lic.runtime.io;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
-import ru.arsysop.passage.lic.runtime.ConditionMiner;
 
 /**
- * Extracts {@link ConditionDescriptor}(s) from the given {@link InputStream}. 
- * Typically used by {@link ConditionMiner}.
- *
+ * Transport interface for {@link ConditionDescriptor}(s)
  */
-public interface ConditionExtractor {
+public interface ConditionDescriptorTransport {
 
-	Iterable<ConditionDescriptor> extractConditions(InputStream input) throws IOException;
+	/**
+	 * Reads {@link ConditionDescriptor}(s) from the given {@link InputStream}. 
+	 *
+	 */
+	Iterable<ConditionDescriptor> readConditionDescriptors(InputStream input) throws IOException;
+
+	/**
+	 * Writes {@link ConditionDescriptor}(s) from the given {@link OutputStream}. 
+	 *
+	 */
+	void writeConditionDescriptors(Iterable<ConditionDescriptor> conditions, OutputStream output) throws IOException;
 
 }

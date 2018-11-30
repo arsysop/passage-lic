@@ -27,10 +27,10 @@ import java.io.OutputStream;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
 
 /**
- * Coder and decoder for condition data, used by {@link ConditionMiner}
+ * Coder and decoder for licensing data, used by {@link ConditionMiner}
  *
  */
-public interface ConditionCodec {
+public interface StreamCodec {
 
 	void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password, int keySize)
 			throws IOException;

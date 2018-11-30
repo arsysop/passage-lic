@@ -22,6 +22,7 @@ package ru.arsysop.passage.lic.model.core;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,15 +36,15 @@ import org.osgi.service.component.annotations.Component;
 import ru.arsysop.passage.lic.model.api.License;
 import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
-import ru.arsysop.passage.lic.runtime.io.ConditionExtractor;
+import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
 
 @Component
-public class XmiLicenseConditionExtractor implements ConditionExtractor {
+public class XmiLicenseConditionExtractor implements ConditionDescriptorTransport {
 
 	@Override
-	public Iterable<ConditionDescriptor> extractConditions(InputStream in) throws IOException {
+	public Iterable<ConditionDescriptor> readConditionDescriptors(InputStream input) throws IOException {
 		Resource resource = new XMIResourceImpl();
-		resource.load(in, new HashMap<>());
+		resource.load(input, new HashMap<>());
 		List<ConditionDescriptor> extracted = new ArrayList<>();
 		EList<EObject> contents = resource.getContents();
 		for (EObject eObject : contents) {
@@ -54,6 +55,20 @@ public class XmiLicenseConditionExtractor implements ConditionExtractor {
 			}
 		}
 		return extracted;
+	}
+
+	@Override
+	public void writeConditionDescriptors(Iterable<ConditionDescriptor> conditions, OutputStream output)
+			throws IOException {
+		Resource resource = new XMIResourceImpl();
+		EList<EObject> contents = resource.getContents();
+		for (ConditionDescriptor conditionDescriptor : conditions) {
+			if (conditionDescriptor instanceof EObject) {
+				EObject eObject = (EObject) conditionDescriptor;
+				contents.add(eObject);
+			}
+		}
+		resource.save(output, new HashMap<>());
 	}
 
 }

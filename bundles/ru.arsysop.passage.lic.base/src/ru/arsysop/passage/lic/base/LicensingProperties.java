@@ -43,6 +43,10 @@ public final class LicensingProperties {
 
 	public static final String LICENSING_CONDITION_TYPE = "licensing.condition.type"; //$NON-NLS-1$
 
+	public static final String LICENSING_CONTENT_TYPE = "licensing.content.type"; //$NON-NLS-1$
+	public static final String LICENSING_CONTENT_TYPE_JSON = "application/json"; //$NON-NLS-1$
+	public static final String LICENSING_CONTENT_TYPE_XML = "application/xml"; //$NON-NLS-1$
+
 	private LicensingProperties() {
 		// block
 	}

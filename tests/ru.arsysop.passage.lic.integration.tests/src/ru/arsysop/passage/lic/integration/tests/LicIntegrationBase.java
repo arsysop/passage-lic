@@ -51,7 +51,7 @@ import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.model.api.License;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.runtime.AccessManager;
-import ru.arsysop.passage.lic.runtime.io.ConditionCodec;
+import ru.arsysop.passage.lic.runtime.io.StreamCodec;
 
 public abstract class LicIntegrationBase {
 
@@ -87,8 +87,8 @@ public abstract class LicIntegrationBase {
 	protected static AccessManager accessManager;
 	private static ServiceReference<EnvironmentInfo> environmentInfoReference;
 	protected static EnvironmentInfo environmentInfo;
-	private static ServiceReference<ConditionCodec> conditionCodecReference;
-	protected static ConditionCodec conditionCodec;
+	private static ServiceReference<StreamCodec> conditionCodecReference;
+	protected static StreamCodec conditionCodec;
 
 	@BeforeClass
 	public static void startup() {
@@ -98,7 +98,7 @@ public abstract class LicIntegrationBase {
 		accessManager = bundleContext.getService(accessManagerReference);
 		environmentInfoReference = bundleContext.getServiceReference(EnvironmentInfo.class);
 		environmentInfo = bundleContext.getService(environmentInfoReference);
-		conditionCodecReference = bundleContext.getServiceReference(ConditionCodec.class);
+		conditionCodecReference = bundleContext.getServiceReference(StreamCodec.class);
 		conditionCodec = bundleContext.getService(conditionCodecReference);
 	}
 
