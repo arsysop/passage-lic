@@ -48,7 +48,7 @@ import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.net.RequestProducer;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
-import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
+import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 
 public class NetConditionMiner implements ConditionMiner {
 	private static final String LICENSING_CONTENT_TYPE = "licensing.content.type";
@@ -62,7 +62,7 @@ public class NetConditionMiner implements ConditionMiner {
 	private static String HOST_KEY = "passage.server.host";
 	private static String PORT_KEY = "passage.server.port";
 
-	private final Map<String, ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport> contentType2ConditionDescriptorTransport = new HashMap<>();
+	private final Map<String, ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport> contentType2ConditionDescriptorTransport = new HashMap<>();
 
 	private final Map<String, String> settingsMap = new HashMap<>();
 
@@ -144,7 +144,7 @@ public class NetConditionMiner implements ConditionMiner {
 					String contentType = response.getEntity().getContentType().getValue();
 					HttpEntity entity = response.getEntity();
 					if (entity != null && entity.getContent() != null) {
-						ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport transport = getConditionDescriptorTransport(
+						ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport transport = getConditionDescriptorTransport(
 								contentType);
 						Iterable<LicensingCondition> conditionDescriptors = transport
 								.readConditionDescriptors(entity.getContent());
@@ -163,12 +163,12 @@ public class NetConditionMiner implements ConditionMiner {
 		return conditions;
 	}
 
-	private ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport getConditionDescriptorTransport(
+	private ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport getConditionDescriptorTransport(
 			String typeOfContent) {
 		return contentType2ConditionDescriptorTransport.get(typeOfContent);
 	}
 
-	public void bindConditionDescriptorTransport(ConditionDescriptorTransport transport, Map<String, String> context) {
+	public void bindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, String> context) {
 		String contentType = context.get(LICENSING_CONTENT_TYPE);
 		if (contentType != null) {
 			if (!contentType2ConditionDescriptorTransport.containsKey(contentType)) {
@@ -177,7 +177,7 @@ public class NetConditionMiner implements ConditionMiner {
 		}
 	}
 
-	public void unbindConditionDescriptorTransport(ConditionDescriptorTransport transport,
+	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport,
 			Map<String, String> context) {
 		String contentType = context.get(LICENSING_CONTENT_TYPE);
 		if (contentType != null) {

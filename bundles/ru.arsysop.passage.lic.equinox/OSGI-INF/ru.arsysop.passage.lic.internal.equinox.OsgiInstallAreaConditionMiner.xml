@@ -4,7 +4,7 @@
    <service>
       <provide interface="ru.arsysop.passage.lic.runtime.ConditionMiner"/>
    </service>
-   <reference bind="bindConditionDescriptorTransport" cardinality="1..n" interface="ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport" name="ConditionDescriptorTransport" unbind="unbindConditionDescriptorTransport"/>
+   <reference bind="bindConditionDescriptorTransport" cardinality="1..n" interface="ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport" name="ConditionDescriptorTransport" unbind="unbindConditionDescriptorTransport"/>
    <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
    <reference bind="bindKeyKeeper" interface="ru.arsysop.passage.lic.runtime.io.KeyKeeper" name="KeyKeeper" unbind="unbindKeyKeeper"/>
    <reference bind="bindStreamCodec" interface="ru.arsysop.passage.lic.runtime.io.StreamCodec" name="StreamCodec" unbind="unbindStreamCodec"/>

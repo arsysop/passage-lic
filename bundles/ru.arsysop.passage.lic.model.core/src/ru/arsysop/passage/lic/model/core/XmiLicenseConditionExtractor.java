@@ -38,10 +38,10 @@ import org.osgi.service.component.annotations.Component;
 import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.api.LicenseGrant;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
-import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
+import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_XML })
-public class XmiLicenseConditionExtractor implements ConditionDescriptorTransport {
+public class XmiLicenseConditionExtractor implements LicensingConditionTransport {
 
 	@Override
 	public Iterable<LicensingCondition> readConditionDescriptors(InputStream input) throws IOException {

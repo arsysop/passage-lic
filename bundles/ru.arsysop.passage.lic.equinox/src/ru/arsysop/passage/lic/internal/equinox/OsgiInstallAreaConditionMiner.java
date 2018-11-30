@@ -46,7 +46,7 @@ import ru.arsysop.passage.lic.base.LicensingProperties;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
 import ru.arsysop.passage.lic.runtime.io.StreamCodec;
-import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
+import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
 @Component
@@ -57,7 +57,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	private EnvironmentInfo environmentInfo;
 	private StreamCodec streamCodec;
 	private KeyKeeper keyKeeper;
-	private ConditionDescriptorTransport conditionDescriptorTransport;
+	private LicensingConditionTransport conditionDescriptorTransport;
 
 	@Reference
 	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
@@ -87,14 +87,14 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	}
 
 	@Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
-	public void bindConditionDescriptorTransport(ConditionDescriptorTransport transport, Map<String, Object> properties) {
+	public void bindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		if (LicensingProperties.LICENSING_CONTENT_TYPE_XML.equals(contentType)) {
 			this.conditionDescriptorTransport = transport;
 		}
 	}
 
-	public void unbindConditionDescriptorTransport(ConditionDescriptorTransport transport, Map<String, Object> properties) {
+	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		if (LicensingProperties.LICENSING_CONTENT_TYPE_XML.equals(contentType)) {
 			this.conditionDescriptorTransport = null;

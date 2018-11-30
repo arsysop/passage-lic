@@ -29,7 +29,7 @@ import ru.arsysop.passage.lic.runtime.LicensingCondition;
 /**
  * Transport interface for {@link LicensingCondition}(s)
  */
-public interface ConditionDescriptorTransport {
+public interface LicensingConditionTransport {
 
 	/**
 	 * Reads {@link LicensingCondition}(s) from the given {@link InputStream}. 

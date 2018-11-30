@@ -10,9 +10,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
-import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
+import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 
-public class NetConditionDescriptorTransport implements ConditionDescriptorTransport {
+public class NetConditionDescriptorTransport implements LicensingConditionTransport {
 	Collection<LicensingCondition> descriptors = new ArrayList<>();
 
 	@Override

@@ -3,6 +3,6 @@
    <implementation class="ru.arsysop.passage.lic.internal.net.NetConditionDescriptorTransport"/>
    <property name="licensing.content.type" type="String" value="application/json"/>
    <service>
-      <provide interface="ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport"/>
+      <provide interface="ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport"/>
    </service>
 </scr:component>
