@@ -32,8 +32,6 @@ public class NetConditionDescriptorTransport implements LicensingConditionTransp
 	@Override
 	public void writeConditionDescriptors(Iterable<LicensingCondition> conditions, OutputStream output)
 			throws IOException {
-		// TODO Auto-generated method stub
-
 	}
 
 }

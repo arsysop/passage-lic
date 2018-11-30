@@ -24,6 +24,10 @@ import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 
 public class FloatingConditionDescriptor extends BaseLicensingCondition {
 
+	public FloatingConditionDescriptor() {
+		super("", "", "", "", "");
+	}
+
 	public FloatingConditionDescriptor(String id, String version, String rule, String type, String expression) {
 		super(id, version, rule, type, expression);
 	}
