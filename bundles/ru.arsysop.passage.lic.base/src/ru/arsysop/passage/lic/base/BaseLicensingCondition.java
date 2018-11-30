@@ -4,35 +4,35 @@ import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
-public class BaseConditionDescriptor implements LicensingCondition {
+public class BaseLicensingCondition implements LicensingCondition {
 
-	private final String allowedFeatureId;
-	private final String allowedMatchVersion;
-	private final String allowedMatchRule;
+	private final String featureIdentifier;
+	private final String matchVersion;
+	private final String matchRule;
 	private final String conditionType;
 	private final String conditionExpression;
 
-	protected BaseConditionDescriptor(String featureId, String version, String rule, String type, String expression) {
-		this.allowedFeatureId = featureId;
-		this.allowedMatchVersion = version;
-		this.allowedMatchRule = rule;
+	protected BaseLicensingCondition(String featureId, String version, String rule, String type, String expression) {
+		this.featureIdentifier = featureId;
+		this.matchVersion = version;
+		this.matchRule = rule;
 		this.conditionType = type;
 		this.conditionExpression = expression;
 	}
 
 	@Override
 	public String getFeatureIdentifier() {
-		return allowedFeatureId;
+		return featureIdentifier;
 	}
 
 	@Override
 	public String getMatchVersion() {
-		return allowedMatchVersion;
+		return matchVersion;
 	}
 
 	@Override
 	public String getMatchRule() {
-		return allowedMatchRule;
+		return matchRule;
 	}
 
 	@Override
@@ -48,9 +48,9 @@ public class BaseConditionDescriptor implements LicensingCondition {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(allowedFeatureId).append(';');
-		sb.append(LICENSING_MATCH_VERSION).append('=').append(allowedMatchVersion).append(';');
-		sb.append(LICENSING_MATCH_RULE).append('=').append(allowedMatchRule).append(';');
+		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureIdentifier).append(';');
+		sb.append(LICENSING_MATCH_VERSION).append('=').append(matchVersion).append(';');
+		sb.append(LICENSING_MATCH_RULE).append('=').append(matchRule).append(';');
 		sb.append(LICENSING_CONDITION_TYPE).append('=').append(conditionType).append(';');
 		sb.append("expression").append('=').append(conditionExpression); //$NON-NLS-1$
 		return sb.toString();

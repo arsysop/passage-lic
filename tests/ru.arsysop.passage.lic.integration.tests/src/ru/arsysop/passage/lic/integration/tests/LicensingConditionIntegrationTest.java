@@ -34,7 +34,7 @@ import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
-public class ConditionDescriptorIntegrationTest extends LicIntegrationBase {
+public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 
 	@Test
 	public void testExtractConditionsNegative() {

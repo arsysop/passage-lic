@@ -53,7 +53,7 @@ public class ConditionDescriptors {
 	}
 	
 	public static LicensingCondition create(String featureId, String version, String rule, String type, String expression) {
-		return new BaseConditionDescriptor(featureId, version, rule, type, expression);
+		return new BaseLicensingCondition(featureId, version, rule, type, expression);
 	}
 
 }

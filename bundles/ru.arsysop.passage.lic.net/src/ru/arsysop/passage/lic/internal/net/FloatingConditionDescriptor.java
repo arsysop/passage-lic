@@ -20,9 +20,9 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.internal.net;
 
-import ru.arsysop.passage.lic.base.BaseConditionDescriptor;
+import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 
-public class FloatingConditionDescriptor extends BaseConditionDescriptor {
+public class FloatingConditionDescriptor extends BaseLicensingCondition {
 
 	public FloatingConditionDescriptor(String id, String version, String rule, String type, String expression) {
 		super(id, version, rule, type, expression);
