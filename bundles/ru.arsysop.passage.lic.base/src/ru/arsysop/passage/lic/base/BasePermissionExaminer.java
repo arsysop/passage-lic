@@ -21,6 +21,7 @@
 package ru.arsysop.passage.lic.base;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class BasePermissionExaminer implements PermissionExaminer {
 			String restrictionPolicy = configurationRequirement.getRestrictionLevel();
 			verdicts.add(new BaseRestrictionVerdict(configurationRequirement, restrictionPolicy));
 		}
-		return verdicts;
+		return Collections.unmodifiableList(verdicts);
 	}
 
 }

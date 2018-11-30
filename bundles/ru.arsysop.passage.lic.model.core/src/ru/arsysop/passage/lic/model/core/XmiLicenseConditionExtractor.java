@@ -20,6 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.model.core;
 
+import static ru.arsysop.passage.lic.base.LicensingProperties.*;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -38,7 +40,7 @@ import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
 
-@Component
+@Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_XML })
 public class XmiLicenseConditionExtractor implements ConditionDescriptorTransport {
 
 	@Override
