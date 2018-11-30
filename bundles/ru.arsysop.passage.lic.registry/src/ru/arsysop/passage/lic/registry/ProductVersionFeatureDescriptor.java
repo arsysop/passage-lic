@@ -28,6 +28,6 @@ public interface ProductVersionFeatureDescriptor {
 
 	String getRestrictionLevel();
 
-	ProductVersionDescriptor getProductVersionDescriptor();
+	ProductVersionDescriptor getProductVersion();
 
 }

@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
- * you may not use this file except in compliance with the LicensePack.
- * You may obtain a copy of the LicensePack at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the LicensePack is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the LicensePack for the specific language governing permissions and
- * limitations under the LicensePack.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * SPDX-LicensePack-Identifier: Apache-2.0
+ * SPDX-License-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -36,11 +36,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.api.LicenseGrant;
+import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.core.XmiLicenseConditionExtractor;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
-import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class XmiLicenseConditionExtractorTest {
@@ -75,18 +74,18 @@ public class XmiLicenseConditionExtractorTest {
 		XmiLicenseConditionExtractor extractor = new XmiLicenseConditionExtractor();
 		
 		LicFactory factory = LicFactory.eINSTANCE;
-		LicensePack license = factory.createLicense();
-		EList<LicenseGrantDescriptor> conditions = license.getLicenseGrants();
-		LicenseGrant cond1 = factory.createLicenseCondition();
-		cond1.setAllowedFeatureId(COND1_FEATURE_ID);
+		LicensePack license = factory.createLicensePack();
+		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
+		LicenseGrant cond1 = factory.createLicenseGrant();
+		cond1.setFeatureIdentifier(COND1_FEATURE_ID);
 		cond1.setConditionType(COND1_CONDITION_TYPE);
 		cond1.setConditionExpression(COND1_CONDITION_EXPRESSION);
-		conditions.add(cond1);
-		LicenseGrant cond2 = factory.createLicenseCondition();
-		cond2.setAllowedFeatureId(COND2_FEATURE_ID);
+		licenseGrants.add(cond1);
+		LicenseGrant cond2 = factory.createLicenseGrant();
+		cond2.setFeatureIdentifier(COND2_FEATURE_ID);
 		cond2.setConditionType(COND2_CONDITION_TYPE);
 		cond2.setConditionExpression(COND2_CONDITION_EXPRESSION);
-		conditions.add(cond2);
+		licenseGrants.add(cond2);
 
 		File file = baseFolder.newFile("some.lic"); //$NON-NLS-1$
 		try (FileOutputStream fos = new FileOutputStream(file)) {

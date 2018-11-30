@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
- * 	you may not use this file except in compliance with the LicensePack.
- * 	You may obtain a copy of the LicensePack at
+ * 	Licensed under the Apache License, Version 2.0 (the "License");
+ * 	you may not use this file except in compliance with the License.
+ * 	You may obtain a copy of the License at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
+ * 	distributed under the License is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the LicensePack for the specific language governing permissions and
- * 	limitations under the LicensePack.
+ * 	See the License for the specific language governing permissions and
+ * 	limitations under the License.
  * 
- * 	SPDX-LicensePack-Identifier: Apache-2.0
+ * 	SPDX-License-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import ru.arsysop.passage.lic.model.api.LicensePack;
@@ -53,12 +52,10 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  * <ul>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getIssueDate <em>Issue Date</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getExpireDate <em>Expire Date</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getProductIdentifier <em>Product Identifier</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getProductVersion <em>Product Version</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getUserIdentifier <em>User Identifier</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getCapacity <em>Capacity</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getLicenseConditions <em>LicensePack Conditions</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getLicenseGrants <em>License Grants</em>}</li>
  * </ul>
  *
  * @generated
@@ -103,26 +100,6 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @ordered
 	 */
 	protected Date issueDate = ISSUE_DATE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getExpireDate() <em>Expire Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExpireDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Date EXPIRE_DATE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getExpireDate() <em>Expire Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExpireDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date expireDate = EXPIRE_DATE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getProductIdentifier() <em>Product Identifier</em>}' attribute.
@@ -185,34 +162,14 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	protected String userIdentifier = USER_IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCapacity()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int CAPACITY_EDEFAULT = 1;
-
-	/**
-	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCapacity()
-	 * @generated
-	 * @ordered
-	 */
-	protected int capacity = CAPACITY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getLicenseGrants() <em>LicensePack Conditions</em>}' containment reference list.
+	 * The cached value of the '{@link #getLicenseGrants() <em>License Grants</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLicenseGrants()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LicenseGrant> licenseConditions;
+	protected EList<LicenseGrant> licenseGrants;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -230,7 +187,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return LicPackage.Literals.LICENSE;
+		return LicPackage.Literals.LICENSE_PACK;
 	}
 
 	/**
@@ -240,6 +197,18 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 */
 	public String getIdentifier() {
 		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE_PACK__IDENTIFIER, oldIdentifier, identifier));
 	}
 
 	/**
@@ -260,28 +229,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		Date oldIssueDate = issueDate;
 		issueDate = newIssueDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE__ISSUE_DATE, oldIssueDate, issueDate));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Date getExpireDate() {
-		return expireDate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setExpireDate(Date newExpireDate) {
-		Date oldExpireDate = expireDate;
-		expireDate = newExpireDate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE__EXPIRE_DATE, oldExpireDate, expireDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE_PACK__ISSUE_DATE, oldIssueDate, issueDate));
 	}
 
 	/**
@@ -302,7 +250,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		String oldProductIdentifier = productIdentifier;
 		productIdentifier = newProductIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE__PRODUCT_IDENTIFIER, oldProductIdentifier, productIdentifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE_PACK__PRODUCT_IDENTIFIER, oldProductIdentifier, productIdentifier));
 	}
 
 	/**
@@ -323,7 +271,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		String oldProductVersion = productVersion;
 		productVersion = newProductVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE__PRODUCT_VERSION, oldProductVersion, productVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE_PACK__PRODUCT_VERSION, oldProductVersion, productVersion));
 	}
 
 	/**
@@ -344,28 +292,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		String oldUserIdentifier = userIdentifier;
 		userIdentifier = newUserIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE__USER_IDENTIFIER, oldUserIdentifier, userIdentifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getCapacity() {
-		return capacity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCapacity(int newCapacity) {
-		int oldCapacity = capacity;
-		capacity = newCapacity;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE__CAPACITY, oldCapacity, capacity));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE_PACK__USER_IDENTIFIER, oldUserIdentifier, userIdentifier));
 	}
 
 	/**
@@ -374,10 +301,25 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 */
 	public EList<LicenseGrant> getLicenseGrants() {
-		if (licenseConditions == null) {
-			licenseConditions = new EObjectContainmentEList<LicenseGrant>(LicenseGrant.class, this, LicPackage.LICENSE__LICENSE_CONDITIONS);
+		if (licenseGrants == null) {
+			licenseGrants = new EObjectContainmentWithInverseEList<LicenseGrant>(LicenseGrant.class, this, LicPackage.LICENSE_PACK__LICENSE_GRANTS, LicPackage.LICENSE_GRANT__LICENSE_PACK);
 		}
-		return licenseConditions;
+		return licenseGrants;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LicPackage.LICENSE_PACK__LICENSE_GRANTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLicenseGrants()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -388,7 +330,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case LicPackage.LICENSE__LICENSE_CONDITIONS:
+			case LicPackage.LICENSE_PACK__LICENSE_GRANTS:
 				return ((InternalEList<?>)getLicenseGrants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -402,21 +344,17 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case LicPackage.LICENSE__IDENTIFIER:
+			case LicPackage.LICENSE_PACK__IDENTIFIER:
 				return getIdentifier();
-			case LicPackage.LICENSE__ISSUE_DATE:
+			case LicPackage.LICENSE_PACK__ISSUE_DATE:
 				return getIssueDate();
-			case LicPackage.LICENSE__EXPIRE_DATE:
-				return getExpireDate();
-			case LicPackage.LICENSE__PRODUCT_IDENTIFIER:
+			case LicPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
 				return getProductIdentifier();
-			case LicPackage.LICENSE__PRODUCT_VERSION:
+			case LicPackage.LICENSE_PACK__PRODUCT_VERSION:
 				return getProductVersion();
-			case LicPackage.LICENSE__USER_IDENTIFIER:
+			case LicPackage.LICENSE_PACK__USER_IDENTIFIER:
 				return getUserIdentifier();
-			case LicPackage.LICENSE__CAPACITY:
-				return getCapacity();
-			case LicPackage.LICENSE__LICENSE_CONDITIONS:
+			case LicPackage.LICENSE_PACK__LICENSE_GRANTS:
 				return getLicenseGrants();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -431,25 +369,22 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case LicPackage.LICENSE__ISSUE_DATE:
+			case LicPackage.LICENSE_PACK__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
+			case LicPackage.LICENSE_PACK__ISSUE_DATE:
 				setIssueDate((Date)newValue);
 				return;
-			case LicPackage.LICENSE__EXPIRE_DATE:
-				setExpireDate((Date)newValue);
-				return;
-			case LicPackage.LICENSE__PRODUCT_IDENTIFIER:
+			case LicPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
 				setProductIdentifier((String)newValue);
 				return;
-			case LicPackage.LICENSE__PRODUCT_VERSION:
+			case LicPackage.LICENSE_PACK__PRODUCT_VERSION:
 				setProductVersion((String)newValue);
 				return;
-			case LicPackage.LICENSE__USER_IDENTIFIER:
+			case LicPackage.LICENSE_PACK__USER_IDENTIFIER:
 				setUserIdentifier((String)newValue);
 				return;
-			case LicPackage.LICENSE__CAPACITY:
-				setCapacity((Integer)newValue);
-				return;
-			case LicPackage.LICENSE__LICENSE_CONDITIONS:
+			case LicPackage.LICENSE_PACK__LICENSE_GRANTS:
 				getLicenseGrants().clear();
 				getLicenseGrants().addAll((Collection<? extends LicenseGrant>)newValue);
 				return;
@@ -465,25 +400,22 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case LicPackage.LICENSE__ISSUE_DATE:
+			case LicPackage.LICENSE_PACK__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
+			case LicPackage.LICENSE_PACK__ISSUE_DATE:
 				setIssueDate(ISSUE_DATE_EDEFAULT);
 				return;
-			case LicPackage.LICENSE__EXPIRE_DATE:
-				setExpireDate(EXPIRE_DATE_EDEFAULT);
-				return;
-			case LicPackage.LICENSE__PRODUCT_IDENTIFIER:
+			case LicPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
 				setProductIdentifier(PRODUCT_IDENTIFIER_EDEFAULT);
 				return;
-			case LicPackage.LICENSE__PRODUCT_VERSION:
+			case LicPackage.LICENSE_PACK__PRODUCT_VERSION:
 				setProductVersion(PRODUCT_VERSION_EDEFAULT);
 				return;
-			case LicPackage.LICENSE__USER_IDENTIFIER:
+			case LicPackage.LICENSE_PACK__USER_IDENTIFIER:
 				setUserIdentifier(USER_IDENTIFIER_EDEFAULT);
 				return;
-			case LicPackage.LICENSE__CAPACITY:
-				setCapacity(CAPACITY_EDEFAULT);
-				return;
-			case LicPackage.LICENSE__LICENSE_CONDITIONS:
+			case LicPackage.LICENSE_PACK__LICENSE_GRANTS:
 				getLicenseGrants().clear();
 				return;
 		}
@@ -498,22 +430,18 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case LicPackage.LICENSE__IDENTIFIER:
+			case LicPackage.LICENSE_PACK__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-			case LicPackage.LICENSE__ISSUE_DATE:
+			case LicPackage.LICENSE_PACK__ISSUE_DATE:
 				return ISSUE_DATE_EDEFAULT == null ? issueDate != null : !ISSUE_DATE_EDEFAULT.equals(issueDate);
-			case LicPackage.LICENSE__EXPIRE_DATE:
-				return EXPIRE_DATE_EDEFAULT == null ? expireDate != null : !EXPIRE_DATE_EDEFAULT.equals(expireDate);
-			case LicPackage.LICENSE__PRODUCT_IDENTIFIER:
+			case LicPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
 				return PRODUCT_IDENTIFIER_EDEFAULT == null ? productIdentifier != null : !PRODUCT_IDENTIFIER_EDEFAULT.equals(productIdentifier);
-			case LicPackage.LICENSE__PRODUCT_VERSION:
+			case LicPackage.LICENSE_PACK__PRODUCT_VERSION:
 				return PRODUCT_VERSION_EDEFAULT == null ? productVersion != null : !PRODUCT_VERSION_EDEFAULT.equals(productVersion);
-			case LicPackage.LICENSE__USER_IDENTIFIER:
+			case LicPackage.LICENSE_PACK__USER_IDENTIFIER:
 				return USER_IDENTIFIER_EDEFAULT == null ? userIdentifier != null : !USER_IDENTIFIER_EDEFAULT.equals(userIdentifier);
-			case LicPackage.LICENSE__CAPACITY:
-				return capacity != CAPACITY_EDEFAULT;
-			case LicPackage.LICENSE__LICENSE_CONDITIONS:
-				return licenseConditions != null && !licenseConditions.isEmpty();
+			case LicPackage.LICENSE_PACK__LICENSE_GRANTS:
+				return licenseGrants != null && !licenseGrants.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -532,16 +460,12 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		result.append(identifier);
 		result.append(", issueDate: "); //$NON-NLS-1$
 		result.append(issueDate);
-		result.append(", expireDate: "); //$NON-NLS-1$
-		result.append(expireDate);
 		result.append(", productIdentifier: "); //$NON-NLS-1$
 		result.append(productIdentifier);
 		result.append(", productVersion: "); //$NON-NLS-1$
 		result.append(productVersion);
 		result.append(", userIdentifier: "); //$NON-NLS-1$
 		result.append(userIdentifier);
-		result.append(", capacity: "); //$NON-NLS-1$
-		result.append(capacity);
 		result.append(')');
 		return result.toString();
 	}

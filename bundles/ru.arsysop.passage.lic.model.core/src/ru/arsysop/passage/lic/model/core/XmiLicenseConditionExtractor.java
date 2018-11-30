@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
- * you may not use this file except in compliance with the LicensePack.
- * You may obtain a copy of the LicensePack at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the LicensePack is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the LicensePack for the specific language governing permissions and
- * limitations under the LicensePack.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * SPDX-LicensePack-Identifier: Apache-2.0
+ * SPDX-License-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -37,7 +37,6 @@ import org.osgi.service.component.annotations.Component;
 
 import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.api.LicenseGrant;
-import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
 
@@ -53,7 +52,7 @@ public class XmiLicenseConditionExtractor implements ConditionDescriptorTranspor
 		for (EObject eObject : contents) {
 			if (eObject instanceof LicensePack) {
 				LicensePack license = (LicensePack) eObject;
-				EList<LicenseGrantDescriptor> conditions = license.getLicenseGrants();
+				EList<LicenseGrant> conditions = license.getLicenseGrants();
 				extracted.addAll(conditions);
 			}
 		}

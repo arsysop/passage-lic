@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
- * you may not use this file except in compliance with the LicensePack.
- * You may obtain a copy of the LicensePack at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the LicensePack is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the LicensePack for the specific language governing permissions and
- * limitations under the LicensePack.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * SPDX-LicensePack-Identifier: Apache-2.0
+ * SPDX-License-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -37,6 +37,7 @@ import ru.arsysop.passage.lic.registry.UserDescriptor;
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getEmail <em>Email</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getFullName <em>Full Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getDescription <em>Description</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.User#getUserOrigin <em>User Origin</em>}</li>
  * </ul>
  *
  * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser()
@@ -53,11 +54,22 @@ public interface User extends EObject, UserDescriptor {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_Identifier()
-	 * @model id="true" required="true" changeable="false"
+	 * @model id="true" required="true"
 	 * @generated
 	 */
 	String getIdentifier();
+
+		/**
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.User#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(String value);
 
 		/**
 	 * Returns the value of the '<em><b>Email</b></em>' attribute.
@@ -136,5 +148,33 @@ public interface User extends EObject, UserDescriptor {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+		/**
+	 * Returns the value of the '<em><b>User Origin</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link ru.arsysop.passage.lic.model.api.UserOrigin#getUsers <em>Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>User Origin</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>User Origin</em>' reference.
+	 * @see #setUserOrigin(UserOrigin)
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_UserOrigin()
+	 * @see ru.arsysop.passage.lic.model.api.UserOrigin#getUsers
+	 * @model opposite="users" required="true"
+	 * @generated
+	 */
+	UserOrigin getUserOrigin();
+
+		/**
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.User#getUserOrigin <em>User Origin</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>User Origin</em>' reference.
+	 * @see #getUserOrigin()
+	 * @generated
+	 */
+	void setUserOrigin(UserOrigin value);
 
 } // UserInfo

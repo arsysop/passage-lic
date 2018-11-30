@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
- * you may not use this file except in compliance with the LicensePack.
- * You may obtain a copy of the LicensePack at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the LicensePack is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the LicensePack for the specific language governing permissions and
- * limitations under the LicensePack.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * SPDX-LicensePack-Identifier: Apache-2.0
+ * SPDX-License-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -32,8 +32,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import ru.arsysop.passage.lic.model.api.Product;
+import ru.arsysop.passage.lic.model.api.ProductLine;
 import ru.arsysop.passage.lic.model.api.ProductVersion;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
@@ -48,6 +50,7 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getProductLine <em>Product Line</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductImpl#getProductVersions <em>Product Versions</em>}</li>
  * </ul>
  *
@@ -211,6 +214,47 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ProductLine getProductLine() {
+		if (eContainerFeatureID() != LicPackage.PRODUCT__PRODUCT_LINE) return null;
+		return (ProductLine)eInternalContainer();
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetProductLine(ProductLine newProductLine, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newProductLine, LicPackage.PRODUCT__PRODUCT_LINE, msgs);
+		return msgs;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProductLine(ProductLine newProductLine) {
+		if (newProductLine != eInternalContainer() || (eContainerFeatureID() != LicPackage.PRODUCT__PRODUCT_LINE && newProductLine != null)) {
+			if (EcoreUtil.isAncestor(this, newProductLine))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newProductLine != null)
+				msgs = ((InternalEObject)newProductLine).eInverseAdd(this, LicPackage.PRODUCT_LINE__PRODUCTS, ProductLine.class, msgs);
+			msgs = basicSetProductLine(newProductLine, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.PRODUCT__PRODUCT_LINE, newProductLine, newProductLine));
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ProductVersion> getProductVersions() {
 		if (productVersions == null) {
 			productVersions = new EObjectContainmentWithInverseEList<ProductVersion>(ProductVersion.class, this, LicPackage.PRODUCT__PRODUCT_VERSIONS, LicPackage.PRODUCT_VERSION__PRODUCT);
@@ -227,6 +271,10 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case LicPackage.PRODUCT__PRODUCT_LINE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetProductLine((ProductLine)otherEnd, msgs);
 			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProductVersions()).basicAdd(otherEnd, msgs);
 		}
@@ -241,10 +289,26 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case LicPackage.PRODUCT__PRODUCT_LINE:
+				return basicSetProductLine(null, msgs);
 			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
 				return ((InternalEList<?>)getProductVersions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case LicPackage.PRODUCT__PRODUCT_LINE:
+				return eInternalContainer().eInverseRemove(this, LicPackage.PRODUCT_LINE__PRODUCTS, ProductLine.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 		/**
@@ -261,6 +325,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 				return getName();
 			case LicPackage.PRODUCT__DESCRIPTION:
 				return getDescription();
+			case LicPackage.PRODUCT__PRODUCT_LINE:
+				return getProductLine();
 			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
 				return getProductVersions();
 		}
@@ -284,6 +350,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 				return;
 			case LicPackage.PRODUCT__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case LicPackage.PRODUCT__PRODUCT_LINE:
+				setProductLine((ProductLine)newValue);
 				return;
 			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
 				getProductVersions().clear();
@@ -310,6 +379,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 			case LicPackage.PRODUCT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
+			case LicPackage.PRODUCT__PRODUCT_LINE:
+				setProductLine((ProductLine)null);
+				return;
 			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
 				getProductVersions().clear();
 				return;
@@ -331,6 +403,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case LicPackage.PRODUCT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case LicPackage.PRODUCT__PRODUCT_LINE:
+				return getProductLine() != null;
 			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
 				return productVersions != null && !productVersions.isEmpty();
 		}

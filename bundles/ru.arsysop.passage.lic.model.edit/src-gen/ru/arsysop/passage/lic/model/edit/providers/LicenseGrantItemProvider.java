@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
- * 	you may not use this file except in compliance with the LicensePack.
- * 	You may obtain a copy of the LicensePack at
+ * 	Licensed under the Apache License, Version 2.0 (the "License");
+ * 	you may not use this file except in compliance with the License.
+ * 	You may obtain a copy of the License at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
+ * 	distributed under the License is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the LicensePack for the specific language governing permissions and
- * 	limitations under the LicensePack.
+ * 	See the License for the specific language governing permissions and
+ * 	limitations under the License.
  * 
- * 	SPDX-LicensePack-Identifier: Apache-2.0
+ * 	SPDX-License-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -53,7 +53,7 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class LicenseConditionItemProvider 
+public class LicenseGrantItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -67,7 +67,7 @@ public class LicenseConditionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicenseConditionItemProvider(AdapterFactory adapterFactory) {
+	public LicenseGrantItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -82,29 +82,30 @@ public class LicenseConditionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAllowedFeatureIdPropertyDescriptor(object);
-			addAllowedFeatureMatchVersionPropertyDescriptor(object);
-			addAllowedFeatureMatchRulePropertyDescriptor(object);
+			addFeatureIdentifierPropertyDescriptor(object);
+			addMatchVersionPropertyDescriptor(object);
+			addMatchRulePropertyDescriptor(object);
 			addConditionTypePropertyDescriptor(object);
 			addConditionExpressionPropertyDescriptor(object);
+			addCapacityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Allowed Feature Id feature.
+	 * This adds a property descriptor for the Feature Identifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAllowedFeatureIdPropertyDescriptor(Object object) {
+	protected void addFeatureIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LicenseCondition_allowedFeatureId_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseCondition_allowedFeatureId_feature", "_UI_LicenseCondition_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE_CONDITION__ALLOWED_FEATURE_ID,
+				 getString("_UI_LicenseGrant_featureIdentifier_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_featureIdentifier_feature", "_UI_LicenseGrant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_GRANT__FEATURE_IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -114,19 +115,19 @@ public class LicenseConditionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Allowed Feature Match Version feature.
+	 * This adds a property descriptor for the Match Version feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAllowedFeatureMatchVersionPropertyDescriptor(Object object) {
+	protected void addMatchVersionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LicenseCondition_allowedFeatureMatchVersion_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseCondition_allowedFeatureMatchVersion_feature", "_UI_LicenseCondition_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_VERSION,
+				 getString("_UI_LicenseGrant_matchVersion_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_matchVersion_feature", "_UI_LicenseGrant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_GRANT__MATCH_VERSION,
 				 true,
 				 false,
 				 false,
@@ -136,19 +137,19 @@ public class LicenseConditionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Allowed Feature Match Rule feature.
+	 * This adds a property descriptor for the Match Rule feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAllowedFeatureMatchRulePropertyDescriptor(Object object) {
+	protected void addMatchRulePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LicenseCondition_allowedFeatureMatchRule_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseCondition_allowedFeatureMatchRule_feature", "_UI_LicenseCondition_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_RULE,
+				 getString("_UI_LicenseGrant_matchRule_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_matchRule_feature", "_UI_LicenseGrant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_GRANT__MATCH_RULE,
 				 true,
 				 false,
 				 false,
@@ -168,9 +169,9 @@ public class LicenseConditionItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LicenseCondition_conditionType_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseCondition_conditionType_feature", "_UI_LicenseCondition_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE_CONDITION__CONDITION_TYPE,
+				 getString("_UI_LicenseGrant_conditionType_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_conditionType_feature", "_UI_LicenseGrant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_GRANT__CONDITION_TYPE,
 				 true,
 				 false,
 				 false,
@@ -190,13 +191,35 @@ public class LicenseConditionItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LicenseCondition_conditionExpression_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseCondition_conditionExpression_feature", "_UI_LicenseCondition_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE_CONDITION__CONDITION_EXPRESSION,
+				 getString("_UI_LicenseGrant_conditionExpression_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_conditionExpression_feature", "_UI_LicenseGrant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_GRANT__CONDITION_EXPRESSION,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Capacity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCapacityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LicenseGrant_capacity_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_capacity_feature", "_UI_LicenseGrant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_GRANT__CAPACITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -213,6 +236,16 @@ public class LicenseConditionItemProvider
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -222,8 +255,8 @@ public class LicenseConditionItemProvider
 	public String getText(Object object) {
 		String label = ((LicenseGrant)object).getFeatureIdentifier();
 		return label == null || label.length() == 0 ?
-			getString("_UI_LicenseCondition_type") : //$NON-NLS-1$
-			getString("_UI_LicenseCondition_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_LicenseGrant_type") : //$NON-NLS-1$
+			getString("_UI_LicenseGrant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -239,11 +272,12 @@ public class LicenseConditionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LicenseGrant.class)) {
-			case LicPackage.LICENSE_CONDITION__ALLOWED_FEATURE_ID:
-			case LicPackage.LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_VERSION:
-			case LicPackage.LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_RULE:
-			case LicPackage.LICENSE_CONDITION__CONDITION_TYPE:
-			case LicPackage.LICENSE_CONDITION__CONDITION_EXPRESSION:
+			case LicPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
+			case LicPackage.LICENSE_GRANT__MATCH_VERSION:
+			case LicPackage.LICENSE_GRANT__MATCH_RULE:
+			case LicPackage.LICENSE_GRANT__CONDITION_TYPE:
+			case LicPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
+			case LicPackage.LICENSE_GRANT__CAPACITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

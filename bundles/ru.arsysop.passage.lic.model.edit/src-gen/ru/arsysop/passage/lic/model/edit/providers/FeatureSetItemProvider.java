@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
- * 	you may not use this file except in compliance with the LicensePack.
- * 	You may obtain a copy of the LicensePack at
+ * 	Licensed under the Apache License, Version 2.0 (the "License");
+ * 	you may not use this file except in compliance with the License.
+ * 	You may obtain a copy of the License at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
+ * 	distributed under the License is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the LicensePack for the specific language governing permissions and
- * 	limitations under the LicensePack.
+ * 	See the License for the specific language governing permissions and
+ * 	limitations under the License.
  * 
- * 	SPDX-LicensePack-Identifier: Apache-2.0
+ * 	SPDX-License-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -43,7 +43,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import ru.arsysop.passage.lic.model.api.LicensePack;
+import ru.arsysop.passage.lic.model.api.FeatureSet;
 
 import ru.arsysop.passage.lic.model.edit.LicEditPlugin;
 
@@ -51,12 +51,12 @@ import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
- * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.LicensePack} object.
+ * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.FeatureSet} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LicenseItemProvider 
+public class FeatureSetItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -70,7 +70,7 @@ public class LicenseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicenseItemProvider(AdapterFactory adapterFactory) {
+	public FeatureSetItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -86,12 +86,8 @@ public class LicenseItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
-			addIssueDatePropertyDescriptor(object);
-			addExpireDatePropertyDescriptor(object);
-			addProductIdentifierPropertyDescriptor(object);
-			addProductVersionPropertyDescriptor(object);
-			addUserIdentifierPropertyDescriptor(object);
-			addCapacityPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -107,31 +103,9 @@ public class LicenseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_License_identifier_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_License_identifier_feature", "_UI_License_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE__IDENTIFIER,
-				 false,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Issue Date feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIssueDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_License_issueDate_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_License_issueDate_feature", "_UI_License_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE__ISSUE_DATE,
+				 getString("_UI_FeatureSet_identifier_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureSet_identifier_feature", "_UI_FeatureSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.FEATURE_SET__IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -141,19 +115,19 @@ public class LicenseItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Expire Date feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExpireDatePropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_License_expireDate_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_License_expireDate_feature", "_UI_License_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE__EXPIRE_DATE,
+				 getString("_UI_FeatureSet_name_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureSet_name_feature", "_UI_FeatureSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.FEATURE_SET__NAME,
 				 true,
 				 false,
 				 false,
@@ -163,89 +137,23 @@ public class LicenseItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Product Identifier feature.
+	 * This adds a property descriptor for the Description feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProductIdentifierPropertyDescriptor(Object object) {
+	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_License_productIdentifier_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_License_productIdentifier_feature", "_UI_License_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE__PRODUCT_IDENTIFIER,
+				 getString("_UI_FeatureSet_description_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureSet_description_feature", "_UI_FeatureSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.FEATURE_SET__DESCRIPTION,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Product Version feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addProductVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_License_productVersion_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_License_productVersion_feature", "_UI_License_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE__PRODUCT_VERSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the User Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUserIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_License_userIdentifier_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_License_userIdentifier_feature", "_UI_License_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE__USER_IDENTIFIER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Capacity feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCapacityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_License_capacity_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_License_capacity_feature", "_UI_License_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.LICENSE__CAPACITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -262,7 +170,7 @@ public class LicenseItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicPackage.Literals.LICENSE__LICENSE_CONDITIONS);
+			childrenFeatures.add(LicPackage.Literals.FEATURE_SET__FEATURES);
 		}
 		return childrenFeatures;
 	}
@@ -281,14 +189,24 @@ public class LicenseItemProvider
 	}
 
 	/**
-	 * This returns LicensePack.gif.
+	 * This returns FeatureSet.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureSet")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -299,10 +217,10 @@ public class LicenseItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LicensePack)object).getIdentifier();
+		String label = ((FeatureSet)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_License_type") : //$NON-NLS-1$
-			getString("_UI_License_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_FeatureSet_type") : //$NON-NLS-1$
+			getString("_UI_FeatureSet_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -317,17 +235,13 @@ public class LicenseItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LicensePack.class)) {
-			case LicPackage.LICENSE__IDENTIFIER:
-			case LicPackage.LICENSE__ISSUE_DATE:
-			case LicPackage.LICENSE__EXPIRE_DATE:
-			case LicPackage.LICENSE__PRODUCT_IDENTIFIER:
-			case LicPackage.LICENSE__PRODUCT_VERSION:
-			case LicPackage.LICENSE__USER_IDENTIFIER:
-			case LicPackage.LICENSE__CAPACITY:
+		switch (notification.getFeatureID(FeatureSet.class)) {
+			case LicPackage.FEATURE_SET__IDENTIFIER:
+			case LicPackage.FEATURE_SET__NAME:
+			case LicPackage.FEATURE_SET__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case LicPackage.LICENSE__LICENSE_CONDITIONS:
+			case LicPackage.FEATURE_SET__FEATURES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -347,8 +261,8 @@ public class LicenseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(LicPackage.Literals.LICENSE__LICENSE_CONDITIONS,
-				 LicFactory.eINSTANCE.createLicenseCondition()));
+				(LicPackage.Literals.FEATURE_SET__FEATURES,
+				 LicFactory.eINSTANCE.createFeature()));
 	}
 
 	/**

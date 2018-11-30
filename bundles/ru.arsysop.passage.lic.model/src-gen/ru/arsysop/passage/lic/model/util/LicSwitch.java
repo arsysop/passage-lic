@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
- * you may not use this file except in compliance with the LicensePack.
- * You may obtain a copy of the LicensePack at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the LicensePack is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the LicensePack for the specific language governing permissions and
- * limitations under the LicensePack.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * SPDX-LicensePack-Identifier: Apache-2.0
+ * SPDX-License-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -29,12 +29,16 @@ import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 import ru.arsysop.passage.lic.registry.FeatureDescriptor;
+import ru.arsysop.passage.lic.registry.FeatureSetDescriptor;
 import ru.arsysop.passage.lic.registry.FeatureVersionDescriptor;
+import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
 import ru.arsysop.passage.lic.registry.LicensePackDescriptor;
 import ru.arsysop.passage.lic.registry.UserDescriptor;
-import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.registry.UserOriginDescriptor;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
+import ru.arsysop.passage.lic.registry.ProductLineDescriptor;
 import ru.arsysop.passage.lic.registry.ProductVersionDescriptor;
+import ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -93,6 +97,12 @@ public class LicSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case LicPackage.FEATURE_SET_DESCRIPTOR: {
+				FeatureSetDescriptor featureSetDescriptor = (FeatureSetDescriptor)theEObject;
+				T result = caseFeatureSetDescriptor(featureSetDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case LicPackage.FEATURE_DESCRIPTOR: {
 				FeatureDescriptor featureDescriptor = (FeatureDescriptor)theEObject;
 				T result = caseFeatureDescriptor(featureDescriptor);
@@ -102,6 +112,12 @@ public class LicSwitch<T> extends Switch<T> {
 			case LicPackage.FEATURE_VERSION_DESCRIPTOR: {
 				FeatureVersionDescriptor featureVersionDescriptor = (FeatureVersionDescriptor)theEObject;
 				T result = caseFeatureVersionDescriptor(featureVersionDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LicPackage.PRODUCT_LINE_DESCRIPTOR: {
+				ProductLineDescriptor productLineDescriptor = (ProductLineDescriptor)theEObject;
+				T result = caseProductLineDescriptor(productLineDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -117,21 +133,40 @@ public class LicSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case LicPackage.PRODUCT_VERSION_FEATURE_DESCRIPTOR: {
+				ProductVersionFeatureDescriptor productVersionFeatureDescriptor = (ProductVersionFeatureDescriptor)theEObject;
+				T result = caseProductVersionFeatureDescriptor(productVersionFeatureDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LicPackage.USER_ORIGIN_DESCRIPTOR: {
+				UserOriginDescriptor userOriginDescriptor = (UserOriginDescriptor)theEObject;
+				T result = caseUserOriginDescriptor(userOriginDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case LicPackage.USER_DESCRIPTOR: {
 				UserDescriptor userDescriptor = (UserDescriptor)theEObject;
 				T result = caseUserDescriptor(userDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicPackage.LICENSE_DESCRIPTOR: {
-				LicensePackDescriptor licenseDescriptor = (LicensePackDescriptor)theEObject;
-				T result = caseLicenseDescriptor(licenseDescriptor);
+			case LicPackage.LICENSE_PACK_DESCRIPTOR: {
+				LicensePackDescriptor licensePackDescriptor = (LicensePackDescriptor)theEObject;
+				T result = caseLicensePackDescriptor(licensePackDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicPackage.CONDITION_DESCRIPTOR: {
-				LicensingCondition conditionDescriptor = (LicensingCondition)theEObject;
-				T result = caseConditionDescriptor(conditionDescriptor);
+			case LicPackage.LICENSE_GRANT_DESCRIPTOR: {
+				LicenseGrantDescriptor licenseGrantDescriptor = (LicenseGrantDescriptor)theEObject;
+				T result = caseLicenseGrantDescriptor(licenseGrantDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LicPackage.FEATURE_SET: {
+				FeatureSet featureSet = (FeatureSet)theEObject;
+				T result = caseFeatureSet(featureSet);
+				if (result == null) result = caseFeatureSetDescriptor(featureSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -146,6 +181,13 @@ public class LicSwitch<T> extends Switch<T> {
 				FeatureVersion featureVersion = (FeatureVersion)theEObject;
 				T result = caseFeatureVersion(featureVersion);
 				if (result == null) result = caseFeatureVersionDescriptor(featureVersion);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LicPackage.PRODUCT_LINE: {
+				ProductLine productLine = (ProductLine)theEObject;
+				T result = caseProductLine(productLine);
+				if (result == null) result = caseProductLineDescriptor(productLine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -166,6 +208,14 @@ public class LicSwitch<T> extends Switch<T> {
 			case LicPackage.PRODUCT_VERSION_FEATURE: {
 				ProductVersionFeature productVersionFeature = (ProductVersionFeature)theEObject;
 				T result = caseProductVersionFeature(productVersionFeature);
+				if (result == null) result = caseProductVersionFeatureDescriptor(productVersionFeature);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LicPackage.USER_ORIGIN: {
+				UserOrigin userOrigin = (UserOrigin)theEObject;
+				T result = caseUserOrigin(userOrigin);
+				if (result == null) result = caseUserOriginDescriptor(userOrigin);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -176,17 +226,17 @@ public class LicSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicPackage.LICENSE: {
-				LicensePack license = (LicensePack)theEObject;
-				T result = caseLicense(license);
-				if (result == null) result = caseLicenseDescriptor(license);
+			case LicPackage.LICENSE_PACK: {
+				LicensePack licensePack = (LicensePack)theEObject;
+				T result = caseLicensePack(licensePack);
+				if (result == null) result = caseLicensePackDescriptor(licensePack);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case LicPackage.LICENSE_CONDITION: {
-				LicenseGrant licenseCondition = (LicenseGrant)theEObject;
-				T result = caseLicenseCondition(licenseCondition);
-				if (result == null) result = caseConditionDescriptor(licenseCondition);
+			case LicPackage.LICENSE_GRANT: {
+				LicenseGrant licenseGrant = (LicenseGrant)theEObject;
+				T result = caseLicenseGrant(licenseGrant);
+				if (result == null) result = caseLicenseGrantDescriptor(licenseGrant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -195,6 +245,21 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Set Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Set Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeatureSetDescriptor(FeatureSetDescriptor object) {
+		return null;
+	}
+
+		/**
 	 * Returns the result of interpreting the object as an instance of '<em>Product Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -221,6 +286,36 @@ public class LicSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseProductVersionDescriptor(ProductVersionDescriptor object) {
+		return null;
+	}
+
+		/**
+	 * Returns the result of interpreting the object as an instance of '<em>Product Version Feature Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Product Version Feature Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProductVersionFeatureDescriptor(ProductVersionFeatureDescriptor object) {
+		return null;
+	}
+
+		/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Origin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Origin Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserOriginDescriptor(UserOriginDescriptor object) {
 		return null;
 	}
 
@@ -255,6 +350,21 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
 		/**
+	 * Returns the result of interpreting the object as an instance of '<em>Product Line Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Product Line Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProductLineDescriptor(ProductLineDescriptor object) {
+		return null;
+	}
+
+		/**
 	 * Returns the result of interpreting the object as an instance of '<em>User Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -270,32 +380,47 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>LicensePack Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>License Pack Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>LicensePack Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>License Pack Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLicenseDescriptor(LicensePackDescriptor object) {
+	public T caseLicensePackDescriptor(LicensePackDescriptor object) {
 		return null;
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>Condition Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>License Grant Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Condition Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>License Grant Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionDescriptor(LicensingCondition object) {
+	public T caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
+		return null;
+	}
+
+		/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Set</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeatureSet(FeatureSet object) {
 		return null;
 	}
 
@@ -345,6 +470,21 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
 		/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Origin</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Origin</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserOrigin(UserOrigin object) {
+		return null;
+	}
+
+		/**
 	 * Returns the result of interpreting the object as an instance of '<em>Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -375,6 +515,21 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
 		/**
+	 * Returns the result of interpreting the object as an instance of '<em>Product Line</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Product Line</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProductLine(ProductLine object) {
+		return null;
+	}
+
+		/**
 	 * Returns the result of interpreting the object as an instance of '<em>User</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -390,32 +545,32 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>LicensePack</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>License Pack</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>LicensePack</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>License Pack</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLicense(LicensePack object) {
+	public T caseLicensePack(LicensePack object) {
 		return null;
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>LicensePack Condition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>License Grant</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>LicensePack Condition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>License Grant</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLicenseCondition(LicenseGrant object) {
+	public T caseLicenseGrant(LicenseGrant object) {
 		return null;
 	}
 

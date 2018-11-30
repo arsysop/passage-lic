@@ -30,6 +30,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -41,19 +43,20 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import ru.arsysop.passage.lic.model.api.User;
+import ru.arsysop.passage.lic.model.api.LicensePack;
 
 import ru.arsysop.passage.lic.model.edit.LicEditPlugin;
 
+import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
- * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.User} object.
+ * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.LicensePack} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserItemProvider 
+public class LicensePackItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -67,7 +70,7 @@ public class UserItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserItemProvider(AdapterFactory adapterFactory) {
+	public LicensePackItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -83,10 +86,10 @@ public class UserItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
-			addEmailPropertyDescriptor(object);
-			addFullNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addUserOriginPropertyDescriptor(object);
+			addIssueDatePropertyDescriptor(object);
+			addProductIdentifierPropertyDescriptor(object);
+			addProductVersionPropertyDescriptor(object);
+			addUserIdentifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -102,31 +105,9 @@ public class UserItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_identifier_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_identifier_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__IDENTIFIER,
-				 false,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Email feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEmailPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_User_email_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_email_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__EMAIL,
+				 getString("_UI_LicensePack_identifier_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_identifier_feature", "_UI_LicensePack_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_PACK__IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -136,19 +117,19 @@ public class UserItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Full Name feature.
+	 * This adds a property descriptor for the Issue Date feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFullNamePropertyDescriptor(Object object) {
+	protected void addIssueDatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_fullName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_fullName_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__FULL_NAME,
+				 getString("_UI_LicensePack_issueDate_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_issueDate_feature", "_UI_LicensePack_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_PACK__ISSUE_DATE,
 				 true,
 				 false,
 				 false,
@@ -158,19 +139,19 @@ public class UserItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
+	 * This adds a property descriptor for the Product Identifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
+	protected void addProductIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_description_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_description_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__DESCRIPTION,
+				 getString("_UI_LicensePack_productIdentifier_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_productIdentifier_feature", "_UI_LicensePack_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_PACK__PRODUCT_IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -180,36 +161,88 @@ public class UserItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the User Origin feature.
+	 * This adds a property descriptor for the Product Version feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUserOriginPropertyDescriptor(Object object) {
+	protected void addProductVersionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_userOrigin_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_userOrigin_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__USER_ORIGIN,
+				 getString("_UI_LicensePack_productVersion_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_productVersion_feature", "_UI_LicensePack_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_PACK__PRODUCT_VERSION,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns User.gif.
+	 * This adds a property descriptor for the User Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUserIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LicensePack_userIdentifier_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_userIdentifier_feature", "_UI_LicensePack_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_PACK__USER_IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(LicPackage.Literals.LICENSE_PACK__LICENSE_GRANTS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns LicensePack.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/user.png")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
 	}
 
 	/**
@@ -230,10 +263,10 @@ public class UserItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((User)object).getFullName();
+		String label = ((LicensePack)object).getIdentifier();
 		return label == null || label.length() == 0 ?
-			getString("_UI_User_type") : //$NON-NLS-1$
-			getString("_UI_User_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_LicensePack_type") : //$NON-NLS-1$
+			getString("_UI_LicensePack_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -248,12 +281,16 @@ public class UserItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(User.class)) {
-			case LicPackage.USER__IDENTIFIER:
-			case LicPackage.USER__EMAIL:
-			case LicPackage.USER__FULL_NAME:
-			case LicPackage.USER__DESCRIPTION:
+		switch (notification.getFeatureID(LicensePack.class)) {
+			case LicPackage.LICENSE_PACK__IDENTIFIER:
+			case LicPackage.LICENSE_PACK__ISSUE_DATE:
+			case LicPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
+			case LicPackage.LICENSE_PACK__PRODUCT_VERSION:
+			case LicPackage.LICENSE_PACK__USER_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case LicPackage.LICENSE_PACK__LICENSE_GRANTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -269,6 +306,11 @@ public class UserItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LicPackage.Literals.LICENSE_PACK__LICENSE_GRANTS,
+				 LicFactory.eINSTANCE.createLicenseGrant()));
 	}
 
 	/**

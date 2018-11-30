@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
- * you may not use this file except in compliance with the LicensePack.
- * You may obtain a copy of the LicensePack at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the LicensePack is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the LicensePack for the specific language governing permissions and
- * limitations under the LicensePack.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * SPDX-LicensePack-Identifier: Apache-2.0
+ * SPDX-License-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -22,12 +22,15 @@ package ru.arsysop.passage.lic.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import ru.arsysop.passage.lic.model.api.User;
+import ru.arsysop.passage.lic.model.api.UserOrigin;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
@@ -42,6 +45,7 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getEmail <em>Email</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getFullName <em>Full Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.UserImpl#getUserOrigin <em>User Origin</em>}</li>
  * </ul>
  *
  * @generated
@@ -128,6 +132,16 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String description = DESCRIPTION_EDEFAULT;
 
 		/**
+	 * The cached value of the '{@link #getUserOrigin() <em>User Origin</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUserOrigin()
+	 * @generated
+	 * @ordered
+	 */
+	protected UserOrigin userOrigin;
+
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -153,6 +167,18 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 */
 	public String getIdentifier() {
 		return identifier;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.USER__IDENTIFIER, oldIdentifier, identifier));
 	}
 
 		/**
@@ -220,6 +246,96 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 
 		/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserOrigin getUserOrigin() {
+		if (userOrigin != null && userOrigin.eIsProxy()) {
+			InternalEObject oldUserOrigin = (InternalEObject)userOrigin;
+			userOrigin = (UserOrigin)eResolveProxy(oldUserOrigin);
+			if (userOrigin != oldUserOrigin) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LicPackage.USER__USER_ORIGIN, oldUserOrigin, userOrigin));
+			}
+		}
+		return userOrigin;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserOrigin basicGetUserOrigin() {
+		return userOrigin;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetUserOrigin(UserOrigin newUserOrigin, NotificationChain msgs) {
+		UserOrigin oldUserOrigin = userOrigin;
+		userOrigin = newUserOrigin;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LicPackage.USER__USER_ORIGIN, oldUserOrigin, newUserOrigin);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUserOrigin(UserOrigin newUserOrigin) {
+		if (newUserOrigin != userOrigin) {
+			NotificationChain msgs = null;
+			if (userOrigin != null)
+				msgs = ((InternalEObject)userOrigin).eInverseRemove(this, LicPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
+			if (newUserOrigin != null)
+				msgs = ((InternalEObject)newUserOrigin).eInverseAdd(this, LicPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
+			msgs = basicSetUserOrigin(newUserOrigin, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.USER__USER_ORIGIN, newUserOrigin, newUserOrigin));
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LicPackage.USER__USER_ORIGIN:
+				if (userOrigin != null)
+					msgs = ((InternalEObject)userOrigin).eInverseRemove(this, LicPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
+				return basicSetUserOrigin((UserOrigin)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LicPackage.USER__USER_ORIGIN:
+				return basicSetUserOrigin(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -234,6 +350,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 				return getFullName();
 			case LicPackage.USER__DESCRIPTION:
 				return getDescription();
+			case LicPackage.USER__USER_ORIGIN:
+				if (resolve) return getUserOrigin();
+				return basicGetUserOrigin();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -246,6 +365,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
   @Override
   public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case LicPackage.USER__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
 			case LicPackage.USER__EMAIL:
 				setEmail((String)newValue);
 				return;
@@ -254,6 +376,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 				return;
 			case LicPackage.USER__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case LicPackage.USER__USER_ORIGIN:
+				setUserOrigin((UserOrigin)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -267,6 +392,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
   @Override
   public void eUnset(int featureID) {
 		switch (featureID) {
+			case LicPackage.USER__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
 			case LicPackage.USER__EMAIL:
 				setEmail(EMAIL_EDEFAULT);
 				return;
@@ -275,6 +403,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 				return;
 			case LicPackage.USER__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case LicPackage.USER__USER_ORIGIN:
+				setUserOrigin((UserOrigin)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -296,6 +427,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 				return FULL_NAME_EDEFAULT == null ? fullName != null : !FULL_NAME_EDEFAULT.equals(fullName);
 			case LicPackage.USER__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case LicPackage.USER__USER_ORIGIN:
+				return userOrigin != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -41,19 +41,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import ru.arsysop.passage.lic.model.api.User;
+import ru.arsysop.passage.lic.model.api.UserOrigin;
 
 import ru.arsysop.passage.lic.model.edit.LicEditPlugin;
 
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
- * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.User} object.
+ * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.UserOrigin} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserItemProvider 
+public class UserOriginItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -67,7 +67,7 @@ public class UserItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserItemProvider(AdapterFactory adapterFactory) {
+	public UserOriginItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -83,10 +83,9 @@ public class UserItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
-			addEmailPropertyDescriptor(object);
-			addFullNamePropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
-			addUserOriginPropertyDescriptor(object);
+			addUsersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -102,31 +101,9 @@ public class UserItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_identifier_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_identifier_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__IDENTIFIER,
-				 false,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Email feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEmailPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_User_email_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_email_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__EMAIL,
+				 getString("_UI_UserOrigin_identifier_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_identifier_feature", "_UI_UserOrigin_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.USER_ORIGIN__IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -136,19 +113,19 @@ public class UserItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Full Name feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFullNamePropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_fullName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_fullName_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__FULL_NAME,
+				 getString("_UI_UserOrigin_name_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_name_feature", "_UI_UserOrigin_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.USER_ORIGIN__NAME,
 				 true,
 				 false,
 				 false,
@@ -168,9 +145,9 @@ public class UserItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_description_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_description_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__DESCRIPTION,
+				 getString("_UI_UserOrigin_description_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_description_feature", "_UI_UserOrigin_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.USER_ORIGIN__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -180,19 +157,19 @@ public class UserItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the User Origin feature.
+	 * This adds a property descriptor for the Users feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUserOriginPropertyDescriptor(Object object) {
+	protected void addUsersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_User_userOrigin_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_User_userOrigin_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER__USER_ORIGIN,
+				 getString("_UI_UserOrigin_users_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_users_feature", "_UI_UserOrigin_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.USER_ORIGIN__USERS,
 				 true,
 				 false,
 				 true,
@@ -202,14 +179,14 @@ public class UserItemProvider
 	}
 
 	/**
-	 * This returns User.gif.
+	 * This returns UserOrigin.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/user.png")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UserOrigin")); //$NON-NLS-1$
 	}
 
 	/**
@@ -230,10 +207,10 @@ public class UserItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((User)object).getFullName();
+		String label = ((UserOrigin)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_User_type") : //$NON-NLS-1$
-			getString("_UI_User_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_UserOrigin_type") : //$NON-NLS-1$
+			getString("_UI_UserOrigin_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -248,11 +225,10 @@ public class UserItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(User.class)) {
-			case LicPackage.USER__IDENTIFIER:
-			case LicPackage.USER__EMAIL:
-			case LicPackage.USER__FULL_NAME:
-			case LicPackage.USER__DESCRIPTION:
+		switch (notification.getFeatureID(UserOrigin.class)) {
+			case LicPackage.USER_ORIGIN__IDENTIFIER:
+			case LicPackage.USER_ORIGIN__NAME:
+			case LicPackage.USER_ORIGIN__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
