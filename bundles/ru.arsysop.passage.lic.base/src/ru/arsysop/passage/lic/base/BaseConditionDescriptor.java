@@ -2,9 +2,9 @@ package ru.arsysop.passage.lic.base;
 
 import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
-public class BaseConditionDescriptor implements ConditionDescriptor {
+public class BaseConditionDescriptor implements LicensingCondition {
 
 	private final String allowedFeatureId;
 	private final String allowedMatchVersion;

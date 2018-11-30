@@ -46,7 +46,7 @@ import org.eclipse.osgi.service.environment.EnvironmentInfo;
 
 import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.net.RequestProducer;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
 import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
 
@@ -77,9 +77,9 @@ public class NetConditionMiner implements ConditionMiner {
 	}
 
 	@Override
-	public Iterable<ConditionDescriptor> extractConditionDescriptors(Object configuration) {
+	public Iterable<LicensingCondition> extractConditionDescriptors(Object configuration) {
 
-		List<ConditionDescriptor> conditions = new ArrayList<>();
+		List<LicensingCondition> conditions = new ArrayList<>();
 
 		if (environmentInfo == null) {
 			return conditions;
@@ -135,17 +135,17 @@ public class NetConditionMiner implements ConditionMiner {
 			}
 			HttpPost httpPost = new HttpPost(requestBulder.build());
 
-			ResponseHandler<Iterable<ConditionDescriptor>> responseHandler = new ResponseHandler<Iterable<ConditionDescriptor>>() {
+			ResponseHandler<Iterable<LicensingCondition>> responseHandler = new ResponseHandler<Iterable<LicensingCondition>>() {
 
 				@Override
-				public Iterable<ConditionDescriptor> handleResponse(HttpResponse response)
+				public Iterable<LicensingCondition> handleResponse(HttpResponse response)
 						throws ClientProtocolException, IOException {
 					String contentType = response.getEntity().getContentType().getValue();
 					HttpEntity entity = response.getEntity();
 					if (entity != null && entity.getContent() != null) {
 						ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport transport = getConditionDescriptorTransport(
 								contentType);
-						Iterable<ConditionDescriptor> conditionDescriptors = transport
+						Iterable<LicensingCondition> conditionDescriptors = transport
 								.readConditionDescriptors(entity.getContent());
 						return conditionDescriptors;
 					} else {

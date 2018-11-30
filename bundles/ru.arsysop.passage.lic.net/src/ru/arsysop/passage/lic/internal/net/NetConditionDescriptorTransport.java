@@ -9,14 +9,14 @@ import java.util.Collection;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
 
 public class NetConditionDescriptorTransport implements ConditionDescriptorTransport {
-	Collection<ConditionDescriptor> descriptors = new ArrayList<>();
+	Collection<LicensingCondition> descriptors = new ArrayList<>();
 
 	@Override
-	public Iterable<ConditionDescriptor> readConditionDescriptors(InputStream input) throws IOException {
+	public Iterable<LicensingCondition> readConditionDescriptors(InputStream input) throws IOException {
 
 		if (input != null) {
 			ObjectMapper mapper = new ObjectMapper();
@@ -30,7 +30,7 @@ public class NetConditionDescriptorTransport implements ConditionDescriptorTrans
 	}
 
 	@Override
-	public void writeConditionDescriptors(Iterable<ConditionDescriptor> conditions, OutputStream output)
+	public void writeConditionDescriptors(Iterable<LicensingCondition> conditions, OutputStream output)
 			throws IOException {
 		// TODO Auto-generated method stub
 

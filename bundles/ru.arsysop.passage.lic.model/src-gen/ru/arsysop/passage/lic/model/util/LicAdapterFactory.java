@@ -33,7 +33,7 @@ import ru.arsysop.passage.lic.registry.FeatureDescriptor;
 import ru.arsysop.passage.lic.registry.FeatureVersionDescriptor;
 import ru.arsysop.passage.lic.registry.LicenseDescriptor;
 import ru.arsysop.passage.lic.registry.UserDescriptor;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
 import ru.arsysop.passage.lic.registry.ProductVersionDescriptor;
 
@@ -118,7 +118,7 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 				return createLicenseDescriptorAdapter();
 			}
 			@Override
-			public Adapter caseConditionDescriptor(ConditionDescriptor object) {
+			public Adapter caseConditionDescriptor(LicensingCondition object) {
 				return createConditionDescriptorAdapter();
 			}
 			@Override
@@ -258,13 +258,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.runtime.ConditionDescriptor <em>Condition Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link ru.arsysop.passage.lic.runtime.LicensingCondition <em>Condition Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ru.arsysop.passage.lic.runtime.ConditionDescriptor
+	 * @see ru.arsysop.passage.lic.runtime.LicensingCondition
 	 * @generated
 	 */
 	public Adapter createConditionDescriptorAdapter() {

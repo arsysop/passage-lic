@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 
 import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.base.LicensingProperties;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
 import ru.arsysop.passage.lic.runtime.io.StreamCodec;
 import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
@@ -101,8 +101,8 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	}
 
 	@Override
-	public Iterable<ConditionDescriptor> extractConditionDescriptors(Object configuration) {
-		List<ConditionDescriptor> mined = new ArrayList<>();
+	public Iterable<LicensingCondition> extractConditionDescriptors(Object configuration) {
+		List<LicensingCondition> mined = new ArrayList<>();
 		if (conditionDescriptorTransport == null) {
 			return mined;
 		}
@@ -135,8 +135,8 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 				streamCodec.decodeStream(encoded, decoded, keyRing, null);
 				byte[] byteArray = decoded.toByteArray();
 				try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
-					Iterable<ConditionDescriptor> extracted = conditionDescriptorTransport.readConditionDescriptors(input);
-					for (ConditionDescriptor condition : extracted) {
+					Iterable<LicensingCondition> extracted = conditionDescriptorTransport.readConditionDescriptors(input);
+					for (LicensingCondition condition : extracted) {
 						mined.add(condition);
 					}
 				}

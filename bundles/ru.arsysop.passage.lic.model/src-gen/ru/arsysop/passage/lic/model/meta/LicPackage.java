@@ -243,10 +243,10 @@ public interface LicPackage extends EPackage {
 	int LICENSE_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.runtime.ConditionDescriptor <em>Condition Descriptor</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.runtime.LicensingCondition <em>Condition Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ru.arsysop.passage.lic.runtime.ConditionDescriptor
+	 * @see ru.arsysop.passage.lic.runtime.LicensingCondition
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getConditionDescriptor()
 	 * @generated
 	 */
@@ -903,12 +903,12 @@ public interface LicPackage extends EPackage {
 	EClass getLicenseDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.runtime.ConditionDescriptor <em>Condition Descriptor</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.runtime.LicensingCondition <em>Condition Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Condition Descriptor</em>'.
-	 * @see ru.arsysop.passage.lic.runtime.ConditionDescriptor
-	 * @model instanceClass="ru.arsysop.passage.lic.runtime.ConditionDescriptor"
+	 * @see ru.arsysop.passage.lic.runtime.LicensingCondition
+	 * @model instanceClass="ru.arsysop.passage.lic.runtime.LicensingCondition"
 	 * @generated
 	 */
 	EClass getConditionDescriptor();
@@ -1495,10 +1495,10 @@ public interface LicPackage extends EPackage {
 		EClass LICENSE_DESCRIPTOR = eINSTANCE.getLicenseDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.runtime.ConditionDescriptor <em>Condition Descriptor</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.runtime.LicensingCondition <em>Condition Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ru.arsysop.passage.lic.runtime.ConditionDescriptor
+		 * @see ru.arsysop.passage.lic.runtime.LicensingCondition
 		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getConditionDescriptor()
 		 * @generated
 		 */

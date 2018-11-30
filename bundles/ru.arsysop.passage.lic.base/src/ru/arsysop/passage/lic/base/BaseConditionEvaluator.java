@@ -25,20 +25,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<ConditionDescriptor> conditions) {
+	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
 			//FIXME: log error;
 			return result;
 		}
-		for (ConditionDescriptor condition : conditions) {
+		for (LicensingCondition condition : conditions) {
 			String expression = condition.getConditionExpression();
 			Map<String,String> checks = ConditionDescriptors.parseExpression(expression);
 			if (checks.isEmpty()) {

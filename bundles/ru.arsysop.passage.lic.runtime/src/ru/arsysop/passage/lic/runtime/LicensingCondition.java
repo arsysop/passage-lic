@@ -26,7 +26,7 @@ package ru.arsysop.passage.lic.runtime;
  * Obtained from {@link ConditionMiner}
  *
  */
-public interface ConditionDescriptor {
+public interface LicensingCondition {
 
 	String getAllowedFeatureId();
 

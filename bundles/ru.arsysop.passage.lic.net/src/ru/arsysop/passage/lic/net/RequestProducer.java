@@ -47,7 +47,7 @@ import ru.arsysop.passage.lic.internal.net.ConditionDescriptorAggregator;
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
 import ru.arsysop.passage.lic.internal.net.FloatingConditionDescriptor;
 import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public class RequestProducer {
@@ -76,7 +76,7 @@ public class RequestProducer {
 		return createRequestUriBuilder(requestAttributes);
 	}
 
-	public Iterable<? extends ConditionDescriptor> extractConditionsRequest(CloseableHttpClient httpClient,
+	public Iterable<? extends LicensingCondition> extractConditionsRequest(CloseableHttpClient httpClient,
 			HttpHost host, Map<String, String> requestAttributes) {
 		Iterable<FloatingConditionDescriptor> descriptors = new ArrayList<>();
 
@@ -92,7 +92,7 @@ public class RequestProducer {
 	}
 
 	public Iterable<? extends FeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient,
-			HttpHost host, Map<String, String> requestAttributes, Iterable<ConditionDescriptor> conditions) {
+			HttpHost host, Map<String, String> requestAttributes, Iterable<LicensingCondition> conditions) {
 		Iterable<FloatingFeaturePermission> permissions = new ArrayList<>();
 		try {
 			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EVALUATE);
@@ -130,7 +130,7 @@ public class RequestProducer {
 	}
 
 	private FeaturePermissionAggregator processingEvaluateConditions(CloseableHttpClient httpClient, HttpHost host,
-			URIBuilder builder, Iterable<ConditionDescriptor> conditions)
+			URIBuilder builder, Iterable<LicensingCondition> conditions)
 			throws URISyntaxException, ClientProtocolException, IOException {
 
 		HttpPost httpPost = new HttpPost(builder.build());
@@ -138,7 +138,7 @@ public class RequestProducer {
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
 		ConditionDescriptorAggregator transferObject = new ConditionDescriptorAggregator();
-		for (ConditionDescriptor d : conditions) {
+		for (LicensingCondition d : conditions) {
 			if (d instanceof FloatingConditionDescriptor) {
 				transferObject.addConditionDescriptor((FloatingConditionDescriptor) d);
 			}

@@ -34,7 +34,7 @@ import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
@@ -64,7 +64,7 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 		licenseConditions.add(conditionBundle);
 
 		createProductLicense(product, license);
-		Iterable<ConditionDescriptor> conditions = accessManager.extractConditions(product);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
 		assertTrue(conditions.iterator().hasNext());
 		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions);
 		assertTrue(permissions.iterator().hasNext());

@@ -32,24 +32,24 @@ import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class ConditionDescriptorIntegrationTest extends LicIntegrationBase {
 
 	@Test
 	public void testExtractConditionsNegative() {
-		Iterable<ConditionDescriptor> conditionsNull = accessManager.extractConditions(null);
+		Iterable<LicensingCondition> conditionsNull = accessManager.extractConditions(null);
 		assertFalse(conditionsNull.iterator().hasNext());
 
-		Iterable<ConditionDescriptor> conditionsObject = accessManager.extractConditions(new Object());
+		Iterable<LicensingCondition> conditionsObject = accessManager.extractConditions(new Object());
 		assertFalse(conditionsObject.iterator().hasNext());
 
-		Iterable<ConditionDescriptor> conditionsProduct = accessManager.extractConditions(LicFactory.eINSTANCE.createProduct());
+		Iterable<LicensingCondition> conditionsProduct = accessManager.extractConditions(LicFactory.eINSTANCE.createProduct());
 		assertFalse(conditionsProduct.iterator().hasNext());
 
 		Product product = LicFactory.eINSTANCE.createProduct();
 		product.setIdentifier(SOME_PRODUCT_ID);
-		Iterable<ConditionDescriptor> conditions = accessManager.extractConditions(product);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
 		assertFalse(conditions.iterator().hasNext());
 	}
 
@@ -68,7 +68,7 @@ public class ConditionDescriptorIntegrationTest extends LicIntegrationBase {
 		licenseConditions.add(conditionBundle);
 
 		createProductLicense(product, license);
-		Iterable<ConditionDescriptor> conditions = accessManager.extractConditions(product);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
 		assertTrue(conditions.iterator().hasNext());
 		deleteProductLicense(product);
 	}

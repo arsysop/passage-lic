@@ -21,7 +21,7 @@
 package ru.arsysop.passage.lic.runtime;
 
 /**
- * The miner to extract {@link ConditionDescriptor}(s) from different sources:
+ * The miner to extract {@link LicensingCondition}(s) from different sources:
  * <li>local file system</li>
  * <li>network server</li>
  * <li>etc</li>
@@ -33,6 +33,6 @@ public interface ConditionMiner {
 	 * @param configuration
 	 * @return
 	 */
-	Iterable<ConditionDescriptor> extractConditionDescriptors(Object configuration);
+	Iterable<LicensingCondition> extractConditionDescriptors(Object configuration);
 
 }

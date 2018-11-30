@@ -37,17 +37,17 @@ import org.osgi.service.component.annotations.Component;
 
 import ru.arsysop.passage.lic.model.api.License;
 import ru.arsysop.passage.lic.model.api.LicenseCondition;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
 
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_XML })
 public class XmiLicenseConditionExtractor implements ConditionDescriptorTransport {
 
 	@Override
-	public Iterable<ConditionDescriptor> readConditionDescriptors(InputStream input) throws IOException {
+	public Iterable<LicensingCondition> readConditionDescriptors(InputStream input) throws IOException {
 		Resource resource = new XMIResourceImpl();
 		resource.load(input, new HashMap<>());
-		List<ConditionDescriptor> extracted = new ArrayList<>();
+		List<LicensingCondition> extracted = new ArrayList<>();
 		EList<EObject> contents = resource.getContents();
 		for (EObject eObject : contents) {
 			if (eObject instanceof License) {
@@ -60,11 +60,11 @@ public class XmiLicenseConditionExtractor implements ConditionDescriptorTranspor
 	}
 
 	@Override
-	public void writeConditionDescriptors(Iterable<ConditionDescriptor> conditions, OutputStream output)
+	public void writeConditionDescriptors(Iterable<LicensingCondition> conditions, OutputStream output)
 			throws IOException {
 		Resource resource = new XMIResourceImpl();
 		EList<EObject> contents = resource.getContents();
-		for (ConditionDescriptor conditionDescriptor : conditions) {
+		for (LicensingCondition conditionDescriptor : conditions) {
 			if (conditionDescriptor instanceof EObject) {
 				EObject eObject = (EObject) conditionDescriptor;
 				contents.add(eObject);

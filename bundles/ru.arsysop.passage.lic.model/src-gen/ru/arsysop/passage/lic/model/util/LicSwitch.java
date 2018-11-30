@@ -32,7 +32,7 @@ import ru.arsysop.passage.lic.registry.FeatureDescriptor;
 import ru.arsysop.passage.lic.registry.FeatureVersionDescriptor;
 import ru.arsysop.passage.lic.registry.LicenseDescriptor;
 import ru.arsysop.passage.lic.registry.UserDescriptor;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
 import ru.arsysop.passage.lic.registry.ProductVersionDescriptor;
 
@@ -130,7 +130,7 @@ public class LicSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case LicPackage.CONDITION_DESCRIPTOR: {
-				ConditionDescriptor conditionDescriptor = (ConditionDescriptor)theEObject;
+				LicensingCondition conditionDescriptor = (LicensingCondition)theEObject;
 				T result = caseConditionDescriptor(conditionDescriptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -295,7 +295,7 @@ public class LicSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionDescriptor(ConditionDescriptor object) {
+	public T caseConditionDescriptor(LicensingCondition object) {
 		return null;
 	}
 

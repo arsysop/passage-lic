@@ -24,23 +24,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 /**
- * Transport interface for {@link ConditionDescriptor}(s)
+ * Transport interface for {@link LicensingCondition}(s)
  */
 public interface ConditionDescriptorTransport {
 
 	/**
-	 * Reads {@link ConditionDescriptor}(s) from the given {@link InputStream}. 
+	 * Reads {@link LicensingCondition}(s) from the given {@link InputStream}. 
 	 *
 	 */
-	Iterable<ConditionDescriptor> readConditionDescriptors(InputStream input) throws IOException;
+	Iterable<LicensingCondition> readConditionDescriptors(InputStream input) throws IOException;
 
 	/**
-	 * Writes {@link ConditionDescriptor}(s) from the given {@link OutputStream}. 
+	 * Writes {@link LicensingCondition}(s) from the given {@link OutputStream}. 
 	 *
 	 */
-	void writeConditionDescriptors(Iterable<ConditionDescriptor> conditions, OutputStream output) throws IOException;
+	void writeConditionDescriptors(Iterable<LicensingCondition> conditions, OutputStream output) throws IOException;
 
 }

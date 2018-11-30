@@ -23,7 +23,7 @@ package ru.arsysop.passage.lic.base;
 import java.util.HashMap;
 import java.util.Map;
 
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class ConditionDescriptors {
 	
@@ -52,7 +52,7 @@ public class ConditionDescriptors {
 		return map;
 	}
 	
-	public static ConditionDescriptor create(String featureId, String version, String rule, String type, String expression) {
+	public static LicensingCondition create(String featureId, String version, String rule, String type, String expression) {
 		return new BaseConditionDescriptor(featureId, version, rule, type, expression);
 	}
 

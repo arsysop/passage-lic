@@ -33,7 +33,7 @@ import org.junit.Test;
 import ru.arsysop.passage.lic.base.ConditionDescriptors;
 import ru.arsysop.passage.lic.internal.oshi.OshiConditionEvaluator;
 import ru.arsysop.passage.lic.oshi.OshiHal;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 @SuppressWarnings("restriction")
@@ -51,17 +51,17 @@ public class OshiConditionEvaluatorTest {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
 		assertEmpty(evaluator.evaluateConditions(null));
 
-		Set<ConditionDescriptor> empty = Collections.singleton(createOshiCondition(new String()));
+		Set<LicensingCondition> empty = Collections.singleton(createOshiCondition(new String()));
 		assertEmpty(evaluator.evaluateConditions(empty));
 
-		Set<ConditionDescriptor> unknown = Collections.singleton(createOshiCondition(EXPRESSION_OS_X3));
+		Set<LicensingCondition> unknown = Collections.singleton(createOshiCondition(EXPRESSION_OS_X3));
 		assertEmpty(evaluator.evaluateConditions(unknown));
 	}
 
 	@Test
 	public void testEvaluateConditionPositive() throws Exception {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
-		Set<ConditionDescriptor> future = Collections.singleton(createOshiCondition(EXPRESSION_OS_ANY));
+		Set<LicensingCondition> future = Collections.singleton(createOshiCondition(EXPRESSION_OS_ANY));
 		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
@@ -72,7 +72,7 @@ public class OshiConditionEvaluatorTest {
 
 	@Test
 	public void testOshiCondition() throws Exception {
-		ConditionDescriptor condition = createOshiCondition(EXPRESSION_OS_X3);
+		LicensingCondition condition = createOshiCondition(EXPRESSION_OS_X3);
 		assertEquals(EXPRESSION_OS_X3, condition.getConditionExpression());
 		assertEquals(OshiHal.CONDITION_TYPE_HARDWARE, condition.getConditionType());
 		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getAllowedFeatureId());
@@ -84,7 +84,7 @@ public class OshiConditionEvaluatorTest {
 		assertFalse(iterable.iterator().hasNext());
 	}
 
-	public static ConditionDescriptor createOshiCondition(String expression) {
+	public static LicensingCondition createOshiCondition(String expression) {
 		return ConditionDescriptors.create(OSHI_HARDWARE_FEATURE_ID, OSHI_HARDWARE_MATCH_VERSION, OSHI_HARDWARE_MATCH_RULE, OshiHal.CONDITION_TYPE_HARDWARE, expression);
 	}
 

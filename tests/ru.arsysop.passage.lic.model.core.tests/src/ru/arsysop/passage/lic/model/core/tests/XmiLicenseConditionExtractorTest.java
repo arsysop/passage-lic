@@ -40,7 +40,7 @@ import ru.arsysop.passage.lic.model.api.License;
 import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.model.core.XmiLicenseConditionExtractor;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class XmiLicenseConditionExtractorTest {
 
@@ -94,19 +94,19 @@ public class XmiLicenseConditionExtractorTest {
 			saved.save(fos, new HashMap<>());
 		}
 
-		List<ConditionDescriptor> actual = new ArrayList<>();
+		List<LicensingCondition> actual = new ArrayList<>();
 		try (FileInputStream fis = new FileInputStream(file)) {
-			Iterable<ConditionDescriptor> extracted = extractor.readConditionDescriptors(fis);
-			for (ConditionDescriptor descriptor : extracted) {
+			Iterable<LicensingCondition> extracted = extractor.readConditionDescriptors(fis);
+			for (LicensingCondition descriptor : extracted) {
 				actual.add(descriptor);
 			}
 		}
 		assertEquals(2, actual.size());
-		ConditionDescriptor actual1 = actual.get(0);
+		LicensingCondition actual1 = actual.get(0);
 		assertEquals(COND1_FEATURE_ID, actual1.getAllowedFeatureId());
 		assertEquals(COND1_CONDITION_TYPE, actual1.getConditionType());
 		assertEquals(COND1_CONDITION_EXPRESSION, actual1.getConditionExpression());
-		ConditionDescriptor actual2 = actual.get(1);
+		LicensingCondition actual2 = actual.get(1);
 		assertEquals(COND2_FEATURE_ID, actual2.getAllowedFeatureId());
 		assertEquals(COND2_CONDITION_TYPE, actual2.getConditionType());
 		assertEquals(COND2_CONDITION_EXPRESSION, actual2.getConditionExpression());

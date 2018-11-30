@@ -33,7 +33,7 @@ import java.util.Set;
 
 import ru.arsysop.passage.lic.base.LicensingEvents.LicensingLifeCycle;
 import ru.arsysop.passage.lic.runtime.AccessManager;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
@@ -92,7 +92,7 @@ public abstract class BaseAccessManager implements AccessManager {
 	@Override
 	public void executeAccessRestrictions(Object configuration) {
 		Iterable<ConfigurationRequirement> requirements = resolveRequirements(configuration);
-		Iterable<ConditionDescriptor> conditions = extractConditions(configuration);
+		Iterable<LicensingCondition> conditions = extractConditions(configuration);
 		Iterable<FeaturePermission> permissions = evaluateConditions(conditions);
 		Iterable<RestrictionVerdict> verdicts = examinePermissons(requirements, permissions, configuration);
 		executeRestrictions(verdicts);
@@ -114,34 +114,34 @@ public abstract class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public Iterable<ConditionDescriptor> extractConditions(Object configuration) {
-		List<ConditionDescriptor> result = new ArrayList<>();
+	public Iterable<LicensingCondition> extractConditions(Object configuration) {
+		List<LicensingCondition> result = new ArrayList<>();
 		for (ConditionMiner conditionMiner : conditionMiners) {
-			Iterable<ConditionDescriptor> conditions = conditionMiner.extractConditionDescriptors(configuration);
-			for (ConditionDescriptor condition : conditions) {
+			Iterable<LicensingCondition> conditions = conditionMiner.extractConditionDescriptors(configuration);
+			for (LicensingCondition condition : conditions) {
 				result.add(condition);
 			}
 		}
-		List<ConditionDescriptor> unmodifiable = Collections.unmodifiableList(result);
+		List<LicensingCondition> unmodifiable = Collections.unmodifiableList(result);
 		postEvent(LicensingLifeCycle.CONDITIONS_EXTRACTED, unmodifiable);
 		return unmodifiable;
 	}
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<ConditionDescriptor> conditions) {
+	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
 			// FIXME: log error;
 			return result;
 		}
-		Map<String, List<ConditionDescriptor>> map = new HashMap<>();
-		for (ConditionDescriptor condition : conditions) {
+		Map<String, List<LicensingCondition>> map = new HashMap<>();
+		for (LicensingCondition condition : conditions) {
 			if (condition == null) {
 				// FIXME: log error;
 				continue;
 			}
 			String type = condition.getConditionType();
-			List<ConditionDescriptor> list = map.computeIfAbsent(type, key -> new ArrayList<>());
+			List<LicensingCondition> list = map.computeIfAbsent(type, key -> new ArrayList<>());
 			list.add(condition);
 		}
 		Set<String> types = map.keySet();

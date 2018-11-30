@@ -23,7 +23,7 @@ package ru.arsysop.passage.lic.model.api;
 
 import org.eclipse.emf.ecore.EObject;
 
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
  * @model superTypes="ru.arsysop.passage.lic.model.api.ConditionDescriptor"
  * @generated
  */
-public interface LicenseCondition extends EObject, ConditionDescriptor {
+public interface LicenseCondition extends EObject, LicensingCondition {
 	/**
 	 * Returns the value of the '<em><b>Allowed Feature Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->

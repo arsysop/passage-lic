@@ -20,7 +20,7 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
@@ -54,12 +54,12 @@ public class LicensingEvents {
 		public static final String REQUIREMENTS_RESOLVED = TOPIC + TOPIC_SEP + "requirementsResolved"; //$NON-NLS-1$
 
 		/**
-		 * Sent when {@link ConditionDescriptor}(s) are extracted
+		 * Sent when {@link LicensingCondition}(s) are extracted
 		 */
 		public static final String CONDITIONS_EXTRACTED = TOPIC + TOPIC_SEP + "conditionsExtracted"; //$NON-NLS-1$
 
 		/**
-		 * Sent when {@link ConditionDescriptor}(s) are evaluated
+		 * Sent when {@link LicensingCondition}(s) are evaluated
 		 */
 		public static final String CONDITIONS_EVALUATED = TOPIC + TOPIC_SEP + "conditionsEvaluated"; //$NON-NLS-1$
 
