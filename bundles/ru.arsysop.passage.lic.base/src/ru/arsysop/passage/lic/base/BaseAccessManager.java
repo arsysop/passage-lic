@@ -20,15 +20,18 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
+import static ru.arsysop.passage.lic.base.LicensingEvents.*;
 import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import ru.arsysop.passage.lic.base.LicensingEvents.LicensingLifeCycle;
 import ru.arsysop.passage.lic.runtime.AccessManager;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
@@ -40,7 +43,7 @@ import ru.arsysop.passage.lic.runtime.PermissionExaminer;
 import ru.arsysop.passage.lic.runtime.RestrictionExecutor;
 import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
-public class BaseAccessManager implements AccessManager {
+public abstract class BaseAccessManager implements AccessManager {
 
 	private final List<ConfigurationResolver> configurationResolvers = new ArrayList<>();
 	private final List<ConditionMiner> conditionMiners = new ArrayList<>();
@@ -97,7 +100,7 @@ public class BaseAccessManager implements AccessManager {
 
 	@Override
 	public Iterable<ConfigurationRequirement> resolveRequirements(Object configuration) {
-		Collection<ConfigurationRequirement> result = new ArrayList<>();
+		List<ConfigurationRequirement> result = new ArrayList<>();
 		for (ConfigurationResolver configurationResolver : configurationResolvers) {
 			Iterable<ConfigurationRequirement> requirements = configurationResolver
 					.resolveConfigurationRequirements(configuration);
@@ -105,24 +108,28 @@ public class BaseAccessManager implements AccessManager {
 				result.add(requirement);
 			}
 		}
-		return result;
+		List<ConfigurationRequirement> unmodifiable = Collections.unmodifiableList(result);
+		postEvent(LicensingLifeCycle.REQUIREMENTS_RESOLVED, unmodifiable);
+		return unmodifiable;
 	}
 
 	@Override
 	public Iterable<ConditionDescriptor> extractConditions(Object configuration) {
-		Collection<ConditionDescriptor> result = new ArrayList<>();
+		List<ConditionDescriptor> result = new ArrayList<>();
 		for (ConditionMiner conditionMiner : conditionMiners) {
 			Iterable<ConditionDescriptor> conditions = conditionMiner.extractConditionDescriptors(configuration);
 			for (ConditionDescriptor condition : conditions) {
 				result.add(condition);
 			}
 		}
-		return result;
+		List<ConditionDescriptor> unmodifiable = Collections.unmodifiableList(result);
+		postEvent(LicensingLifeCycle.CONDITIONS_EXTRACTED, unmodifiable);
+		return unmodifiable;
 	}
 
 	@Override
 	public Iterable<FeaturePermission> evaluateConditions(Iterable<ConditionDescriptor> conditions) {
-		Collection<FeaturePermission> result = new ArrayList<>();
+		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
 			// FIXME: log error;
 			return result;
@@ -149,7 +156,9 @@ public class BaseAccessManager implements AccessManager {
 				result.add(permission);
 			}
 		}
-		return result;
+		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
+		postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, unmodifiable);
+		return unmodifiable;
 	}
 
 	@Override
@@ -158,7 +167,9 @@ public class BaseAccessManager implements AccessManager {
 		if (examiner == null) {
 			examiner = new BasePermissionExaminer();
 		}
-		return examiner.examine(requirements, permissions, configuration);
+		Iterable<RestrictionVerdict> examined = examiner.examine(requirements, permissions, configuration);
+		postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, examined);
+		return examined;
 	}
 
 	@Override
@@ -170,6 +181,10 @@ public class BaseAccessManager implements AccessManager {
 				// TODO: handle exception
 			}
 		}
+		postEvent(LicensingLifeCycle.RESTRICTION_EXECUTED, restrictions);
 	}
+	
+	protected abstract void postEvent(String topic, Object data);
 
+	protected abstract void sendEvent(String topic, Object data);
 }
