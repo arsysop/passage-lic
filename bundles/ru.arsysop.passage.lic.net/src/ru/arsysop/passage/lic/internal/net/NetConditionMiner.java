@@ -62,9 +62,9 @@ public class NetConditionMiner implements ConditionMiner {
 	private static String HOST_KEY = "passage.server.host";
 	private static String PORT_KEY = "passage.server.port";
 
-	Map<String, ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport> contentType2ConditionDescriptorTransport;
+	private final Map<String, ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport> contentType2ConditionDescriptorTransport = new HashMap<>();
 
-	Map<String, String> settingsMap = new HashMap<>();
+	private final Map<String, String> settingsMap = new HashMap<>();
 
 	Logger logger = Logger.getLogger(NetConditionMiner.class.getName());
 
@@ -107,7 +107,8 @@ public class NetConditionMiner implements ConditionMiner {
 
 		for (Path path : settinsFiles) {
 			try {
-				settingsMap = loadIstallationAreaSettings(Files.readAllLines(path));
+				Map<String, String> loadedSettings = loadIstallationAreaSettings(Files.readAllLines(path));
+				settingsMap.putAll(loadedSettings);;
 			} catch (Exception e) {
 				logger.log(Level.FINEST, e.getMessage(), e);
 			}

@@ -39,6 +39,7 @@ import java.util.logging.Logger;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 
 import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.base.LicensingProperties;
@@ -85,7 +86,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 		this.streamCodec = null;
 	}
 
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
 	public void bindConditionDescriptorTransport(ConditionDescriptorTransport transport, Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		if (LicensingProperties.LICENSING_CONTENT_TYPE_XML.equals(contentType)) {
