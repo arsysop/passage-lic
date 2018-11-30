@@ -42,7 +42,7 @@ public class BaseFeaturePermission implements FeaturePermission {
 	}
 
 	@Override
-	public String getFeatureIdentifier() {
+	public String getFeatureId() {
 		return featureId;
 	}
 

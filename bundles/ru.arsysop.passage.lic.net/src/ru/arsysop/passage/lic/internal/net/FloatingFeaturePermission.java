@@ -24,8 +24,13 @@ import ru.arsysop.passage.lic.base.BaseFeaturePermission;
 
 public class FloatingFeaturePermission extends BaseFeaturePermission {
 
-	public FloatingFeaturePermission(String featureId, String matchVersion, String matchRule, long leaseTime, long expireTime) {
-		super(featureId, matchVersion, matchRule, leaseTime,expireTime);
+	public FloatingFeaturePermission() {
+		super("", "", "", 0l, 0l);
+	}
+
+	public FloatingFeaturePermission(String featureId, String matchVersion, String matchRule, long leaseTime,
+			long expireTime) {
+		super(featureId, matchVersion, matchRule, leaseTime, expireTime);
 	}
 
 }

@@ -43,7 +43,7 @@ public class BasePermissionExaminer implements PermissionExaminer {
 			unsatisfied.put(featureId, requirement);
 		}
 		for (FeaturePermission permission : permissions) {
-			String featureId = permission.getFeatureIdentifier();
+			String featureId = permission.getFeatureId();
 			unsatisfied.remove(featureId);
 		}
 		List<RestrictionVerdict> verdicts = new ArrayList<>();

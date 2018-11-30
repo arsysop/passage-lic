@@ -17,9 +17,9 @@ import ru.arsysop.passage.lic.internal.net.FloatingConditionDescriptor;
 import ru.arsysop.passage.lic.internal.net.NetConditionDescriptorTransport;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
+@SuppressWarnings("restriction")
 public class NetConditionDescriptorTransportTest {
 
-	@SuppressWarnings("restriction")
 	@Test
 	public void netConditionDescriptorTransportTest() {
 		ObjectMapper mapper = new ObjectMapper();
