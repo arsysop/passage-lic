@@ -23,7 +23,7 @@ package ru.arsysop.passage.lic.internal.net;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConditionDescriptorTransport {
+public class ConditionDescriptorAggregator {
 
 	private final List<FloatingConditionDescriptor> conditionDescriptors = new ArrayList<>();
 

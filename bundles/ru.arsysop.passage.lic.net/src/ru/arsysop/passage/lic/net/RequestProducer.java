@@ -42,11 +42,11 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import ru.arsysop.passage.lic.base.LicensingProperties;
+import ru.arsysop.passage.lic.internal.net.ConditionDescriptorAggregator;
+import ru.arsysop.passage.lic.internal.net.FeaturePermissionTransport;
 import ru.arsysop.passage.lic.internal.net.FloatingConditionDescriptor;
 import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
-import ru.arsysop.passage.lic.base.LicensingProperties;
-import ru.arsysop.passage.lic.internal.net.ConditionDescriptorTransport;
-import ru.arsysop.passage.lic.internal.net.FeaturePermissionTransport;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
@@ -83,7 +83,7 @@ public class RequestProducer {
 		try {
 			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EXTRACT);
 			URIBuilder builder = createRequestUriBuilder(requestAttributes);
-			ConditionDescriptorTransport transferObject = processingExtractConditions(httpClient, host, builder);
+			ConditionDescriptorAggregator transferObject = processingExtractConditions(httpClient, host, builder);
 			descriptors = transferObject.getConditionDescriptors();
 		} catch (Exception e) {
 			Logger.getLogger(RequestProducer.class.getName()).info(e.getMessage());
@@ -106,39 +106,20 @@ public class RequestProducer {
 		return permissions;
 	}
 
-	private InputStream processingExtractConditionsStream(CloseableHttpClient httpClient, HttpHost host,
+	private ConditionDescriptorAggregator processingExtractConditions(CloseableHttpClient httpClient, HttpHost host,
 			URIBuilder builder) throws URISyntaxException, IOException, ClientProtocolException {
 
 		HttpPost httpPost = new HttpPost(builder.build());
-		ResponseHandler<InputStream> responseHandler = new ResponseHandler<InputStream>() {
+		ResponseHandler<ConditionDescriptorAggregator> responseHandler = new ResponseHandler<ConditionDescriptorAggregator>() {
 
 			@Override
-			public InputStream handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
-				HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					return entity.getContent();
-				}
-				return null;
-			}
-		};
-		InputStream stream = httpClient.execute(host, httpPost, responseHandler);
-		return stream;
-	}
-
-	private ConditionDescriptorTransport processingExtractConditions(CloseableHttpClient httpClient, HttpHost host,
-			URIBuilder builder) throws URISyntaxException, IOException, ClientProtocolException {
-
-		HttpPost httpPost = new HttpPost(builder.build());
-		ResponseHandler<ConditionDescriptorTransport> responseHandler = new ResponseHandler<ConditionDescriptorTransport>() {
-
-			@Override
-			public ConditionDescriptorTransport handleResponse(HttpResponse response)
+			public ConditionDescriptorAggregator handleResponse(HttpResponse response)
 					throws ClientProtocolException, IOException {
-				ConditionDescriptorTransport transferObject = null;
+				ConditionDescriptorAggregator transferObject = null;
 				HttpEntity entity = response.getEntity();
 				ObjectMapper mapper = new ObjectMapper();
 				try (InputStream inputContext = entity.getContent()) {
-					transferObject = mapper.readValue(inputContext, ConditionDescriptorTransport.class);
+					transferObject = mapper.readValue(inputContext, ConditionDescriptorAggregator.class);
 				} catch (Exception e) {
 					logger.info(e.getMessage());
 				}
@@ -156,7 +137,7 @@ public class RequestProducer {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-		ConditionDescriptorTransport transferObject = new ConditionDescriptorTransport();
+		ConditionDescriptorAggregator transferObject = new ConditionDescriptorAggregator();
 		for (ConditionDescriptor d : conditions) {
 			if (d instanceof FloatingConditionDescriptor) {
 				transferObject.addConditionDescriptor((FloatingConditionDescriptor) d);
