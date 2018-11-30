@@ -32,10 +32,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
@@ -44,17 +48,22 @@ import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.net.RequestProducer;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
+import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
 
 public class NetConditionMiner implements ConditionMiner {
+	private static final String LICENSING_CONTENT_TYPE = "licensing.content.type";
 	private static final String HOST_PORT = "%s:%s";
 	private static final String PORT_VALUE_NOT_SPECIFIED_ERROR = "Port value not specified for miner";
 	private static final String HOST_VALUE_NOT_SPECIFIED_ERROR = "Host value not specified for miner";
 	private static final String SETTINGS_EXTENSION = ".settings";
 	private final String MODE = "client";
-	public static String HOST_KEY = "passage.server.host";
-	public static String PORT_KEY = "passage.server.port";
-
 	private EnvironmentInfo environmentInfo;
+
+	private static String HOST_KEY = "passage.server.host";
+	private static String PORT_KEY = "passage.server.port";
+
+	Map<String, ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport> contentType2ConditionDescriptorTransport;
+
 	Map<String, String> settingsMap = new HashMap<>();
 
 	Logger logger = Logger.getLogger(NetConditionMiner.class.getName());
@@ -120,14 +129,61 @@ public class NetConditionMiner implements ConditionMiner {
 
 			Map<String, String> requestAttributes = requestProducer.initRequestParams(hostValue, portValue, MODE);
 			HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
-			Iterable<? extends ConditionDescriptor> descriptors = requestProducer.extractConditionsRequest(httpClient,
-					host, requestAttributes);
-			conditions = StreamSupport.stream(descriptors.spliterator(), false).collect(Collectors.toList());
+			URIBuilder requestBulder = requestProducer.createRequestURI(httpClient, host, requestAttributes);
+			if (requestBulder == null) {
+				logger.log(Level.FINEST, "Could not create URI for request");
+			}
+			HttpPost httpPost = new HttpPost(requestBulder.build());
+
+			ResponseHandler<Iterable<ConditionDescriptor>> responseHandler = new ResponseHandler<Iterable<ConditionDescriptor>>() {
+
+				@Override
+				public Iterable<ConditionDescriptor> handleResponse(HttpResponse response)
+						throws ClientProtocolException, IOException {
+					String contentType = response.getEntity().getContentType().getValue();
+					HttpEntity entity = response.getEntity();
+					if (entity != null && entity.getContent() != null) {
+						ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport transport = getConditionDescriptorTransport(
+								contentType);
+						Iterable<ConditionDescriptor> conditionDescriptors = transport
+								.readConditionDescriptors(entity.getContent());
+						return conditionDescriptors;
+					} else {
+						logger.log(Level.FINE, "Could not recieve a inputStream from request");
+					}
+					return null;
+				}
+			};
+			httpClient.execute(host, httpPost, responseHandler);
+
 		} catch (Exception e) {
-			Logger logger = Logger.getLogger(NetConditionMiner.class.getName());
 			logger.log(Level.FINER, e.getMessage());
 		}
 		return conditions;
+	}
+
+	private ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport getConditionDescriptorTransport(
+			String typeOfContent) {
+		return contentType2ConditionDescriptorTransport.get(typeOfContent);
+	}
+
+	public void bindConditionDescriptorTransport(ConditionDescriptorTransport transport, Map<String, String> context) {
+		String contentType = context.get(LICENSING_CONTENT_TYPE);
+		if (contentType != null) {
+			if (!contentType2ConditionDescriptorTransport.containsKey(contentType)) {
+				contentType2ConditionDescriptorTransport.put(contentType, transport);
+			}
+		}
+	}
+
+	public void unbindConditionDescriptorTransport(ConditionDescriptorTransport transport,
+			Map<String, String> context) {
+		String contentType = context.get(LICENSING_CONTENT_TYPE);
+		if (contentType != null) {
+			if (contentType2ConditionDescriptorTransport.containsKey(contentType)) {
+				contentType2ConditionDescriptorTransport.remove(contentType, transport);
+			}
+		}
 	}
 
 	private Map<String, String> loadIstallationAreaSettings(List<String> readAllLines) {

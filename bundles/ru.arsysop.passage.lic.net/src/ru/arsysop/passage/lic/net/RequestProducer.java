@@ -70,8 +70,14 @@ public class RequestProducer {
 		return requestAttributes;
 	}
 
-	public Iterable<? extends ConditionDescriptor> extractConditionsRequest(CloseableHttpClient httpClient, HttpHost host,
+	public URIBuilder createRequestURI(CloseableHttpClient httpClient, HttpHost host,
 			Map<String, String> requestAttributes) {
+		requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EXTRACT);
+		return createRequestUriBuilder(requestAttributes);
+	}
+
+	public Iterable<? extends ConditionDescriptor> extractConditionsRequest(CloseableHttpClient httpClient,
+			HttpHost host, Map<String, String> requestAttributes) {
 		Iterable<FloatingConditionDescriptor> descriptors = new ArrayList<>();
 
 		try {
@@ -85,8 +91,8 @@ public class RequestProducer {
 		return descriptors;
 	}
 
-	public Iterable<? extends FeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient, HttpHost host,
-			Map<String, String> requestAttributes, Iterable<ConditionDescriptor> conditions) {
+	public Iterable<? extends FeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient,
+			HttpHost host, Map<String, String> requestAttributes, Iterable<ConditionDescriptor> conditions) {
 		Iterable<FloatingFeaturePermission> permissions = new ArrayList<>();
 		try {
 			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EVALUATE);
@@ -98,6 +104,25 @@ public class RequestProducer {
 			Logger.getLogger(RequestProducer.class.getName()).info(e.getMessage());
 		}
 		return permissions;
+	}
+
+	private InputStream processingExtractConditionsStream(CloseableHttpClient httpClient, HttpHost host,
+			URIBuilder builder) throws URISyntaxException, IOException, ClientProtocolException {
+
+		HttpPost httpPost = new HttpPost(builder.build());
+		ResponseHandler<InputStream> responseHandler = new ResponseHandler<InputStream>() {
+
+			@Override
+			public InputStream handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					return entity.getContent();
+				}
+				return null;
+			}
+		};
+		InputStream stream = httpClient.execute(host, httpPost, responseHandler);
+		return stream;
 	}
 
 	private ConditionDescriptorTransport processingExtractConditions(CloseableHttpClient httpClient, HttpHost host,
@@ -188,8 +213,7 @@ public class RequestProducer {
 		try {
 			builder = new URIBuilder(requestHead);
 			for (Entry<String, String> entry : attributes.entrySet()) {
-				if (entry.getKey().equals(RequestParameters.HOST)
-						|| entry.getKey().equals(RequestParameters.PORT)) {
+				if (entry.getKey().equals(RequestParameters.HOST) || entry.getKey().equals(RequestParameters.PORT)) {
 					continue;
 				}
 				builder.setParameter(entry.getKey(), entry.getValue());
