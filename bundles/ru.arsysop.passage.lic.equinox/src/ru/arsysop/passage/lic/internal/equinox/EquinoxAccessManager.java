@@ -47,7 +47,7 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 		this.eventAdmin = eventAdmin;
 	}
 	
-	public void unbindEventBroker(EventAdmin eventAdmin) {
+	public void unbindEventAdmin(EventAdmin eventAdmin) {
 		this.eventAdmin = eventAdmin;
 	}
 	
