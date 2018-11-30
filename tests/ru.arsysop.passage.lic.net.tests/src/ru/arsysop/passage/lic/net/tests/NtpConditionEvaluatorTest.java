@@ -79,9 +79,9 @@ public class NtpConditionEvaluatorTest {
 		LicensingCondition netCondition = createNetCondition(EXPRESSION_EXPIRED);
 		assertEquals(EXPRESSION_EXPIRED, netCondition.getConditionExpression());
 		assertEquals(TimeConditions.CONDITION_TYPE_TIME, netCondition.getConditionType());
-		assertEquals(NET_TIME_FEATURE_ID, netCondition.getAllowedFeatureId());
-		assertEquals(NET_TIME_MATCH_RULE, netCondition.getAllowedMatchRule());
-		assertEquals(NET_TIME_MATCH_VERSION, netCondition.getAllowedMatchVersion());
+		assertEquals(NET_TIME_FEATURE_ID, netCondition.getFeatureIdentifier());
+		assertEquals(NET_TIME_MATCH_RULE, netCondition.getMatchRule());
+		assertEquals(NET_TIME_MATCH_VERSION, netCondition.getMatchVersion());
 	}
 	
 	private void assertEmpty(Iterable<FeaturePermission> iterable) {

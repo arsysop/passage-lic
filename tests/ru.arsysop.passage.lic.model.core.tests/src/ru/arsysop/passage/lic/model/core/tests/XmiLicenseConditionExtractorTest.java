@@ -103,11 +103,11 @@ public class XmiLicenseConditionExtractorTest {
 		}
 		assertEquals(2, actual.size());
 		LicensingCondition actual1 = actual.get(0);
-		assertEquals(COND1_FEATURE_ID, actual1.getAllowedFeatureId());
+		assertEquals(COND1_FEATURE_ID, actual1.getFeatureIdentifier());
 		assertEquals(COND1_CONDITION_TYPE, actual1.getConditionType());
 		assertEquals(COND1_CONDITION_EXPRESSION, actual1.getConditionExpression());
 		LicensingCondition actual2 = actual.get(1);
-		assertEquals(COND2_FEATURE_ID, actual2.getAllowedFeatureId());
+		assertEquals(COND2_FEATURE_ID, actual2.getFeatureIdentifier());
 		assertEquals(COND2_CONDITION_TYPE, actual2.getConditionType());
 		assertEquals(COND2_CONDITION_EXPRESSION, actual2.getConditionExpression());
 	}

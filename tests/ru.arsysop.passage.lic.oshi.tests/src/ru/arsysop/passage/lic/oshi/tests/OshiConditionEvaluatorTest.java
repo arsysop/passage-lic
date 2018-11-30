@@ -75,9 +75,9 @@ public class OshiConditionEvaluatorTest {
 		LicensingCondition condition = createOshiCondition(EXPRESSION_OS_X3);
 		assertEquals(EXPRESSION_OS_X3, condition.getConditionExpression());
 		assertEquals(OshiHal.CONDITION_TYPE_HARDWARE, condition.getConditionType());
-		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getAllowedFeatureId());
-		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getAllowedMatchRule());
-		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getAllowedMatchVersion());
+		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getFeatureIdentifier());
+		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getMatchRule());
+		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getMatchVersion());
 	}
 
 	private void assertEmpty(Iterable<FeaturePermission> iterable) {

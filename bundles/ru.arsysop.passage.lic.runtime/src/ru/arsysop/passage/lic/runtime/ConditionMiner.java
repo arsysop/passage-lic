@@ -33,6 +33,6 @@ public interface ConditionMiner {
 	 * @param configuration
 	 * @return
 	 */
-	Iterable<LicensingCondition> extractConditionDescriptors(Object configuration);
+	Iterable<LicensingCondition> extractLicensingConditions(Object configuration);
 
 }

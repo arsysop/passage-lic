@@ -77,7 +77,7 @@ public class NetConditionMiner implements ConditionMiner {
 	}
 
 	@Override
-	public Iterable<LicensingCondition> extractConditionDescriptors(Object configuration) {
+	public Iterable<LicensingCondition> extractLicensingConditions(Object configuration) {
 
 		List<LicensingCondition> conditions = new ArrayList<>();
 

@@ -220,7 +220,7 @@ public class LicenseConditionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LicenseCondition)object).getAllowedFeatureId();
+		String label = ((LicenseCondition)object).getFeatureIdentifier();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LicenseCondition_type") : //$NON-NLS-1$
 			getString("_UI_LicenseCondition_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

@@ -21,17 +21,17 @@ public class BaseConditionDescriptor implements LicensingCondition {
 	}
 
 	@Override
-	public String getAllowedFeatureId() {
+	public String getFeatureIdentifier() {
 		return allowedFeatureId;
 	}
 
 	@Override
-	public String getAllowedMatchVersion() {
+	public String getMatchVersion() {
 		return allowedMatchVersion;
 	}
 
 	@Override
-	public String getAllowedMatchRule() {
+	public String getMatchRule() {
 		return allowedMatchRule;
 	}
 

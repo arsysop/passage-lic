@@ -117,7 +117,7 @@ public abstract class BaseAccessManager implements AccessManager {
 	public Iterable<LicensingCondition> extractConditions(Object configuration) {
 		List<LicensingCondition> result = new ArrayList<>();
 		for (ConditionMiner conditionMiner : conditionMiners) {
-			Iterable<LicensingCondition> conditions = conditionMiner.extractConditionDescriptors(configuration);
+			Iterable<LicensingCondition> conditions = conditionMiner.extractLicensingConditions(configuration);
 			for (LicensingCondition condition : conditions) {
 				result.add(condition);
 			}

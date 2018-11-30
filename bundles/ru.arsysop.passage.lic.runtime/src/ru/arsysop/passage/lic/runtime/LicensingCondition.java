@@ -28,11 +28,11 @@ package ru.arsysop.passage.lic.runtime;
  */
 public interface LicensingCondition {
 
-	String getAllowedFeatureId();
+	String getFeatureIdentifier();
 
-	String getAllowedMatchVersion();
+	String getMatchVersion();
 
-	String getAllowedMatchRule();
+	String getMatchRule();
 
 	/**
 	 * the type of condition like "nist" for time or "hdd" for disk-locked
@@ -42,4 +42,5 @@ public interface LicensingCondition {
 	String getConditionType();
 
 	String getConditionExpression();
+
 }

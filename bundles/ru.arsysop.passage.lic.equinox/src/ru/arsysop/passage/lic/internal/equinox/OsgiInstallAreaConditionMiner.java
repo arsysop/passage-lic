@@ -101,7 +101,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	}
 
 	@Override
-	public Iterable<LicensingCondition> extractConditionDescriptors(Object configuration) {
+	public Iterable<LicensingCondition> extractLicensingConditions(Object configuration) {
 		List<LicensingCondition> mined = new ArrayList<>();
 		if (conditionDescriptorTransport == null) {
 			return mined;

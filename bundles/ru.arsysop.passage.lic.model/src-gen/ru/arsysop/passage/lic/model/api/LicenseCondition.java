@@ -60,14 +60,14 @@ public interface LicenseCondition extends EObject, LicensingCondition {
 	 * @model required="true"
 	 * @generated
 	 */
-	String getAllowedFeatureId();
+	String getFeatureIdentifier();
 
 	/**
 	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureId <em>Allowed Feature Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Allowed Feature Id</em>' attribute.
-	 * @see #getAllowedFeatureId()
+	 * @see #getFeatureIdentifier()
 	 * @generated
 	 */
 	void setAllowedFeatureId(String value);
@@ -87,14 +87,14 @@ public interface LicenseCondition extends EObject, LicensingCondition {
 	 * @model default="0.0.0" required="true"
 	 * @generated
 	 */
-	String getAllowedMatchVersion();
+	String getMatchVersion();
 
 	/**
 	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Allowed Feature Match Version</em>' attribute.
-	 * @see #getAllowedMatchVersion()
+	 * @see #getMatchVersion()
 	 * @generated
 	 */
 	void setAllowedFeatureMatchVersion(String value);
@@ -113,14 +113,14 @@ public interface LicenseCondition extends EObject, LicensingCondition {
 	 * @model
 	 * @generated
 	 */
-	String getAllowedMatchRule();
+	String getMatchRule();
 
 	/**
 	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Allowed Feature Match Rule</em>' attribute.
-	 * @see #getAllowedMatchRule()
+	 * @see #getMatchRule()
 	 * @generated
 	 */
 	void setAllowedFeatureMatchRule(String value);
