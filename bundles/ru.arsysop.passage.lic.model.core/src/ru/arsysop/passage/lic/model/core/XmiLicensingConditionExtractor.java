@@ -41,7 +41,7 @@ import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_XML })
-public class XmiLicenseConditionExtractor implements LicensingConditionTransport {
+public class XmiLicensingConditionExtractor implements LicensingConditionTransport {
 
 	@Override
 	public Iterable<LicensingCondition> readConditionDescriptors(InputStream input) throws IOException {

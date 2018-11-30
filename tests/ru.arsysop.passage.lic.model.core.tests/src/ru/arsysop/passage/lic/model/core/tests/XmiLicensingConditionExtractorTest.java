@@ -38,11 +38,11 @@ import org.junit.rules.TemporaryFolder;
 
 import ru.arsysop.passage.lic.model.api.LicenseGrant;
 import ru.arsysop.passage.lic.model.api.LicensePack;
-import ru.arsysop.passage.lic.model.core.XmiLicenseConditionExtractor;
+import ru.arsysop.passage.lic.model.core.XmiLicensingConditionExtractor;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
-public class XmiLicenseConditionExtractorTest {
+public class XmiLicensingConditionExtractorTest {
 
 	private static final String COND1_FEATURE_ID = "loc.workbench"; //$NON-NLS-1$
 	private static final String COND1_CONDITION_TYPE = "hardware"; //$NON-NLS-1$
@@ -71,7 +71,7 @@ public class XmiLicenseConditionExtractorTest {
 	
 	@Test
 	public void testExtractorPositive() throws Exception {
-		XmiLicenseConditionExtractor extractor = new XmiLicenseConditionExtractor();
+		XmiLicensingConditionExtractor extractor = new XmiLicensingConditionExtractor();
 		
 		LicFactory factory = LicFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
