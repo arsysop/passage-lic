@@ -44,7 +44,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import ru.arsysop.passage.lic.base.LicensingProperties;
 import ru.arsysop.passage.lic.internal.net.ConditionDescriptorAggregator;
-import ru.arsysop.passage.lic.internal.net.FeaturePermissionTransport;
+import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
 import ru.arsysop.passage.lic.internal.net.FloatingConditionDescriptor;
 import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
@@ -56,7 +56,7 @@ public class RequestProducer {
 	private static final String REQUEST_ACTION_CONDITIONS_EVALUATE = "evaluateConditions"; // NLS-$1
 	private static final String CHARSET_UTF_8 = "UTF-8"; // NLS-$1
 
-	public static final String PARAMETER_CONFIGURATION = "configuration";
+	public static final String PARAMETER_CONFIGURATION = "configuration"; // NLS-$1
 
 	private final Logger logger = Logger.getLogger(RequestProducer.class.getName());
 
@@ -97,7 +97,7 @@ public class RequestProducer {
 		try {
 			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EVALUATE);
 			URIBuilder builder = createRequestUriBuilder(requestAttributes);
-			FeaturePermissionTransport transferObject = processingEvaluateConditions(httpClient, host, builder,
+			FeaturePermissionAggregator transferObject = processingEvaluateConditions(httpClient, host, builder,
 					conditions);
 			permissions = transferObject.getFeaturePermissions();
 		} catch (Exception e) {
@@ -129,7 +129,7 @@ public class RequestProducer {
 		return httpClient.execute(host, httpPost, responseHandler);
 	}
 
-	private FeaturePermissionTransport processingEvaluateConditions(CloseableHttpClient httpClient, HttpHost host,
+	private FeaturePermissionAggregator processingEvaluateConditions(CloseableHttpClient httpClient, HttpHost host,
 			URIBuilder builder, Iterable<ConditionDescriptor> conditions)
 			throws URISyntaxException, ClientProtocolException, IOException {
 
@@ -149,16 +149,16 @@ public class RequestProducer {
 		httpPost.setEntity(entity);
 		httpPost.setHeader("Content-type", LicensingProperties.LICENSING_CONTENT_TYPE_JSON);
 
-		ResponseHandler<FeaturePermissionTransport> responseHandler = new ResponseHandler<FeaturePermissionTransport>() {
+		ResponseHandler<FeaturePermissionAggregator> responseHandler = new ResponseHandler<FeaturePermissionAggregator>() {
 
 			@Override
-			public FeaturePermissionTransport handleResponse(HttpResponse response)
+			public FeaturePermissionAggregator handleResponse(HttpResponse response)
 					throws ClientProtocolException, IOException {
 				HttpEntity entity = response.getEntity();
 				ObjectMapper mapper = new ObjectMapper();
 				try (InputStream inputContext = entity.getContent()) {
-					FeaturePermissionTransport transferObject = null;
-					transferObject = mapper.readValue(inputContext, FeaturePermissionTransport.class);
+					FeaturePermissionAggregator transferObject = null;
+					transferObject = mapper.readValue(inputContext, FeaturePermissionAggregator.class);
 					return transferObject;
 
 				} catch (Exception e) {

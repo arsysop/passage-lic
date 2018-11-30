@@ -23,7 +23,7 @@ package ru.arsysop.passage.lic.internal.net;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FeaturePermissionTransport {
+public class FeaturePermissionAggregator {
 
 	private final List<FloatingFeaturePermission> featurePermissions = new ArrayList<>();
 
