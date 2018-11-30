@@ -37,6 +37,7 @@ import org.osgi.service.component.annotations.Component;
 
 import ru.arsysop.passage.lic.model.api.License;
 import ru.arsysop.passage.lic.model.api.LicenseCondition;
+import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.io.ConditionDescriptorTransport;
 
@@ -52,7 +53,7 @@ public class XmiLicenseConditionExtractor implements ConditionDescriptorTranspor
 		for (EObject eObject : contents) {
 			if (eObject instanceof License) {
 				License license = (License) eObject;
-				EList<LicenseCondition> conditions = license.getLicenseConditions();
+				EList<LicenseGrantDescriptor> conditions = license.getLicenseGrants();
 				extracted.addAll(conditions);
 			}
 		}

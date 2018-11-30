@@ -32,6 +32,7 @@ import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
+import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class LicensingConditionIntegrationTest extends LicIntegrationBase {
@@ -60,7 +61,7 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		product.setIdentifier(SOME_PRODUCT_ID);
 
 		License license = factory.createLicense();
-		EList<LicenseCondition> licenseConditions = license.getLicenseConditions();
+		EList<LicenseGrantDescriptor> licenseConditions = license.getLicenseGrants();
 		LicenseCondition conditionBundle = factory.createLicenseCondition();
 		conditionBundle.setAllowedFeatureId(SOME_BUNDLE_ID);
 		conditionBundle.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);

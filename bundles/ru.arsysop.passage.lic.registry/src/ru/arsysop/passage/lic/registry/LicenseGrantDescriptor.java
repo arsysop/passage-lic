@@ -20,14 +20,12 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface FeatureDescriptor extends Identified {
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
-	String getName();
+public interface LicenseGrantDescriptor extends LicensingCondition {
 
-	String getDescription();
+	public int getCapacity();
 	
-	FeatureSetDescriptor getFeatureSet();
+	LicensePackDescriptor getLicensePack();
 	
-	Iterable<? extends FeatureVersionDescriptor> getFeatureVersions();
-
 }

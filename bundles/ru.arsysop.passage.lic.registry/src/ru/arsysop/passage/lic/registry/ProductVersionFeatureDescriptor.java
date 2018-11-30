@@ -20,14 +20,14 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface FeatureDescriptor extends Identified {
+public interface ProductVersionFeatureDescriptor {
 
-	String getName();
+	String getFeatureIdentifier();
+	
+	String getFeatureVersion();
 
-	String getDescription();
-	
-	FeatureSetDescriptor getFeatureSet();
-	
-	Iterable<? extends FeatureVersionDescriptor> getFeatureVersions();
+	String getRestrictionLevel();
+
+	ProductVersionDescriptor getProductVersionDescriptor();
 
 }

@@ -40,6 +40,7 @@ import ru.arsysop.passage.lic.model.api.License;
 import ru.arsysop.passage.lic.model.api.LicenseCondition;
 import ru.arsysop.passage.lic.model.core.XmiLicenseConditionExtractor;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
+import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class XmiLicenseConditionExtractorTest {
@@ -75,7 +76,7 @@ public class XmiLicenseConditionExtractorTest {
 		
 		LicFactory factory = LicFactory.eINSTANCE;
 		License license = factory.createLicense();
-		EList<LicenseCondition> conditions = license.getLicenseConditions();
+		EList<LicenseGrantDescriptor> conditions = license.getLicenseGrants();
 		LicenseCondition cond1 = factory.createLicenseCondition();
 		cond1.setAllowedFeatureId(COND1_FEATURE_ID);
 		cond1.setConditionType(COND1_CONDITION_TYPE);

@@ -23,6 +23,8 @@ package ru.arsysop.passage.lic.model.api;
 
 import org.eclipse.emf.ecore.EObject;
 
+import ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Product Version Feature</b></em>'.
@@ -42,7 +44,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ProductVersionFeature extends EObject {
+public interface ProductVersionFeature extends EObject, ProductVersionFeatureDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Feature Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->

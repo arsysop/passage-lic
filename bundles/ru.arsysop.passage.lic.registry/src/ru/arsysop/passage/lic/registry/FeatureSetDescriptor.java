@@ -20,22 +20,12 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface BaseDescriptorRegistry<D extends BaseDescriptor> {
-	
-	void loadSource(String source) throws Exception;
+public interface FeatureSetDescriptor extends Identified {
 
-	void unloadSource(String source) throws Exception;
-	
-	D getDescriptor(String identifier);
+	String getName();
 
-	Iterable<D> getDescriptors();
+	String getDescription();
 	
-	Iterable<D> selectDescriptors(String filter) throws Exception;
-
-	void insertDescriptors(Iterable<D> descriptors) throws Exception;
-	
-	void updateDescriptors(Iterable<D> descriptors) throws Exception;
-
-	void deleteDescriptors(Iterable<D> descriptors) throws Exception;
+	Iterable<? extends FeatureDescriptor> getFeatures();
 
 }

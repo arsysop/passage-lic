@@ -38,7 +38,7 @@ import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 import ru.arsysop.passage.lic.registry.FeatureDescriptor;
 import ru.arsysop.passage.lic.registry.FeatureVersionDescriptor;
-import ru.arsysop.passage.lic.registry.LicenseDescriptor;
+import ru.arsysop.passage.lic.registry.LicensePackDescriptor;
 import ru.arsysop.passage.lic.registry.UserDescriptor;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.registry.ProductDescriptor;
@@ -838,7 +838,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 
 		initEClass(userDescriptorEClass, UserDescriptor.class, "UserDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(licenseDescriptorEClass, LicenseDescriptor.class, "LicenseDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(licenseDescriptorEClass, LicensePackDescriptor.class, "LicensePackDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(conditionDescriptorEClass, LicensingCondition.class, "LicensingCondition", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

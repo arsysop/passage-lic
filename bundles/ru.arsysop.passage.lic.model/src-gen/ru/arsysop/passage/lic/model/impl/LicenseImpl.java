@@ -205,10 +205,10 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 	protected int capacity = CAPACITY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLicenseConditions() <em>License Conditions</em>}' containment reference list.
+	 * The cached value of the '{@link #getLicenseGrants() <em>License Conditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLicenseConditions()
+	 * @see #getLicenseGrants()
 	 * @generated
 	 * @ordered
 	 */
@@ -373,7 +373,7 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LicenseCondition> getLicenseConditions() {
+	public EList<LicenseCondition> getLicenseGrants() {
 		if (licenseConditions == null) {
 			licenseConditions = new EObjectContainmentEList<LicenseCondition>(LicenseCondition.class, this, LicPackage.LICENSE__LICENSE_CONDITIONS);
 		}
@@ -389,7 +389,7 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case LicPackage.LICENSE__LICENSE_CONDITIONS:
-				return ((InternalEList<?>)getLicenseConditions()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getLicenseGrants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -417,7 +417,7 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 			case LicPackage.LICENSE__CAPACITY:
 				return getCapacity();
 			case LicPackage.LICENSE__LICENSE_CONDITIONS:
-				return getLicenseConditions();
+				return getLicenseGrants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -450,8 +450,8 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 				setCapacity((Integer)newValue);
 				return;
 			case LicPackage.LICENSE__LICENSE_CONDITIONS:
-				getLicenseConditions().clear();
-				getLicenseConditions().addAll((Collection<? extends LicenseCondition>)newValue);
+				getLicenseGrants().clear();
+				getLicenseGrants().addAll((Collection<? extends LicenseCondition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -484,7 +484,7 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 				setCapacity(CAPACITY_EDEFAULT);
 				return;
 			case LicPackage.LICENSE__LICENSE_CONDITIONS:
-				getLicenseConditions().clear();
+				getLicenseGrants().clear();
 				return;
 		}
 		super.eUnset(featureID);

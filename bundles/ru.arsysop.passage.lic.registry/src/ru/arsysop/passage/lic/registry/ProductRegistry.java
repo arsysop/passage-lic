@@ -20,7 +20,12 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface ProductRegistry extends BaseDescriptorRegistry<ProductDescriptor> {
+public interface ProductRegistry extends DescriptorRegistry {
+
+	ProductLineDescriptor getProductSet(String identifier);
+
+	ProductDescriptor getProduct(String identifier);
 
 	String createPassword(ProductVersionDescriptor productVersion);
+
 }

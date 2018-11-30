@@ -27,7 +27,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import ru.arsysop.passage.lic.registry.LicenseDescriptor;
+import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
+import ru.arsysop.passage.lic.registry.LicensePackDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,7 +53,7 @@ import ru.arsysop.passage.lic.registry.LicenseDescriptor;
  * @model superTypes="ru.arsysop.passage.lic.model.api.LicenseDescriptor"
  * @generated
  */
-public interface License extends EObject, LicenseDescriptor {
+public interface License extends EObject, LicensePackDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -239,6 +240,6 @@ public interface License extends EObject, LicenseDescriptor {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<LicenseCondition> getLicenseConditions();
+	EList<LicenseGrantDescriptor> getLicenseGrants();
 
 } // License

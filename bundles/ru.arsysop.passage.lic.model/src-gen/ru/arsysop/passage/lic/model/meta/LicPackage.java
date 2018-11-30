@@ -215,10 +215,10 @@ public interface LicPackage extends EPackage {
 	int USER_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.LicenseDescriptor <em>License Descriptor</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>License Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ru.arsysop.passage.lic.registry.LicenseDescriptor
+	 * @see ru.arsysop.passage.lic.registry.LicensePackDescriptor
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseDescriptor()
 	 * @generated
 	 */
@@ -892,12 +892,12 @@ public interface LicPackage extends EPackage {
 	EClass getUserDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.LicenseDescriptor <em>License Descriptor</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>License Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Descriptor</em>'.
-	 * @see ru.arsysop.passage.lic.registry.LicenseDescriptor
-	 * @model instanceClass="ru.arsysop.passage.lic.registry.LicenseDescriptor"
+	 * @see ru.arsysop.passage.lic.registry.LicensePackDescriptor
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.LicensePackDescriptor"
 	 * @generated
 	 */
 	EClass getLicenseDescriptor();
@@ -1188,7 +1188,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>License Conditions</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getLicenseConditions()
+	 * @see ru.arsysop.passage.lic.model.api.License#getLicenseGrants()
 	 * @see #getLicense()
 	 * @generated
 	 */
@@ -1485,10 +1485,10 @@ public interface LicPackage extends EPackage {
 		EClass USER_DESCRIPTOR = eINSTANCE.getUserDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.LicenseDescriptor <em>License Descriptor</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>License Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ru.arsysop.passage.lic.registry.LicenseDescriptor
+		 * @see ru.arsysop.passage.lic.registry.LicensePackDescriptor
 		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseDescriptor()
 		 * @generated
 		 */

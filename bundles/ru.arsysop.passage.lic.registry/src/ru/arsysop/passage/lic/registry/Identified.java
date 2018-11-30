@@ -20,12 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-import ru.arsysop.passage.lic.runtime.LicensingCondition;
-
-public interface LicenseDescriptor extends BaseDescriptor {
+public interface Identified {
 	
-	public int getCapacity();
-	
-	Iterable<? extends LicensingCondition> getLicenseConditions();
+	String getIdentifier();
 
 }
