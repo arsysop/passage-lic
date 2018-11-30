@@ -11,7 +11,7 @@ public class NetConditionDescriptorTransport implements ConditionDescriptorTrans
 
 	@Override
 	public Iterable<ConditionDescriptor> readConditionDescriptors(InputStream input) throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
