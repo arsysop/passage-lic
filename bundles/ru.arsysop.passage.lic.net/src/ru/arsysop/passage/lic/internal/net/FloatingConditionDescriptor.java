@@ -18,29 +18,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.base;
+package ru.arsysop.passage.lic.internal.net;
 
-import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
-import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
+import ru.arsysop.passage.lic.base.BaseConditionDescriptor;
 
-public class BaseRestrictionVerdict implements RestrictionVerdict {
-	
-	private final ConfigurationRequirement configurationRequirement;
-	private final String restrictionPolicy;
+public class FloatingConditionDescriptor extends BaseConditionDescriptor {
 
-	protected BaseRestrictionVerdict(ConfigurationRequirement configurationRequirement, String restrictionPolicy) {
-		this.configurationRequirement = configurationRequirement;
-		this.restrictionPolicy = restrictionPolicy;
-	}
-
-	@Override
-	public ConfigurationRequirement getConfigurationRequirement() {
-		return configurationRequirement;
-	}
-
-	@Override
-	public String getRestrictionLevel() {
-		return restrictionPolicy;
+	public FloatingConditionDescriptor(String id, String version, String rule, String type, String expression) {
+		super(id, version, rule, type, expression);
 	}
 
 }

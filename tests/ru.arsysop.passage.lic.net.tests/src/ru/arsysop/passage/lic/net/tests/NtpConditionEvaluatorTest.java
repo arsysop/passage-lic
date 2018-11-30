@@ -30,6 +30,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import ru.arsysop.passage.lic.base.ConditionDescriptors;
 import ru.arsysop.passage.lic.internal.net.NtpConditionEvaluator;
 import ru.arsysop.passage.lic.net.TimeConditions;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
@@ -51,20 +52,20 @@ public class NtpConditionEvaluatorTest {
 		NtpConditionEvaluator evaluator = new NtpConditionEvaluator();
 		assertEmpty(evaluator.evaluateConditions(null));
 
-		Set<ConditionDescriptor> empty = Collections.singleton(new NetCondition(new String()));
+		Set<ConditionDescriptor> empty = Collections.singleton(createNetCondition(new String()));
 		assertEmpty(evaluator.evaluateConditions(empty));
 
-		Set<ConditionDescriptor> expired = Collections.singleton(new NetCondition(EXPRESSION_EXPIRED));
+		Set<ConditionDescriptor> expired = Collections.singleton(createNetCondition(EXPRESSION_EXPIRED));
 		assertEmpty(evaluator.evaluateConditions(expired));
 
-		Set<ConditionDescriptor> unknown = Collections.singleton(new NetCondition(EXPRESSION_UNKNOWN));
+		Set<ConditionDescriptor> unknown = Collections.singleton(createNetCondition(EXPRESSION_UNKNOWN));
 		assertEmpty(evaluator.evaluateConditions(unknown));
 	}
 
 	@Test
 	public void testEvaluateConditionPositive() throws Exception {
 		NtpConditionEvaluator evaluator = new NtpConditionEvaluator();
-		Set<ConditionDescriptor> future = Collections.singleton(new NetCondition(EXPRESSION_FUTURE));
+		Set<ConditionDescriptor> future = Collections.singleton(createNetCondition(EXPRESSION_FUTURE));
 		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
@@ -75,7 +76,7 @@ public class NtpConditionEvaluatorTest {
 
 	@Test
 	public void testNetCondition() throws Exception {
-		NetCondition netCondition = new NetCondition(EXPRESSION_EXPIRED);
+		ConditionDescriptor netCondition = createNetCondition(EXPRESSION_EXPIRED);
 		assertEquals(EXPRESSION_EXPIRED, netCondition.getConditionExpression());
 		assertEquals(TimeConditions.CONDITION_TYPE_TIME, netCondition.getConditionType());
 		assertEquals(NET_TIME_FEATURE_ID, netCondition.getAllowedFeatureId());
@@ -86,38 +87,9 @@ public class NtpConditionEvaluatorTest {
 	private void assertEmpty(Iterable<FeaturePermission> iterable) {
 		assertFalse(iterable.iterator().hasNext());
 	}
-
-	private final class NetCondition implements ConditionDescriptor {
-
-		private final String expression;
-
-		public NetCondition(String expression) {
-			this.expression = expression;
-		}
-
-		@Override
-		public String getConditionType() {
-			return TimeConditions.CONDITION_TYPE_TIME;
-		}
-
-		@Override
-		public String getConditionExpression() {
-			return expression;
-		}
-
-		@Override
-		public String getAllowedMatchVersion() {
-			return NET_TIME_MATCH_VERSION;
-		}
-
-		@Override
-		public String getAllowedMatchRule() {
-			return NET_TIME_MATCH_RULE;
-		}
-
-		@Override
-		public String getAllowedFeatureId() {
-			return NET_TIME_FEATURE_ID;
-		}
+	
+	public static ConditionDescriptor createNetCondition(String expression) {
+		return ConditionDescriptors.create(NET_TIME_FEATURE_ID, NET_TIME_MATCH_VERSION, NET_TIME_MATCH_RULE, TimeConditions.CONDITION_TYPE_TIME, expression);
 	}
+
 }

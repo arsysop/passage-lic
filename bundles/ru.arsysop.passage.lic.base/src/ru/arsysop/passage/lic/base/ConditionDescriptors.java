@@ -23,6 +23,8 @@ package ru.arsysop.passage.lic.base;
 import java.util.HashMap;
 import java.util.Map;
 
+import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+
 public class ConditionDescriptors {
 	
 	private static final String SEGMENT_SEPARATOR = ";"; //$NON-NLS-1$
@@ -48,6 +50,10 @@ public class ConditionDescriptors {
 			map.put(split[0], split[1]);
 		}
 		return map;
+	}
+	
+	public static ConditionDescriptor create(String featureId, String version, String rule, String type, String expression) {
+		return new BaseConditionDescriptor(featureId, version, rule, type, expression);
 	}
 
 }

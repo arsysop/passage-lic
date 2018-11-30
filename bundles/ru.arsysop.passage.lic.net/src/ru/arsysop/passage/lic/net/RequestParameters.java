@@ -18,29 +18,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.base;
 
-import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
-import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
+package ru.arsysop.passage.lic.net;
 
-public class BaseRestrictionVerdict implements RestrictionVerdict {
+public class RequestParameters {
+
 	
-	private final ConfigurationRequirement configurationRequirement;
-	private final String restrictionPolicy;
-
-	protected BaseRestrictionVerdict(ConfigurationRequirement configurationRequirement, String restrictionPolicy) {
-		this.configurationRequirement = configurationRequirement;
-		this.restrictionPolicy = restrictionPolicy;
-	}
-
-	@Override
-	public ConfigurationRequirement getConfigurationRequirement() {
-		return configurationRequirement;
-	}
-
-	@Override
-	public String getRestrictionLevel() {
-		return restrictionPolicy;
-	}
+	public static final String CLIENT_ID = "user";
+	public static final String CLIENT_PRODUCT_ID = "product";
+	public static final String CLIENT_FEATURE_ID = "feature";
+	public static final String CLIENT_COMPONENT_ID = "component";
+	public static final String CLIENT_TRUSTED_ID = "clienttrustid";
+	
+	public static final String SERVER_ACTION_ID = "action";
+	public static final String SERVER_ACCESS_MODE_ID = "accessmode";
+	public static final String SERVER_HANDLER_ID = "handler";
+	
+	public static final String LICENSING_DATA = "licensingData";
+	public static final String PROTOCOL_TYPE_ID = "http";
+	public static final String HOST = "host";
+	public static final String PORT = "port";
+	
 
 }

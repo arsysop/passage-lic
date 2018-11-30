@@ -24,15 +24,15 @@ import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
-public class BaseFeaturePermission implements FeaturePermission{
-	
+public class BaseFeaturePermission implements FeaturePermission {
+
 	private final String featureId;
 	private final String matchVersion;
 	private final String matchRule;
 	private final long leaseTime;
 	private final long expireTime;
-	
-	BaseFeaturePermission(String featureId, String matchVersion, String matchRule, long leaseTime,
+
+	protected BaseFeaturePermission(String featureId, String matchVersion, String matchRule, long leaseTime,
 			long expireTime) {
 		this.featureId = featureId;
 		this.matchVersion = matchVersion;

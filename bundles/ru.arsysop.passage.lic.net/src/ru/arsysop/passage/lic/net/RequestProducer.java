@@ -18,7 +18,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.transport;
+package ru.arsysop.passage.lic.net;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +42,12 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import ru.arsysop.passage.lic.internal.net.FloatingConditionDescriptor;
+import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
+import ru.arsysop.passage.lic.internal.net.ConditionDescriptorTransport;
+import ru.arsysop.passage.lic.internal.net.FeaturePermissionTransport;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public class RequestProducer {
 
@@ -65,50 +70,50 @@ public class RequestProducer {
 		return requestAttributes;
 	}
 
-	public Iterable<FloatingConditionDescriptor> extractConditionsRequest(CloseableHttpClient httpClient, HttpHost host,
+	public Iterable<? extends ConditionDescriptor> extractConditionsRequest(CloseableHttpClient httpClient, HttpHost host,
 			Map<String, String> requestAttributes) {
 		Iterable<FloatingConditionDescriptor> descriptors = new ArrayList<>();
 
 		try {
 			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EXTRACT);
 			URIBuilder builder = createRequestUriBuilder(requestAttributes);
-			TransferObjectDescriptor transferObject = processingExtractConditions(httpClient, host, builder);
-			descriptors = transferObject.getDescriptors();
+			ConditionDescriptorTransport transferObject = processingExtractConditions(httpClient, host, builder);
+			descriptors = transferObject.getConditionDescriptors();
 		} catch (Exception e) {
 			Logger.getLogger(RequestProducer.class.getName()).info(e.getMessage());
 		}
 		return descriptors;
 	}
 
-	public Iterable<FloatingFeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient, HttpHost host,
+	public Iterable<? extends FeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient, HttpHost host,
 			Map<String, String> requestAttributes, Iterable<ConditionDescriptor> conditions) {
 		Iterable<FloatingFeaturePermission> permissions = new ArrayList<>();
 		try {
 			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EVALUATE);
 			URIBuilder builder = createRequestUriBuilder(requestAttributes);
-			TransferObjectDescriptor transferObject = processingEvaluateConditions(httpClient, host, builder,
+			FeaturePermissionTransport transferObject = processingEvaluateConditions(httpClient, host, builder,
 					conditions);
-			permissions = transferObject.getPermissions();
+			permissions = transferObject.getFeaturePermissions();
 		} catch (Exception e) {
 			Logger.getLogger(RequestProducer.class.getName()).info(e.getMessage());
 		}
 		return permissions;
 	}
 
-	private TransferObjectDescriptor processingExtractConditions(CloseableHttpClient httpClient, HttpHost host,
+	private ConditionDescriptorTransport processingExtractConditions(CloseableHttpClient httpClient, HttpHost host,
 			URIBuilder builder) throws URISyntaxException, IOException, ClientProtocolException {
 
 		HttpPost httpPost = new HttpPost(builder.build());
-		ResponseHandler<TransferObjectDescriptor> responseHandler = new ResponseHandler<TransferObjectDescriptor>() {
+		ResponseHandler<ConditionDescriptorTransport> responseHandler = new ResponseHandler<ConditionDescriptorTransport>() {
 
 			@Override
-			public TransferObjectDescriptor handleResponse(HttpResponse response)
+			public ConditionDescriptorTransport handleResponse(HttpResponse response)
 					throws ClientProtocolException, IOException {
-				TransferObjectDescriptor transferObject = null;
+				ConditionDescriptorTransport transferObject = null;
 				HttpEntity entity = response.getEntity();
 				ObjectMapper mapper = new ObjectMapper();
 				try (InputStream inputContext = entity.getContent()) {
-					transferObject = mapper.readValue(inputContext, TransferObjectDescriptor.class);
+					transferObject = mapper.readValue(inputContext, ConditionDescriptorTransport.class);
 				} catch (Exception e) {
 					logger.info(e.getMessage());
 				}
@@ -118,7 +123,7 @@ public class RequestProducer {
 		return httpClient.execute(host, httpPost, responseHandler);
 	}
 
-	private TransferObjectDescriptor processingEvaluateConditions(CloseableHttpClient httpClient, HttpHost host,
+	private FeaturePermissionTransport processingEvaluateConditions(CloseableHttpClient httpClient, HttpHost host,
 			URIBuilder builder, Iterable<ConditionDescriptor> conditions)
 			throws URISyntaxException, ClientProtocolException, IOException {
 
@@ -126,10 +131,10 @@ public class RequestProducer {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-		TransferObjectDescriptor transferObject = new TransferObjectDescriptor();
+		ConditionDescriptorTransport transferObject = new ConditionDescriptorTransport();
 		for (ConditionDescriptor d : conditions) {
 			if (d instanceof FloatingConditionDescriptor) {
-				transferObject.addDescriptor((FloatingConditionDescriptor) d);
+				transferObject.addConditionDescriptor((FloatingConditionDescriptor) d);
 			}
 		}
 
@@ -138,21 +143,22 @@ public class RequestProducer {
 		httpPost.setEntity(entity);
 		httpPost.setHeader("Content-type", APPLICATION_JSON);
 
-		ResponseHandler<TransferObjectDescriptor> responseHandler = new ResponseHandler<TransferObjectDescriptor>() {
+		ResponseHandler<FeaturePermissionTransport> responseHandler = new ResponseHandler<FeaturePermissionTransport>() {
 
 			@Override
-			public TransferObjectDescriptor handleResponse(HttpResponse response)
+			public FeaturePermissionTransport handleResponse(HttpResponse response)
 					throws ClientProtocolException, IOException {
-				TransferObjectDescriptor transferObject = null;
 				HttpEntity entity = response.getEntity();
 				ObjectMapper mapper = new ObjectMapper();
 				try (InputStream inputContext = entity.getContent()) {
-					transferObject = mapper.readValue(inputContext, TransferObjectDescriptor.class);
+					FeaturePermissionTransport transferObject = null;
+					transferObject = mapper.readValue(inputContext, FeaturePermissionTransport.class);
+					return transferObject;
 
 				} catch (Exception e) {
 					logger.info(e.getMessage());
+					return null;
 				}
-				return transferObject;
 			}
 		};
 		return httpClient.execute(host, httpPost, responseHandler);

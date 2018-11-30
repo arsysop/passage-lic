@@ -18,7 +18,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.net;
+package ru.arsysop.passage.lic.internal.net;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
@@ -41,10 +41,9 @@ import org.apache.http.impl.client.HttpClients;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 
 import ru.arsysop.passage.lic.base.LicensingPaths;
+import ru.arsysop.passage.lic.net.RequestProducer;
 import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
-import ru.arsysop.passage.lic.transport.FloatingConditionDescriptor;
-import ru.arsysop.passage.lic.transport.RequestProducer;
 
 public class NetConditionMiner implements ConditionMiner {
 	private static final String HOST_PORT = "%s:%s";
@@ -121,7 +120,7 @@ public class NetConditionMiner implements ConditionMiner {
 
 			Map<String, String> requestAttributes = requestProducer.initRequestParams(hostValue, portValue, MODE);
 			HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
-			Iterable<FloatingConditionDescriptor> descriptors = requestProducer.extractConditionsRequest(httpClient,
+			Iterable<? extends ConditionDescriptor> descriptors = requestProducer.extractConditionsRequest(httpClient,
 					host, requestAttributes);
 			conditions = StreamSupport.stream(descriptors.spliterator(), false).collect(Collectors.toList());
 		} catch (Exception e) {

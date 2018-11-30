@@ -18,33 +18,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.transport;
+package ru.arsysop.passage.lic.internal.net;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TransferObjectDescriptor {
+public class FeaturePermissionTransport {
 
-	List<FloatingConditionDescriptor> serverConditions = new ArrayList<>();
-	List<FloatingFeaturePermission> serverPermissions = new ArrayList<>();
+	private final List<FloatingFeaturePermission> featurePermissions = new ArrayList<>();
 
-	public TransferObjectDescriptor() {
+	public void addFeaturePermission(FloatingFeaturePermission p) {
+		featurePermissions.add(p);
 	}
 
-	public List<FloatingConditionDescriptor> getDescriptors() {
-		return serverConditions;
-	}
-
-	public void addDescriptor(FloatingConditionDescriptor d) {
-		serverConditions.add(d);
-	}
-
-	public void addPermission(FloatingFeaturePermission p) {
-		serverPermissions.add(p);
-	}
-
-	public List<FloatingFeaturePermission> getPermissions() {
-		return serverPermissions;
+	public List<FloatingFeaturePermission> getFeaturePermissions() {
+		return featurePermissions;
 	}
 
 }

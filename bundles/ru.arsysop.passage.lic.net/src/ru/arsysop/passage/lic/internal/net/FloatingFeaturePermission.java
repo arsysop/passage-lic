@@ -18,26 +18,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
+package ru.arsysop.passage.lic.internal.net;
 
-package ru.arsysop.passage.lic.transport;
+import ru.arsysop.passage.lic.base.BaseFeaturePermission;
 
-public class RequestParameters {
+public class FloatingFeaturePermission extends BaseFeaturePermission {
 
-	
-	public static final String CLIENT_ID = "user";
-	public static final String CLIENT_PRODUCT_ID = "product";
-	public static final String CLIENT_FEATURE_ID = "feature";
-	public static final String CLIENT_COMPONENT_ID = "component";
-	public static final String CLIENT_TRUSTED_ID = "clienttrustid";
-	
-	public static final String SERVER_ACTION_ID = "action";
-	public static final String SERVER_ACCESS_MODE_ID = "accessmode";
-	public static final String SERVER_HANDLER_ID = "handler";
-	
-	public static final String LICENSING_DATA = "licensingData";
-	public static final String PROTOCOL_TYPE_ID = "http";
-	public static final String HOST = "host";
-	public static final String PORT = "port";
-	
+	public FloatingFeaturePermission(String featureId, String matchVersion, String matchRule, long leaseTime, long expireTime) {
+		super(featureId, matchVersion, matchRule, leaseTime,expireTime);
+	}
 
 }
