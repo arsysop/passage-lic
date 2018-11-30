@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache License, Version 2.0 (the "License");
- * 	you may not use this file except in compliance with the License.
- * 	You may obtain a copy of the License at
+ * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * 	you may not use this file except in compliance with the LicensePack.
+ * 	You may obtain a copy of the LicensePack at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the License is distributed on an "AS IS" BASIS,
+ * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the License for the specific language governing permissions and
- * 	limitations under the License.
+ * 	See the LicensePack for the specific language governing permissions and
+ * 	limitations under the LicensePack.
  * 
- * 	SPDX-License-Identifier: Apache-2.0
+ * 	SPDX-LicensePack-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -43,7 +43,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import ru.arsysop.passage.lic.model.api.License;
+import ru.arsysop.passage.lic.model.api.LicensePack;
 
 import ru.arsysop.passage.lic.model.edit.LicEditPlugin;
 
@@ -51,7 +51,7 @@ import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
- * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.License} object.
+ * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.LicensePack} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -281,7 +281,7 @@ public class LicenseItemProvider
 	}
 
 	/**
-	 * This returns License.gif.
+	 * This returns LicensePack.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -299,7 +299,7 @@ public class LicenseItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((License)object).getIdentifier();
+		String label = ((LicensePack)object).getIdentifier();
 		return label == null || label.length() == 0 ?
 			getString("_UI_License_type") : //$NON-NLS-1$
 			getString("_UI_License_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
@@ -317,7 +317,7 @@ public class LicenseItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(License.class)) {
+		switch (notification.getFeatureID(LicensePack.class)) {
 			case LicPackage.LICENSE__IDENTIFIER:
 			case LicPackage.LICENSE__ISSUE_DATE:
 			case LicPackage.LICENSE__EXPIRE_DATE:

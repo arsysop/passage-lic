@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * you may not use this file except in compliance with the LicensePack.
+ * You may obtain a copy of the LicensePack at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * See the LicensePack for the specific language governing permissions and
+ * limitations under the LicensePack.
  *
- * SPDX-License-Identifier: Apache-2.0
+ * SPDX-LicensePack-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -177,14 +177,14 @@ public class LicSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case LicPackage.LICENSE: {
-				License license = (License)theEObject;
+				LicensePack license = (LicensePack)theEObject;
 				T result = caseLicense(license);
 				if (result == null) result = caseLicenseDescriptor(license);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case LicPackage.LICENSE_CONDITION: {
-				LicenseCondition licenseCondition = (LicenseCondition)theEObject;
+				LicenseGrant licenseCondition = (LicenseGrant)theEObject;
 				T result = caseLicenseCondition(licenseCondition);
 				if (result == null) result = caseConditionDescriptor(licenseCondition);
 				if (result == null) result = defaultCase(theEObject);
@@ -270,13 +270,13 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>License Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>LicensePack Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>License Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>LicensePack Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -390,32 +390,32 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>License</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>LicensePack</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>License</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>LicensePack</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLicense(License object) {
+	public T caseLicense(LicensePack object) {
 		return null;
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>License Condition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>LicensePack Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>License Condition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>LicensePack Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLicenseCondition(LicenseCondition object) {
+	public T caseLicenseCondition(LicenseGrant object) {
 		return null;
 	}
 

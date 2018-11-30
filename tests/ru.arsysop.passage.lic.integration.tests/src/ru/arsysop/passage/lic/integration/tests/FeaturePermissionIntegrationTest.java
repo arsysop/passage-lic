@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * you may not use this file except in compliance with the LicensePack.
+ * You may obtain a copy of the LicensePack at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * See the LicensePack for the specific language governing permissions and
+ * limitations under the LicensePack.
  *
- * SPDX-License-Identifier: Apache-2.0
+ * SPDX-LicensePack-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -29,8 +29,8 @@ import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
-import ru.arsysop.passage.lic.model.api.License;
-import ru.arsysop.passage.lic.model.api.LicenseCondition;
+import ru.arsysop.passage.lic.model.api.LicensePack;
+import ru.arsysop.passage.lic.model.api.LicenseGrant;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
@@ -56,9 +56,9 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 		Product product = factory.createProduct();
 		product.setIdentifier(SOME_PRODUCT_ID);
 
-		License license = factory.createLicense();
+		LicensePack license = factory.createLicense();
 		EList<LicenseGrantDescriptor> licenseConditions = license.getLicenseGrants();
-		LicenseCondition conditionBundle = factory.createLicenseCondition();
+		LicenseGrant conditionBundle = factory.createLicenseCondition();
 		conditionBundle.setAllowedFeatureId(SOME_BUNDLE_ID);
 		conditionBundle.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
 		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');

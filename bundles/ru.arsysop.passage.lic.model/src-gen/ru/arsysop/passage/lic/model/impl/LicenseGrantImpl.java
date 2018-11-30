@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache License, Version 2.0 (the "License");
- * 	you may not use this file except in compliance with the License.
- * 	You may obtain a copy of the License at
+ * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * 	you may not use this file except in compliance with the LicensePack.
+ * 	You may obtain a copy of the LicensePack at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the License is distributed on an "AS IS" BASIS,
+ * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the License for the specific language governing permissions and
- * 	limitations under the License.
+ * 	See the LicensePack for the specific language governing permissions and
+ * 	limitations under the LicensePack.
  * 
- * 	SPDX-License-Identifier: Apache-2.0
+ * 	SPDX-LicensePack-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -28,28 +28,28 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import ru.arsysop.passage.lic.model.api.LicenseCondition;
+import ru.arsysop.passage.lic.model.api.LicenseGrant;
 
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>License Condition</b></em>'.
+ * An implementation of the model object '<em><b>LicensePack Condition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseConditionImpl#getAllowedFeatureId <em>Allowed Feature Id</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseConditionImpl#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseConditionImpl#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseConditionImpl#getConditionType <em>Condition Type</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseConditionImpl#getConditionExpression <em>Condition Expression</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getAllowedFeatureId <em>Allowed Feature Id</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getConditionType <em>Condition Type</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getConditionExpression <em>Condition Expression</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LicenseConditionImpl extends MinimalEObjectImpl.Container implements LicenseCondition {
+public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements LicenseGrant {
 	/**
 	 * The default value of the '{@link #getFeatureIdentifier() <em>Allowed Feature Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -155,7 +155,7 @@ public class LicenseConditionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LicenseConditionImpl() {
+	protected LicenseGrantImpl() {
 		super();
 	}
 
@@ -396,4 +396,4 @@ public class LicenseConditionImpl extends MinimalEObjectImpl.Container implement
 		return result.toString();
 	}
 
-} //LicenseConditionImpl
+} //LicenseGrantImpl

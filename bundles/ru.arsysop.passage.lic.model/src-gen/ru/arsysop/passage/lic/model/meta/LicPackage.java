@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * you may not use this file except in compliance with the LicensePack.
+ * You may obtain a copy of the LicensePack at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * See the LicensePack for the specific language governing permissions and
+ * limitations under the LicensePack.
  *
- * SPDX-License-Identifier: Apache-2.0
+ * SPDX-LicensePack-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -215,7 +215,7 @@ public interface LicPackage extends EPackage {
 	int USER_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>License Descriptor</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>LicensePack Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see ru.arsysop.passage.lic.registry.LicensePackDescriptor
@@ -225,7 +225,7 @@ public interface LicPackage extends EPackage {
 	int LICENSE_DESCRIPTOR = 5;
 
 		/**
-	 * The number of structural features of the '<em>License Descriptor</em>' class.
+	 * The number of structural features of the '<em>LicensePack Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -234,7 +234,7 @@ public interface LicPackage extends EPackage {
 	int LICENSE_DESCRIPTOR_FEATURE_COUNT = 0;
 
 		/**
-	 * The number of operations of the '<em>License Descriptor</em>' class.
+	 * The number of operations of the '<em>LicensePack Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -664,10 +664,10 @@ public interface LicPackage extends EPackage {
 	int USER_OPERATION_COUNT = USER_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.LicenseImpl <em>License</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl <em>LicensePack</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ru.arsysop.passage.lic.model.impl.LicenseImpl
+	 * @see ru.arsysop.passage.lic.model.impl.LicensePackImpl
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicense()
 	 * @generated
 	 */
@@ -737,7 +737,7 @@ public interface LicPackage extends EPackage {
 	int LICENSE__CAPACITY = LICENSE_DESCRIPTOR_FEATURE_COUNT + 6;
 
 		/**
-	 * The feature id for the '<em><b>License Conditions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>LicensePack Conditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -746,7 +746,7 @@ public interface LicPackage extends EPackage {
 	int LICENSE__LICENSE_CONDITIONS = LICENSE_DESCRIPTOR_FEATURE_COUNT + 7;
 
 		/**
-	 * The number of structural features of the '<em>License</em>' class.
+	 * The number of structural features of the '<em>LicensePack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -755,7 +755,7 @@ public interface LicPackage extends EPackage {
 	int LICENSE_FEATURE_COUNT = LICENSE_DESCRIPTOR_FEATURE_COUNT + 8;
 
 		/**
-	 * The number of operations of the '<em>License</em>' class.
+	 * The number of operations of the '<em>LicensePack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -764,10 +764,10 @@ public interface LicPackage extends EPackage {
 	int LICENSE_OPERATION_COUNT = LICENSE_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.LicenseConditionImpl <em>License Condition</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl <em>LicensePack Condition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ru.arsysop.passage.lic.model.impl.LicenseConditionImpl
+	 * @see ru.arsysop.passage.lic.model.impl.LicenseGrantImpl
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseCondition()
 	 * @generated
 	 */
@@ -819,7 +819,7 @@ public interface LicPackage extends EPackage {
 	int LICENSE_CONDITION__CONDITION_EXPRESSION = CONDITION_DESCRIPTOR_FEATURE_COUNT + 4;
 
 		/**
-	 * The number of structural features of the '<em>License Condition</em>' class.
+	 * The number of structural features of the '<em>LicensePack Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -828,7 +828,7 @@ public interface LicPackage extends EPackage {
 	int LICENSE_CONDITION_FEATURE_COUNT = CONDITION_DESCRIPTOR_FEATURE_COUNT + 5;
 
 		/**
-	 * The number of operations of the '<em>License Condition</em>' class.
+	 * The number of operations of the '<em>LicensePack Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -892,10 +892,10 @@ public interface LicPackage extends EPackage {
 	EClass getUserDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>License Descriptor</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>LicensePack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>License Descriptor</em>'.
+	 * @return the meta object for class '<em>LicensePack Descriptor</em>'.
 	 * @see ru.arsysop.passage.lic.registry.LicensePackDescriptor
 	 * @model instanceClass="ru.arsysop.passage.lic.registry.LicensePackDescriptor"
 	 * @generated
@@ -1097,163 +1097,163 @@ public interface LicPackage extends EPackage {
 	EAttribute getUser_Description();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.License <em>License</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.LicensePack <em>LicensePack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>License</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License
+	 * @return the meta object for class '<em>LicensePack</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack
 	 * @generated
 	 */
 	EClass getLicense();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getIdentifier <em>Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getIdentifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getIdentifier()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getIdentifier()
 	 * @see #getLicense()
 	 * @generated
 	 */
 	EAttribute getLicense_Identifier();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getIssueDate <em>Issue Date</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getIssueDate <em>Issue Date</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Issue Date</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getIssueDate()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getIssueDate()
 	 * @see #getLicense()
 	 * @generated
 	 */
 	EAttribute getLicense_IssueDate();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getExpireDate <em>Expire Date</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getExpireDate <em>Expire Date</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Expire Date</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getExpireDate()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getExpireDate()
 	 * @see #getLicense()
 	 * @generated
 	 */
 	EAttribute getLicense_ExpireDate();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getProductIdentifier <em>Product Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Product Identifier</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getProductIdentifier()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getProductIdentifier()
 	 * @see #getLicense()
 	 * @generated
 	 */
 	EAttribute getLicense_ProductIdentifier();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getProductVersion <em>Product Version</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getProductVersion <em>Product Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Product Version</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getProductVersion()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getProductVersion()
 	 * @see #getLicense()
 	 * @generated
 	 */
 	EAttribute getLicense_ProductVersion();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getUserIdentifier <em>User Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getUserIdentifier <em>User Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>User Identifier</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getUserIdentifier()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getUserIdentifier()
 	 * @see #getLicense()
 	 * @generated
 	 */
 	EAttribute getLicense_UserIdentifier();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getCapacity <em>Capacity</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getCapacity <em>Capacity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Capacity</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getCapacity()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getCapacity()
 	 * @see #getLicense()
 	 * @generated
 	 */
 	EAttribute getLicense_Capacity();
 
 		/**
-	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.License#getLicenseConditions <em>License Conditions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.LicensePack#getLicenseConditions <em>LicensePack Conditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>License Conditions</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getLicenseGrants()
+	 * @return the meta object for the containment reference list '<em>LicensePack Conditions</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getLicenseGrants()
 	 * @see #getLicense()
 	 * @generated
 	 */
 	EReference getLicense_LicenseConditions();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.LicenseCondition <em>License Condition</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.LicenseGrant <em>LicensePack Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>License Condition</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition
+	 * @return the meta object for class '<em>LicensePack Condition</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant
 	 * @generated
 	 */
 	EClass getLicenseCondition();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureId <em>Allowed Feature Id</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getAllowedFeatureId <em>Allowed Feature Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Allowed Feature Id</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getFeatureIdentifier()
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getFeatureIdentifier()
 	 * @see #getLicenseCondition()
 	 * @generated
 	 */
 	EAttribute getLicenseCondition_AllowedFeatureId();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Allowed Feature Match Version</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getMatchVersion()
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getMatchVersion()
 	 * @see #getLicenseCondition()
 	 * @generated
 	 */
 	EAttribute getLicenseCondition_AllowedFeatureMatchVersion();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Allowed Feature Match Rule</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getMatchRule()
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getMatchRule()
 	 * @see #getLicenseCondition()
 	 * @generated
 	 */
 	EAttribute getLicenseCondition_AllowedFeatureMatchRule();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionType <em>Condition Type</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Condition Type</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionType()
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionType()
 	 * @see #getLicenseCondition()
 	 * @generated
 	 */
 	EAttribute getLicenseCondition_ConditionType();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionExpression <em>Condition Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionExpression <em>Condition Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Condition Expression</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionExpression()
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionExpression()
 	 * @see #getLicenseCondition()
 	 * @generated
 	 */
@@ -1485,7 +1485,7 @@ public interface LicPackage extends EPackage {
 		EClass USER_DESCRIPTOR = eINSTANCE.getUserDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>License Descriptor</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>LicensePack Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see ru.arsysop.passage.lic.registry.LicensePackDescriptor
@@ -1649,10 +1649,10 @@ public interface LicPackage extends EPackage {
 		EAttribute USER__DESCRIPTION = eINSTANCE.getUser_Description();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.LicenseImpl <em>License</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl <em>LicensePack</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ru.arsysop.passage.lic.model.impl.LicenseImpl
+		 * @see ru.arsysop.passage.lic.model.impl.LicensePackImpl
 		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicense()
 		 * @generated
 		 */
@@ -1715,7 +1715,7 @@ public interface LicPackage extends EPackage {
 		EAttribute LICENSE__CAPACITY = eINSTANCE.getLicense_Capacity();
 
 				/**
-		 * The meta object literal for the '<em><b>License Conditions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>LicensePack Conditions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1723,10 +1723,10 @@ public interface LicPackage extends EPackage {
 		EReference LICENSE__LICENSE_CONDITIONS = eINSTANCE.getLicense_LicenseConditions();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.LicenseConditionImpl <em>License Condition</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl <em>LicensePack Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ru.arsysop.passage.lic.model.impl.LicenseConditionImpl
+		 * @see ru.arsysop.passage.lic.model.impl.LicenseGrantImpl
 		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseCondition()
 		 * @generated
 		 */

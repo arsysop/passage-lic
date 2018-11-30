@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache License, Version 2.0 (the "License");
- * 	you may not use this file except in compliance with the License.
- * 	You may obtain a copy of the License at
+ * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * 	you may not use this file except in compliance with the LicensePack.
+ * 	You may obtain a copy of the LicensePack at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the License is distributed on an "AS IS" BASIS,
+ * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the License for the specific language governing permissions and
- * 	limitations under the License.
+ * 	See the LicensePack for the specific language governing permissions and
+ * 	limitations under the LicensePack.
  * 
- * 	SPDX-License-Identifier: Apache-2.0
+ * 	SPDX-LicensePack-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -229,7 +229,7 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.License} instances.
+	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.LicensePack} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -237,7 +237,7 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	protected LicenseItemProvider licenseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.License}.
+	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.LicensePack}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -252,7 +252,7 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.LicenseCondition} instances.
+	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.LicenseGrant} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -260,7 +260,7 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	protected LicenseConditionItemProvider licenseConditionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.LicenseCondition}.
+	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.LicenseGrant}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

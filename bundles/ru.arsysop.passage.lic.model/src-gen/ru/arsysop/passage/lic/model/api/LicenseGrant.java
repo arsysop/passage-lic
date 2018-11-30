@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache License, Version 2.0 (the "License");
- * 	you may not use this file except in compliance with the License.
- * 	You may obtain a copy of the License at
+ * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * 	you may not use this file except in compliance with the LicensePack.
+ * 	You may obtain a copy of the LicensePack at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the License is distributed on an "AS IS" BASIS,
+ * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the License for the specific language governing permissions and
- * 	limitations under the License.
+ * 	See the LicensePack for the specific language governing permissions and
+ * 	limitations under the LicensePack.
  * 
- * 	SPDX-License-Identifier: Apache-2.0
+ * 	SPDX-LicensePack-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -28,25 +28,25 @@ import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>License Condition</b></em>'.
+ * A representation of the model object '<em><b>LicensePack Condition</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureId <em>Allowed Feature Id</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionType <em>Condition Type</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionExpression <em>Condition Expression</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getAllowedFeatureId <em>Allowed Feature Id</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionExpression <em>Condition Expression</em>}</li>
  * </ul>
  *
  * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicenseCondition()
  * @model superTypes="ru.arsysop.passage.lic.model.api.ConditionDescriptor"
  * @generated
  */
-public interface LicenseCondition extends EObject, LicenseGrantDescriptor {
+public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Allowed Feature Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,7 +64,7 @@ public interface LicenseCondition extends EObject, LicenseGrantDescriptor {
 	String getFeatureIdentifier();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureId <em>Allowed Feature Id</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getAllowedFeatureId <em>Allowed Feature Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Allowed Feature Id</em>' attribute.
@@ -91,7 +91,7 @@ public interface LicenseCondition extends EObject, LicenseGrantDescriptor {
 	String getMatchVersion();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Allowed Feature Match Version</em>' attribute.
@@ -117,7 +117,7 @@ public interface LicenseCondition extends EObject, LicenseGrantDescriptor {
 	String getMatchRule();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Allowed Feature Match Rule</em>' attribute.
@@ -143,7 +143,7 @@ public interface LicenseCondition extends EObject, LicenseGrantDescriptor {
 	String getConditionType();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionType <em>Condition Type</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition Type</em>' attribute.
@@ -169,7 +169,7 @@ public interface LicenseCondition extends EObject, LicenseGrantDescriptor {
 	String getConditionExpression();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionExpression <em>Condition Expression</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionExpression <em>Condition Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition Expression</em>' attribute.
@@ -178,4 +178,4 @@ public interface LicenseCondition extends EObject, LicenseGrantDescriptor {
 	 */
 	void setConditionExpression(String value);
 
-} // LicenseCondition
+} // LicenseGrant

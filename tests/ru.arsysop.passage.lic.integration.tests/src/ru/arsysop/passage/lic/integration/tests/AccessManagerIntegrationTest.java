@@ -10,8 +10,8 @@ import org.junit.Test;
 
 import ru.arsysop.passage.lic.base.LicensingNamespaces;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
-import ru.arsysop.passage.lic.model.api.License;
-import ru.arsysop.passage.lic.model.api.LicenseCondition;
+import ru.arsysop.passage.lic.model.api.LicensePack;
+import ru.arsysop.passage.lic.model.api.LicenseGrant;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
@@ -42,9 +42,9 @@ public class AccessManagerIntegrationTest extends LicIntegrationBase {
 		Product product = factory.createProduct();
 		product.setIdentifier(SOME_PRODUCT_ID);
 
-		License license = factory.createLicense();
+		LicensePack license = factory.createLicense();
 		EList<LicenseGrantDescriptor> licenseConditions = license.getLicenseGrants();
-		LicenseCondition conditionBundle = factory.createLicenseCondition();
+		LicenseGrant conditionBundle = factory.createLicenseCondition();
 		conditionBundle.setAllowedFeatureId(SOME_BUNDLE_ID);
 		conditionBundle.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
 		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');

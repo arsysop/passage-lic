@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2018 ArSysOp
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * you may not use this file except in compliance with the LicensePack.
+ * You may obtain a copy of the LicensePack at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * See the LicensePack for the specific language governing permissions and
+ * limitations under the LicensePack.
  *
- * SPDX-License-Identifier: Apache-2.0
+ * SPDX-LicensePack-Identifier: Apache-2.0
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
@@ -36,8 +36,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import ru.arsysop.passage.lic.model.api.License;
-import ru.arsysop.passage.lic.model.api.LicenseCondition;
+import ru.arsysop.passage.lic.model.api.LicensePack;
+import ru.arsysop.passage.lic.model.api.LicenseGrant;
 import ru.arsysop.passage.lic.model.core.XmiLicenseConditionExtractor;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
@@ -75,14 +75,14 @@ public class XmiLicenseConditionExtractorTest {
 		XmiLicenseConditionExtractor extractor = new XmiLicenseConditionExtractor();
 		
 		LicFactory factory = LicFactory.eINSTANCE;
-		License license = factory.createLicense();
+		LicensePack license = factory.createLicense();
 		EList<LicenseGrantDescriptor> conditions = license.getLicenseGrants();
-		LicenseCondition cond1 = factory.createLicenseCondition();
+		LicenseGrant cond1 = factory.createLicenseCondition();
 		cond1.setAllowedFeatureId(COND1_FEATURE_ID);
 		cond1.setConditionType(COND1_CONDITION_TYPE);
 		cond1.setConditionExpression(COND1_CONDITION_EXPRESSION);
 		conditions.add(cond1);
-		LicenseCondition cond2 = factory.createLicenseCondition();
+		LicenseGrant cond2 = factory.createLicenseCondition();
 		cond2.setAllowedFeatureId(COND2_FEATURE_ID);
 		cond2.setConditionType(COND2_CONDITION_TYPE);
 		cond2.setConditionExpression(COND2_CONDITION_EXPRESSION);

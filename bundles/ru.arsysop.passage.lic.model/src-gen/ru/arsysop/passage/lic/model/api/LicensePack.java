@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache License, Version 2.0 (the "License");
- * 	you may not use this file except in compliance with the License.
- * 	You may obtain a copy of the License at
+ * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * 	you may not use this file except in compliance with the LicensePack.
+ * 	You may obtain a copy of the LicensePack at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the License is distributed on an "AS IS" BASIS,
+ * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the License for the specific language governing permissions and
- * 	limitations under the License.
+ * 	See the LicensePack for the specific language governing permissions and
+ * 	limitations under the LicensePack.
  * 
- * 	SPDX-License-Identifier: Apache-2.0
+ * 	SPDX-LicensePack-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -32,28 +32,28 @@ import ru.arsysop.passage.lic.registry.LicensePackDescriptor;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>License</b></em>'.
+ * A representation of the model object '<em><b>LicensePack</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ru.arsysop.passage.lic.model.api.License#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.License#getIssueDate <em>Issue Date</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.License#getExpireDate <em>Expire Date</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.License#getProductIdentifier <em>Product Identifier</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.License#getProductVersion <em>Product Version</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.License#getUserIdentifier <em>User Identifier</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.License#getCapacity <em>Capacity</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.License#getLicenseConditions <em>License Conditions</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicensePack#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicensePack#getIssueDate <em>Issue Date</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicensePack#getExpireDate <em>Expire Date</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicensePack#getProductVersion <em>Product Version</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicensePack#getUserIdentifier <em>User Identifier</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicensePack#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicensePack#getLicenseConditions <em>LicensePack Conditions</em>}</li>
  * </ul>
  *
  * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicense()
  * @model superTypes="ru.arsysop.passage.lic.model.api.LicenseDescriptor"
  * @generated
  */
-public interface License extends EObject, LicensePackDescriptor {
+public interface LicensePack extends EObject, LicensePackDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -86,7 +86,7 @@ public interface License extends EObject, LicensePackDescriptor {
 	Date getIssueDate();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.License#getIssueDate <em>Issue Date</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicensePack#getIssueDate <em>Issue Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Issue Date</em>' attribute.
@@ -112,7 +112,7 @@ public interface License extends EObject, LicensePackDescriptor {
 	Date getExpireDate();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.License#getExpireDate <em>Expire Date</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicensePack#getExpireDate <em>Expire Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Expire Date</em>' attribute.
@@ -138,7 +138,7 @@ public interface License extends EObject, LicensePackDescriptor {
 	String getProductIdentifier();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.License#getProductIdentifier <em>Product Identifier</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Product Identifier</em>' attribute.
@@ -164,7 +164,7 @@ public interface License extends EObject, LicensePackDescriptor {
 	String getProductVersion();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.License#getProductVersion <em>Product Version</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicensePack#getProductVersion <em>Product Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Product Version</em>' attribute.
@@ -190,7 +190,7 @@ public interface License extends EObject, LicensePackDescriptor {
 	String getUserIdentifier();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.License#getUserIdentifier <em>User Identifier</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicensePack#getUserIdentifier <em>User Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>User Identifier</em>' attribute.
@@ -217,7 +217,7 @@ public interface License extends EObject, LicensePackDescriptor {
 	int getCapacity();
 
 	/**
-	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.License#getCapacity <em>Capacity</em>}' attribute.
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicensePack#getCapacity <em>Capacity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Capacity</em>' attribute.
@@ -227,19 +227,19 @@ public interface License extends EObject, LicensePackDescriptor {
 	void setCapacity(int value);
 
 	/**
-	 * Returns the value of the '<em><b>License Conditions</b></em>' containment reference list.
-	 * The list contents are of type {@link ru.arsysop.passage.lic.model.api.LicenseCondition}.
+	 * Returns the value of the '<em><b>LicensePack Conditions</b></em>' containment reference list.
+	 * The list contents are of type {@link ru.arsysop.passage.lic.model.api.LicenseGrant}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>License Conditions</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>LicensePack Conditions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>License Conditions</em>' containment reference list.
+	 * @return the value of the '<em>LicensePack Conditions</em>' containment reference list.
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicense_LicenseConditions()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<LicenseGrantDescriptor> getLicenseGrants();
 
-} // License
+} // LicensePack

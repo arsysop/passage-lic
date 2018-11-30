@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache License, Version 2.0 (the "License");
- * 	you may not use this file except in compliance with the License.
- * 	You may obtain a copy of the License at
+ * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * 	you may not use this file except in compliance with the LicensePack.
+ * 	You may obtain a copy of the LicensePack at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the License is distributed on an "AS IS" BASIS,
+ * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the License for the specific language governing permissions and
- * 	limitations under the License.
+ * 	See the LicensePack for the specific language governing permissions and
+ * 	limitations under the LicensePack.
  * 
- * 	SPDX-License-Identifier: Apache-2.0
+ * 	SPDX-LicensePack-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -41,14 +41,14 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import ru.arsysop.passage.lic.model.api.LicenseCondition;
+import ru.arsysop.passage.lic.model.api.LicenseGrant;
 
 import ru.arsysop.passage.lic.model.edit.LicEditPlugin;
 
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
- * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.LicenseCondition} object.
+ * This is the item provider adapter for a {@link ru.arsysop.passage.lic.model.api.LicenseGrant} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -202,7 +202,7 @@ public class LicenseConditionItemProvider
 	}
 
 	/**
-	 * This returns LicenseCondition.gif.
+	 * This returns LicenseGrant.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -220,7 +220,7 @@ public class LicenseConditionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LicenseCondition)object).getFeatureIdentifier();
+		String label = ((LicenseGrant)object).getFeatureIdentifier();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LicenseCondition_type") : //$NON-NLS-1$
 			getString("_UI_LicenseCondition_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
@@ -238,7 +238,7 @@ public class LicenseConditionItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LicenseCondition.class)) {
+		switch (notification.getFeatureID(LicenseGrant.class)) {
 			case LicPackage.LICENSE_CONDITION__ALLOWED_FEATURE_ID:
 			case LicPackage.LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_VERSION:
 			case LicPackage.LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_RULE:

@@ -1,19 +1,19 @@
 /**
  * 	Copyright (c) 2018 ArSysOp
  * 
- * 	Licensed under the Apache License, Version 2.0 (the "License");
- * 	you may not use this file except in compliance with the License.
- * 	You may obtain a copy of the License at
+ * 	Licensed under the Apache LicensePack, Version 2.0 (the "LicensePack");
+ * 	you may not use this file except in compliance with the LicensePack.
+ * 	You may obtain a copy of the LicensePack at
  * 
  * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the License is distributed on an "AS IS" BASIS,
+ * 	distributed under the LicensePack is distributed on an "AS IS" BASIS,
  * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the License for the specific language governing permissions and
- * 	limitations under the License.
+ * 	See the LicensePack for the specific language governing permissions and
+ * 	limitations under the LicensePack.
  * 
- * 	SPDX-License-Identifier: Apache-2.0
+ * 	SPDX-LicensePack-Identifier: Apache-2.0
  * 
  * 	Contributors:
  * 		ArSysOp - initial API and implementation
@@ -38,32 +38,32 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import ru.arsysop.passage.lic.model.api.License;
-import ru.arsysop.passage.lic.model.api.LicenseCondition;
+import ru.arsysop.passage.lic.model.api.LicensePack;
+import ru.arsysop.passage.lic.model.api.LicenseGrant;
 
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>License</b></em>'.
+ * An implementation of the model object '<em><b>LicensePack</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseImpl#getIssueDate <em>Issue Date</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseImpl#getExpireDate <em>Expire Date</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseImpl#getProductIdentifier <em>Product Identifier</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseImpl#getProductVersion <em>Product Version</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseImpl#getUserIdentifier <em>User Identifier</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseImpl#getCapacity <em>Capacity</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseImpl#getLicenseConditions <em>License Conditions</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getIssueDate <em>Issue Date</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getExpireDate <em>Expire Date</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getProductIdentifier <em>Product Identifier</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getProductVersion <em>Product Version</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getUserIdentifier <em>User Identifier</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl#getLicenseConditions <em>LicensePack Conditions</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LicenseImpl extends MinimalEObjectImpl.Container implements License {
+public class LicensePackImpl extends MinimalEObjectImpl.Container implements LicensePack {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -205,21 +205,21 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 	protected int capacity = CAPACITY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLicenseGrants() <em>License Conditions</em>}' containment reference list.
+	 * The cached value of the '{@link #getLicenseGrants() <em>LicensePack Conditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLicenseGrants()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LicenseCondition> licenseConditions;
+	protected EList<LicenseGrant> licenseConditions;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LicenseImpl() {
+	protected LicensePackImpl() {
 		super();
 	}
 
@@ -373,9 +373,9 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LicenseCondition> getLicenseGrants() {
+	public EList<LicenseGrant> getLicenseGrants() {
 		if (licenseConditions == null) {
-			licenseConditions = new EObjectContainmentEList<LicenseCondition>(LicenseCondition.class, this, LicPackage.LICENSE__LICENSE_CONDITIONS);
+			licenseConditions = new EObjectContainmentEList<LicenseGrant>(LicenseGrant.class, this, LicPackage.LICENSE__LICENSE_CONDITIONS);
 		}
 		return licenseConditions;
 	}
@@ -451,7 +451,7 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 				return;
 			case LicPackage.LICENSE__LICENSE_CONDITIONS:
 				getLicenseGrants().clear();
-				getLicenseGrants().addAll((Collection<? extends LicenseCondition>)newValue);
+				getLicenseGrants().addAll((Collection<? extends LicenseGrant>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -546,4 +546,4 @@ public class LicenseImpl extends MinimalEObjectImpl.Container implements License
 		return result.toString();
 	}
 
-} //LicenseImpl
+} //LicensePackImpl
