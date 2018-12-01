@@ -14,14 +14,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
 import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
-import ru.arsysop.passage.lic.internal.net.NetConditionDescriptorTransport;
 import ru.arsysop.passage.lic.internal.net.NetFeaturePermissionTransport;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
-import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
+@SuppressWarnings("restriction")
 public class NetFeaturePermissionTransportTest {
 
-	@SuppressWarnings("restriction")
 	@Test
 	public void netFeaturePermissionTransportTest() {
 		ObjectMapper mapper = new ObjectMapper();
