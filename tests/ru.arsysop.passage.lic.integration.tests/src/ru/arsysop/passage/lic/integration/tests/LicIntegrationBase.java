@@ -129,7 +129,7 @@ public abstract class LicIntegrationBase {
 		String identifier = product.getIdentifier();
 		File publicFile = path.resolve(identifier + LicensingPaths.EXTENSION_PRODUCT_PUBLIC).toFile();
 		File privateFile = path.resolve(identifier + ".scr").toFile(); //$NON-NLS-1$
-		File licFile = path.resolve(identifier + LicensingPaths.EXTENSION_LICENSE_DECRYPTED).toFile();
+		File licFile = path.resolve(identifier + ".lic").toFile(); //$NON-NLS-1$
 		File licenFile = path.resolve(identifier + LicensingPaths.EXTENSION_LICENSE_ENCRYPTED).toFile();
 
 		String publicKeyPath = publicFile.getPath();

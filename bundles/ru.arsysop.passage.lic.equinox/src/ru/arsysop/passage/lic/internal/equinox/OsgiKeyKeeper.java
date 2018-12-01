@@ -39,6 +39,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import ru.arsysop.passage.lic.base.LicensingConfigurations;
 import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.equinox.LicensingBundles;
 import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
@@ -78,7 +79,7 @@ public class OsgiKeyKeeper implements KeyKeeper {
 
 	@Override
 	public InputStream openKeyStream(Object configuration) throws IOException {
-		String identifier = LicensingPaths.resolveProductIdentifier(configuration);
+		String identifier = LicensingConfigurations.resolveProductIdentifier(configuration);
 		BundleCapability capability = configurationCapabilities.get(identifier);
 		if (capability != null) {
 			Object value = capability.getAttributes().get(ATTRIBUTE_KEYPATH);

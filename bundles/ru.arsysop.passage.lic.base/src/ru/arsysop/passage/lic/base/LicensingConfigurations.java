@@ -20,6 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
+import ru.arsysop.passage.lic.registry.ProductDescriptor;
+
 public class LicensingConfigurations {
 
 	public static String extractProductIdentifier(String[] args) {
@@ -35,6 +37,21 @@ public class LicensingConfigurations {
 				}
 	
 			}
+		}
+		return null;
+	}
+
+	public static String resolveProductIdentifier(Object configuration) {
+		if (configuration instanceof ProductDescriptor) {
+			ProductDescriptor product = (ProductDescriptor) configuration;
+			return product.getIdentifier();
+		}
+		if (configuration instanceof String) {
+			return (String) configuration;
+		}
+		if (configuration instanceof String[]) {
+			String[] strings = (String[]) configuration;
+			return extractProductIdentifier(strings);
 		}
 		return null;
 	}

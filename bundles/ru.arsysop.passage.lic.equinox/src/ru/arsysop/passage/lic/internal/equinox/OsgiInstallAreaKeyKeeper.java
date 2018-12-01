@@ -28,6 +28,7 @@ import java.nio.file.Path;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 
+import ru.arsysop.passage.lic.base.LicensingConfigurations;
 import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
@@ -51,7 +52,7 @@ public class OsgiInstallAreaKeyKeeper implements KeyKeeper {
 			throw new FileNotFoundException(configurationPath.toString());
 		}
 		String productKey = LicensingPaths.EXTENSION_PRODUCT_PUBLIC;
-		String productId = LicensingPaths.resolveProductIdentifier(configuration);
+		String productId = LicensingConfigurations.resolveProductIdentifier(configuration);
 		if (productId != null) {
 			productKey = productId + productKey;
 		}
