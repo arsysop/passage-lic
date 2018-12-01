@@ -30,14 +30,18 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import ru.arsysop.passage.lic.base.ui.LicensingImages;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
+import ru.arsysop.passage.lic.inspector.ui.LicInspectorUi;
 
 public class HardwareInspectorDialog extends TrayDialog {
 	
+	private final LicensingImages licensingImages;
 	private final HardwareInspector hardwareInspector;
 
-	public HardwareInspectorDialog(HardwareInspector inspector, Shell shell) {
+	public HardwareInspectorDialog(LicensingImages images, HardwareInspector inspector, Shell shell) {
 		super(shell);
+		this.licensingImages = images;
 		this.hardwareInspector = inspector;
 	}
 	
@@ -45,6 +49,7 @@ public class HardwareInspectorDialog extends TrayDialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Hardware Inspector");
+		newShell.setImage(licensingImages.getImage(LicInspectorUi.IMG_INSPECTOR));
 	}
 	
 	@Override
