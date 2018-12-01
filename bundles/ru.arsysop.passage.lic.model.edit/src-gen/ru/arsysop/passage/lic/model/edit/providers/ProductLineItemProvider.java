@@ -192,11 +192,11 @@ public class ProductLineItemProvider
 	 * This returns ProductLine.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProductLine")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/product.png")); //$NON-NLS-1$
 	}
 
 	/**
