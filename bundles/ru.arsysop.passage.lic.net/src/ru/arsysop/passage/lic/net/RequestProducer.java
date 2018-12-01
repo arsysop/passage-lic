@@ -39,16 +39,18 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 import ru.arsysop.passage.lic.base.LicensingProperties;
 import ru.arsysop.passage.lic.internal.net.ConditionDescriptorAggregator;
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
-import ru.arsysop.passage.lic.internal.net.FloatingConditionDescriptor;
 import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
-import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.internal.net.LicensingConditionMixIn;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class RequestProducer {
 
@@ -78,13 +80,13 @@ public class RequestProducer {
 
 	public Iterable<? extends LicensingCondition> extractConditionsRequest(CloseableHttpClient httpClient,
 			HttpHost host, Map<String, String> requestAttributes) {
-		Iterable<FloatingConditionDescriptor> descriptors = new ArrayList<>();
+		Iterable<BaseLicensingCondition> descriptors = new ArrayList<>();
 
 		try {
 			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EXTRACT);
 			URIBuilder builder = createRequestUriBuilder(requestAttributes);
 			ConditionDescriptorAggregator transferObject = processingExtractConditions(httpClient, host, builder);
-			descriptors = transferObject.getConditionDescriptors();
+			descriptors = transferObject.getLicensingConditions();
 		} catch (Exception e) {
 			Logger.getLogger(RequestProducer.class.getName()).info(e.getMessage());
 		}
@@ -118,6 +120,8 @@ public class RequestProducer {
 				ConditionDescriptorAggregator transferObject = null;
 				HttpEntity entity = response.getEntity();
 				ObjectMapper mapper = new ObjectMapper();
+				mapper.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);
+				mapper.addMixIn(BaseLicensingCondition.class, LicensingConditionMixIn.class);
 				try (InputStream inputContext = entity.getContent()) {
 					transferObject = mapper.readValue(inputContext, ConditionDescriptorAggregator.class);
 				} catch (Exception e) {
@@ -136,11 +140,11 @@ public class RequestProducer {
 		HttpPost httpPost = new HttpPost(builder.build());
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
+		
 		ConditionDescriptorAggregator transferObject = new ConditionDescriptorAggregator();
 		for (LicensingCondition d : conditions) {
-			if (d instanceof FloatingConditionDescriptor) {
-				transferObject.addConditionDescriptor((FloatingConditionDescriptor) d);
+			if (d instanceof BaseLicensingCondition) {
+				transferObject.addLicensingCondition((BaseLicensingCondition) d);
 			}
 		}
 

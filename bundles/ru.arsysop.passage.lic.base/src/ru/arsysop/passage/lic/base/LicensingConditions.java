@@ -23,14 +23,12 @@ package ru.arsysop.passage.lic.base;
 import java.util.HashMap;
 import java.util.Map;
 
-import ru.arsysop.passage.lic.runtime.LicensingCondition;
-
-public class ConditionDescriptors {
+public class LicensingConditions {
 	
 	private static final String SEGMENT_SEPARATOR = ";"; //$NON-NLS-1$
 	private static final String VALUE_SEPARATOR = "="; //$NON-NLS-1$
 
-	private ConditionDescriptors() {
+	private LicensingConditions() {
 		// block
 	}
 
@@ -52,7 +50,7 @@ public class ConditionDescriptors {
 		return map;
 	}
 	
-	public static LicensingCondition create(String featureId, String version, String rule, String type, String expression) {
+	public static BaseLicensingCondition create(String featureId, String version, String rule, String type, String expression) {
 		return new BaseLicensingCondition(featureId, version, rule, type, expression);
 	}
 

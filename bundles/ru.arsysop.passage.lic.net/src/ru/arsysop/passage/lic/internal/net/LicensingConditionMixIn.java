@@ -20,16 +20,16 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.internal.net;
 
-import ru.arsysop.passage.lic.base.BaseLicensingCondition;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FloatingConditionDescriptor extends BaseLicensingCondition {
+public abstract class LicensingConditionMixIn {
 
-	public FloatingConditionDescriptor() {
-		super("", "", "", "", "");
-	}
-
-	public FloatingConditionDescriptor(String id, String version, String rule, String type, String expression) {
-		super(id, version, rule, type, expression);
+	public LicensingConditionMixIn(@JsonProperty("featureIdentifier") String featureIdentifier,
+            @JsonProperty("matchVersion") String matchVersion,
+            @JsonProperty("matchRule") String matchRule,
+            @JsonProperty("conditionType") String conditionType,
+            @JsonProperty("conditionExpression") String conditionExpression
+            ) {
 	}
 
 }

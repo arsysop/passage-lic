@@ -8,12 +8,14 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
+import ru.arsysop.passage.lic.base.BaseLicensingCondition;
+import ru.arsysop.passage.lic.base.LicensingConditions;
 import ru.arsysop.passage.lic.internal.net.ConditionDescriptorAggregator;
-import ru.arsysop.passage.lic.internal.net.FloatingConditionDescriptor;
+import ru.arsysop.passage.lic.internal.net.LicensingConditionMixIn;
 import ru.arsysop.passage.lic.internal.net.NetConditionDescriptorTransport;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
@@ -23,7 +25,8 @@ public class NetConditionDescriptorTransportTest {
 	@Test
 	public void netConditionDescriptorTransportTest() {
 		ObjectMapper mapper = new ObjectMapper();
-		mapper.enable(SerializationFeature.INDENT_OUTPUT);
+		mapper.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);
+		mapper.addMixIn(BaseLicensingCondition.class, LicensingConditionMixIn.class);
 
 		ConditionDescriptorAggregator conditionAggregator = createConditionDescriptorAggregator();
 		try {
@@ -43,9 +46,9 @@ public class NetConditionDescriptorTransportTest {
 	@SuppressWarnings("restriction")
 	private ConditionDescriptorAggregator createConditionDescriptorAggregator() {
 		ConditionDescriptorAggregator conditionAggregator = new ConditionDescriptorAggregator();
-		FloatingConditionDescriptor descriptor = new FloatingConditionDescriptor("test.id", "test.version.1", "",
+		BaseLicensingCondition descriptor = LicensingConditions.create("test.id", "test.version.1", "",
 				"test.content.type", "");
-		conditionAggregator.addConditionDescriptor(descriptor);
+		conditionAggregator.addLicensingCondition(descriptor);
 		return conditionAggregator;
 	}
 }

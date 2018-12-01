@@ -30,7 +30,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import ru.arsysop.passage.lic.base.ConditionDescriptors;
+import ru.arsysop.passage.lic.base.LicensingConditions;
 import ru.arsysop.passage.lic.internal.oshi.OshiConditionEvaluator;
 import ru.arsysop.passage.lic.oshi.OshiHal;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
@@ -85,7 +85,7 @@ public class OshiConditionEvaluatorTest {
 	}
 
 	public static LicensingCondition createOshiCondition(String expression) {
-		return ConditionDescriptors.create(OSHI_HARDWARE_FEATURE_ID, OSHI_HARDWARE_MATCH_VERSION, OSHI_HARDWARE_MATCH_RULE, OshiHal.CONDITION_TYPE_HARDWARE, expression);
+		return LicensingConditions.create(OSHI_HARDWARE_FEATURE_ID, OSHI_HARDWARE_MATCH_VERSION, OSHI_HARDWARE_MATCH_RULE, OshiHal.CONDITION_TYPE_HARDWARE, expression);
 	}
 
 }

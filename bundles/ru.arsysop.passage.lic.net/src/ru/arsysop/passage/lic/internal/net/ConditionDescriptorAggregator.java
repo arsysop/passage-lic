@@ -23,16 +23,18 @@ package ru.arsysop.passage.lic.internal.net;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.arsysop.passage.lic.base.BaseLicensingCondition;
+
 public class ConditionDescriptorAggregator {
 
-	private final List<FloatingConditionDescriptor> conditionDescriptors = new ArrayList<>();
+	private final List<BaseLicensingCondition> licensingConditions = new ArrayList<>();
 
-	public List<FloatingConditionDescriptor> getConditionDescriptors() {
-		return conditionDescriptors;
+	public List<BaseLicensingCondition> getLicensingConditions() {
+		return licensingConditions;
 	}
 
-	public void addConditionDescriptor(FloatingConditionDescriptor d) {
-		conditionDescriptors.add(d);
+	public void addLicensingCondition(BaseLicensingCondition d) {
+		licensingConditions.add(d);
 	}
 
 }

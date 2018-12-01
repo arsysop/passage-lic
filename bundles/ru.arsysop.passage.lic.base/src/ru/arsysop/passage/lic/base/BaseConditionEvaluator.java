@@ -40,7 +40,7 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 		}
 		for (LicensingCondition condition : conditions) {
 			String expression = condition.getConditionExpression();
-			Map<String,String> checks = ConditionDescriptors.parseExpression(expression);
+			Map<String,String> checks = LicensingConditions.parseExpression(expression);
 			if (checks.isEmpty()) {
 				//FIXME: log error;
 				continue;

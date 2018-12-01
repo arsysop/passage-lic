@@ -6,9 +6,10 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
+import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 
@@ -20,10 +21,11 @@ public class NetConditionDescriptorTransport implements LicensingConditionTransp
 
 		if (input != null) {
 			ObjectMapper mapper = new ObjectMapper();
-			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			mapper.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);
+			mapper.addMixIn(BaseLicensingCondition.class, LicensingConditionMixIn.class);
 			ConditionDescriptorAggregator transferAgregatorObject = mapper.readValue(input,
 					ConditionDescriptorAggregator.class);
-			descriptors.addAll(transferAgregatorObject.getConditionDescriptors());
+			descriptors.addAll(transferAgregatorObject.getLicensingConditions());
 		}
 
 		return descriptors;
