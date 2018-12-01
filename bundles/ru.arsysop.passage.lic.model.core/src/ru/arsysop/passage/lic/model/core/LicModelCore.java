@@ -30,6 +30,12 @@ public class LicModelCore {
 	
 	public static final String BUNDLE_SYMBOLIC_NAME = "ru.arsysop.passage.lic.model.core"; //$NON-NLS-1$
 
+	public static final String FILE_EXTENSION_FEATURES = "lic_features";  //$NON-NLS-1$
+	public static final String FILE_EXTENSION_PRODUCTS = "lic_products";  //$NON-NLS-1$
+	
+	public static final String FILE_EXTENSION_CONDITIONS = "lic_conditions";  //$NON-NLS-1$
+	public static final String FILE_EXTENSION_USERS = "lic_users";  //$NON-NLS-1$
+
 	public static IStatus save(Resource resource) {
 		try {
 			//FIXME: define parameters
