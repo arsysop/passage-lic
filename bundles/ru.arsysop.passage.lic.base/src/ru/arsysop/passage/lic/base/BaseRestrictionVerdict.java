@@ -28,7 +28,7 @@ public class BaseRestrictionVerdict implements RestrictionVerdict {
 	private final ConfigurationRequirement configurationRequirement;
 	private final String restrictionPolicy;
 
-	protected BaseRestrictionVerdict(ConfigurationRequirement configurationRequirement, String restrictionPolicy) {
+	BaseRestrictionVerdict(ConfigurationRequirement configurationRequirement, String restrictionPolicy) {
 		this.configurationRequirement = configurationRequirement;
 		this.restrictionPolicy = restrictionPolicy;
 	}

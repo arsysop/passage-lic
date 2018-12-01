@@ -26,15 +26,15 @@ import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public class BaseFeaturePermission implements FeaturePermission {
 
-	private final String featureId;
+	private final String featureIdentifier;
 	private final String matchVersion;
 	private final String matchRule;
 	private final long leaseTime;
 	private final long expireTime;
 
-	protected BaseFeaturePermission(String featureId, String matchVersion, String matchRule, long leaseTime,
+	protected BaseFeaturePermission(String featureIdentifier, String matchVersion, String matchRule, long leaseTime,
 			long expireTime) {
-		this.featureId = featureId;
+		this.featureIdentifier = featureIdentifier;
 		this.matchVersion = matchVersion;
 		this.matchRule = matchRule;
 		this.leaseTime = leaseTime;
@@ -43,7 +43,7 @@ public class BaseFeaturePermission implements FeaturePermission {
 
 	@Override
 	public String getFeatureIdentifier() {
-		return featureId;
+		return featureIdentifier;
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class BaseFeaturePermission implements FeaturePermission {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureId).append(';');
+		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureIdentifier).append(';');
 		sb.append(LICENSING_MATCH_VERSION).append('=').append(matchVersion).append(';');
 		sb.append(LICENSING_MATCH_RULE).append('=').append(matchRule).append(';');
 		sb.append(LICENSING_LEASE_TIME).append('=').append(leaseTime).append(';');

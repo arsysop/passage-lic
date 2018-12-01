@@ -32,7 +32,7 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	private final String restrictionLevel;
 	private final Object source;
 
-	protected BaseConfigurationRequirement(String id, String version, String rule, String level, Object source) {
+	BaseConfigurationRequirement(String id, String version, String rule, String level, Object source) {
 		this.featureIdentifier = id;
 		this.matchVersion = version;
 		this.matchRule = rule;
