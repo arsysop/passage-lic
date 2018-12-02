@@ -64,6 +64,7 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Licensing");
+		newShell.setImage(licensingImages.getImage(LicensingImages.IMG_DEFAULT));;
 	}
 
 	@Override
