@@ -42,6 +42,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.osgi.util.NLS;
 
 import ru.arsysop.passage.lic.model.api.FeatureSet;
 
@@ -213,14 +214,17 @@ public class FeatureSetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureSet)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_FeatureSet_type") : //$NON-NLS-1$
-			getString("_UI_FeatureSet_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		FeatureSet identified = (FeatureSet)object;
+		String identifier = identified.getIdentifier();
+		String name = identified.getName();
+		if (name == null || name.length() == 0) {
+			name = getString("_UI_FeatureSet_type"); //$NON-NLS-1$
+		}
+		return NLS.bind("{1} ({0})", identifier, name); //$NON-NLS-1$
 	}
 
 

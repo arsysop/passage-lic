@@ -240,10 +240,12 @@ public class ProductVersionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ProductVersion)object).getVersion();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ProductVersion_type") : //$NON-NLS-1$
-			getString("_UI_ProductVersion_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		ProductVersion versioned = (ProductVersion)object;
+		String version = versioned.getVersion();
+		if (version == null || version.length() == 0) {
+			version = getString("_UI_ProductVersion_type"); //$NON-NLS-1$
+		}
+		return version;
 	}
 
 

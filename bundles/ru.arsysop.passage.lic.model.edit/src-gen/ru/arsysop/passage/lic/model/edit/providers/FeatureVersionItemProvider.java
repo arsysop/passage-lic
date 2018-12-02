@@ -161,10 +161,12 @@ public class FeatureVersionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureVersion)object).getVersion();
-		return label == null || label.length() == 0 ?
-			getString("_UI_FeatureVersion_type") : //$NON-NLS-1$
-			getString("_UI_FeatureVersion_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		FeatureVersion versioned = (FeatureVersion)object;
+		String version = versioned.getVersion();
+		if (version == null || version.length() == 0) {
+			version = getString("_UI_FeatureVersion_type"); //$NON-NLS-1$
+		}
+		return version;
 	}
 
 

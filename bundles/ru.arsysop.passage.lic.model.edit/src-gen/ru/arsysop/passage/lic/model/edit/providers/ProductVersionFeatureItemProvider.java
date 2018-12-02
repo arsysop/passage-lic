@@ -184,10 +184,12 @@ public class ProductVersionFeatureItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ProductVersionFeature)object).getFeatureIdentifier();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ProductVersionFeature_type") : //$NON-NLS-1$
-			getString("_UI_ProductVersionFeature_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		ProductVersionFeature versioned = (ProductVersionFeature)object;
+		String identifier = versioned.getFeatureIdentifier();
+		if (identifier == null || identifier.length() == 0) {
+			identifier = getString("_UI_ProductVersionFeature_type"); //$NON-NLS-1$
+		}
+		return identifier;
 	}
 
 
