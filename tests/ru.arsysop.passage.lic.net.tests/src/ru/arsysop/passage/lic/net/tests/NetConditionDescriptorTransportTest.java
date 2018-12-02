@@ -43,7 +43,6 @@ public class NetConditionDescriptorTransportTest {
 		}
 	}
 
-	@SuppressWarnings("restriction")
 	private ConditionDescriptorAggregator createConditionDescriptorAggregator() {
 		ConditionDescriptorAggregator conditionAggregator = new ConditionDescriptorAggregator();
 		BaseLicensingCondition descriptor = LicensingConditions.create("test.id", "test.version.1", "",

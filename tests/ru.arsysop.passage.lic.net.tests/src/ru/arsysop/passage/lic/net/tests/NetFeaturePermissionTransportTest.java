@@ -8,11 +8,13 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
+import ru.arsysop.passage.lic.base.BaseFeaturePermission;
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
+import ru.arsysop.passage.lic.internal.net.FeaturePermissionMixln;
 import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
 import ru.arsysop.passage.lic.internal.net.NetFeaturePermissionTransport;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
@@ -23,7 +25,8 @@ public class NetFeaturePermissionTransportTest {
 	@Test
 	public void netFeaturePermissionTransportTest() {
 		ObjectMapper mapper = new ObjectMapper();
-		mapper.enable(SerializationFeature.INDENT_OUTPUT);
+		mapper.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);
+		mapper.addMixIn(BaseFeaturePermission.class, FeaturePermissionMixln.class);
 
 		FeaturePermissionAggregator conditionAggregator = createFeaturePermissionAggregator();
 		try {
@@ -40,7 +43,6 @@ public class NetFeaturePermissionTransportTest {
 		}
 	}
 
-	@SuppressWarnings("restriction")
 	private FeaturePermissionAggregator createFeaturePermissionAggregator() {
 		FeaturePermissionAggregator permissionAggregator = new FeaturePermissionAggregator();
 		FloatingFeaturePermission descriptor = new FloatingFeaturePermission("test.id", "test.version.1", "", 1L, 1L);
