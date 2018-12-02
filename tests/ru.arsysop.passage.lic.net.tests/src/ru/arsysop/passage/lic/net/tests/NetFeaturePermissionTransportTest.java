@@ -1,6 +1,7 @@
 package ru.arsysop.passage.lic.net.tests;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeNoException;
 
 import java.io.ByteArrayInputStream;
@@ -22,6 +23,12 @@ import ru.arsysop.passage.lic.runtime.FeaturePermission;
 @SuppressWarnings("restriction")
 public class NetFeaturePermissionTransportTest {
 
+	private static final String FEATURE_TEST_VERSION = "test.version.1";
+	private static final String FEATURE_TEST_ID = "test.id";
+	private static final String FEATURE_TEST_RULE = "test.rule";
+	private static final long FEATURE_TEST_LEASE_TIME = 3000l;
+	private static final long FEATURE_TEST_EXPIRE_TIME = 4000l;
+
 	@Test
 	public void netFeaturePermissionTransportTest() {
 		ObjectMapper mapper = new ObjectMapper();
@@ -35,6 +42,14 @@ public class NetFeaturePermissionTransportTest {
 			NetFeaturePermissionTransport transport = new NetFeaturePermissionTransport();
 			Iterable<FeaturePermission> conditions = transport.readFeaturePermissions(bis);
 			assertNotNull(conditions);
+			for (FeaturePermission permition : conditions) {
+				assertTrue(permition.getFeatureIdentifier().equals(FEATURE_TEST_ID));
+				assertTrue(permition.getMatchVersion().equals(FEATURE_TEST_VERSION));
+				assertTrue(permition.getMatchRule().equals(FEATURE_TEST_RULE));
+				assertTrue(permition.getLeaseTime() == FEATURE_TEST_LEASE_TIME);
+				assertTrue(permition.getExpireTime() == FEATURE_TEST_EXPIRE_TIME);
+			}
+			
 
 		} catch (JsonProcessingException e) {
 			assumeNoException(e);
@@ -45,7 +60,8 @@ public class NetFeaturePermissionTransportTest {
 
 	private FeaturePermissionAggregator createFeaturePermissionAggregator() {
 		FeaturePermissionAggregator permissionAggregator = new FeaturePermissionAggregator();
-		FloatingFeaturePermission descriptor = new FloatingFeaturePermission("test.id", "test.version.1", "", 1L, 1L);
+		FloatingFeaturePermission descriptor = new FloatingFeaturePermission(FEATURE_TEST_ID, FEATURE_TEST_VERSION,
+				FEATURE_TEST_RULE, FEATURE_TEST_LEASE_TIME, FEATURE_TEST_EXPIRE_TIME);
 		permissionAggregator.addFeaturePermission(descriptor);
 		return permissionAggregator;
 
