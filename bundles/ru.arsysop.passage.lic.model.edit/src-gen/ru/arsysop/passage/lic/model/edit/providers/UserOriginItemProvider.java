@@ -182,11 +182,11 @@ public class UserOriginItemProvider
 	 * This returns UserOrigin.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UserOrigin")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/user.png")); //$NON-NLS-1$
 	}
 
 	/**
