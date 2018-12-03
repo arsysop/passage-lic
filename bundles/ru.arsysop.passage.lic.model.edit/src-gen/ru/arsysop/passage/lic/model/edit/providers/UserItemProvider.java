@@ -231,15 +231,15 @@ public class UserItemProvider
 	@Override
 	public String getText(Object object) {
 		User user = (User)object;
-		String identifier = user.getIdentifier();
-		if (identifier == null || identifier.length() == 0) {
+		String email = user.getEmail();
+		if (email == null || email.length() == 0) {
 			return getString("_UI_User_type"); //$NON-NLS-1$
 		}
 		String fullName = user.getFullName();
 		if (fullName == null || fullName.length() == 0) {
-			return identifier;
+			return email;
 		}
-		return getString("_UI_User_text_pattern", new Object[] {identifier, fullName}); //$NON-NLS-1$
+		return getString("_UI_User_text_pattern", new Object[] {email, fullName}); //$NON-NLS-1$
 	}
 
 
