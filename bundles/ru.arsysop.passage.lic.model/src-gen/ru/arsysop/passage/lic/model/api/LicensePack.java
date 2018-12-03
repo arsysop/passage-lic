@@ -61,7 +61,7 @@ public interface LicensePack extends EObject, LicensePackDescriptor {
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensePack_Identifier()
-	 * @model id="true" required="true"
+	 * @model id="true"
 	 * @generated
 	 */
 	String getIdentifier();
@@ -87,7 +87,7 @@ public interface LicensePack extends EObject, LicensePackDescriptor {
 	 * @return the value of the '<em>Issue Date</em>' attribute.
 	 * @see #setIssueDate(Date)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicensePack_IssueDate()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Date getIssueDate();
