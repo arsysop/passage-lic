@@ -26,6 +26,6 @@ public interface ProductRegistry extends DescriptorRegistry {
 
 	ProductDescriptor getProduct(String identifier);
 
-	String createPassword(ProductVersionDescriptor productVersion);
+	String createPassword(String identifier, String version);
 
 }
