@@ -24,7 +24,7 @@ import ru.arsysop.passage.lic.registry.ProductDescriptor;
 
 public class LicensingConfigurations {
 
-	public static String extractProductIdentifier(String[] args) {
+	public static String findProductIdentifier(String[] args) {
 		if (args == null) {
 			return null;
 		}
@@ -51,7 +51,7 @@ public class LicensingConfigurations {
 		}
 		if (configuration instanceof String[]) {
 			String[] strings = (String[]) configuration;
-			return extractProductIdentifier(strings);
+			return findProductIdentifier(strings);
 		}
 		return null;
 	}
