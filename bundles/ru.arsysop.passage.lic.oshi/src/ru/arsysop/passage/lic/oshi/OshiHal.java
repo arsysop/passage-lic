@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import oshi.SystemInfo;
@@ -35,6 +34,7 @@ import oshi.hardware.Firmware;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OperatingSystem;
 import oshi.software.os.OperatingSystemVersion;
+import ru.arsysop.passage.lic.base.LicensingConditions;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 
 public class OshiHal {
@@ -193,15 +193,9 @@ public class OshiHal {
 		}
 	}
 
-	public static boolean evaluateProperty(String name, String actual) {
-		if (actual == null) {
-			return false;
-		}
-		if (actual.equals(String.valueOf('*'))) {
-			return true;
-		}
-		String expected = extractProperty(name);
-		return Objects.equals(expected, actual);
+	public static boolean evaluateProperty(String name, String expected) {
+		String actual = extractProperty(name);
+		return LicensingConditions.evaluateSegmentValue(expected, actual);
 	}
 
 	public static Iterable<String> getKnownProperties() {

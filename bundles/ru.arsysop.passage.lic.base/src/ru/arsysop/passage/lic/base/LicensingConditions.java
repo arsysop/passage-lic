@@ -50,6 +50,14 @@ public class LicensingConditions {
 		return map;
 	}
 	
+	public static boolean evaluateSegmentValue(String expected, String actual) {
+		if (actual == null ) {
+			return false;
+		}
+		String regexp = expected.replaceAll("\\*", ".*"); //$NON-NLS-1$ //$NON-NLS-2$
+		return actual.matches(regexp);
+	}
+
 	public static BaseLicensingCondition create(String featureId, String version, String rule, String type, String expression) {
 		return new BaseLicensingCondition(featureId, version, rule, type, expression);
 	}
