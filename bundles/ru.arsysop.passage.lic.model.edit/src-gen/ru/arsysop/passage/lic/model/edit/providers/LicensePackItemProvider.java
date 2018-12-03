@@ -259,14 +259,20 @@ public class LicensePackItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LicensePack)object).getIdentifier();
-		return label == null || label.length() == 0 ?
-			getString("_UI_LicensePack_type") : //$NON-NLS-1$
-			getString("_UI_LicensePack_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		LicensePack licensePack = (LicensePack)object;
+		String product = licensePack.getProductIdentifier();
+		if (product == null || product.length() == 0) {
+			return getString("_UI_LicensePack_type"); //$NON-NLS-1$
+		}
+		String user = licensePack.getUserIdentifier();
+		if (user == null || user.length() == 0) {
+			return product;
+		}
+		return getString("_UI_LicensePack_text_pattern", new Object[] {user, product}); //$NON-NLS-1$
 	}
 
 

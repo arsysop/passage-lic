@@ -42,7 +42,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.osgi.util.NLS;
 
 import ru.arsysop.passage.lic.model.api.Feature;
 
@@ -218,13 +217,16 @@ public class FeatureItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Feature identified = (Feature)object;
-		String identifier = identified.getIdentifier();
-		String name = identified.getName();
-		if (name == null || name.length() == 0) {
-			name = getString("_UI_Feature_type"); //$NON-NLS-1$
+		Feature feature = (Feature)object;
+		String identifier = feature.getIdentifier();
+		if (identifier == null || identifier.length() == 0) {
+			return getString("_UI_Feature_type"); //$NON-NLS-1$
 		}
-		return NLS.bind("{1} ({0})", identifier, name); //$NON-NLS-1$
+		String name = feature.getName();
+		if (name == null || name.length() == 0) {
+			return identifier;
+		}
+		return getString("_UI_Feature_text_pattern", new Object[] {identifier, name}); //$NON-NLS-1$
 	}
 
 

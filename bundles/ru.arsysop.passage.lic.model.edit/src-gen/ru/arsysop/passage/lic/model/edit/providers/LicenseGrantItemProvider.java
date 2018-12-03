@@ -249,14 +249,21 @@ public class LicenseGrantItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LicenseGrant)object).getFeatureIdentifier();
-		return label == null || label.length() == 0 ?
-			getString("_UI_LicenseGrant_type") : //$NON-NLS-1$
-			getString("_UI_LicenseGrant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		LicenseGrant licenseGrant = (LicenseGrant)object;
+		String feature = licenseGrant.getFeatureIdentifier();
+		if (feature == null || feature.length() == 0) {
+			return getString("_UI_LicenseGrant_type"); //$NON-NLS-1$
+			
+		}
+		String type = licenseGrant.getConditionType();
+		if (type == null || type.length() == 0) {
+			return feature;
+		}
+		return getString("_UI_LicenseGrant_text_pattern", new Object[] {type, feature}); //$NON-NLS-1$
 	}
 
 

@@ -42,7 +42,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.osgi.util.NLS;
 
 import ru.arsysop.passage.lic.model.api.ProductLine;
 
@@ -218,13 +217,16 @@ public class ProductLineItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		ProductLine identified = (ProductLine)object;
-		String identifier = identified.getIdentifier();
-		String name = identified.getName();
-		if (name == null || name.length() == 0) {
-			name = getString("_UI_ProductLine_type"); //$NON-NLS-1$
+		ProductLine productLine = (ProductLine)object;
+		String identifier = productLine.getIdentifier();
+		String name = productLine.getName();
+		if (identifier == null || identifier.length() == 0) {
+			return getString("_UI_ProductLine_type"); //$NON-NLS-1$
 		}
-		return NLS.bind("{1} ({0})", identifier, name); //$NON-NLS-1$
+		if (name == null || name.length() == 0) {
+			return identifier;
+		}
+		return getString("_UI_ProductLine_text_pattern", new Object[] {identifier, name}); //$NON-NLS-1$
 	}
 
 

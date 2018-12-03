@@ -226,14 +226,20 @@ public class UserItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((User)object).getFullName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_User_type") : //$NON-NLS-1$
-			getString("_UI_User_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		User user = (User)object;
+		String identifier = user.getIdentifier();
+		if (identifier == null || identifier.length() == 0) {
+			return getString("_UI_User_type"); //$NON-NLS-1$
+		}
+		String fullName = user.getFullName();
+		if (fullName == null || fullName.length() == 0) {
+			return identifier;
+		}
+		return getString("_UI_User_text_pattern", new Object[] {identifier, fullName}); //$NON-NLS-1$
 	}
 
 

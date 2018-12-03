@@ -203,14 +203,20 @@ public class UserOriginItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UserOrigin)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_UserOrigin_type") : //$NON-NLS-1$
-			getString("_UI_UserOrigin_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		UserOrigin userOrigin = (UserOrigin)object;
+		String identifier = userOrigin.getIdentifier();
+		if (identifier == null || identifier.length() == 0) {
+			return getString("_UI_UserOrigin_type"); //$NON-NLS-1$
+		}
+		String name = userOrigin.getName();
+		if (name == null || name.length() == 0) {
+			return identifier;
+		}
+		return getString("_UI_UserOrigin_text_pattern", new Object[] {identifier, name}); //$NON-NLS-1$
 	}
 
 
