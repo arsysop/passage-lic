@@ -54,7 +54,6 @@ import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class RequestProducer {
 
-	private static final String REQUEST_ACTION_CONDITIONS_EXTRACT = "extractConditions"; // NLS-$1
 	private static final String REQUEST_ACTION_CONDITIONS_EVALUATE = "evaluateConditions"; // NLS-$1
 	private static final String CHARSET_UTF_8 = "UTF-8"; // NLS-$1
 
@@ -73,24 +72,10 @@ public class RequestProducer {
 	}
 
 	public URIBuilder createRequestURI(CloseableHttpClient httpClient, HttpHost host,
-			Map<String, String> requestAttributes) {
-		requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EXTRACT);
+			Map<String, String> requestAttributes, String requestActionType) {
+		requestAttributes.put(RequestParameters.SERVER_ACTION_ID, requestActionType);
+		requestAttributes.put(RequestParameters.CONTENT_TYPE, "application/json");
 		return createRequestUriBuilder(requestAttributes);
-	}
-
-	public Iterable<? extends LicensingCondition> extractConditionsRequest(CloseableHttpClient httpClient,
-			HttpHost host, Map<String, String> requestAttributes) {
-		Iterable<BaseLicensingCondition> descriptors = new ArrayList<>();
-
-		try {
-			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EXTRACT);
-			URIBuilder builder = createRequestUriBuilder(requestAttributes);
-			ConditionDescriptorAggregator transferObject = processingExtractConditions(httpClient, host, builder);
-			descriptors = transferObject.getLicensingConditions();
-		} catch (Exception e) {
-			Logger.getLogger(RequestProducer.class.getName()).info(e.getMessage());
-		}
-		return descriptors;
 	}
 
 	public Iterable<? extends FeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient,
@@ -140,7 +125,7 @@ public class RequestProducer {
 		HttpPost httpPost = new HttpPost(builder.build());
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
-		
+
 		ConditionDescriptorAggregator transferObject = new ConditionDescriptorAggregator();
 		for (LicensingCondition d : conditions) {
 			if (d instanceof BaseLicensingCondition) {

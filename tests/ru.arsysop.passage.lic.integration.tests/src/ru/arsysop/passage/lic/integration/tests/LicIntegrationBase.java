@@ -22,9 +22,11 @@ package ru.arsysop.passage.lic.integration.tests;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
@@ -33,6 +35,8 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -55,6 +59,9 @@ import ru.arsysop.passage.lic.runtime.io.StreamCodec;
 
 public abstract class LicIntegrationBase {
 
+	private static final String EXTENSION_SERVER_SETTINGS = ".settings";
+	private static final String PASSAGE_SERVER_PORT_DEF = "passage.server.port=8080";
+	private static final String PASSAGE_SERVER_HOST_DEF = "passage.server.host=localhost";
 	static final String SOME_BUNDLE_ID = "some.licensed.bundle"; //$NON-NLS-1$
 	static final String SOME_COMPONENT_ID = "some.licensed.component"; //$NON-NLS-1$
 	static final String SOME_COMPONENT_VERSION = "1.2.0"; //$NON-NLS-1$
@@ -120,6 +127,26 @@ public abstract class LicIntegrationBase {
 	@Test
 	public void testAccessManager() {
 		assertNotNull(accessManager);
+	}
+
+	protected void createServerConfiguration(Product product) throws IOException {
+		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
+		Path path = LicensingPaths.resolveConfigurationPath(install, product);
+		Files.createDirectories(path);
+		String identifier = product.getIdentifier();
+		File serverConfigurationFile = path.resolve(identifier + EXTENSION_SERVER_SETTINGS).toFile();
+
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(serverConfigurationFile));) {
+			bw.write(PASSAGE_SERVER_HOST_DEF);
+			bw.newLine();
+			bw.write(PASSAGE_SERVER_PORT_DEF);
+			bw.newLine();
+			bw.flush();
+		} catch (Exception e) {
+			Logger logger = Logger.getLogger(LicIntegrationBase.class.getName());
+			logger.log(Level.FINER, e.getMessage(), e);
+		}
+
 	}
 
 	protected void createProductLicense(Product product, LicensePack license) throws IOException {

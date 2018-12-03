@@ -44,7 +44,8 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		Iterable<LicensingCondition> conditionsObject = accessManager.extractConditions(new Object());
 		assertFalse(conditionsObject.iterator().hasNext());
 
-		Iterable<LicensingCondition> conditionsProduct = accessManager.extractConditions(LicFactory.eINSTANCE.createProduct());
+		Iterable<LicensingCondition> conditionsProduct = accessManager
+				.extractConditions(LicFactory.eINSTANCE.createProduct());
 		assertFalse(conditionsProduct.iterator().hasNext());
 
 		Product product = LicFactory.eINSTANCE.createProduct();
@@ -68,6 +69,27 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		licenseGrants.add(conditionBundle);
 
 		createProductLicense(product, license);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
+		assertTrue(conditions.iterator().hasNext());
+		deleteProductLicense(product);
+	}
+
+	@Test
+	public void testExtractConditionsServerPositive() throws Exception {
+		LicFactory factory = LicFactory.eINSTANCE;
+		Product product = factory.createProduct();
+		product.setIdentifier(SOME_PRODUCT_ID);
+
+		LicensePack license = factory.createLicensePack();
+		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
+		LicenseGrant conditionBundle = factory.createLicenseGrant();
+		conditionBundle.setFeatureIdentifier(SOME_BUNDLE_ID);
+		conditionBundle.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
+		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
+		licenseGrants.add(conditionBundle);
+
+		createProductLicense(product, license);
+		createServerConfiguration(product);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
 		assertTrue(conditions.iterator().hasNext());
 		deleteProductLicense(product);

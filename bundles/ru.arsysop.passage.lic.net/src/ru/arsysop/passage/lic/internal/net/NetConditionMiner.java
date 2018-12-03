@@ -33,6 +33,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -56,11 +57,13 @@ public class NetConditionMiner implements ConditionMiner {
 	private static final String PORT_VALUE_NOT_SPECIFIED_ERROR = "Port value not specified for miner";
 	private static final String HOST_VALUE_NOT_SPECIFIED_ERROR = "Host value not specified for miner";
 	private static final String SETTINGS_EXTENSION = ".settings";
-	private final String MODE = "client";
-	private EnvironmentInfo environmentInfo;
+	private static final String MODE = "client";
+	private static final String MINER_LICENSING_CONDITION_TYPE = "extractConditions";
 
 	private static String HOST_KEY = "passage.server.host";
 	private static String PORT_KEY = "passage.server.port";
+
+	private EnvironmentInfo environmentInfo;
 
 	private final Map<String, ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport> contentType2ConditionDescriptorTransport = new HashMap<>();
 
@@ -108,7 +111,8 @@ public class NetConditionMiner implements ConditionMiner {
 		for (Path path : settinsFiles) {
 			try {
 				Map<String, String> loadedSettings = loadIstallationAreaSettings(Files.readAllLines(path));
-				settingsMap.putAll(loadedSettings);;
+				settingsMap.putAll(loadedSettings);
+
 			} catch (Exception e) {
 				logger.log(Level.FINEST, e.getMessage(), e);
 			}
@@ -130,7 +134,8 @@ public class NetConditionMiner implements ConditionMiner {
 
 			Map<String, String> requestAttributes = requestProducer.initRequestParams(hostValue, portValue, MODE);
 			HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
-			URIBuilder requestBulder = requestProducer.createRequestURI(httpClient, host, requestAttributes);
+			URIBuilder requestBulder = requestProducer.createRequestURI(httpClient, host, requestAttributes,
+					MINER_LICENSING_CONDITION_TYPE);
 			if (requestBulder == null) {
 				logger.log(Level.FINEST, "Could not create URI for request");
 			}
@@ -141,7 +146,9 @@ public class NetConditionMiner implements ConditionMiner {
 				@Override
 				public Iterable<LicensingCondition> handleResponse(HttpResponse response)
 						throws ClientProtocolException, IOException {
-					String contentType = response.getEntity().getContentType().getValue();
+
+					Header header = response.getEntity().getContentType();
+					String contentType = header.getValue();
 					HttpEntity entity = response.getEntity();
 					if (entity != null && entity.getContent() != null) {
 						ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport transport = getConditionDescriptorTransport(
@@ -177,8 +184,7 @@ public class NetConditionMiner implements ConditionMiner {
 		}
 	}
 
-	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport,
-			Map<String, String> context) {
+	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, String> context) {
 		String contentType = context.get(LICENSING_CONTENT_TYPE);
 		if (contentType != null) {
 			if (contentType2ConditionDescriptorTransport.containsKey(contentType)) {

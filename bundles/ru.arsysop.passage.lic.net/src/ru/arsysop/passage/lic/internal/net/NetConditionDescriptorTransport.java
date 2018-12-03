@@ -34,6 +34,26 @@ public class NetConditionDescriptorTransport implements LicensingConditionTransp
 	@Override
 	public void writeConditionDescriptors(Iterable<LicensingCondition> conditions, OutputStream output)
 			throws IOException {
+
+		if (conditions == null) {
+			return;
+		}
+		ConditionDescriptorAggregator aggregator = createConditionAggregator(conditions);
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);
+		mapper.addMixIn(BaseLicensingCondition.class, LicensingConditionMixIn.class);
+		byte[] byteValues = mapper.writeValueAsBytes(aggregator);
+		output.write(byteValues);
+	}
+
+	private ConditionDescriptorAggregator createConditionAggregator(Iterable<LicensingCondition> conditions) {
+		ConditionDescriptorAggregator aggregator = new ConditionDescriptorAggregator();
+		for (LicensingCondition c : conditions) {
+			if (c instanceof BaseLicensingCondition) {
+				aggregator.addLicensingCondition((BaseLicensingCondition) c);
+			}
+		}
+		return aggregator;
 	}
 
 }

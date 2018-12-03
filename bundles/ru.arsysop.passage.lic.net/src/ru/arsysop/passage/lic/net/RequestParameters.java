@@ -38,6 +38,7 @@ public class RequestParameters {
 	public static final String PROTOCOL_TYPE_ID = "http";
 	public static final String HOST = "host";
 	public static final String PORT = "port";
+	public static final String CONTENT_TYPE = "content.type";
 	
 
 }
