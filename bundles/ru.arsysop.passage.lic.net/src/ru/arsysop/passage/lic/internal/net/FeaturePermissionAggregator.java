@@ -23,15 +23,17 @@ package ru.arsysop.passage.lic.internal.net;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.arsysop.passage.lic.base.BaseFeaturePermission;
+
 public class FeaturePermissionAggregator {
 
-	private final List<FloatingFeaturePermission> featurePermissions = new ArrayList<>();
+	private final List<BaseFeaturePermission> featurePermissions = new ArrayList<>();
 
-	public void addFeaturePermission(FloatingFeaturePermission p) {
+	public void addFeaturePermission(BaseFeaturePermission p) {
 		featurePermissions.add(p);
 	}
 
-	public List<FloatingFeaturePermission> getFeaturePermissions() {
+	public List<BaseFeaturePermission> getFeaturePermissions() {
 		return featurePermissions;
 	}
 

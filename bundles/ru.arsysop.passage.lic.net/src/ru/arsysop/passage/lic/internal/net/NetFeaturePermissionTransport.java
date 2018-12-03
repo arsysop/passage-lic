@@ -6,9 +6,11 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import ru.arsysop.passage.lic.base.BaseFeaturePermission;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.io.FeaturePermissionTransport;
 
@@ -32,7 +34,25 @@ public class NetFeaturePermissionTransport implements FeaturePermissionTransport
 	@Override
 	public void writeFeaturePermissions(Iterable<FeaturePermission> conditions, OutputStream output)
 			throws IOException {
+		if (conditions == null) {
+			return;
+		}
+		FeaturePermissionAggregator aggregator = createFeaturePermissionAggregator(conditions);
 
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);
+		mapper.addMixIn(BaseFeaturePermission.class, FeaturePermissionMixln.class);
+		output.write(mapper.writeValueAsBytes(aggregator));
+
+	}
+
+	private FeaturePermissionAggregator createFeaturePermissionAggregator(Iterable<FeaturePermission> permissions) {
+		FeaturePermissionAggregator aggregator = new FeaturePermissionAggregator();
+		for (FeaturePermission permission : permissions) {
+			if (permission instanceof BaseFeaturePermission)
+				aggregator.addFeaturePermission((BaseFeaturePermission) permission);
+		}
+		return null;
 	}
 
 }

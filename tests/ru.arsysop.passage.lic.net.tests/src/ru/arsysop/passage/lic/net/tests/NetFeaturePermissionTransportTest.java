@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.arsysop.passage.lic.base.BaseFeaturePermission;
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionMixln;
-import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
 import ru.arsysop.passage.lic.internal.net.NetFeaturePermissionTransport;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
@@ -49,7 +48,6 @@ public class NetFeaturePermissionTransportTest {
 				assertTrue(permition.getLeaseTime() == FEATURE_TEST_LEASE_TIME);
 				assertTrue(permition.getExpireTime() == FEATURE_TEST_EXPIRE_TIME);
 			}
-			
 
 		} catch (JsonProcessingException e) {
 			assumeNoException(e);
@@ -60,7 +58,7 @@ public class NetFeaturePermissionTransportTest {
 
 	private FeaturePermissionAggregator createFeaturePermissionAggregator() {
 		FeaturePermissionAggregator permissionAggregator = new FeaturePermissionAggregator();
-		FloatingFeaturePermission descriptor = new FloatingFeaturePermission(FEATURE_TEST_ID, FEATURE_TEST_VERSION,
+		BaseFeaturePermission descriptor = new BaseFeaturePermission(FEATURE_TEST_ID, FEATURE_TEST_VERSION,
 				FEATURE_TEST_RULE, FEATURE_TEST_LEASE_TIME, FEATURE_TEST_EXPIRE_TIME);
 		permissionAggregator.addFeaturePermission(descriptor);
 		return permissionAggregator;

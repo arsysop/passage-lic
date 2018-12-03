@@ -43,11 +43,11 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import ru.arsysop.passage.lic.base.BaseFeaturePermission;
 import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 import ru.arsysop.passage.lic.base.LicensingProperties;
 import ru.arsysop.passage.lic.internal.net.ConditionDescriptorAggregator;
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
-import ru.arsysop.passage.lic.internal.net.FloatingFeaturePermission;
 import ru.arsysop.passage.lic.internal.net.LicensingConditionMixIn;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
@@ -80,7 +80,7 @@ public class RequestProducer {
 
 	public Iterable<? extends FeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient,
 			HttpHost host, Map<String, String> requestAttributes, Iterable<LicensingCondition> conditions) {
-		Iterable<FloatingFeaturePermission> permissions = new ArrayList<>();
+		Iterable<BaseFeaturePermission> permissions = new ArrayList<>();
 		try {
 			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EVALUATE);
 			URIBuilder builder = createRequestUriBuilder(requestAttributes);
