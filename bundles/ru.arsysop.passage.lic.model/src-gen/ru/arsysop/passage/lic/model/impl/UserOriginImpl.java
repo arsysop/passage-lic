@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import ru.arsysop.passage.lic.model.api.User;
@@ -120,7 +120,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getUsers() <em>Users</em>}' reference list.
+	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUsers()
@@ -218,7 +218,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 */
 	public EList<User> getUsers() {
 		if (users == null) {
-			users = new EObjectWithInverseResolvingEList<User>(User.class, this, LicPackage.USER_ORIGIN__USERS, LicPackage.USER__USER_ORIGIN);
+			users = new EObjectContainmentWithInverseEList<User>(User.class, this, LicPackage.USER_ORIGIN__USERS, LicPackage.USER__USER_ORIGIN);
 		}
 		return users;
 	}

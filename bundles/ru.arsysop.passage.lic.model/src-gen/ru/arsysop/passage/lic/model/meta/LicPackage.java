@@ -895,7 +895,7 @@ public interface LicPackage extends EPackage {
 	int USER_ORIGIN__DESCRIPTION = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 2;
 
 		/**
-	 * The feature id for the '<em><b>Users</b></em>' reference list.
+	 * The feature id for the '<em><b>Users</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -968,7 +968,7 @@ public interface LicPackage extends EPackage {
 	int USER__DESCRIPTION = USER_DESCRIPTOR_FEATURE_COUNT + 3;
 
 		/**
-	 * The feature id for the '<em><b>User Origin</b></em>' reference.
+	 * The feature id for the '<em><b>User Origin</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1591,10 +1591,10 @@ public interface LicPackage extends EPackage {
 	EAttribute getUser_Description();
 
 		/**
-	 * Returns the meta object for the reference '{@link ru.arsysop.passage.lic.model.api.User#getUserOrigin <em>User Origin</em>}'.
+	 * Returns the meta object for the container reference '{@link ru.arsysop.passage.lic.model.api.User#getUserOrigin <em>User Origin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User Origin</em>'.
+	 * @return the meta object for the container reference '<em>User Origin</em>'.
 	 * @see ru.arsysop.passage.lic.model.api.User#getUserOrigin()
 	 * @see #getUser()
 	 * @generated
@@ -1980,10 +1980,10 @@ public interface LicPackage extends EPackage {
 	EAttribute getUserOrigin_Description();
 
 		/**
-	 * Returns the meta object for the reference list '{@link ru.arsysop.passage.lic.model.api.UserOrigin#getUsers <em>Users</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.UserOrigin#getUsers <em>Users</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Users</em>'.
+	 * @return the meta object for the containment reference list '<em>Users</em>'.
 	 * @see ru.arsysop.passage.lic.model.api.UserOrigin#getUsers()
 	 * @see #getUserOrigin()
 	 * @generated
@@ -2351,7 +2351,7 @@ public interface LicPackage extends EPackage {
 		EAttribute USER__DESCRIPTION = eINSTANCE.getUser_Description();
 
 				/**
-		 * The meta object literal for the '<em><b>User Origin</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>User Origin</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2641,7 +2641,7 @@ public interface LicPackage extends EPackage {
 		EAttribute USER_ORIGIN__DESCRIPTION = eINSTANCE.getUserOrigin_Description();
 
 				/**
-		 * The meta object literal for the '<em><b>Users</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Users</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

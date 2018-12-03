@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import ru.arsysop.passage.lic.model.api.User;
 import ru.arsysop.passage.lic.model.api.UserOrigin;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
@@ -130,16 +131,6 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
-
-		/**
-	 * The cached value of the '{@link #getUserOrigin() <em>User Origin</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUserOrigin()
-	 * @generated
-	 * @ordered
-	 */
-	protected UserOrigin userOrigin;
 
 		/**
 	 * <!-- begin-user-doc -->
@@ -250,24 +241,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	public UserOrigin getUserOrigin() {
-		if (userOrigin != null && userOrigin.eIsProxy()) {
-			InternalEObject oldUserOrigin = (InternalEObject)userOrigin;
-			userOrigin = (UserOrigin)eResolveProxy(oldUserOrigin);
-			if (userOrigin != oldUserOrigin) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LicPackage.USER__USER_ORIGIN, oldUserOrigin, userOrigin));
-			}
-		}
-		return userOrigin;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UserOrigin basicGetUserOrigin() {
-		return userOrigin;
+		if (eContainerFeatureID() != LicPackage.USER__USER_ORIGIN) return null;
+		return (UserOrigin)eInternalContainer();
 	}
 
 		/**
@@ -276,12 +251,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	public NotificationChain basicSetUserOrigin(UserOrigin newUserOrigin, NotificationChain msgs) {
-		UserOrigin oldUserOrigin = userOrigin;
-		userOrigin = newUserOrigin;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LicPackage.USER__USER_ORIGIN, oldUserOrigin, newUserOrigin);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject)newUserOrigin, LicPackage.USER__USER_ORIGIN, msgs);
 		return msgs;
 	}
 
@@ -291,10 +261,12 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	public void setUserOrigin(UserOrigin newUserOrigin) {
-		if (newUserOrigin != userOrigin) {
+		if (newUserOrigin != eInternalContainer() || (eContainerFeatureID() != LicPackage.USER__USER_ORIGIN && newUserOrigin != null)) {
+			if (EcoreUtil.isAncestor(this, newUserOrigin))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
-			if (userOrigin != null)
-				msgs = ((InternalEObject)userOrigin).eInverseRemove(this, LicPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newUserOrigin != null)
 				msgs = ((InternalEObject)newUserOrigin).eInverseAdd(this, LicPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
 			msgs = basicSetUserOrigin(newUserOrigin, msgs);
@@ -313,8 +285,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case LicPackage.USER__USER_ORIGIN:
-				if (userOrigin != null)
-					msgs = ((InternalEObject)userOrigin).eInverseRemove(this, LicPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetUserOrigin((UserOrigin)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -336,6 +308,20 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 
 		/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case LicPackage.USER__USER_ORIGIN:
+				return eInternalContainer().eInverseRemove(this, LicPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -351,8 +337,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			case LicPackage.USER__DESCRIPTION:
 				return getDescription();
 			case LicPackage.USER__USER_ORIGIN:
-				if (resolve) return getUserOrigin();
-				return basicGetUserOrigin();
+				return getUserOrigin();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -428,7 +413,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			case LicPackage.USER__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case LicPackage.USER__USER_ORIGIN:
-				return userOrigin != null;
+				return getUserOrigin() != null;
 		}
 		return super.eIsSet(featureID);
 	}

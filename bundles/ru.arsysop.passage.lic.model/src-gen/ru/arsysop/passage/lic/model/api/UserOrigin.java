@@ -58,7 +58,7 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUserOrigin_Identifier()
-	 * @model id="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getIdentifier();
@@ -126,7 +126,7 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Users</b></em>' reference list.
+	 * Returns the value of the '<em><b>Users</b></em>' containment reference list.
 	 * The list contents are of type {@link ru.arsysop.passage.lic.model.api.User}.
 	 * It is bidirectional and its opposite is '{@link ru.arsysop.passage.lic.model.api.User#getUserOrigin <em>User Origin</em>}'.
 	 * <!-- begin-user-doc -->
@@ -135,10 +135,10 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Users</em>' reference list.
+	 * @return the value of the '<em>Users</em>' containment reference list.
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUserOrigin_Users()
 	 * @see ru.arsysop.passage.lic.model.api.User#getUserOrigin
-	 * @model opposite="userOrigin"
+	 * @model opposite="userOrigin" containment="true"
 	 * @generated
 	 */
 	EList<User> getUsers();
