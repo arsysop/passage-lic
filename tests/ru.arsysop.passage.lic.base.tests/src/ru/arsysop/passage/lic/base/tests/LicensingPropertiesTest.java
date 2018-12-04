@@ -26,36 +26,8 @@ import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
 import org.junit.Test;
 
-
 public class LicensingPropertiesTest {
 	
-	@Test
-	public void testMatchVersionProperty() {
-		assertEquals(LICENSING_MATCH_VERSION_DEFAULT, toMatchVersionProperty(this));
-		assertEquals(LICENSING_MATCH_VERSION_DEFAULT, toMatchVersionProperty(this.toString()));
-		assertEquals(LICENSING_MATCH_VERSION_DEFAULT, toMatchVersionProperty(String.valueOf(' ')));
-		assertEquals("1", toMatchVersionProperty("1")); //$NON-NLS-1$ //$NON-NLS-2$
-		assertEquals("1.2", toMatchVersionProperty("1.2")); //$NON-NLS-1$ //$NON-NLS-2$
-		assertEquals("1.2.3", toMatchVersionProperty("1.2.3")); //$NON-NLS-1$ //$NON-NLS-2$
-		assertEquals("1.2.3.x3", toMatchVersionProperty("1.2.3.x3")); //$NON-NLS-1$ //$NON-NLS-2$
-	}
-
-	@Test
-	public void testMatchRuleProperty() {
-		assertEquals(LICENSING_MATCH_RULE_DEFAULT, toMatchRuleProperty(this));
-		assertEquals(LICENSING_MATCH_RULE_DEFAULT, toMatchRuleProperty(this.toString()));
-
-		assertEquals(LICENSING_MATCH_RULE_COMPATIBLE, toMatchRuleProperty(LICENSING_MATCH_RULE_COMPATIBLE));
-		assertEquals(LICENSING_MATCH_RULE_EQUIVALENT, toMatchRuleProperty(LICENSING_MATCH_RULE_EQUIVALENT));
-		assertEquals(LICENSING_MATCH_RULE_GREATER_OR_EQUAL, toMatchRuleProperty(LICENSING_MATCH_RULE_GREATER_OR_EQUAL));
-		assertEquals(LICENSING_MATCH_RULE_PERFECT, toMatchRuleProperty(LICENSING_MATCH_RULE_PERFECT));
-
-		assertEquals(LICENSING_MATCH_RULE_COMPATIBLE, toMatchRuleProperty("coMpaTible")); //$NON-NLS-1$
-		assertEquals(LICENSING_MATCH_RULE_EQUIVALENT, toMatchRuleProperty("eQuIVALenT")); //$NON-NLS-1$
-		assertEquals(LICENSING_MATCH_RULE_GREATER_OR_EQUAL, toMatchRuleProperty("gREaterORequAL")); //$NON-NLS-1$
-		assertEquals(LICENSING_MATCH_RULE_PERFECT, toMatchRuleProperty("perFecT")); //$NON-NLS-1$
-	}
-
 	@Test
 	public void testRestrictionLevelProperty() {
 		assertEquals(LICENSING_RESTRICTION_LEVEL_DEFAULT, toRestrictionLevelProperty(this));

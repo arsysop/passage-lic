@@ -23,16 +23,10 @@ package ru.arsysop.passage.lic.base;
 public final class LicensingProperties {
 
 	public static final String LICENSING_FEATURE_IDENTIFIER = "licensing.feature.identifier"; //$NON-NLS-1$
+	public static final String LICENSING_FEATURE_VERSION = "licensing.feature.version"; //$NON-NLS-1$
 	
 	public static final String LICENSING_MATCH_VERSION = "licensing.match.version"; //$NON-NLS-1$
-	public static final String LICENSING_MATCH_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
-	
 	public static final String LICENSING_MATCH_RULE = "licensing.match.rule"; //$NON-NLS-1$
-	public static final String LICENSING_MATCH_RULE_PERFECT = "perfect"; //$NON-NLS-1$
-	public static final String LICENSING_MATCH_RULE_EQUIVALENT = "equivalent"; //$NON-NLS-1$
-	public static final String LICENSING_MATCH_RULE_COMPATIBLE = "compatible"; //$NON-NLS-1$
-	public static final String LICENSING_MATCH_RULE_GREATER_OR_EQUAL = "greaterOrEqual"; //$NON-NLS-1$
-	public static final String LICENSING_MATCH_RULE_DEFAULT = LICENSING_MATCH_RULE_COMPATIBLE;
 	
 	public static final String LICENSING_RESTRICTION_LEVEL = "licensing.restriction.level"; //$NON-NLS-1$
 	public static final String LICENSING_RESTRICTION_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
@@ -53,41 +47,6 @@ public final class LicensingProperties {
 		// block
 	}
 	
-	public static String toMatchVersionProperty(Object object) {
-		if (object instanceof String) {
-			String version = (String) object;
-			version = version.trim();
-			if (version.length() == 0) {
-				return LICENSING_MATCH_VERSION_DEFAULT;
-			}
-			String[] split = version.split("\\."); //$NON-NLS-1$
-			if (split.length > 4) {
-				return LICENSING_MATCH_VERSION_DEFAULT;
-			}
-			return version;
-		}
-		return LICENSING_MATCH_VERSION_DEFAULT;
-	}
-
-	public static String toMatchRuleProperty(Object object) {
-		if (object instanceof String) {
-			String rule = (String) object;
-			if (LICENSING_MATCH_RULE_GREATER_OR_EQUAL.equalsIgnoreCase(rule)) {
-				return LICENSING_MATCH_RULE_GREATER_OR_EQUAL;
-			}
-			if (LICENSING_MATCH_RULE_COMPATIBLE.equalsIgnoreCase(rule)) {
-				return LICENSING_MATCH_RULE_COMPATIBLE;
-			}
-			if (LICENSING_MATCH_RULE_EQUIVALENT.equalsIgnoreCase(rule)) {
-				return LICENSING_MATCH_RULE_EQUIVALENT;
-			}
-			if (LICENSING_MATCH_RULE_PERFECT.equalsIgnoreCase(rule)) {
-				return LICENSING_MATCH_RULE_PERFECT;
-			}
-		}
-		return LICENSING_MATCH_RULE_DEFAULT;
-	}
-
 	public static String toRestrictionLevelProperty(Object object) {
 		if (object instanceof String) {
 			String level = (String) object;

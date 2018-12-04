@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
@@ -37,23 +38,60 @@ public class BasePermissionExaminer implements PermissionExaminer {
 	@Override
 	public Iterable<RestrictionVerdict> examine(Iterable<ConfigurationRequirement> requirements,
 			Iterable<FeaturePermission> permissions, Object configuration) {
-		Map<String, ConfigurationRequirement> unsatisfied = new HashMap<>();
+		Map<String, List<ConfigurationRequirement>> required = new HashMap<>();
+		Map<String, List<FeaturePermission>> allowed = new HashMap<>();
 		for (ConfigurationRequirement requirement : requirements) {
 			String featureId = requirement.getFeatureIdentifier();
-			unsatisfied.put(featureId, requirement);
+			List<ConfigurationRequirement> list = required.computeIfAbsent(featureId, key -> new ArrayList<>());
+			list.add(requirement);
 		}
 		for (FeaturePermission permission : permissions) {
 			String featureId = permission.getFeatureIdentifier();
-			unsatisfied.remove(featureId);
+			List<FeaturePermission> list = allowed.computeIfAbsent(featureId, key -> new ArrayList<>());
+			list.add(permission);
 		}
+		
 		List<RestrictionVerdict> verdicts = new ArrayList<>();
-		Set<String> features = unsatisfied.keySet();
-		for (String feature : features) {
-			ConfigurationRequirement configurationRequirement = unsatisfied.get(feature);
-			String restrictionPolicy = configurationRequirement.getRestrictionLevel();
-			verdicts.add(new BaseRestrictionVerdict(configurationRequirement, restrictionPolicy));
+		
+		Set<String> features = required.keySet();
+		for (String featureId : features) {
+			List<ConfigurationRequirement> requirementList = required.get(featureId);
+			List<FeaturePermission> permissionList = allowed.computeIfAbsent(featureId, key -> new ArrayList<>());
+			List<RestrictionVerdict> examined = examineFeatures(requirementList, permissionList);
+			verdicts.addAll(examined);
 		}
 		return Collections.unmodifiableList(verdicts);
+	}
+	
+	protected List<RestrictionVerdict> examineFeatures(List<ConfigurationRequirement> requirements, List<FeaturePermission> permissions) {
+		List<ConfigurationRequirement> unsatisfied = new ArrayList<>(requirements);
+		for (FeaturePermission permission : permissions) {
+			List<ConfigurationRequirement> covered = new ArrayList<>();
+			for (ConfigurationRequirement requirement : unsatisfied) {
+				if (isCovered(requirement, permission)) {
+					covered.add(requirement);
+				}
+			}
+			unsatisfied.removeAll(covered);
+		}
+		
+		List<RestrictionVerdict> verdicts = new ArrayList<>();
+		for (ConfigurationRequirement requirement : unsatisfied) {
+			verdicts.add(createVerdict(requirement));
+		}
+		return Collections.unmodifiableList(verdicts);
+	}
+
+	protected RestrictionVerdict createVerdict(ConfigurationRequirement requirement) {
+		String level = requirement.getRestrictionLevel();
+		return new BaseRestrictionVerdict(requirement, level);
+	}
+	
+	protected boolean isCovered(ConfigurationRequirement requirement, FeaturePermission permission) {
+		if (!Objects.equals(requirement.getFeatureIdentifier(), permission.getFeatureIdentifier())) {
+			return false;
+		}
+		return LicensingVersions.isMatch(requirement.getFeatureVersion(), permission.getMatchVersion(), permission.getMatchRule());
 	}
 
 }

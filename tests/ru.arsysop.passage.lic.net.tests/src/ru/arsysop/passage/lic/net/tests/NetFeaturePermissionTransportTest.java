@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ru.arsysop.passage.lic.base.BaseFeaturePermission;
+import ru.arsysop.passage.lic.base.FeaturePermissions;
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
 import ru.arsysop.passage.lic.internal.net.FeaturePermissionMixln;
 import ru.arsysop.passage.lic.internal.net.NetFeaturePermissionTransport;
@@ -22,9 +23,9 @@ import ru.arsysop.passage.lic.runtime.FeaturePermission;
 @SuppressWarnings("restriction")
 public class NetFeaturePermissionTransportTest {
 
-	private static final String FEATURE_TEST_VERSION = "test.version.1";
-	private static final String FEATURE_TEST_ID = "test.id";
-	private static final String FEATURE_TEST_RULE = "test.rule";
+	private static final String FEATURE_TEST_VERSION = "test.version.1"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_ID = "test.id"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_RULE = "test.rule"; //$NON-NLS-1$
 	private static final long FEATURE_TEST_LEASE_TIME = 3000l;
 	private static final long FEATURE_TEST_EXPIRE_TIME = 4000l;
 
@@ -58,7 +59,7 @@ public class NetFeaturePermissionTransportTest {
 
 	private FeaturePermissionAggregator createFeaturePermissionAggregator() {
 		FeaturePermissionAggregator permissionAggregator = new FeaturePermissionAggregator();
-		BaseFeaturePermission descriptor = new BaseFeaturePermission(FEATURE_TEST_ID, FEATURE_TEST_VERSION,
+		BaseFeaturePermission descriptor = FeaturePermissions.create(FEATURE_TEST_ID, FEATURE_TEST_VERSION,
 				FEATURE_TEST_RULE, FEATURE_TEST_LEASE_TIME, FEATURE_TEST_EXPIRE_TIME);
 		permissionAggregator.addFeaturePermission(descriptor);
 		return permissionAggregator;

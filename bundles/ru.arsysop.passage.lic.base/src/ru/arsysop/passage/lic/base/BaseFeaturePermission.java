@@ -32,7 +32,7 @@ public class BaseFeaturePermission implements FeaturePermission {
 	private final long leaseTime;
 	private final long expireTime;
 
-	public BaseFeaturePermission(String featureIdentifier, String matchVersion, String matchRule, long leaseTime,
+	BaseFeaturePermission(String featureIdentifier, String matchVersion, String matchRule, long leaseTime,
 			long expireTime) {
 		this.featureIdentifier = featureIdentifier;
 		this.matchVersion = matchVersion;

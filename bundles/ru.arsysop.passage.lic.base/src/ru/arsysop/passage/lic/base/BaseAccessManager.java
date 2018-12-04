@@ -20,11 +20,9 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
-import static ru.arsysop.passage.lic.base.LicensingEvents.*;
 import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

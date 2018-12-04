@@ -26,36 +26,8 @@ import static ru.arsysop.passage.lic.base.LicensingNamespaces.*;
 
 import org.junit.Test;
 
-
 public class LicensingNamespacesTest {
 	
-	@Test
-	public void testMatchVersionProperty() {
-		assertEquals(ATTRIBUTE_VERSION_DEFAULT, toVersionAttribute(this));
-		assertEquals(ATTRIBUTE_VERSION_DEFAULT, toVersionAttribute(this.toString()));
-		assertEquals(ATTRIBUTE_VERSION_DEFAULT, toVersionAttribute(String.valueOf(' ')));
-		assertEquals("1", toVersionAttribute("1")); //$NON-NLS-1$ //$NON-NLS-2$
-		assertEquals("1.2", toVersionAttribute("1.2")); //$NON-NLS-1$ //$NON-NLS-2$
-		assertEquals("1.2.3", toVersionAttribute("1.2.3")); //$NON-NLS-1$ //$NON-NLS-2$
-		assertEquals("1.2.3.x3", toVersionAttribute("1.2.3.x3")); //$NON-NLS-1$ //$NON-NLS-2$
-	}
-
-	@Test
-	public void testMatchRuleProperty() {
-		assertEquals(ATTRIBUTE_RULE_DEFAULT, toRuleAttribute(this));
-		assertEquals(ATTRIBUTE_RULE_DEFAULT, toRuleAttribute(this.toString()));
-
-		assertEquals(ATTRIBUTE_RULE_COMPATIBLE, toRuleAttribute(ATTRIBUTE_RULE_COMPATIBLE));
-		assertEquals(ATTRIBUTE_RULE_EQUIVALENT, toRuleAttribute(ATTRIBUTE_RULE_EQUIVALENT));
-		assertEquals(ATTRIBUTE_RULE_GREATER_OR_EQUAL, toRuleAttribute(ATTRIBUTE_RULE_GREATER_OR_EQUAL));
-		assertEquals(ATTRIBUTE_RULE_PERFECT, toRuleAttribute(ATTRIBUTE_RULE_PERFECT));
-
-		assertEquals(ATTRIBUTE_RULE_COMPATIBLE, toRuleAttribute("coMpaTible")); //$NON-NLS-1$
-		assertEquals(ATTRIBUTE_RULE_EQUIVALENT, toRuleAttribute("eQuIVALenT")); //$NON-NLS-1$
-		assertEquals(ATTRIBUTE_RULE_GREATER_OR_EQUAL, toRuleAttribute("gREaterORequAL")); //$NON-NLS-1$
-		assertEquals(ATTRIBUTE_RULE_PERFECT, toRuleAttribute("perFecT")); //$NON-NLS-1$
-	}
-
 	@Test
 	public void testRestrictionLevelProperty() {
 		assertEquals(ATTRIBUTE_LEVEL_DEFAULT, toLevelAttribute(this));

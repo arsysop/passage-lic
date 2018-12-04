@@ -1,0 +1,113 @@
+/*******************************************************************************
+ * Copyright (c) 2018 ArSysOp
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
+package ru.arsysop.passage.lic.base.tests;
+
+import static org.junit.Assert.assertEquals;
+import static ru.arsysop.passage.lic.base.LicensingVersions.*;
+
+import org.junit.Test;
+
+@SuppressWarnings("nls")
+public class LicensingVersionsTest {
+	
+	@Test
+	public void testToVersionValue() {
+		assertEquals(VERSION_DEFAULT, toVersionValue(this));
+		assertEquals(VERSION_DEFAULT, toVersionValue(this.toString()));
+		assertEquals(VERSION_DEFAULT, toVersionValue(String.valueOf(' ')));
+		assertEquals("1.0.0", toVersionValue("1"));
+		assertEquals("1.0.0", toVersionValue("1.a"));
+		assertEquals("1.2.0", toVersionValue("1.2"));
+		assertEquals("1.2.0", toVersionValue("1.2.x"));
+		assertEquals("1.2.3", toVersionValue("1.2.3"));
+		assertEquals("1.2.3.x3", toVersionValue("1.2.3.x3"));
+	}
+
+	@Test
+	public void testToRuleValue() {
+		assertEquals(RULE_DEFAULT, toRuleValue(this));
+		assertEquals(RULE_DEFAULT, toRuleValue(this.toString()));
+
+		assertEquals(RULE_COMPATIBLE, toRuleValue(RULE_COMPATIBLE));
+		assertEquals(RULE_EQUIVALENT, toRuleValue(RULE_EQUIVALENT));
+		assertEquals(RULE_GREATER_OR_EQUAL, toRuleValue(RULE_GREATER_OR_EQUAL));
+		assertEquals(RULE_PERFECT, toRuleValue(RULE_PERFECT));
+
+		assertEquals(RULE_COMPATIBLE, toRuleValue("coMpaTible")); 
+		assertEquals(RULE_EQUIVALENT, toRuleValue("eQuIVALenT"));
+		assertEquals(RULE_GREATER_OR_EQUAL, toRuleValue("gREaterORequAL"));
+		assertEquals(RULE_PERFECT, toRuleValue("perFecT"));
+	}
+
+	@Test
+	public void testIsMatchNegative() {
+		assertEquals(false, isMatch(null, null, null));
+		assertEquals(false, isMatch(null, null, new String()));
+		assertEquals(false, isMatch(null, new String(), null));
+		assertEquals(false, isMatch(null, new String(), new String()));
+		assertEquals(false, isMatch(new String(), null, null));
+		assertEquals(false, isMatch(new String(), null, new String()));
+		assertEquals(true, isMatch(new String(), new String(), null));
+		assertEquals(true, isMatch(new String(), new String(), new String()));
+
+		assertEquals(true, isMatch("1.2.3", "1.2.3", null));
+		assertEquals(false, isMatch("1.2.3", "1.2.3.x3", null));
+		assertEquals(true, isMatch("1.2.3", "1.2.3", new String()));
+		assertEquals(false, isMatch("1.2.3", "1.2.3.x3", new String()));
+	}
+
+	@Test
+	public void testIsMatchCompatible() {
+		assertEquals(false, isMatch(null, null, RULE_COMPATIBLE));
+		assertEquals(true, isMatch(new String(), new String(), RULE_COMPATIBLE));
+		assertEquals(true, isMatch("1.2.1", "1.2.0", RULE_COMPATIBLE));
+		assertEquals(true, isMatch("1.2.0", "1.2.1", RULE_COMPATIBLE));
+		assertEquals(true, isMatch("1.3.0", "1.2.0", RULE_COMPATIBLE));
+		assertEquals(true, isMatch("1.3.0.a", "1.2.0.b", RULE_COMPATIBLE));
+		assertEquals(true, isMatch("1.2.0.a", "1.2.0.b", RULE_COMPATIBLE));
+		assertEquals(false, isMatch("2.0.0.a", "1.2.0.a", RULE_COMPATIBLE));
+	}
+
+	@Test
+	public void testIsMatchEquivalent() {
+		assertEquals(false, isMatch(null, null, RULE_EQUIVALENT));
+		assertEquals(true, isMatch(new String(), new String(), RULE_EQUIVALENT));
+		assertEquals(true, isMatch("1.2.1", "1.2.0", RULE_EQUIVALENT));
+		assertEquals(false, isMatch("1.2.0", "1.2.1", RULE_EQUIVALENT));
+		assertEquals(false, isMatch("1.3.0", "1.2.0", RULE_EQUIVALENT));
+		assertEquals(false, isMatch("1.3.0.a", "1.2.0.b", RULE_EQUIVALENT));
+		assertEquals(true, isMatch("1.2.0.a", "1.2.0.b", RULE_EQUIVALENT));
+		assertEquals(false, isMatch("2.0.0.a", "1.2.0.a", RULE_EQUIVALENT));
+	}
+
+	@Test
+	public void testIsMatchPerfect() {
+		assertEquals(false, isMatch(null, null, RULE_PERFECT));
+		assertEquals(true, isMatch(new String(), new String(), RULE_PERFECT));
+		assertEquals(false, isMatch("1.2.1", "1.2.0", RULE_PERFECT));
+		assertEquals(false, isMatch("1.3.0", "1.2.0", RULE_PERFECT));
+		assertEquals(false, isMatch("1.3.0.a", "1.2.0.b", RULE_PERFECT));
+		assertEquals(false, isMatch("1.2.0.a", "1.2.0.b", RULE_PERFECT));
+		assertEquals(false, isMatch("2.0.0.a", "1.2.0.a", RULE_PERFECT));
+		assertEquals(true, isMatch("1.2.0.a", "1.2.0.a", RULE_PERFECT));
+	}
+
+}
