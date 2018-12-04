@@ -147,6 +147,9 @@ public class LicensingVersions {
 		if (Objects.equals(required, allowed)) {
 			return true;
 		}
+		if (VERSION_DEFAULT.equals(required)) {
+			return true;
+		}
 		String expected = toVersionValue(allowed);
 		String actual = toVersionValue(required);
 		String[] esplit = expected.split(SEPARATOR_REGEX);

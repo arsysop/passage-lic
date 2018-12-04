@@ -75,6 +75,21 @@ public class LicensingVersionsTest {
 	}
 
 	@Test
+	public void testIsMatchGreaterOrEqual() {
+		assertEquals(false, isMatch(null, null, RULE_GREATER_OR_EQUAL));
+		assertEquals(true, isMatch(new String(), new String(), RULE_GREATER_OR_EQUAL));
+		assertEquals(true, isMatch("1.2.1", "1.2.0", RULE_GREATER_OR_EQUAL));
+		assertEquals(true, isMatch("1.2.0", "1.2.1", RULE_GREATER_OR_EQUAL));
+		assertEquals(true, isMatch("1.3.0", "1.2.0", RULE_GREATER_OR_EQUAL));
+		assertEquals(true, isMatch("1.3.0.a", "1.2.0.b", RULE_GREATER_OR_EQUAL));
+		assertEquals(true, isMatch("1.2.0.a", "1.2.0.b", RULE_GREATER_OR_EQUAL));
+		assertEquals(true, isMatch("2.0.0.a", "1.2.0.a", RULE_GREATER_OR_EQUAL));
+		assertEquals(false, isMatch("1.2.0.a", "2.0.0.a", RULE_GREATER_OR_EQUAL));
+		assertEquals(true, isMatch("1.2.0.a", "0.0.0", RULE_GREATER_OR_EQUAL));
+		assertEquals(true, isMatch("0.0.0", "1.2.0.a", RULE_GREATER_OR_EQUAL));
+	}
+
+	@Test
 	public void testIsMatchCompatible() {
 		assertEquals(false, isMatch(null, null, RULE_COMPATIBLE));
 		assertEquals(true, isMatch(new String(), new String(), RULE_COMPATIBLE));
@@ -84,6 +99,8 @@ public class LicensingVersionsTest {
 		assertEquals(true, isMatch("1.3.0.a", "1.2.0.b", RULE_COMPATIBLE));
 		assertEquals(true, isMatch("1.2.0.a", "1.2.0.b", RULE_COMPATIBLE));
 		assertEquals(false, isMatch("2.0.0.a", "1.2.0.a", RULE_COMPATIBLE));
+		assertEquals(false, isMatch("1.2.0.a", "0.0.0", RULE_COMPATIBLE));
+		assertEquals(true, isMatch("0.0.0", "1.2.0.a", RULE_COMPATIBLE));
 	}
 
 	@Test
@@ -96,6 +113,8 @@ public class LicensingVersionsTest {
 		assertEquals(false, isMatch("1.3.0.a", "1.2.0.b", RULE_EQUIVALENT));
 		assertEquals(true, isMatch("1.2.0.a", "1.2.0.b", RULE_EQUIVALENT));
 		assertEquals(false, isMatch("2.0.0.a", "1.2.0.a", RULE_EQUIVALENT));
+		assertEquals(false, isMatch("1.2.0.a", "0.0.0", RULE_EQUIVALENT));
+		assertEquals(true, isMatch("0.0.0", "1.2.0.a", RULE_EQUIVALENT));
 	}
 
 	@Test
@@ -108,6 +127,8 @@ public class LicensingVersionsTest {
 		assertEquals(false, isMatch("1.2.0.a", "1.2.0.b", RULE_PERFECT));
 		assertEquals(false, isMatch("2.0.0.a", "1.2.0.a", RULE_PERFECT));
 		assertEquals(true, isMatch("1.2.0.a", "1.2.0.a", RULE_PERFECT));
+		assertEquals(false, isMatch("1.2.0.a", "0.0.0", RULE_PERFECT));
+		assertEquals(false, isMatch("0.0.0", "1.2.0.a", RULE_PERFECT));
 	}
 
 }
