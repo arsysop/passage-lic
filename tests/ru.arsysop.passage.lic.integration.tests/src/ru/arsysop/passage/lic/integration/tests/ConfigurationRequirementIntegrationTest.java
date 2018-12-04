@@ -52,7 +52,7 @@ public class ConfigurationRequirementIntegrationTest extends LicIntegrationBase 
 		ConfigurationRequirement componentRequirement = requirements.get(SOME_COMPONENT_ID);
 		assertNotNull(componentRequirement);
 		assertEquals(SOME_COMPONENT_ID, componentRequirement.getFeatureIdentifier());
-		assertEquals(LICENSING_MATCH_RULE_EXACT, componentRequirement.getMatchRule());
+		assertEquals(LICENSING_MATCH_RULE_PERFECT, componentRequirement.getMatchRule());
 		assertEquals(SOME_COMPONENT_VERSION, componentRequirement.getMatchVersion());
 		assertEquals(LICENSING_RESTRICTION_LEVEL_ERROR, componentRequirement.getRestrictionLevel());
 	}

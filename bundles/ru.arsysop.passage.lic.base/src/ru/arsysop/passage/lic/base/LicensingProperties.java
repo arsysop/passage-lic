@@ -28,8 +28,10 @@ public final class LicensingProperties {
 	public static final String LICENSING_MATCH_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
 	
 	public static final String LICENSING_MATCH_RULE = "licensing.match.rule"; //$NON-NLS-1$
+	public static final String LICENSING_MATCH_RULE_PERFECT = "perfect"; //$NON-NLS-1$
+	public static final String LICENSING_MATCH_RULE_EQUIVALENT = "equivalent"; //$NON-NLS-1$
 	public static final String LICENSING_MATCH_RULE_COMPATIBLE = "compatible"; //$NON-NLS-1$
-	public static final String LICENSING_MATCH_RULE_EXACT = "exact"; //$NON-NLS-1$
+	public static final String LICENSING_MATCH_RULE_GREATER_OR_EQUAL = "greaterOrEqual"; //$NON-NLS-1$
 	public static final String LICENSING_MATCH_RULE_DEFAULT = LICENSING_MATCH_RULE_COMPATIBLE;
 	
 	public static final String LICENSING_RESTRICTION_LEVEL = "licensing.restriction.level"; //$NON-NLS-1$
@@ -49,6 +51,57 @@ public final class LicensingProperties {
 
 	private LicensingProperties() {
 		// block
+	}
+	
+	public static String toMatchVersionProperty(Object object) {
+		if (object instanceof String) {
+			String version = (String) object;
+			version = version.trim();
+			if (version.length() == 0) {
+				return LICENSING_MATCH_VERSION_DEFAULT;
+			}
+			String[] split = version.split("\\."); //$NON-NLS-1$
+			if (split.length > 4) {
+				return LICENSING_MATCH_VERSION_DEFAULT;
+			}
+			return version;
+		}
+		return LICENSING_MATCH_VERSION_DEFAULT;
+	}
+
+	public static String toMatchRuleProperty(Object object) {
+		if (object instanceof String) {
+			String rule = (String) object;
+			if (LICENSING_MATCH_RULE_GREATER_OR_EQUAL.equalsIgnoreCase(rule)) {
+				return LICENSING_MATCH_RULE_GREATER_OR_EQUAL;
+			}
+			if (LICENSING_MATCH_RULE_COMPATIBLE.equalsIgnoreCase(rule)) {
+				return LICENSING_MATCH_RULE_COMPATIBLE;
+			}
+			if (LICENSING_MATCH_RULE_EQUIVALENT.equalsIgnoreCase(rule)) {
+				return LICENSING_MATCH_RULE_EQUIVALENT;
+			}
+			if (LICENSING_MATCH_RULE_PERFECT.equalsIgnoreCase(rule)) {
+				return LICENSING_MATCH_RULE_PERFECT;
+			}
+		}
+		return LICENSING_MATCH_RULE_DEFAULT;
+	}
+
+	public static String toRestrictionLevelProperty(Object object) {
+		if (object instanceof String) {
+			String level = (String) object;
+			if (LICENSING_RESTRICTION_LEVEL_WARN.equalsIgnoreCase(level)) {
+				return LICENSING_RESTRICTION_LEVEL_WARN;
+			}
+			if (LICENSING_RESTRICTION_LEVEL_ERROR.equalsIgnoreCase(level)) {
+				return LICENSING_RESTRICTION_LEVEL_ERROR;
+			}
+			if (LICENSING_RESTRICTION_LEVEL_FATAL.equalsIgnoreCase(level)) {
+				return LICENSING_RESTRICTION_LEVEL_FATAL;
+			}
+		}
+		return LICENSING_RESTRICTION_LEVEL_DEFAULT;
 	}
 
 }
