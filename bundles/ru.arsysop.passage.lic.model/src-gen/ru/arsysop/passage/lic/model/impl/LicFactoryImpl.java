@@ -76,20 +76,33 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
   @Override
   public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case LicPackage.FEATURE_SET: return createFeatureSet();
 			case LicPackage.FEATURE: return createFeature();
 			case LicPackage.FEATURE_VERSION: return createFeatureVersion();
+			case LicPackage.PRODUCT_LINE: return createProductLine();
 			case LicPackage.PRODUCT: return createProduct();
 			case LicPackage.PRODUCT_VERSION: return createProductVersion();
 			case LicPackage.PRODUCT_VERSION_FEATURE: return createProductVersionFeature();
+			case LicPackage.USER_ORIGIN: return createUserOrigin();
 			case LicPackage.USER: return createUser();
-			case LicPackage.LICENSE: return createLicense();
-			case LicPackage.LICENSE_CONDITION: return createLicenseCondition();
+			case LicPackage.LICENSE_PACK: return createLicensePack();
+			case LicPackage.LICENSE_GRANT: return createLicenseGrant();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
   /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureSet createFeatureSet() {
+		FeatureSetImpl featureSet = new FeatureSetImpl();
+		return featureSet;
+	}
+
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -124,6 +137,16 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public UserOrigin createUserOrigin() {
+		UserOriginImpl userOrigin = new UserOriginImpl();
+		return userOrigin;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Feature createFeature() {
 		FeatureImpl feature = new FeatureImpl();
 		return feature;
@@ -144,6 +167,16 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ProductLine createProductLine() {
+		ProductLineImpl productLine = new ProductLineImpl();
+		return productLine;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
@@ -154,9 +187,9 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public License createLicense() {
-		LicenseImpl license = new LicenseImpl();
-		return license;
+	public LicensePack createLicensePack() {
+		LicensePackImpl licensePack = new LicensePackImpl();
+		return licensePack;
 	}
 
 		/**
@@ -164,9 +197,9 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicenseCondition createLicenseCondition() {
-		LicenseConditionImpl licenseCondition = new LicenseConditionImpl();
-		return licenseCondition;
+	public LicenseGrant createLicenseGrant() {
+		LicenseGrantImpl licenseGrant = new LicenseGrantImpl();
+		return licenseGrant;
 	}
 
 		/**

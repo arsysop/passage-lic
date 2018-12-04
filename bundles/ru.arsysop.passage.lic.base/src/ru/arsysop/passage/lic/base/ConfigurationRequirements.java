@@ -38,22 +38,9 @@ public class ConfigurationRequirements {
 		Object feature = attributes.get(CAPABILITY_LICENSING_FEATURE);
 		if (feature instanceof String) {
 			String featureId = (String) feature;
-			String version = ATTRIBUTE_VERSION_DEFAULT;
-			String rule = ATTRIBUTE_RULE_DEFAULT;
-			String level = ATTRIBUTE_LEVEL_DEFAULT;
-			Object matchVersion = attributes.get(ATTRIBUTE_VERSION);
-			if (matchVersion instanceof String) {
-				version = (String) matchVersion;
-			}
-			Object matchRule = attributes.get(ATTRIBUTE_RULE);
-			if (matchRule instanceof String) {
-				rule = (String) matchRule;
-			}
-			Object restrictionLevel = attributes.get(ATTRIBUTE_LEVEL);
-			if (restrictionLevel instanceof String) {
-				level = (String) restrictionLevel;
-			}
-			return new BaseConfigurationRequirement(featureId, version, rule, level, source);
+			String version = LicensingVersions.toVersionValue(attributes.get(ATTRIBUTE_VERSION));
+			String level = toLevelAttribute(attributes.get(ATTRIBUTE_LEVEL));
+			return new BaseConfigurationRequirement(featureId, version, level, source);
 		}
 		return null;
 	}
@@ -62,42 +49,25 @@ public class ConfigurationRequirements {
 		Object feature = properties.get(LICENSING_FEATURE_IDENTIFIER);
 		if (feature instanceof String) {
 			String featureId = (String) feature;
-			String version = LICENSING_MATCH_VERSION_DEFAULT;
-			String rule = LICENSING_MATCH_RULE_DEFAULT;
-			String level = LICENSING_RESTRICTION_LEVEL_DEFAULT;
-			Object matchVersion = properties.get(LICENSING_MATCH_VERSION);
-			if (matchVersion instanceof String) {
-				version = (String) matchVersion;
-			}
-			Object matchRule = properties.get(LICENSING_MATCH_RULE);
-			if (matchRule instanceof String) {
-				rule = (String) matchRule;
-			}
-			Object restrictionLevel = properties.get(LICENSING_RESTRICTION_LEVEL);
-			if (restrictionLevel instanceof String) {
-				level = (String) restrictionLevel;
-			}
-			return new BaseConfigurationRequirement(featureId, version, rule, level, source);
+			String version = LicensingVersions.toVersionValue(properties.get(LICENSING_FEATURE_VERSION));
+			String level = toRestrictionLevelProperty(properties.get(LICENSING_RESTRICTION_LEVEL));
+			return new BaseConfigurationRequirement(featureId, version, level, source);
 		}
 		return null;
 	}
 
-	public static BaseConfigurationRequirement createError(String featureId, Object source) {
-		String version = LICENSING_MATCH_VERSION_DEFAULT;
-		String rule = LICENSING_MATCH_RULE_DEFAULT;
+	public static BaseConfigurationRequirement createError(String featureId, String version, Object source) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
-		return new BaseConfigurationRequirement(featureId, version, rule, policy, source);
+		return new BaseConfigurationRequirement(featureId, version, policy, source);
 	}
 
-	public static Iterable<ConfigurationRequirement> createErrorIterable(String featureId, Object source) {
-		return Collections.singletonList(createError(featureId, source));
+	public static Iterable<ConfigurationRequirement> createErrorIterable(String featureId, String version, Object source) {
+		return Collections.singletonList(createError(featureId, version, source));
 	}
 
-	public static BaseConfigurationRequirement createDefault(String featureId, Object source) {
-		String version = LICENSING_MATCH_VERSION_DEFAULT;
-		String rule = LICENSING_MATCH_RULE_DEFAULT;
+	public static BaseConfigurationRequirement createDefault(String featureId, String version, Object source) {
 		String policy = LICENSING_RESTRICTION_LEVEL_DEFAULT;
-		return new BaseConfigurationRequirement(featureId, version, rule, policy, source);
+		return new BaseConfigurationRequirement(featureId, version, policy, source);
 	}
 
 }

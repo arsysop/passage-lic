@@ -223,17 +223,29 @@ public class ProductVersionItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public String getText(Object object) {
-		String label = ((ProductVersion)object).getVersion();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ProductVersion_type") : //$NON-NLS-1$
-			getString("_UI_ProductVersion_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		ProductVersion productVersion = (ProductVersion)object;
+		String version = productVersion.getVersion();
+		if (version == null || version.length() == 0) {
+			return getString("_UI_ProductVersion_type"); //$NON-NLS-1$
+		}
+		return version;
 	}
 
 

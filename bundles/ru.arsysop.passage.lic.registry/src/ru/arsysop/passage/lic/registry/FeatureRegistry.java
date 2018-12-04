@@ -20,6 +20,10 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface FeatureRegistry extends BaseDescriptorRegistry<FeatureDescriptor> {
+public interface FeatureRegistry extends DescriptorRegistry {
+	
+	FeatureSetDescriptor getFeatureSet(String identifier);
+
+	FeatureDescriptor getFeature(String identifier);
 
 }

@@ -20,12 +20,14 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface UserDescriptor extends BaseDescriptor {
+public interface UserDescriptor extends Identified {
 	
 	String getEmail();
 
 	String getFullName();
 
 	String getDescription();
+	
+	UserOriginDescriptor getUserOrigin();
 
 }

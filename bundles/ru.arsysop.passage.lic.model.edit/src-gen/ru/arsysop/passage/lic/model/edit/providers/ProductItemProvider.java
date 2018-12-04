@@ -44,7 +44,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import ru.arsysop.passage.lic.model.api.Product;
-
 import ru.arsysop.passage.lic.model.edit.LicEditPlugin;
 
 import ru.arsysop.passage.lic.model.meta.LicFactory;
@@ -200,17 +199,33 @@ public class ProductItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public String getText(Object object) {
-		String label = ((Product)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Product_type") : //$NON-NLS-1$
-			getString("_UI_Product_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		Product product = (Product)object;
+		String identifier = product.getIdentifier();
+		String name = product.getName();
+		if (identifier == null || identifier.length() == 0) {
+			return getString("_UI_Product_type"); //$NON-NLS-1$
+		}
+		if (name == null || name.length() == 0) {
+			return identifier;
+		}
+		return getString("_UI_Product_text_pattern", new Object[] {identifier, name}); //$NON-NLS-1$
 	}
 
 

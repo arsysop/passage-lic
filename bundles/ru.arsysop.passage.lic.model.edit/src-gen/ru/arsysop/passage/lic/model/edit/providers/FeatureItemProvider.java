@@ -200,17 +200,33 @@ public class FeatureItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public String getText(Object object) {
-		String label = ((Feature)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Feature_type") : //$NON-NLS-1$
-			getString("_UI_Feature_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		Feature feature = (Feature)object;
+		String identifier = feature.getIdentifier();
+		if (identifier == null || identifier.length() == 0) {
+			return getString("_UI_Feature_type"); //$NON-NLS-1$
+		}
+		String name = feature.getName();
+		if (name == null || name.length() == 0) {
+			return identifier;
+		}
+		return getString("_UI_Feature_text_pattern", new Object[] {identifier, name}); //$NON-NLS-1$
 	}
 
 

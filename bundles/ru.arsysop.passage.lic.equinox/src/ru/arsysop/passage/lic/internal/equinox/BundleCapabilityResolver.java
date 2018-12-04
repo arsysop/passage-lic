@@ -36,6 +36,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import ru.arsysop.passage.lic.base.BaseConfigurationRequirement;
 import ru.arsysop.passage.lic.base.ConfigurationRequirements;
 import ru.arsysop.passage.lic.base.LicensingNamespaces;
+import ru.arsysop.passage.lic.base.LicensingVersions;
 import ru.arsysop.passage.lic.equinox.LicensingBundles;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
@@ -61,7 +62,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
 		if (bundleContext == null) {
 			logger.severe(String.format(extractCrAudit, BundleContext.class));
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, this);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
@@ -76,7 +77,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 					result.add(extracted);
 				} else {
 					logger.severe(String.format(extractCrAudit, resource));
-					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, resource));
+					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, resource));
 					return result;
 				}
 			}

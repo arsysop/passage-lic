@@ -23,7 +23,7 @@ package ru.arsysop.passage.lic.runtime;
 /**
  * Permission to use the component of given name and version range obtained from
  * {@link ConditionEvaluator} as a result of evaluation for
- * {@link ConditionDescriptor}
+ * {@link LicensingCondition}
  */
 public interface FeaturePermission {
 

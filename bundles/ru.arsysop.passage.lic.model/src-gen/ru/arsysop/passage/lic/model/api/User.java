@@ -37,6 +37,7 @@ import ru.arsysop.passage.lic.registry.UserDescriptor;
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getEmail <em>Email</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getFullName <em>Full Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.User#getDescription <em>Description</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.User#getUserOrigin <em>User Origin</em>}</li>
  * </ul>
  *
  * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser()
@@ -53,11 +54,22 @@ public interface User extends EObject, UserDescriptor {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_Identifier()
-	 * @model id="true" required="true" changeable="false"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getIdentifier();
+
+		/**
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.User#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(String value);
 
 		/**
 	 * Returns the value of the '<em><b>Email</b></em>' attribute.
@@ -136,5 +148,33 @@ public interface User extends EObject, UserDescriptor {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+		/**
+	 * Returns the value of the '<em><b>User Origin</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link ru.arsysop.passage.lic.model.api.UserOrigin#getUsers <em>Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>User Origin</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>User Origin</em>' container reference.
+	 * @see #setUserOrigin(UserOrigin)
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_UserOrigin()
+	 * @see ru.arsysop.passage.lic.model.api.UserOrigin#getUsers
+	 * @model opposite="users" required="true" transient="false"
+	 * @generated
+	 */
+	UserOrigin getUserOrigin();
+
+		/**
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.User#getUserOrigin <em>User Origin</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>User Origin</em>' container reference.
+	 * @see #getUserOrigin()
+	 * @generated
+	 */
+	void setUserOrigin(UserOrigin value);
 
 } // UserInfo

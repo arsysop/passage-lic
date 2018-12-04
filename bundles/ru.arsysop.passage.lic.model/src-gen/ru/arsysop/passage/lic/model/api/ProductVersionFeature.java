@@ -23,6 +23,8 @@ package ru.arsysop.passage.lic.model.api;
 
 import org.eclipse.emf.ecore.EObject;
 
+import ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Product Version Feature</b></em>'.
@@ -39,10 +41,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProductVersionFeature()
- * @model
+ * @model superTypes="ru.arsysop.passage.lic.model.api.ProductVersionFeatureDescriptor"
  * @generated
  */
-public interface ProductVersionFeature extends EObject {
+public interface ProductVersionFeature extends EObject, ProductVersionFeatureDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Feature Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -134,7 +136,7 @@ public interface ProductVersionFeature extends EObject {
 	 * @see #setProductVersion(ProductVersion)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProductVersionFeature_ProductVersion()
 	 * @see ru.arsysop.passage.lic.model.api.ProductVersion#getProductVersionFeatures
-	 * @model opposite="productVersionFeatures" transient="false"
+	 * @model opposite="productVersionFeatures" required="true" transient="false"
 	 * @generated
 	 */
 	ProductVersion getProductVersion();

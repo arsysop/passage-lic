@@ -20,18 +20,18 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.inspector.ui.hadlers;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.widgets.Shell;
 
+import ru.arsysop.passage.lic.base.ui.LicensingImages;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.inspector.ui.dialogs.HardwareInspectorDialog;
 
 public class InspectHardwareHandler {
 
 	@Execute
-	public void execute(IEclipseContext context, HardwareInspector inspector, Shell shell) {
-		HardwareInspectorDialog dialog = new HardwareInspectorDialog(inspector, shell);
+	public void execute(LicensingImages images, HardwareInspector inspector, Shell shell) {
+		HardwareInspectorDialog dialog = new HardwareInspectorDialog(images, inspector, shell);
 		dialog.open();
 	}
 		

@@ -27,15 +27,13 @@ import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	
 	private final String featureIdentifier;
-	private final String matchVersion;
-	private final String matchRule;
+	private final String featureVersion;
 	private final String restrictionLevel;
 	private final Object source;
 
-	public BaseConfigurationRequirement(String id, String version, String rule, String level, Object source) {
+	BaseConfigurationRequirement(String id, String version, String level, Object source) {
 		this.featureIdentifier = id;
-		this.matchVersion = version;
-		this.matchRule = rule;
+		this.featureVersion = version;
 		this.restrictionLevel = level;
 		this.source = source;
 	}
@@ -51,13 +49,8 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	}
 
 	@Override
-	public String getMatchVersion() {
-		return matchVersion;
-	}
-
-	@Override
-	public String getMatchRule() {
-		return matchRule;
+	public String getFeatureVersion() {
+		return featureVersion;
 	}
 
 	@Override
@@ -69,8 +62,7 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureIdentifier).append(';');
-		sb.append(LICENSING_MATCH_VERSION).append('=').append(matchVersion).append(';');
-		sb.append(LICENSING_MATCH_RULE).append('=').append(matchRule).append(';');
+		sb.append(LICENSING_FEATURE_VERSION).append('=').append(featureVersion).append(';');
 		sb.append(LICENSING_RESTRICTION_LEVEL).append('=').append(restrictionLevel).append(';');
 		sb.append("source").append('=').append(source); //$NON-NLS-1$
 		return sb.toString();

@@ -29,8 +29,8 @@ public interface AccessManager {
 	/**
 	 * Aggregated method to:
 	 * <li>resolve {@link ConfigurationRequirement}(s)</li>
-	 * <li>obtain {@link ConditionDescriptor}(s)</li>
-	 * <li>evaluate {@link ConditionDescriptor}(s) to receive
+	 * <li>obtain {@link LicensingCondition}(s)</li>
+	 * <li>evaluate {@link LicensingCondition}(s) to receive
 	 * {@link FeaturePermission}(s)</li>
 	 * <li>examine requirements and permissions to compose
 	 * {@link RestrictionVerdict}(s)</li>
@@ -43,9 +43,9 @@ public interface AccessManager {
 
 	Iterable<ConfigurationRequirement> resolveRequirements(Object configuration);
 
-	Iterable<ConditionDescriptor> extractConditions(Object configuration);
+	Iterable<LicensingCondition> extractConditions(Object configuration);
 
-	Iterable<FeaturePermission> evaluateConditions(Iterable<ConditionDescriptor> conditions);
+	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions);
 
 	Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements, Iterable<FeaturePermission> permissions, Object configuration);
 

@@ -32,7 +32,7 @@
 	<parent>
 		<groupId>ru.arsysop.passage.lic</groupId>
 		<artifactId>ru.arsysop.passage.lic.parent</artifactId>
-		<version>0.3.1-SNAPSHOT</version>
+		<version>0.3.1</version>
 		<relativePath>../../releng/ru.arsysop.passage.lic.parent</relativePath>
 	</parent>
 
@@ -60,10 +60,9 @@
 		<module>../../bundles/ru.arsysop.passage.lic.model.core</module>
 		<module>../../features/ru.arsysop.passage.lic.model.feature</module>
 
+		<module>../../bundles/ru.arsysop.passage.lic.base.ui</module>
 		<module>../../bundles/ru.arsysop.passage.lic.model.edit</module>
 		<module>../../bundles/ru.arsysop.passage.lic.inspector.ui</module>
-		<module>../../bundles/ru.arsysop.passage.lic.transport</module>
-		
 		<module>../../features/ru.arsysop.passage.lic.inspector.feature</module>
 
 		<module>../../features/ru.arsysop.passage.lic.feature</module>

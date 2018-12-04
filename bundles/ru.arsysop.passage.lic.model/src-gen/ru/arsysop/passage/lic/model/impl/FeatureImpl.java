@@ -31,8 +31,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import ru.arsysop.passage.lic.model.api.Feature;
+import ru.arsysop.passage.lic.model.api.FeatureSet;
 import ru.arsysop.passage.lic.model.api.FeatureVersion;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
@@ -47,6 +49,7 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getName <em>Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getFeatureSet <em>Feature Set</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.FeatureImpl#getFeatureVersions <em>Feature Versions</em>}</li>
  * </ul>
  *
@@ -189,6 +192,47 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FeatureSet getFeatureSet() {
+		if (eContainerFeatureID() != LicPackage.FEATURE__FEATURE_SET) return null;
+		return (FeatureSet)eInternalContainer();
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFeatureSet(FeatureSet newFeatureSet, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newFeatureSet, LicPackage.FEATURE__FEATURE_SET, msgs);
+		return msgs;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFeatureSet(FeatureSet newFeatureSet) {
+		if (newFeatureSet != eInternalContainer() || (eContainerFeatureID() != LicPackage.FEATURE__FEATURE_SET && newFeatureSet != null)) {
+			if (EcoreUtil.isAncestor(this, newFeatureSet))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newFeatureSet != null)
+				msgs = ((InternalEObject)newFeatureSet).eInverseAdd(this, LicPackage.FEATURE_SET__FEATURES, FeatureSet.class, msgs);
+			msgs = basicSetFeatureSet(newFeatureSet, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__FEATURE_SET, newFeatureSet, newFeatureSet));
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<FeatureVersion> getFeatureVersions() {
 		if (featureVersions == null) {
 			featureVersions = new EObjectContainmentWithInverseEList<FeatureVersion>(FeatureVersion.class, this, LicPackage.FEATURE__FEATURE_VERSIONS, LicPackage.FEATURE_VERSION__FEATURE);
@@ -205,6 +249,10 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case LicPackage.FEATURE__FEATURE_SET:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetFeatureSet((FeatureSet)otherEnd, msgs);
 			case LicPackage.FEATURE__FEATURE_VERSIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFeatureVersions()).basicAdd(otherEnd, msgs);
 		}
@@ -219,10 +267,26 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case LicPackage.FEATURE__FEATURE_SET:
+				return basicSetFeatureSet(null, msgs);
 			case LicPackage.FEATURE__FEATURE_VERSIONS:
 				return ((InternalEList<?>)getFeatureVersions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case LicPackage.FEATURE__FEATURE_SET:
+				return eInternalContainer().eInverseRemove(this, LicPackage.FEATURE_SET__FEATURES, FeatureSet.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 		/**
@@ -260,6 +324,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 				return getName();
 			case LicPackage.FEATURE__DESCRIPTION:
 				return getDescription();
+			case LicPackage.FEATURE__FEATURE_SET:
+				return getFeatureSet();
 			case LicPackage.FEATURE__FEATURE_VERSIONS:
 				return getFeatureVersions();
 		}
@@ -283,6 +349,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 				return;
 			case LicPackage.FEATURE__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case LicPackage.FEATURE__FEATURE_SET:
+				setFeatureSet((FeatureSet)newValue);
 				return;
 			case LicPackage.FEATURE__FEATURE_VERSIONS:
 				getFeatureVersions().clear();
@@ -309,6 +378,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 			case LicPackage.FEATURE__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
+			case LicPackage.FEATURE__FEATURE_SET:
+				setFeatureSet((FeatureSet)null);
+				return;
 			case LicPackage.FEATURE__FEATURE_VERSIONS:
 				getFeatureVersions().clear();
 				return;
@@ -330,6 +402,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case LicPackage.FEATURE__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case LicPackage.FEATURE__FEATURE_SET:
+				return getFeatureSet() != null;
 			case LicPackage.FEATURE__FEATURE_VERSIONS:
 				return featureVersions != null && !featureVersions.isEmpty();
 		}
