@@ -23,6 +23,7 @@ package ru.arsysop.passage.lic.internal.equinox;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -31,13 +32,11 @@ import org.osgi.framework.wiring.BundleRevision;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.log.Logger;
-import org.osgi.service.log.LoggerFactory;
 
 import ru.arsysop.passage.lic.base.BaseConfigurationRequirement;
 import ru.arsysop.passage.lic.base.ConfigurationRequirements;
 import ru.arsysop.passage.lic.base.LicensingNamespaces;
+import ru.arsysop.passage.lic.base.LicensingVersions;
 import ru.arsysop.passage.lic.equinox.LicensingBundles;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
@@ -48,15 +47,6 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 	private Logger logger;
 	private BundleContext bundleContext;
 	private final String extractCrAudit = "Unable to extract configuration requirements: %s";
-	
-	@Reference
-	public void bindLoggerFactory(LoggerFactory loggerFactory) {
-		this.logger = loggerFactory.getLogger(BundleCapabilityResolver.class);
-	}
-
-	public void unbindLoggerFactory(LoggerFactory loggerFactory) {
-		this.logger = null;
-	}
 	
 	@Activate
 	public void activate(BundleContext bundleContext) {
@@ -71,8 +61,8 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 	@Override
 	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
 		if (bundleContext == null) {
-			logger.audit(String.format(extractCrAudit, BundleContext.class));
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, this);
+			logger.severe(String.format(extractCrAudit, BundleContext.class));
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, this);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
@@ -86,8 +76,8 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 				if (extracted != null) {
 					result.add(extracted);
 				} else {
-					logger.audit(String.format(extractCrAudit, resource));
-					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, resource));
+					logger.severe(String.format(extractCrAudit, resource));
+					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, resource));
 					return result;
 				}
 			}

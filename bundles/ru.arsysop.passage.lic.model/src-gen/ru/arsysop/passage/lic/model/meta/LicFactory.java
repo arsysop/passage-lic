@@ -23,11 +23,14 @@ package ru.arsysop.passage.lic.model.meta;
 import org.eclipse.emf.ecore.EFactory;
 
 import ru.arsysop.passage.lic.model.api.Feature;
+import ru.arsysop.passage.lic.model.api.FeatureSet;
 import ru.arsysop.passage.lic.model.api.FeatureVersion;
-import ru.arsysop.passage.lic.model.api.License;
-import ru.arsysop.passage.lic.model.api.LicenseCondition;
+import ru.arsysop.passage.lic.model.api.LicensePack;
+import ru.arsysop.passage.lic.model.api.LicenseGrant;
 import ru.arsysop.passage.lic.model.api.User;
+import ru.arsysop.passage.lic.model.api.UserOrigin;
 import ru.arsysop.passage.lic.model.api.Product;
+import ru.arsysop.passage.lic.model.api.ProductLine;
 import ru.arsysop.passage.lic.model.api.ProductVersion;
 import ru.arsysop.passage.lic.model.api.ProductVersionFeature;
 
@@ -49,6 +52,15 @@ public interface LicFactory extends EFactory {
   LicFactory eINSTANCE = ru.arsysop.passage.lic.model.impl.LicFactoryImpl.init();
 
   /**
+	 * Returns a new object of class '<em>Feature Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Set</em>'.
+	 * @generated
+	 */
+	FeatureSet createFeatureSet();
+
+		/**
 	 * Returns a new object of class '<em>Product</em>'.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -76,6 +88,15 @@ public interface LicFactory extends EFactory {
 	ProductVersionFeature createProductVersionFeature();
 
 		/**
+	 * Returns a new object of class '<em>User Origin</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Origin</em>'.
+	 * @generated
+	 */
+	UserOrigin createUserOrigin();
+
+		/**
 	 * Returns a new object of class '<em>Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,6 +115,15 @@ public interface LicFactory extends EFactory {
 	FeatureVersion createFeatureVersion();
 
 		/**
+	 * Returns a new object of class '<em>Product Line</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Product Line</em>'.
+	 * @generated
+	 */
+	ProductLine createProductLine();
+
+		/**
 	 * Returns a new object of class '<em>User</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,22 +133,22 @@ public interface LicFactory extends EFactory {
 	User createUser();
 
 		/**
-	 * Returns a new object of class '<em>License</em>'.
+	 * Returns a new object of class '<em>License Pack</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>License</em>'.
+	 * @return a new object of class '<em>License Pack</em>'.
 	 * @generated
 	 */
-	License createLicense();
+	LicensePack createLicensePack();
 
 		/**
-	 * Returns a new object of class '<em>License Condition</em>'.
+	 * Returns a new object of class '<em>License Grant</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>License Condition</em>'.
+	 * @return a new object of class '<em>License Grant</em>'.
 	 * @generated
 	 */
-	LicenseCondition createLicenseCondition();
+	LicenseGrant createLicenseGrant();
 
 		/**
 	 * Returns the package supported by this factory.

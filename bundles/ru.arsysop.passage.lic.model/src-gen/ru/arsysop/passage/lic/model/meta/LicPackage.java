@@ -56,7 +56,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNS_URI = "http://www.arsysop.ru/passage/lic/0.3.0"; //$NON-NLS-1$
+  String eNS_URI = "http://www.arsysop.ru/passage/lic/0.3.1"; //$NON-NLS-1$
 
   /**
 	 * The package namespace name.
@@ -75,6 +75,34 @@ public interface LicPackage extends EPackage {
   LicPackage eINSTANCE = ru.arsysop.passage.lic.model.impl.LicPackageImpl.init();
 
   /**
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.FeatureSetDescriptor <em>Feature Set Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ru.arsysop.passage.lic.registry.FeatureSetDescriptor
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getFeatureSetDescriptor()
+	 * @generated
+	 */
+	int FEATURE_SET_DESCRIPTOR = 0;
+
+		/**
+	 * The number of structural features of the '<em>Feature Set Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_SET_DESCRIPTOR_FEATURE_COUNT = 0;
+
+		/**
+	 * The number of operations of the '<em>Feature Set Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_SET_DESCRIPTOR_OPERATION_COUNT = 0;
+
+		/**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.ProductDescriptor <em>Product Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,7 +110,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductDescriptor()
 	 * @generated
 	 */
-	int PRODUCT_DESCRIPTOR = 2;
+	int PRODUCT_DESCRIPTOR = 4;
 
 		/**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.ProductVersionDescriptor <em>Product Version Descriptor</em>}' class.
@@ -92,7 +120,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductVersionDescriptor()
 	 * @generated
 	 */
-	int PRODUCT_VERSION_DESCRIPTOR = 3;
+	int PRODUCT_VERSION_DESCRIPTOR = 5;
 
 		/**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.FeatureDescriptor <em>Feature Descriptor</em>}' class.
@@ -102,7 +130,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getFeatureDescriptor()
 	 * @generated
 	 */
-	int FEATURE_DESCRIPTOR = 0;
+	int FEATURE_DESCRIPTOR = 1;
 
 		/**
 	 * The number of structural features of the '<em>Feature Descriptor</em>' class.
@@ -130,7 +158,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getFeatureVersionDescriptor()
 	 * @generated
 	 */
-	int FEATURE_VERSION_DESCRIPTOR = 1;
+	int FEATURE_VERSION_DESCRIPTOR = 2;
 
 		/**
 	 * The number of structural features of the '<em>Feature Version Descriptor</em>' class.
@@ -149,6 +177,34 @@ public interface LicPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_VERSION_DESCRIPTOR_OPERATION_COUNT = 0;
+
+		/**
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.ProductLineDescriptor <em>Product Line Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ru.arsysop.passage.lic.registry.ProductLineDescriptor
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductLineDescriptor()
+	 * @generated
+	 */
+	int PRODUCT_LINE_DESCRIPTOR = 3;
+
+		/**
+	 * The number of structural features of the '<em>Product Line Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT = 0;
+
+		/**
+	 * The number of operations of the '<em>Product Line Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
 	 * The number of structural features of the '<em>Product Descriptor</em>' class.
@@ -187,6 +243,62 @@ public interface LicPackage extends EPackage {
 	int PRODUCT_VERSION_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductVersionFeatureDescriptor()
+	 * @generated
+	 */
+	int PRODUCT_VERSION_FEATURE_DESCRIPTOR = 6;
+
+		/**
+	 * The number of structural features of the '<em>Product Version Feature Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT = 0;
+
+		/**
+	 * The number of operations of the '<em>Product Version Feature Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_VERSION_FEATURE_DESCRIPTOR_OPERATION_COUNT = 0;
+
+		/**
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.UserOriginDescriptor <em>User Origin Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ru.arsysop.passage.lic.registry.UserOriginDescriptor
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUserOriginDescriptor()
+	 * @generated
+	 */
+	int USER_ORIGIN_DESCRIPTOR = 7;
+
+		/**
+	 * The number of structural features of the '<em>User Origin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT = 0;
+
+		/**
+	 * The number of operations of the '<em>User Origin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_ORIGIN_DESCRIPTOR_OPERATION_COUNT = 0;
+
+		/**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>User Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,7 +306,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUserDescriptor()
 	 * @generated
 	 */
-	int USER_DESCRIPTOR = 4;
+	int USER_DESCRIPTOR = 8;
 
 		/**
 	 * The number of structural features of the '<em>User Descriptor</em>' class.
@@ -215,60 +327,124 @@ public interface LicPackage extends EPackage {
 	int USER_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.LicenseDescriptor <em>License Descriptor</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ru.arsysop.passage.lic.registry.LicenseDescriptor
-	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseDescriptor()
+	 * @see ru.arsysop.passage.lic.registry.LicensePackDescriptor
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicensePackDescriptor()
 	 * @generated
 	 */
-	int LICENSE_DESCRIPTOR = 5;
+	int LICENSE_PACK_DESCRIPTOR = 9;
 
 		/**
-	 * The number of structural features of the '<em>License Descriptor</em>' class.
+	 * The number of structural features of the '<em>License Pack Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_DESCRIPTOR_FEATURE_COUNT = 0;
+	int LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT = 0;
 
 		/**
-	 * The number of operations of the '<em>License Descriptor</em>' class.
+	 * The number of operations of the '<em>License Pack Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_DESCRIPTOR_OPERATION_COUNT = 0;
+	int LICENSE_PACK_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.runtime.ConditionDescriptor <em>Condition Descriptor</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.registry.LicenseGrantDescriptor <em>License Grant Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ru.arsysop.passage.lic.runtime.ConditionDescriptor
-	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getConditionDescriptor()
+	 * @see ru.arsysop.passage.lic.registry.LicenseGrantDescriptor
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseGrantDescriptor()
 	 * @generated
 	 */
-	int CONDITION_DESCRIPTOR = 6;
+	int LICENSE_GRANT_DESCRIPTOR = 10;
 
 		/**
-	 * The number of structural features of the '<em>Condition Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION_DESCRIPTOR_FEATURE_COUNT = 0;
-
-		/**
-	 * The number of operations of the '<em>Condition Descriptor</em>' class.
+	 * The number of structural features of the '<em>License Grant Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_DESCRIPTOR_OPERATION_COUNT = 0;
+	int LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT = 0;
+
+		/**
+	 * The number of operations of the '<em>License Grant Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_GRANT_DESCRIPTOR_OPERATION_COUNT = 0;
+
+		/**
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.FeatureSetImpl <em>Feature Set</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ru.arsysop.passage.lic.model.impl.FeatureSetImpl
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getFeatureSet()
+	 * @generated
+	 */
+	int FEATURE_SET = 11;
+
+		/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_SET__IDENTIFIER = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 0;
+
+		/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_SET__NAME = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 1;
+
+		/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_SET__DESCRIPTION = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 2;
+
+		/**
+	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_SET__FEATURES = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 3;
+
+		/**
+	 * The number of structural features of the '<em>Feature Set</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_SET_FEATURE_COUNT = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 4;
+
+		/**
+	 * The number of operations of the '<em>Feature Set</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_SET_OPERATION_COUNT = FEATURE_SET_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.ProductImpl <em>Product</em>}' class.
@@ -278,7 +454,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProduct()
 	 * @generated
 	 */
-  int PRODUCT = 9;
+  int PRODUCT = 15;
 
   /**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.ProductVersionImpl <em>Product Version</em>}' class.
@@ -288,7 +464,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductVersion()
 	 * @generated
 	 */
-	int PRODUCT_VERSION = 10;
+	int PRODUCT_VERSION = 16;
 
 		/**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.ProductVersionFeatureImpl <em>Product Version Feature</em>}' class.
@@ -298,7 +474,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductVersionFeature()
 	 * @generated
 	 */
-	int PRODUCT_VERSION_FEATURE = 11;
+	int PRODUCT_VERSION_FEATURE = 17;
 
 		/**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.FeatureImpl <em>Feature</em>}' class.
@@ -308,7 +484,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getFeature()
 	 * @generated
 	 */
-	int FEATURE = 7;
+	int FEATURE = 12;
 
 		/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -338,13 +514,22 @@ public interface LicPackage extends EPackage {
 	int FEATURE__DESCRIPTION = FEATURE_DESCRIPTOR_FEATURE_COUNT + 2;
 
 		/**
+	 * The feature id for the '<em><b>Feature Set</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__FEATURE_SET = FEATURE_DESCRIPTOR_FEATURE_COUNT + 3;
+
+		/**
 	 * The feature id for the '<em><b>Feature Versions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__FEATURE_VERSIONS = FEATURE_DESCRIPTOR_FEATURE_COUNT + 3;
+	int FEATURE__FEATURE_VERSIONS = FEATURE_DESCRIPTOR_FEATURE_COUNT + 4;
 
 		/**
 	 * The number of structural features of the '<em>Feature</em>' class.
@@ -353,7 +538,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = FEATURE_DESCRIPTOR_FEATURE_COUNT + 4;
+	int FEATURE_FEATURE_COUNT = FEATURE_DESCRIPTOR_FEATURE_COUNT + 5;
 
 		/**
 	 * The number of operations of the '<em>Feature</em>' class.
@@ -372,7 +557,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getFeatureVersion()
 	 * @generated
 	 */
-	int FEATURE_VERSION = 8;
+	int FEATURE_VERSION = 13;
 
 		/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -420,6 +605,70 @@ public interface LicPackage extends EPackage {
 	int FEATURE_VERSION_OPERATION_COUNT = FEATURE_VERSION_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.ProductLineImpl <em>Product Line</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ru.arsysop.passage.lic.model.impl.ProductLineImpl
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductLine()
+	 * @generated
+	 */
+	int PRODUCT_LINE = 14;
+
+		/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE__IDENTIFIER = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 0;
+
+		/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE__NAME = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 1;
+
+		/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE__DESCRIPTION = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 2;
+
+		/**
+	 * The feature id for the '<em><b>Products</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE__PRODUCTS = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 3;
+
+		/**
+	 * The number of structural features of the '<em>Product Line</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE_FEATURE_COUNT = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 4;
+
+		/**
+	 * The number of operations of the '<em>Product Line</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_LINE_OPERATION_COUNT = PRODUCT_LINE_DESCRIPTOR_OPERATION_COUNT + 0;
+
+		/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -447,13 +696,22 @@ public interface LicPackage extends EPackage {
   int PRODUCT__DESCRIPTION = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 2;
 
 		/**
+	 * The feature id for the '<em><b>Product Line</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT__PRODUCT_LINE = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 3;
+
+		/**
 	 * The feature id for the '<em><b>Product Versions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__PRODUCT_VERSIONS = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 3;
+	int PRODUCT__PRODUCT_VERSIONS = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 4;
 
 		/**
 	 * The number of structural features of the '<em>Product</em>' class.
@@ -462,7 +720,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-  int PRODUCT_FEATURE_COUNT = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 4;
+  int PRODUCT_FEATURE_COUNT = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 5;
 
 		/**
 	 * The number of operations of the '<em>Product</em>' class.
@@ -552,7 +810,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER = 0;
+	int PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 0;
 
 		/**
 	 * The feature id for the '<em><b>Feature Version</b></em>' attribute.
@@ -561,7 +819,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE__FEATURE_VERSION = 1;
+	int PRODUCT_VERSION_FEATURE__FEATURE_VERSION = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 1;
 
 		/**
 	 * The feature id for the '<em><b>Restriction Level</b></em>' attribute.
@@ -570,7 +828,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE__RESTRICTION_LEVEL = 2;
+	int PRODUCT_VERSION_FEATURE__RESTRICTION_LEVEL = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 2;
 
 		/**
 	 * The feature id for the '<em><b>Product Version</b></em>' container reference.
@@ -579,7 +837,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE__PRODUCT_VERSION = 3;
+	int PRODUCT_VERSION_FEATURE__PRODUCT_VERSION = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 3;
 
 		/**
 	 * The number of structural features of the '<em>Product Version Feature</em>' class.
@@ -588,7 +846,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE_FEATURE_COUNT = 4;
+	int PRODUCT_VERSION_FEATURE_FEATURE_COUNT = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 4;
 
 		/**
 	 * The number of operations of the '<em>Product Version Feature</em>' class.
@@ -597,7 +855,71 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE_OPERATION_COUNT = 0;
+	int PRODUCT_VERSION_FEATURE_OPERATION_COUNT = PRODUCT_VERSION_FEATURE_DESCRIPTOR_OPERATION_COUNT + 0;
+
+		/**
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.UserOriginImpl <em>User Origin</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ru.arsysop.passage.lic.model.impl.UserOriginImpl
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUserOrigin()
+	 * @generated
+	 */
+	int USER_ORIGIN = 18;
+
+		/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_ORIGIN__IDENTIFIER = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 0;
+
+		/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_ORIGIN__NAME = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 1;
+
+		/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_ORIGIN__DESCRIPTION = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 2;
+
+		/**
+	 * The feature id for the '<em><b>Users</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_ORIGIN__USERS = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 3;
+
+		/**
+	 * The number of structural features of the '<em>User Origin</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_ORIGIN_FEATURE_COUNT = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 4;
+
+		/**
+	 * The number of operations of the '<em>User Origin</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_ORIGIN_OPERATION_COUNT = USER_ORIGIN_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
 	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.UserImpl <em>User</em>}' class.
@@ -607,7 +929,7 @@ public interface LicPackage extends EPackage {
 	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUser()
 	 * @generated
 	 */
-	int USER = 12;
+	int USER = 19;
 
 		/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -646,13 +968,22 @@ public interface LicPackage extends EPackage {
 	int USER__DESCRIPTION = USER_DESCRIPTOR_FEATURE_COUNT + 3;
 
 		/**
+	 * The feature id for the '<em><b>User Origin</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__USER_ORIGIN = USER_DESCRIPTOR_FEATURE_COUNT + 4;
+
+		/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = USER_DESCRIPTOR_FEATURE_COUNT + 4;
+	int USER_FEATURE_COUNT = USER_DESCRIPTOR_FEATURE_COUNT + 5;
 
 		/**
 	 * The number of operations of the '<em>User</em>' class.
@@ -664,14 +995,14 @@ public interface LicPackage extends EPackage {
 	int USER_OPERATION_COUNT = USER_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.LicenseImpl <em>License</em>}' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl <em>License Pack</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ru.arsysop.passage.lic.model.impl.LicenseImpl
-	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicense()
+	 * @see ru.arsysop.passage.lic.model.impl.LicensePackImpl
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicensePack()
 	 * @generated
 	 */
-	int LICENSE = 13;
+	int LICENSE_PACK = 20;
 
 		/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -680,7 +1011,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE__IDENTIFIER = LICENSE_DESCRIPTOR_FEATURE_COUNT + 0;
+	int LICENSE_PACK__IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 0;
 
 		/**
 	 * The feature id for the '<em><b>Issue Date</b></em>' attribute.
@@ -689,16 +1020,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE__ISSUE_DATE = LICENSE_DESCRIPTOR_FEATURE_COUNT + 1;
-
-		/**
-	 * The feature id for the '<em><b>Expire Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE__EXPIRE_DATE = LICENSE_DESCRIPTOR_FEATURE_COUNT + 2;
+	int LICENSE_PACK__ISSUE_DATE = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 1;
 
 		/**
 	 * The feature id for the '<em><b>Product Identifier</b></em>' attribute.
@@ -707,7 +1029,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE__PRODUCT_IDENTIFIER = LICENSE_DESCRIPTOR_FEATURE_COUNT + 3;
+	int LICENSE_PACK__PRODUCT_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 2;
 
 		/**
 	 * The feature id for the '<em><b>Product Version</b></em>' attribute.
@@ -716,7 +1038,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE__PRODUCT_VERSION = LICENSE_DESCRIPTOR_FEATURE_COUNT + 4;
+	int LICENSE_PACK__PRODUCT_VERSION = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 3;
 
 		/**
 	 * The feature id for the '<em><b>User Identifier</b></em>' attribute.
@@ -725,80 +1047,71 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE__USER_IDENTIFIER = LICENSE_DESCRIPTOR_FEATURE_COUNT + 5;
+	int LICENSE_PACK__USER_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 4;
 
 		/**
-	 * The feature id for the '<em><b>Capacity</b></em>' attribute.
+	 * The feature id for the '<em><b>License Grants</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE__CAPACITY = LICENSE_DESCRIPTOR_FEATURE_COUNT + 6;
+	int LICENSE_PACK__LICENSE_GRANTS = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 5;
 
 		/**
-	 * The feature id for the '<em><b>License Conditions</b></em>' containment reference list.
+	 * The number of structural features of the '<em>License Pack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE__LICENSE_CONDITIONS = LICENSE_DESCRIPTOR_FEATURE_COUNT + 7;
+	int LICENSE_PACK_FEATURE_COUNT = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 6;
 
 		/**
-	 * The number of structural features of the '<em>License</em>' class.
+	 * The number of operations of the '<em>License Pack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_FEATURE_COUNT = LICENSE_DESCRIPTOR_FEATURE_COUNT + 8;
+	int LICENSE_PACK_OPERATION_COUNT = LICENSE_PACK_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
-	 * The number of operations of the '<em>License</em>' class.
+	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl <em>License Grant</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ru.arsysop.passage.lic.model.impl.LicenseGrantImpl
+	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseGrant()
+	 * @generated
+	 */
+	int LICENSE_GRANT = 21;
+
+		/**
+	 * The feature id for the '<em><b>Feature Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_OPERATION_COUNT = LICENSE_DESCRIPTOR_OPERATION_COUNT + 0;
+	int LICENSE_GRANT__FEATURE_IDENTIFIER = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 0;
 
 		/**
-	 * The meta object id for the '{@link ru.arsysop.passage.lic.model.impl.LicenseConditionImpl <em>License Condition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ru.arsysop.passage.lic.model.impl.LicenseConditionImpl
-	 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseCondition()
-	 * @generated
-	 */
-	int LICENSE_CONDITION = 14;
-
-		/**
-	 * The feature id for the '<em><b>Allowed Feature Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Match Version</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_CONDITION__ALLOWED_FEATURE_ID = CONDITION_DESCRIPTOR_FEATURE_COUNT + 0;
+	int LICENSE_GRANT__MATCH_VERSION = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 1;
 
 		/**
-	 * The feature id for the '<em><b>Allowed Feature Match Version</b></em>' attribute.
+	 * The feature id for the '<em><b>Match Rule</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_VERSION = CONDITION_DESCRIPTOR_FEATURE_COUNT + 1;
-
-		/**
-	 * The feature id for the '<em><b>Allowed Feature Match Rule</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_RULE = CONDITION_DESCRIPTOR_FEATURE_COUNT + 2;
+	int LICENSE_GRANT__MATCH_RULE = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 2;
 
 		/**
 	 * The feature id for the '<em><b>Condition Type</b></em>' attribute.
@@ -807,7 +1120,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_CONDITION__CONDITION_TYPE = CONDITION_DESCRIPTOR_FEATURE_COUNT + 3;
+	int LICENSE_GRANT__CONDITION_TYPE = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 3;
 
 		/**
 	 * The feature id for the '<em><b>Condition Expression</b></em>' attribute.
@@ -816,25 +1129,54 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_CONDITION__CONDITION_EXPRESSION = CONDITION_DESCRIPTOR_FEATURE_COUNT + 4;
+	int LICENSE_GRANT__CONDITION_EXPRESSION = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 4;
 
 		/**
-	 * The number of structural features of the '<em>License Condition</em>' class.
+	 * The feature id for the '<em><b>Capacity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_CONDITION_FEATURE_COUNT = CONDITION_DESCRIPTOR_FEATURE_COUNT + 5;
+	int LICENSE_GRANT__CAPACITY = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
 
 		/**
-	 * The number of operations of the '<em>License Condition</em>' class.
+	 * The feature id for the '<em><b>License Pack</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_CONDITION_OPERATION_COUNT = CONDITION_DESCRIPTOR_OPERATION_COUNT + 0;
+	int LICENSE_GRANT__LICENSE_PACK = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 6;
+
+		/**
+	 * The number of structural features of the '<em>License Grant</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_GRANT_FEATURE_COUNT = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 7;
+
+		/**
+	 * The number of operations of the '<em>License Grant</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_GRANT_OPERATION_COUNT = LICENSE_GRANT_DESCRIPTOR_OPERATION_COUNT + 0;
+
+		/**
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Feature Set Descriptor</em>'.
+	 * @see ru.arsysop.passage.lic.registry.FeatureSetDescriptor
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.FeatureSetDescriptor"
+	 * @generated
+	 */
+	EClass getFeatureSetDescriptor();
 
 		/**
 	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.ProductDescriptor <em>Product Descriptor</em>}'.
@@ -859,6 +1201,28 @@ public interface LicPackage extends EPackage {
 	EClass getProductVersionDescriptor();
 
 		/**
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Product Version Feature Descriptor</em>'.
+	 * @see ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor"
+	 * @generated
+	 */
+	EClass getProductVersionFeatureDescriptor();
+
+		/**
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Origin Descriptor</em>'.
+	 * @see ru.arsysop.passage.lic.registry.UserOriginDescriptor
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.UserOriginDescriptor"
+	 * @generated
+	 */
+	EClass getUserOriginDescriptor();
+
+		/**
 	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.FeatureDescriptor <em>Feature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -881,6 +1245,17 @@ public interface LicPackage extends EPackage {
 	EClass getFeatureVersionDescriptor();
 
 		/**
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Product Line Descriptor</em>'.
+	 * @see ru.arsysop.passage.lic.registry.ProductLineDescriptor
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.ProductLineDescriptor"
+	 * @generated
+	 */
+	EClass getProductLineDescriptor();
+
+		/**
 	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>User Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -892,26 +1267,80 @@ public interface LicPackage extends EPackage {
 	EClass getUserDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.LicenseDescriptor <em>License Descriptor</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>License Descriptor</em>'.
-	 * @see ru.arsysop.passage.lic.registry.LicenseDescriptor
-	 * @model instanceClass="ru.arsysop.passage.lic.registry.LicenseDescriptor"
+	 * @return the meta object for class '<em>License Pack Descriptor</em>'.
+	 * @see ru.arsysop.passage.lic.registry.LicensePackDescriptor
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.LicensePackDescriptor"
 	 * @generated
 	 */
-	EClass getLicenseDescriptor();
+	EClass getLicensePackDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.runtime.ConditionDescriptor <em>Condition Descriptor</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.registry.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Condition Descriptor</em>'.
-	 * @see ru.arsysop.passage.lic.runtime.ConditionDescriptor
-	 * @model instanceClass="ru.arsysop.passage.lic.runtime.ConditionDescriptor"
+	 * @return the meta object for class '<em>License Grant Descriptor</em>'.
+	 * @see ru.arsysop.passage.lic.registry.LicenseGrantDescriptor
+	 * @model instanceClass="ru.arsysop.passage.lic.registry.LicenseGrantDescriptor"
 	 * @generated
 	 */
-	EClass getConditionDescriptor();
+	EClass getLicenseGrantDescriptor();
+
+		/**
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.FeatureSet <em>Feature Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Feature Set</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.FeatureSet
+	 * @generated
+	 */
+	EClass getFeatureSet();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.FeatureSet#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.FeatureSet#getIdentifier()
+	 * @see #getFeatureSet()
+	 * @generated
+	 */
+	EAttribute getFeatureSet_Identifier();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.FeatureSet#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.FeatureSet#getName()
+	 * @see #getFeatureSet()
+	 * @generated
+	 */
+	EAttribute getFeatureSet_Name();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.FeatureSet#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.FeatureSet#getDescription()
+	 * @see #getFeatureSet()
+	 * @generated
+	 */
+	EAttribute getFeatureSet_Description();
+
+		/**
+	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.FeatureSet#getFeatures <em>Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Features</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.FeatureSet#getFeatures()
+	 * @see #getFeatureSet()
+	 * @generated
+	 */
+	EReference getFeatureSet_Features();
 
 		/**
 	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.Product <em>Product</em>}'.
@@ -989,6 +1418,17 @@ public interface LicPackage extends EPackage {
 	EAttribute getFeature_Description();
 
 		/**
+	 * Returns the meta object for the container reference '{@link ru.arsysop.passage.lic.model.api.Feature#getFeatureSet <em>Feature Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Feature Set</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.Feature#getFeatureSet()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EReference getFeature_FeatureSet();
+
+		/**
 	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.Feature#getFeatureVersions <em>Feature Versions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1041,6 +1481,60 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFeatureVersion_News();
+
+		/**
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.ProductLine <em>Product Line</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Product Line</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.ProductLine
+	 * @generated
+	 */
+	EClass getProductLine();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.ProductLine#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.ProductLine#getIdentifier()
+	 * @see #getProductLine()
+	 * @generated
+	 */
+	EAttribute getProductLine_Identifier();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.ProductLine#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.ProductLine#getName()
+	 * @see #getProductLine()
+	 * @generated
+	 */
+	EAttribute getProductLine_Name();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.ProductLine#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.ProductLine#getDescription()
+	 * @see #getProductLine()
+	 * @generated
+	 */
+	EAttribute getProductLine_Description();
+
+		/**
+	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.ProductLine#getProducts <em>Products</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Products</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.ProductLine#getProducts()
+	 * @see #getProductLine()
+	 * @generated
+	 */
+	EReference getProductLine_Products();
 
 		/**
 	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.User <em>User</em>}'.
@@ -1097,167 +1591,178 @@ public interface LicPackage extends EPackage {
 	EAttribute getUser_Description();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.License <em>License</em>}'.
+	 * Returns the meta object for the container reference '{@link ru.arsysop.passage.lic.model.api.User#getUserOrigin <em>User Origin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>License</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License
+	 * @return the meta object for the container reference '<em>User Origin</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.User#getUserOrigin()
+	 * @see #getUser()
 	 * @generated
 	 */
-	EClass getLicense();
+	EReference getUser_UserOrigin();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getIdentifier <em>Identifier</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.LicensePack <em>License Pack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>License Pack</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack
+	 * @generated
+	 */
+	EClass getLicensePack();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getIdentifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getIdentifier()
-	 * @see #getLicense()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getIdentifier()
+	 * @see #getLicensePack()
 	 * @generated
 	 */
-	EAttribute getLicense_Identifier();
+	EAttribute getLicensePack_Identifier();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getIssueDate <em>Issue Date</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getIssueDate <em>Issue Date</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Issue Date</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getIssueDate()
-	 * @see #getLicense()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getIssueDate()
+	 * @see #getLicensePack()
 	 * @generated
 	 */
-	EAttribute getLicense_IssueDate();
+	EAttribute getLicensePack_IssueDate();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getExpireDate <em>Expire Date</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Expire Date</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getExpireDate()
-	 * @see #getLicense()
-	 * @generated
-	 */
-	EAttribute getLicense_ExpireDate();
-
-		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getProductIdentifier <em>Product Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Product Identifier</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getProductIdentifier()
-	 * @see #getLicense()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getProductIdentifier()
+	 * @see #getLicensePack()
 	 * @generated
 	 */
-	EAttribute getLicense_ProductIdentifier();
+	EAttribute getLicensePack_ProductIdentifier();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getProductVersion <em>Product Version</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getProductVersion <em>Product Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Product Version</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getProductVersion()
-	 * @see #getLicense()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getProductVersion()
+	 * @see #getLicensePack()
 	 * @generated
 	 */
-	EAttribute getLicense_ProductVersion();
+	EAttribute getLicensePack_ProductVersion();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getUserIdentifier <em>User Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicensePack#getUserIdentifier <em>User Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>User Identifier</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getUserIdentifier()
-	 * @see #getLicense()
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getUserIdentifier()
+	 * @see #getLicensePack()
 	 * @generated
 	 */
-	EAttribute getLicense_UserIdentifier();
+	EAttribute getLicensePack_UserIdentifier();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.License#getCapacity <em>Capacity</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.LicensePack#getLicenseGrants <em>License Grants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Capacity</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getCapacity()
-	 * @see #getLicense()
+	 * @return the meta object for the containment reference list '<em>License Grants</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicensePack#getLicenseGrants()
+	 * @see #getLicensePack()
 	 * @generated
 	 */
-	EAttribute getLicense_Capacity();
+	EReference getLicensePack_LicenseGrants();
 
 		/**
-	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.License#getLicenseConditions <em>License Conditions</em>}'.
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.LicenseGrant <em>License Grant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>License Conditions</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.License#getLicenseConditions()
-	 * @see #getLicense()
+	 * @return the meta object for class '<em>License Grant</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant
 	 * @generated
 	 */
-	EReference getLicense_LicenseConditions();
+	EClass getLicenseGrant();
 
 		/**
-	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.LicenseCondition <em>License Condition</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getFeatureIdentifier <em>Feature Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>License Condition</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition
+	 * @return the meta object for the attribute '<em>Feature Identifier</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getFeatureIdentifier()
+	 * @see #getLicenseGrant()
 	 * @generated
 	 */
-	EClass getLicenseCondition();
+	EAttribute getLicenseGrant_FeatureIdentifier();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureId <em>Allowed Feature Id</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getMatchVersion <em>Match Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Allowed Feature Id</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureId()
-	 * @see #getLicenseCondition()
+	 * @return the meta object for the attribute '<em>Match Version</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getMatchVersion()
+	 * @see #getLicenseGrant()
 	 * @generated
 	 */
-	EAttribute getLicenseCondition_AllowedFeatureId();
+	EAttribute getLicenseGrant_MatchVersion();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchVersion <em>Allowed Feature Match Version</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getMatchRule <em>Match Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Allowed Feature Match Version</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedMatchVersion()
-	 * @see #getLicenseCondition()
+	 * @return the meta object for the attribute '<em>Match Rule</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getMatchRule()
+	 * @see #getLicenseGrant()
 	 * @generated
 	 */
-	EAttribute getLicenseCondition_AllowedFeatureMatchVersion();
+	EAttribute getLicenseGrant_MatchRule();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedFeatureMatchRule <em>Allowed Feature Match Rule</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Allowed Feature Match Rule</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getAllowedMatchRule()
-	 * @see #getLicenseCondition()
-	 * @generated
-	 */
-	EAttribute getLicenseCondition_AllowedFeatureMatchRule();
-
-		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionType <em>Condition Type</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Condition Type</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionType()
-	 * @see #getLicenseCondition()
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionType()
+	 * @see #getLicenseGrant()
 	 * @generated
 	 */
-	EAttribute getLicenseCondition_ConditionType();
+	EAttribute getLicenseGrant_ConditionType();
 
 		/**
-	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionExpression <em>Condition Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionExpression <em>Condition Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Condition Expression</em>'.
-	 * @see ru.arsysop.passage.lic.model.api.LicenseCondition#getConditionExpression()
-	 * @see #getLicenseCondition()
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionExpression()
+	 * @see #getLicenseGrant()
 	 * @generated
 	 */
-	EAttribute getLicenseCondition_ConditionExpression();
+	EAttribute getLicenseGrant_ConditionExpression();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getCapacity <em>Capacity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Capacity</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getCapacity()
+	 * @see #getLicenseGrant()
+	 * @generated
+	 */
+	EAttribute getLicenseGrant_Capacity();
+
+		/**
+	 * Returns the meta object for the container reference '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getLicensePack <em>License Pack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>License Pack</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getLicensePack()
+	 * @see #getLicenseGrant()
+	 * @generated
+	 */
+	EReference getLicenseGrant_LicensePack();
 
 		/**
 	 * Returns the factory that creates the instances of the model.
@@ -1280,6 +1785,17 @@ public interface LicPackage extends EPackage {
   EAttribute getProduct_Description();
 
   /**
+	 * Returns the meta object for the container reference '{@link ru.arsysop.passage.lic.model.api.Product#getProductLine <em>Product Line</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Product Line</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.Product#getProductLine()
+	 * @see #getProduct()
+	 * @generated
+	 */
+	EReference getProduct_ProductLine();
+
+		/**
 	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.Product#getProductVersions <em>Product Versions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1421,6 +1937,60 @@ public interface LicPackage extends EPackage {
 	EReference getProductVersionFeature_ProductVersion();
 
 		/**
+	 * Returns the meta object for class '{@link ru.arsysop.passage.lic.model.api.UserOrigin <em>User Origin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Origin</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.UserOrigin
+	 * @generated
+	 */
+	EClass getUserOrigin();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.UserOrigin#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.UserOrigin#getIdentifier()
+	 * @see #getUserOrigin()
+	 * @generated
+	 */
+	EAttribute getUserOrigin_Identifier();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.UserOrigin#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.UserOrigin#getName()
+	 * @see #getUserOrigin()
+	 * @generated
+	 */
+	EAttribute getUserOrigin_Name();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.UserOrigin#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.UserOrigin#getDescription()
+	 * @see #getUserOrigin()
+	 * @generated
+	 */
+	EAttribute getUserOrigin_Description();
+
+		/**
+	 * Returns the meta object for the containment reference list '{@link ru.arsysop.passage.lic.model.api.UserOrigin#getUsers <em>Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Users</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.UserOrigin#getUsers()
+	 * @see #getUserOrigin()
+	 * @generated
+	 */
+	EReference getUserOrigin_Users();
+
+		/**
 	 * <!-- begin-user-doc -->
    * Defines literals for the meta objects that represent
    * <ul>
@@ -1435,6 +2005,16 @@ public interface LicPackage extends EPackage {
 	 */
   interface Literals {
     /**
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.FeatureSetDescriptor <em>Feature Set Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ru.arsysop.passage.lic.registry.FeatureSetDescriptor
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getFeatureSetDescriptor()
+		 * @generated
+		 */
+		EClass FEATURE_SET_DESCRIPTOR = eINSTANCE.getFeatureSetDescriptor();
+
+				/**
 		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.ProductDescriptor <em>Product Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1453,6 +2033,26 @@ public interface LicPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PRODUCT_VERSION_DESCRIPTOR = eINSTANCE.getProductVersionDescriptor();
+
+				/**
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ru.arsysop.passage.lic.registry.ProductVersionFeatureDescriptor
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductVersionFeatureDescriptor()
+		 * @generated
+		 */
+		EClass PRODUCT_VERSION_FEATURE_DESCRIPTOR = eINSTANCE.getProductVersionFeatureDescriptor();
+
+				/**
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.UserOriginDescriptor <em>User Origin Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ru.arsysop.passage.lic.registry.UserOriginDescriptor
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUserOriginDescriptor()
+		 * @generated
+		 */
+		EClass USER_ORIGIN_DESCRIPTOR = eINSTANCE.getUserOriginDescriptor();
 
 				/**
 		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.FeatureDescriptor <em>Feature Descriptor</em>}' class.
@@ -1475,6 +2075,16 @@ public interface LicPackage extends EPackage {
 		EClass FEATURE_VERSION_DESCRIPTOR = eINSTANCE.getFeatureVersionDescriptor();
 
 				/**
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.ProductLineDescriptor <em>Product Line Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ru.arsysop.passage.lic.registry.ProductLineDescriptor
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductLineDescriptor()
+		 * @generated
+		 */
+		EClass PRODUCT_LINE_DESCRIPTOR = eINSTANCE.getProductLineDescriptor();
+
+				/**
 		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.UserDescriptor <em>User Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1485,24 +2095,66 @@ public interface LicPackage extends EPackage {
 		EClass USER_DESCRIPTOR = eINSTANCE.getUserDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.LicenseDescriptor <em>License Descriptor</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ru.arsysop.passage.lic.registry.LicenseDescriptor
-		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseDescriptor()
+		 * @see ru.arsysop.passage.lic.registry.LicensePackDescriptor
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicensePackDescriptor()
 		 * @generated
 		 */
-		EClass LICENSE_DESCRIPTOR = eINSTANCE.getLicenseDescriptor();
+		EClass LICENSE_PACK_DESCRIPTOR = eINSTANCE.getLicensePackDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.runtime.ConditionDescriptor <em>Condition Descriptor</em>}' class.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.registry.LicenseGrantDescriptor <em>License Grant Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ru.arsysop.passage.lic.runtime.ConditionDescriptor
-		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getConditionDescriptor()
+		 * @see ru.arsysop.passage.lic.registry.LicenseGrantDescriptor
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseGrantDescriptor()
 		 * @generated
 		 */
-		EClass CONDITION_DESCRIPTOR = eINSTANCE.getConditionDescriptor();
+		EClass LICENSE_GRANT_DESCRIPTOR = eINSTANCE.getLicenseGrantDescriptor();
+
+				/**
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.FeatureSetImpl <em>Feature Set</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ru.arsysop.passage.lic.model.impl.FeatureSetImpl
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getFeatureSet()
+		 * @generated
+		 */
+		EClass FEATURE_SET = eINSTANCE.getFeatureSet();
+
+				/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_SET__IDENTIFIER = eINSTANCE.getFeatureSet_Identifier();
+
+				/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_SET__NAME = eINSTANCE.getFeatureSet_Name();
+
+				/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_SET__DESCRIPTION = eINSTANCE.getFeatureSet_Description();
+
+				/**
+		 * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE_SET__FEATURES = eINSTANCE.getFeatureSet_Features();
 
 				/**
 		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.ProductImpl <em>Product</em>}' class.
@@ -1565,6 +2217,14 @@ public interface LicPackage extends EPackage {
 		EAttribute FEATURE__DESCRIPTION = eINSTANCE.getFeature_Description();
 
 				/**
+		 * The meta object literal for the '<em><b>Feature Set</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE__FEATURE_SET = eINSTANCE.getFeature_FeatureSet();
+
+				/**
 		 * The meta object literal for the '<em><b>Feature Versions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1605,6 +2265,48 @@ public interface LicPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FEATURE_VERSION__NEWS = eINSTANCE.getFeatureVersion_News();
+
+				/**
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.ProductLineImpl <em>Product Line</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ru.arsysop.passage.lic.model.impl.ProductLineImpl
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getProductLine()
+		 * @generated
+		 */
+		EClass PRODUCT_LINE = eINSTANCE.getProductLine();
+
+				/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRODUCT_LINE__IDENTIFIER = eINSTANCE.getProductLine_Identifier();
+
+				/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRODUCT_LINE__NAME = eINSTANCE.getProductLine_Name();
+
+				/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRODUCT_LINE__DESCRIPTION = eINSTANCE.getProductLine_Description();
+
+				/**
+		 * The meta object literal for the '<em><b>Products</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRODUCT_LINE__PRODUCTS = eINSTANCE.getProductLine_Products();
 
 				/**
 		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.UserImpl <em>User</em>}' class.
@@ -1649,14 +2351,22 @@ public interface LicPackage extends EPackage {
 		EAttribute USER__DESCRIPTION = eINSTANCE.getUser_Description();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.LicenseImpl <em>License</em>}' class.
+		 * The meta object literal for the '<em><b>User Origin</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ru.arsysop.passage.lic.model.impl.LicenseImpl
-		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicense()
 		 * @generated
 		 */
-		EClass LICENSE = eINSTANCE.getLicense();
+		EReference USER__USER_ORIGIN = eINSTANCE.getUser_UserOrigin();
+
+				/**
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.LicensePackImpl <em>License Pack</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ru.arsysop.passage.lic.model.impl.LicensePackImpl
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicensePack()
+		 * @generated
+		 */
+		EClass LICENSE_PACK = eINSTANCE.getLicensePack();
 
 				/**
 		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
@@ -1664,7 +2374,7 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE__IDENTIFIER = eINSTANCE.getLicense_Identifier();
+		EAttribute LICENSE_PACK__IDENTIFIER = eINSTANCE.getLicensePack_Identifier();
 
 				/**
 		 * The meta object literal for the '<em><b>Issue Date</b></em>' attribute feature.
@@ -1672,15 +2382,7 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE__ISSUE_DATE = eINSTANCE.getLicense_IssueDate();
-
-				/**
-		 * The meta object literal for the '<em><b>Expire Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LICENSE__EXPIRE_DATE = eINSTANCE.getLicense_ExpireDate();
+		EAttribute LICENSE_PACK__ISSUE_DATE = eINSTANCE.getLicensePack_IssueDate();
 
 				/**
 		 * The meta object literal for the '<em><b>Product Identifier</b></em>' attribute feature.
@@ -1688,7 +2390,7 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE__PRODUCT_IDENTIFIER = eINSTANCE.getLicense_ProductIdentifier();
+		EAttribute LICENSE_PACK__PRODUCT_IDENTIFIER = eINSTANCE.getLicensePack_ProductIdentifier();
 
 				/**
 		 * The meta object literal for the '<em><b>Product Version</b></em>' attribute feature.
@@ -1696,7 +2398,7 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE__PRODUCT_VERSION = eINSTANCE.getLicense_ProductVersion();
+		EAttribute LICENSE_PACK__PRODUCT_VERSION = eINSTANCE.getLicensePack_ProductVersion();
 
 				/**
 		 * The meta object literal for the '<em><b>User Identifier</b></em>' attribute feature.
@@ -1704,57 +2406,49 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE__USER_IDENTIFIER = eINSTANCE.getLicense_UserIdentifier();
+		EAttribute LICENSE_PACK__USER_IDENTIFIER = eINSTANCE.getLicensePack_UserIdentifier();
 
 				/**
-		 * The meta object literal for the '<em><b>Capacity</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>License Grants</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE__CAPACITY = eINSTANCE.getLicense_Capacity();
+		EReference LICENSE_PACK__LICENSE_GRANTS = eINSTANCE.getLicensePack_LicenseGrants();
 
 				/**
-		 * The meta object literal for the '<em><b>License Conditions</b></em>' containment reference list feature.
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl <em>License Grant</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ru.arsysop.passage.lic.model.impl.LicenseGrantImpl
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseGrant()
+		 * @generated
+		 */
+		EClass LICENSE_GRANT = eINSTANCE.getLicenseGrant();
+
+				/**
+		 * The meta object literal for the '<em><b>Feature Identifier</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LICENSE__LICENSE_CONDITIONS = eINSTANCE.getLicense_LicenseConditions();
+		EAttribute LICENSE_GRANT__FEATURE_IDENTIFIER = eINSTANCE.getLicenseGrant_FeatureIdentifier();
 
 				/**
-		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.LicenseConditionImpl <em>License Condition</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see ru.arsysop.passage.lic.model.impl.LicenseConditionImpl
-		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getLicenseCondition()
-		 * @generated
-		 */
-		EClass LICENSE_CONDITION = eINSTANCE.getLicenseCondition();
-
-				/**
-		 * The meta object literal for the '<em><b>Allowed Feature Id</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Match Version</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE_CONDITION__ALLOWED_FEATURE_ID = eINSTANCE.getLicenseCondition_AllowedFeatureId();
+		EAttribute LICENSE_GRANT__MATCH_VERSION = eINSTANCE.getLicenseGrant_MatchVersion();
 
 				/**
-		 * The meta object literal for the '<em><b>Allowed Feature Match Version</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Match Rule</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_VERSION = eINSTANCE.getLicenseCondition_AllowedFeatureMatchVersion();
-
-				/**
-		 * The meta object literal for the '<em><b>Allowed Feature Match Rule</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LICENSE_CONDITION__ALLOWED_FEATURE_MATCH_RULE = eINSTANCE.getLicenseCondition_AllowedFeatureMatchRule();
+		EAttribute LICENSE_GRANT__MATCH_RULE = eINSTANCE.getLicenseGrant_MatchRule();
 
 				/**
 		 * The meta object literal for the '<em><b>Condition Type</b></em>' attribute feature.
@@ -1762,7 +2456,7 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE_CONDITION__CONDITION_TYPE = eINSTANCE.getLicenseCondition_ConditionType();
+		EAttribute LICENSE_GRANT__CONDITION_TYPE = eINSTANCE.getLicenseGrant_ConditionType();
 
 				/**
 		 * The meta object literal for the '<em><b>Condition Expression</b></em>' attribute feature.
@@ -1770,7 +2464,23 @@ public interface LicPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LICENSE_CONDITION__CONDITION_EXPRESSION = eINSTANCE.getLicenseCondition_ConditionExpression();
+		EAttribute LICENSE_GRANT__CONDITION_EXPRESSION = eINSTANCE.getLicenseGrant_ConditionExpression();
+
+				/**
+		 * The meta object literal for the '<em><b>Capacity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LICENSE_GRANT__CAPACITY = eINSTANCE.getLicenseGrant_Capacity();
+
+				/**
+		 * The meta object literal for the '<em><b>License Pack</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LICENSE_GRANT__LICENSE_PACK = eINSTANCE.getLicenseGrant_LicensePack();
 
 				/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -1779,6 +2489,14 @@ public interface LicPackage extends EPackage {
 		 * @generated
 		 */
     EAttribute PRODUCT__DESCRIPTION = eINSTANCE.getProduct_Description();
+
+				/**
+		 * The meta object literal for the '<em><b>Product Line</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRODUCT__PRODUCT_LINE = eINSTANCE.getProduct_ProductLine();
 
 				/**
 		 * The meta object literal for the '<em><b>Product Versions</b></em>' containment reference list feature.
@@ -1887,6 +2605,48 @@ public interface LicPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PRODUCT_VERSION_FEATURE__PRODUCT_VERSION = eINSTANCE.getProductVersionFeature_ProductVersion();
+
+				/**
+		 * The meta object literal for the '{@link ru.arsysop.passage.lic.model.impl.UserOriginImpl <em>User Origin</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ru.arsysop.passage.lic.model.impl.UserOriginImpl
+		 * @see ru.arsysop.passage.lic.model.impl.LicPackageImpl#getUserOrigin()
+		 * @generated
+		 */
+		EClass USER_ORIGIN = eINSTANCE.getUserOrigin();
+
+				/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_ORIGIN__IDENTIFIER = eINSTANCE.getUserOrigin_Identifier();
+
+				/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_ORIGIN__NAME = eINSTANCE.getUserOrigin_Name();
+
+				/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_ORIGIN__DESCRIPTION = eINSTANCE.getUserOrigin_Description();
+
+				/**
+		 * The meta object literal for the '<em><b>Users</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_ORIGIN__USERS = eINSTANCE.getUserOrigin_Users();
 
   }
 

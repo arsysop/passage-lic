@@ -28,12 +28,6 @@ public final class LicensingNamespaces {
 	public static final String CAPABILITY_LICENSING_FEATURE = "licensing.feature"; //$NON-NLS-1$
 
 	public static final String ATTRIBUTE_VERSION = "version"; //$NON-NLS-1$
-	public static final String ATTRIBUTE_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
-
-	public static final String ATTRIBUTE_RULE = "rule"; //$NON-NLS-1$
-	public static final String ATTRIBUTE_RULE_COMPATIBLE = "compatible"; //$NON-NLS-1$
-	public static final String ATTRIBUTE_RULE_EXACT = "exact"; //$NON-NLS-1$
-	public static final String ATTRIBUTE_RULE_DEFAULT = ATTRIBUTE_RULE_COMPATIBLE;
 
 	public static final String ATTRIBUTE_LEVEL = "level"; //$NON-NLS-1$
 	public static final String ATTRIBUTE_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
@@ -45,6 +39,22 @@ public final class LicensingNamespaces {
 
 	private LicensingNamespaces() {
 		// block
+	}
+
+	public static String toLevelAttribute(Object object) {
+		if (object instanceof String) {
+			String level = (String) object;
+			if (ATTRIBUTE_LEVEL_WARN.equalsIgnoreCase(level)) {
+				return ATTRIBUTE_LEVEL_WARN;
+			}
+			if (ATTRIBUTE_LEVEL_ERROR.equalsIgnoreCase(level)) {
+				return ATTRIBUTE_LEVEL_ERROR;
+			}
+			if (ATTRIBUTE_LEVEL_FATAL.equalsIgnoreCase(level)) {
+				return ATTRIBUTE_LEVEL_FATAL;
+			}
+		}
+		return ATTRIBUTE_LEVEL_DEFAULT;
 	}
 
 }

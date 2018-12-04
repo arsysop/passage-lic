@@ -29,9 +29,7 @@ public interface ConfigurationRequirement {
 
 	String getFeatureIdentifier();
 
-	String getMatchVersion();
-
-	String getMatchRule();
+	String getFeatureVersion();
 
 	/**
 	 * The default restriction level, as defined by component vendor, may be
