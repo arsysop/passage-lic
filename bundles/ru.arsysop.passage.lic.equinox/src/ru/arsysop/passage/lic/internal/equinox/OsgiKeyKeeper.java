@@ -26,9 +26,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
@@ -96,13 +101,24 @@ public class OsgiKeyKeeper implements KeyKeeper {
 		if (!configurationPath.toFile().isDirectory()) {
 			throw new FileNotFoundException(configurationPath.toString());
 		}
-		String productKey = LicensingPaths.EXTENSION_PRODUCT_PUBLIC;
-		String productId = identifier;
-		if (productId != null) {
-			productKey = productId + productKey;
+		List<Path> productKeys = new ArrayList<>();
+		Files.walkFileTree(configurationPath, new SimpleFileVisitor<Path>() {
+			
+			@Override
+			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+				if (file.toString().toLowerCase().endsWith(LicensingPaths.EXTENSION_PRODUCT_PUBLIC)) {
+					productKeys.add(file);
+				}
+				return FileVisitResult.CONTINUE;
+			}
+			
+		});
+		if (productKeys.isEmpty()) {
+			String productId = LicensingConfigurations.resolveProductIdentifier(configuration);
+			Path expected = configurationPath.resolve(productId + LicensingPaths.EXTENSION_PRODUCT_PUBLIC);
+			throw new FileNotFoundException(expected.toString());
 		}
-		Path keyRingPath = configurationPath.resolve(productKey);
-		return Files.newInputStream(keyRingPath);
+		return Files.newInputStream(productKeys.get(0));
 	}
 
 }
