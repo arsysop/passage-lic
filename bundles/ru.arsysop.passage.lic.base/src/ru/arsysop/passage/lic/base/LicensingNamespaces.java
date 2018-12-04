@@ -31,8 +31,10 @@ public final class LicensingNamespaces {
 	public static final String ATTRIBUTE_VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
 
 	public static final String ATTRIBUTE_RULE = "rule"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_RULE_PERFECT = "perfect"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_RULE_EQUIVALENT = "equivalent"; //$NON-NLS-1$
 	public static final String ATTRIBUTE_RULE_COMPATIBLE = "compatible"; //$NON-NLS-1$
-	public static final String ATTRIBUTE_RULE_EXACT = "exact"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_RULE_GREATER_OR_EQUAL = "greaterOrEqual"; //$NON-NLS-1$
 	public static final String ATTRIBUTE_RULE_DEFAULT = ATTRIBUTE_RULE_COMPATIBLE;
 
 	public static final String ATTRIBUTE_LEVEL = "level"; //$NON-NLS-1$
@@ -45,6 +47,57 @@ public final class LicensingNamespaces {
 
 	private LicensingNamespaces() {
 		// block
+	}
+
+	public static String toVersionAttribute(Object object) {
+		if (object instanceof String) {
+			String version = (String) object;
+			version = version.trim();
+			if (version.length() == 0) {
+				return ATTRIBUTE_VERSION_DEFAULT;
+			}
+			String[] split = version.split("\\."); //$NON-NLS-1$
+			if (split.length > 4) {
+				return ATTRIBUTE_VERSION_DEFAULT;
+			}
+			return version;
+		}
+		return ATTRIBUTE_VERSION_DEFAULT;
+	}
+
+	public static String toRuleAttribute(Object object) {
+		if (object instanceof String) {
+			String rule = (String) object;
+			if (ATTRIBUTE_RULE_GREATER_OR_EQUAL.equalsIgnoreCase(rule)) {
+				return ATTRIBUTE_RULE_GREATER_OR_EQUAL;
+			}
+			if (ATTRIBUTE_RULE_COMPATIBLE.equalsIgnoreCase(rule)) {
+				return ATTRIBUTE_RULE_COMPATIBLE;
+			}
+			if (ATTRIBUTE_RULE_EQUIVALENT.equalsIgnoreCase(rule)) {
+				return ATTRIBUTE_RULE_EQUIVALENT;
+			}
+			if (ATTRIBUTE_RULE_PERFECT.equalsIgnoreCase(rule)) {
+				return ATTRIBUTE_RULE_PERFECT;
+			}
+		}
+		return ATTRIBUTE_RULE_DEFAULT;
+	}
+
+	public static String toLevelAttribute(Object object) {
+		if (object instanceof String) {
+			String level = (String) object;
+			if (ATTRIBUTE_LEVEL_WARN.equalsIgnoreCase(level)) {
+				return ATTRIBUTE_LEVEL_WARN;
+			}
+			if (ATTRIBUTE_LEVEL_ERROR.equalsIgnoreCase(level)) {
+				return ATTRIBUTE_LEVEL_ERROR;
+			}
+			if (ATTRIBUTE_LEVEL_FATAL.equalsIgnoreCase(level)) {
+				return ATTRIBUTE_LEVEL_FATAL;
+			}
+		}
+		return ATTRIBUTE_LEVEL_DEFAULT;
 	}
 
 }
