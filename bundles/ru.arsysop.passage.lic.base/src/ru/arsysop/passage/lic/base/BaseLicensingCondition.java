@@ -12,7 +12,7 @@ public class BaseLicensingCondition implements LicensingCondition {
 	private final String conditionType;
 	private final String conditionExpression;
 
-	public BaseLicensingCondition(String featureIdentifier, String matchVersion, String matchRule, String conditionType,
+	BaseLicensingCondition(String featureIdentifier, String matchVersion, String matchRule, String conditionType,
 			String conditionExpression) {
 		this.featureIdentifier = featureIdentifier;
 		this.matchVersion = matchVersion;
