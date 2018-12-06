@@ -32,4 +32,6 @@ public interface ProductVersionDescriptor {
 	
 	ProductDescriptor getProduct();
 
+	Iterable<? extends ProductVersionFeatureDescriptor> getProductVersionFeatures();
+
 }

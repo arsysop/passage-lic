@@ -37,6 +37,7 @@ import ru.arsysop.passage.lic.registry.ProductDescriptor;
  *   <li>{@link ru.arsysop.passage.lic.model.api.Product#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.Product#getName <em>Name</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.Product#getDescription <em>Description</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.Product#getProductLine <em>Product Line</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.Product#getProductVersions <em>Product Versions</em>}</li>
  * </ul>
  *
@@ -124,6 +125,34 @@ public interface Product extends EObject, ProductDescriptor {
   void setDescription(String value);
 
   /**
+	 * Returns the value of the '<em><b>Product Line</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link ru.arsysop.passage.lic.model.api.ProductLine#getProducts <em>Products</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Product Line</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Product Line</em>' container reference.
+	 * @see #setProductLine(ProductLine)
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProduct_ProductLine()
+	 * @see ru.arsysop.passage.lic.model.api.ProductLine#getProducts
+	 * @model opposite="products" required="true" transient="false"
+	 * @generated
+	 */
+	ProductLine getProductLine();
+
+		/**
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.Product#getProductLine <em>Product Line</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Product Line</em>' container reference.
+	 * @see #getProductLine()
+	 * @generated
+	 */
+	void setProductLine(ProductLine value);
+
+		/**
 	 * Returns the value of the '<em><b>Product Versions</b></em>' containment reference list.
 	 * The list contents are of type {@link ru.arsysop.passage.lic.model.api.ProductVersion}.
 	 * It is bidirectional and its opposite is '{@link ru.arsysop.passage.lic.model.api.ProductVersion#getProduct <em>Product</em>}'.

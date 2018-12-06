@@ -20,6 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface LicenseRegistry extends BaseDescriptorRegistry<LicenseDescriptor> {
+public interface LicenseRegistry extends DescriptorRegistry {
+	
+	LicensePackDescriptor getLicensPack(String identifier);
 
 }

@@ -32,25 +32,32 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 
 import ru.arsysop.passage.lic.base.LicensingPaths;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.base.LicensingProperties;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
-import ru.arsysop.passage.lic.runtime.io.ConditionCodec;
-import ru.arsysop.passage.lic.runtime.io.ConditionExtractor;
+import ru.arsysop.passage.lic.runtime.io.StreamCodec;
+import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
 @Component
 public class OsgiInstallAreaConditionMiner implements ConditionMiner {
+	
+	Logger logger = Logger.getLogger(OsgiInstallAreaConditionMiner.class.getName());
 
 	private EnvironmentInfo environmentInfo;
-	private ConditionCodec conditionCodec;
+	private StreamCodec streamCodec;
 	private KeyKeeper keyKeeper;
-	private ConditionExtractor conditionExtractor;
+	private LicensingConditionTransport conditionDescriptorTransport;
 
 	@Reference
 	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
@@ -71,26 +78,35 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	}
 
 	@Reference
-	public void bindConditionCodec(ConditionCodec conditionCodec) {
-		this.conditionCodec = conditionCodec;
+	public void bindStreamCodec(StreamCodec codec) {
+		this.streamCodec = codec;
 	}
 
-	public void unbindConditionCodec(ConditionCodec conditionCodec) {
-		this.conditionCodec = null;
+	public void unbindStreamCodec(StreamCodec codec) {
+		this.streamCodec = null;
 	}
 
-	@Reference
-	public void bindConditionExtractor(ConditionExtractor conditionExtractor) {
-		this.conditionExtractor = conditionExtractor;
+	@Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
+	public void bindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, Object> properties) {
+		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
+		if (LicensingProperties.LICENSING_CONTENT_TYPE_XML.equals(contentType)) {
+			this.conditionDescriptorTransport = transport;
+		}
 	}
 
-	public void unbindConditionExtractor(ConditionExtractor conditionExtractor) {
-		this.conditionExtractor = null;
+	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, Object> properties) {
+		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
+		if (LicensingProperties.LICENSING_CONTENT_TYPE_XML.equals(contentType)) {
+			this.conditionDescriptorTransport = null;
+		}
 	}
 
 	@Override
-	public Iterable<ConditionDescriptor> extractConditionDescriptors(Object configuration) {
-		List<ConditionDescriptor> mined = new ArrayList<>();
+	public Iterable<LicensingCondition> extractLicensingConditions(Object configuration) {
+		List<LicensingCondition> mined = new ArrayList<>();
+		if (conditionDescriptorTransport == null) {
+			return mined;
+		}
 		if (environmentInfo == null) {
 			return mined;
 		}
@@ -113,22 +129,20 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 
 			});
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.FINEST, e.getMessage(), e);
 		}
 		for (Path path : licenseFiles) {
 			try (FileInputStream encoded = new FileInputStream(path.toFile()); ByteArrayOutputStream decoded = new ByteArrayOutputStream(); InputStream keyRing = keyKeeper.openKeyStream(configuration)){
-				conditionCodec.decodeStream(encoded, decoded, keyRing, null);
+				streamCodec.decodeStream(encoded, decoded, keyRing, null);
 				byte[] byteArray = decoded.toByteArray();
 				try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
-					Iterable<ConditionDescriptor> extracted = conditionExtractor.extractConditions(input);
-					for (ConditionDescriptor condition : extracted) {
+					Iterable<LicensingCondition> extracted = conditionDescriptorTransport.readConditionDescriptors(input);
+					for (LicensingCondition condition : extracted) {
 						mined.add(condition);
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
+				logger.log(Level.FINEST, e.getMessage(), e);
 			}
 		}
 		return mined;

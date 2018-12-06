@@ -29,12 +29,12 @@ import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
-import ru.arsysop.passage.lic.model.api.License;
-import ru.arsysop.passage.lic.model.api.LicenseCondition;
+import ru.arsysop.passage.lic.model.api.LicensePack;
+import ru.arsysop.passage.lic.model.api.LicenseGrant;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
@@ -55,16 +55,16 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 		Product product = factory.createProduct();
 		product.setIdentifier(SOME_PRODUCT_ID);
 
-		License license = factory.createLicense();
-		EList<LicenseCondition> licenseConditions = license.getLicenseConditions();
-		LicenseCondition conditionBundle = factory.createLicenseCondition();
-		conditionBundle.setAllowedFeatureId(SOME_BUNDLE_ID);
+		LicensePack license = factory.createLicensePack();
+		EList<LicenseGrant> licenseConditions = license.getLicenseGrants();
+		LicenseGrant conditionBundle = factory.createLicenseGrant();
+		conditionBundle.setFeatureIdentifier(SOME_BUNDLE_ID);
 		conditionBundle.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
 		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
 		licenseConditions.add(conditionBundle);
 
 		createProductLicense(product, license);
-		Iterable<ConditionDescriptor> conditions = accessManager.extractConditions(product);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
 		assertTrue(conditions.iterator().hasNext());
 		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions);
 		assertTrue(permissions.iterator().hasNext());

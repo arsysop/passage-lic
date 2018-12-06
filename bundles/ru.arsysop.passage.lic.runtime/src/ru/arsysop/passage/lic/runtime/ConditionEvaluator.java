@@ -21,12 +21,12 @@
 package ru.arsysop.passage.lic.runtime;
 
 /**
- * Evaluates the collection of {@link ConditionDescriptor} to obtain a
+ * Evaluates the collection of {@link LicensingCondition} to obtain a
  * collection of {@link FeaturePermission}
  *
  */
 public interface ConditionEvaluator {
 
-	Iterable<FeaturePermission> evaluateConditions(Iterable<ConditionDescriptor> conditions);
+	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions);
 
 }

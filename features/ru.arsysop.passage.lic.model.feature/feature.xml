@@ -40,7 +40,7 @@
    </license>
 
    <requires>
-      <import feature="ru.arsysop.passage.lic.equinox.feature" version="0.0.0"/>
+      <import feature="ru.arsysop.passage.lic.equinox.feature" version="0.0.0" match="equivalent"/>
    </requires>
 
    <plugin

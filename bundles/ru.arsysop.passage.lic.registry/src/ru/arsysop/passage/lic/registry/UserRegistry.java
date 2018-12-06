@@ -20,6 +20,10 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
-public interface UserRegistry extends BaseDescriptorRegistry<UserDescriptor> {
+public interface UserRegistry extends DescriptorRegistry {
+
+	UserOriginDescriptor getUserOrigin(String identifier);
+
+	UserDescriptor getUser(String identifier);
 
 }

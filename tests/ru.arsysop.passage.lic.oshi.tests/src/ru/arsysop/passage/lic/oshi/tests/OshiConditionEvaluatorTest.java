@@ -30,9 +30,10 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import ru.arsysop.passage.lic.base.LicensingConditions;
 import ru.arsysop.passage.lic.internal.oshi.OshiConditionEvaluator;
 import ru.arsysop.passage.lic.oshi.OshiHal;
-import ru.arsysop.passage.lic.runtime.ConditionDescriptor;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 @SuppressWarnings("restriction")
@@ -50,17 +51,17 @@ public class OshiConditionEvaluatorTest {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
 		assertEmpty(evaluator.evaluateConditions(null));
 
-		Set<ConditionDescriptor> empty = Collections.singleton(new OshiCondition(new String()));
+		Set<LicensingCondition> empty = Collections.singleton(createOshiCondition(new String()));
 		assertEmpty(evaluator.evaluateConditions(empty));
 
-		Set<ConditionDescriptor> unknown = Collections.singleton(new OshiCondition(EXPRESSION_OS_X3));
+		Set<LicensingCondition> unknown = Collections.singleton(createOshiCondition(EXPRESSION_OS_X3));
 		assertEmpty(evaluator.evaluateConditions(unknown));
 	}
 
 	@Test
 	public void testEvaluateConditionPositive() throws Exception {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
-		Set<ConditionDescriptor> future = Collections.singleton(new OshiCondition(EXPRESSION_OS_ANY));
+		Set<LicensingCondition> future = Collections.singleton(createOshiCondition(EXPRESSION_OS_ANY));
 		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
@@ -71,49 +72,20 @@ public class OshiConditionEvaluatorTest {
 
 	@Test
 	public void testOshiCondition() throws Exception {
-		OshiCondition condition = new OshiCondition(EXPRESSION_OS_X3);
+		LicensingCondition condition = createOshiCondition(EXPRESSION_OS_X3);
 		assertEquals(EXPRESSION_OS_X3, condition.getConditionExpression());
 		assertEquals(OshiHal.CONDITION_TYPE_HARDWARE, condition.getConditionType());
-		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getAllowedFeatureId());
-		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getAllowedMatchRule());
-		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getAllowedMatchVersion());
+		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getFeatureIdentifier());
+		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getMatchRule());
+		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getMatchVersion());
 	}
 
 	private void assertEmpty(Iterable<FeaturePermission> iterable) {
 		assertFalse(iterable.iterator().hasNext());
 	}
 
-	private final class OshiCondition implements ConditionDescriptor {
-
-		private final String expression;
-
-		public OshiCondition(String expression) {
-			this.expression = expression;
-		}
-
-		@Override
-		public String getConditionType() {
-			return OshiHal.CONDITION_TYPE_HARDWARE;
-		}
-
-		@Override
-		public String getConditionExpression() {
-			return expression;
-		}
-
-		@Override
-		public String getAllowedMatchVersion() {
-			return OSHI_HARDWARE_MATCH_VERSION;
-		}
-
-		@Override
-		public String getAllowedMatchRule() {
-			return OSHI_HARDWARE_MATCH_RULE;
-		}
-
-		@Override
-		public String getAllowedFeatureId() {
-			return OSHI_HARDWARE_FEATURE_ID;
-		}
+	public static LicensingCondition createOshiCondition(String expression) {
+		return LicensingConditions.create(OSHI_HARDWARE_FEATURE_ID, OSHI_HARDWARE_MATCH_VERSION, OSHI_HARDWARE_MATCH_RULE, OshiHal.CONDITION_TYPE_HARDWARE, expression);
 	}
+
 }

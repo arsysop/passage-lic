@@ -22,9 +22,11 @@ package ru.arsysop.passage.lic.integration.tests;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
@@ -33,6 +35,8 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -48,13 +52,16 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 
 import ru.arsysop.passage.lic.base.LicensingPaths;
-import ru.arsysop.passage.lic.model.api.License;
+import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.runtime.AccessManager;
-import ru.arsysop.passage.lic.runtime.io.ConditionCodec;
+import ru.arsysop.passage.lic.runtime.io.StreamCodec;
 
 public abstract class LicIntegrationBase {
 
+	private static final String EXTENSION_SERVER_SETTINGS = ".settings";
+	private static final String PASSAGE_SERVER_PORT_DEF = "passage.server.port=8080";
+	private static final String PASSAGE_SERVER_HOST_DEF = "passage.server.host=localhost";
 	static final String SOME_BUNDLE_ID = "some.licensed.bundle"; //$NON-NLS-1$
 	static final String SOME_COMPONENT_ID = "some.licensed.component"; //$NON-NLS-1$
 	static final String SOME_COMPONENT_VERSION = "1.2.0"; //$NON-NLS-1$
@@ -87,8 +94,8 @@ public abstract class LicIntegrationBase {
 	protected static AccessManager accessManager;
 	private static ServiceReference<EnvironmentInfo> environmentInfoReference;
 	protected static EnvironmentInfo environmentInfo;
-	private static ServiceReference<ConditionCodec> conditionCodecReference;
-	protected static ConditionCodec conditionCodec;
+	private static ServiceReference<StreamCodec> conditionCodecReference;
+	protected static StreamCodec conditionCodec;
 
 	@BeforeClass
 	public static void startup() {
@@ -98,7 +105,7 @@ public abstract class LicIntegrationBase {
 		accessManager = bundleContext.getService(accessManagerReference);
 		environmentInfoReference = bundleContext.getServiceReference(EnvironmentInfo.class);
 		environmentInfo = bundleContext.getService(environmentInfoReference);
-		conditionCodecReference = bundleContext.getServiceReference(ConditionCodec.class);
+		conditionCodecReference = bundleContext.getServiceReference(StreamCodec.class);
 		conditionCodec = bundleContext.getService(conditionCodecReference);
 	}
 
@@ -122,14 +129,34 @@ public abstract class LicIntegrationBase {
 		assertNotNull(accessManager);
 	}
 
-	protected void createProductLicense(Product product, License license) throws IOException {
+	protected void createServerConfiguration(Product product) throws IOException {
+		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
+		Path path = LicensingPaths.resolveConfigurationPath(install, product);
+		Files.createDirectories(path);
+		String identifier = product.getIdentifier();
+		File serverConfigurationFile = path.resolve(identifier + EXTENSION_SERVER_SETTINGS).toFile();
+
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(serverConfigurationFile));) {
+			bw.write(PASSAGE_SERVER_HOST_DEF);
+			bw.newLine();
+			bw.write(PASSAGE_SERVER_PORT_DEF);
+			bw.newLine();
+			bw.flush();
+		} catch (Exception e) {
+			Logger logger = Logger.getLogger(LicIntegrationBase.class.getName());
+			logger.log(Level.FINER, e.getMessage(), e);
+		}
+
+	}
+
+	protected void createProductLicense(Product product, LicensePack license) throws IOException {
 		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
 		Path path = LicensingPaths.resolveConfigurationPath(install, product);
 		Files.createDirectories(path);
 		String identifier = product.getIdentifier();
 		File publicFile = path.resolve(identifier + LicensingPaths.EXTENSION_PRODUCT_PUBLIC).toFile();
 		File privateFile = path.resolve(identifier + ".scr").toFile(); //$NON-NLS-1$
-		File licFile = path.resolve(identifier + LicensingPaths.EXTENSION_LICENSE_DECRYPTED).toFile();
+		File licFile = path.resolve(identifier + ".lic").toFile(); //$NON-NLS-1$
 		File licenFile = path.resolve(identifier + LicensingPaths.EXTENSION_LICENSE_ENCRYPTED).toFile();
 
 		String publicKeyPath = publicFile.getPath();

@@ -86,6 +86,7 @@ public class UserItemProvider
 			addEmailPropertyDescriptor(object);
 			addFullNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addUserOriginPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -179,6 +180,28 @@ public class UserItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the User Origin feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUserOriginPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_User_userOrigin_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_User_userOrigin_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.USER__USER_ORIGIN,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns User.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,17 +213,33 @@ public class UserItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public String getText(Object object) {
-		String label = ((User)object).getFullName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_User_type") : //$NON-NLS-1$
-			getString("_UI_User_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		User user = (User)object;
+		String email = user.getEmail();
+		if (email == null || email.length() == 0) {
+			return getString("_UI_User_type"); //$NON-NLS-1$
+		}
+		String fullName = user.getFullName();
+		if (fullName == null || fullName.length() == 0) {
+			return email;
+		}
+		return getString("_UI_User_text_pattern", new Object[] {email, fullName}); //$NON-NLS-1$
 	}
 
 

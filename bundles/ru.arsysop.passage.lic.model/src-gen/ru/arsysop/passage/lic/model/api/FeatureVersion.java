@@ -55,7 +55,7 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	 * @return the value of the '<em>Version</em>' attribute.
 	 * @see #setVersion(String)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getFeatureVersion_Version()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getVersion();
@@ -83,7 +83,7 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	 * @see #setFeature(Feature)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getFeatureVersion_Feature()
 	 * @see ru.arsysop.passage.lic.model.api.Feature#getFeatureVersions
-	 * @model opposite="featureVersions" transient="false"
+	 * @model opposite="featureVersions" required="true" transient="false"
 	 * @generated
 	 */
 	Feature getFeature();

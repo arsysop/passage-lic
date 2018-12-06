@@ -167,17 +167,29 @@ public class ProductVersionFeatureItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public String getText(Object object) {
-		String label = ((ProductVersionFeature)object).getFeatureIdentifier();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ProductVersionFeature_type") : //$NON-NLS-1$
-			getString("_UI_ProductVersionFeature_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		ProductVersionFeature productVersionFeature = (ProductVersionFeature)object;
+		String identifier = productVersionFeature.getFeatureIdentifier();
+		if (identifier == null || identifier.length() == 0) {
+			return getString("_UI_ProductVersionFeature_type"); //$NON-NLS-1$
+		}
+		return identifier;
 	}
 
 

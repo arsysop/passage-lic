@@ -8,6 +8,9 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit;bundle-version="4.12.0",
+ com.fasterxml.jackson.core.jackson-annotations;bundle-version="0.0.0",
+ com.fasterxml.jackson.core.jackson-core;bundle-version="0.0.0",
+ com.fasterxml.jackson.core.jackson-databind,
  ru.arsysop.passage.lic.runtime;bundle-version="0.0.0",
  ru.arsysop.passage.lic.base;bundle-version="0.0.0",
  ru.arsysop.passage.lic.net;bundle-version="0.0.0"

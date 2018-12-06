@@ -91,6 +91,29 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.FeatureSet} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureSetItemProvider featureSetItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.FeatureSet}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFeatureSetAdapter() {
+		if (featureSetItemProvider == null) {
+			featureSetItemProvider = new FeatureSetItemProvider(this);
+		}
+
+		return featureSetItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.Feature} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,6 +157,29 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 		}
 
 		return featureVersionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.ProductLine} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProductLineItemProvider productLineItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.ProductLine}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProductLineAdapter() {
+		if (productLineItemProvider == null) {
+			productLineItemProvider = new ProductLineItemProvider(this);
+		}
+
+		return productLineItemProvider;
 	}
 
 	/**
@@ -206,6 +252,29 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.UserOrigin} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UserOriginItemProvider userOriginItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.UserOrigin}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUserOriginAdapter() {
+		if (userOriginItemProvider == null) {
+			userOriginItemProvider = new UserOriginItemProvider(this);
+		}
+
+		return userOriginItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.User} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -229,49 +298,49 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.License} instances.
+	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.LicensePack} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LicenseItemProvider licenseItemProvider;
+	protected LicensePackItemProvider licensePackItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.License}.
+	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.LicensePack}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLicenseAdapter() {
-		if (licenseItemProvider == null) {
-			licenseItemProvider = new LicenseItemProvider(this);
+	public Adapter createLicensePackAdapter() {
+		if (licensePackItemProvider == null) {
+			licensePackItemProvider = new LicensePackItemProvider(this);
 		}
 
-		return licenseItemProvider;
+		return licensePackItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.LicenseCondition} instances.
+	 * This keeps track of the one adapter used for all {@link ru.arsysop.passage.lic.model.api.LicenseGrant} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LicenseConditionItemProvider licenseConditionItemProvider;
+	protected LicenseGrantItemProvider licenseGrantItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.LicenseCondition}.
+	 * This creates an adapter for a {@link ru.arsysop.passage.lic.model.api.LicenseGrant}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLicenseConditionAdapter() {
-		if (licenseConditionItemProvider == null) {
-			licenseConditionItemProvider = new LicenseConditionItemProvider(this);
+	public Adapter createLicenseGrantAdapter() {
+		if (licenseGrantItemProvider == null) {
+			licenseGrantItemProvider = new LicenseGrantItemProvider(this);
 		}
 
-		return licenseConditionItemProvider;
+		return licenseGrantItemProvider;
 	}
 
 	/**
@@ -373,14 +442,17 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	 * @generated
 	 */
 	public void dispose() {
+		if (featureSetItemProvider != null) featureSetItemProvider.dispose();
 		if (featureItemProvider != null) featureItemProvider.dispose();
 		if (featureVersionItemProvider != null) featureVersionItemProvider.dispose();
+		if (productLineItemProvider != null) productLineItemProvider.dispose();
 		if (productItemProvider != null) productItemProvider.dispose();
 		if (productVersionItemProvider != null) productVersionItemProvider.dispose();
 		if (productVersionFeatureItemProvider != null) productVersionFeatureItemProvider.dispose();
+		if (userOriginItemProvider != null) userOriginItemProvider.dispose();
 		if (userItemProvider != null) userItemProvider.dispose();
-		if (licenseItemProvider != null) licenseItemProvider.dispose();
-		if (licenseConditionItemProvider != null) licenseConditionItemProvider.dispose();
+		if (licensePackItemProvider != null) licensePackItemProvider.dispose();
+		if (licenseGrantItemProvider != null) licenseGrantItemProvider.dispose();
 	}
 
 }
