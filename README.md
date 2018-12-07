@@ -1,16 +1,16 @@
-## Passage Licensing Runtime  
+## Passage Licensing Integration Components (LIC) 
 
-The Passage Licensing Runtime is a part of the [Passage Licensing](https://projects.eclipse.org/projects/technology.passage) solution.
-This component verifies that the software license is valid in accordance with the specified license requirements.
-The Equinox-based implementation includes various validators for the subscription-based, node locked and other types of licenses.
+The Passage LIC is a part of the [Passage Licensing](https://projects.eclipse.org/proposals/eclipse-passage) solution.
+This component verifies that the software has sufficient license grants in accordance with the specified license requirements.
+The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
 
 ### How to use
 
-Just include the Passage Licensing Runtime bundles in your product.
+Just include the Passage LIC bundles in your product.
 
 ### How it works
 
-The Passage Licensing Runtime works inside your product installed on the user side. Its basic steps are as follows:
+The Passage LIC works inside your product installed on the user side. Its basic steps are as follows:
 1. Get the system configuration specified in the Licensing Operator client: the feature identifiers and the respective usage restrictions.
 2. Get the license conditions. By default, the tool looks for the license files located in the osgi.instance.area directory.
 3. Compare the license specified configuration with the current system state (the current date, node id, etc) to confirm the license is active and valid.
