@@ -23,37 +23,23 @@ package ru.arsysop.passage.lic.base;
 import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class BaseFeaturePermission implements FeaturePermission {
 
-	private final String featureIdentifier;
-	private final String matchVersion;
-	private final String matchRule;
+	private final LicensingCondition licensingCondition;
 	private final long leaseTime;
 	private final long expireTime;
 
-	BaseFeaturePermission(String featureIdentifier, String matchVersion, String matchRule, long leaseTime,
-			long expireTime) {
-		this.featureIdentifier = featureIdentifier;
-		this.matchVersion = matchVersion;
-		this.matchRule = matchRule;
+	BaseFeaturePermission(LicensingCondition licensingCondition, long leaseTime, long expireTime) {
+		this.licensingCondition = licensingCondition;
 		this.leaseTime = leaseTime;
 		this.expireTime = expireTime;
 	}
 
 	@Override
-	public String getFeatureIdentifier() {
-		return featureIdentifier;
-	}
-
-	@Override
-	public String getMatchVersion() {
-		return matchVersion;
-	}
-
-	@Override
-	public String getMatchRule() {
-		return matchRule;
+	public LicensingCondition getLicensingCondition() {
+		return licensingCondition;
 	}
 
 	@Override
@@ -69,9 +55,7 @@ public class BaseFeaturePermission implements FeaturePermission {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureIdentifier).append(';');
-		sb.append(LICENSING_MATCH_VERSION).append('=').append(matchVersion).append(';');
-		sb.append(LICENSING_MATCH_RULE).append('=').append(matchRule).append(';');
+		sb.append(licensingCondition).append(';');
 		sb.append(LICENSING_LEASE_TIME).append('=').append(leaseTime).append(';');
 		sb.append(LICENSING_EXPIRE_TIME).append('=').append(expireTime);
 		return sb.toString();

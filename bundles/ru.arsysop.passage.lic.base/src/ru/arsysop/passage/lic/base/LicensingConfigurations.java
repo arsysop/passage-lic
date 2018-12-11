@@ -20,9 +20,17 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
-import ru.arsysop.passage.lic.registry.ProductDescriptor;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LicensingConfigurations {
+
+	public static Map<String, String> createProductConfiguration(String product, String version) {
+		Map<String, String> map = new HashMap<>();
+		map.put(LicensingProperties.LICENSING_PRODUCT_IDENTIFIER, product);
+		map.put(LicensingProperties.LICENSING_PRODUCT_VERSION, version);
+		return map;
+	}
 
 	public static String findProductIdentifier(String[] args) {
 		if (args == null) {
@@ -42,9 +50,12 @@ public class LicensingConfigurations {
 	}
 
 	public static String resolveProductIdentifier(Object configuration) {
-		if (configuration instanceof ProductDescriptor) {
-			ProductDescriptor product = (ProductDescriptor) configuration;
-			return product.getIdentifier();
+		if (Map.class.isInstance(configuration)) {
+			Map<?,?> map = (Map<?,?>) configuration;
+			Object value = map.get(LicensingProperties.LICENSING_PRODUCT_IDENTIFIER);
+			if (value instanceof String) {
+				return (String) value;
+			}
 		}
 		if (configuration instanceof String) {
 			return (String) configuration;
@@ -52,6 +63,20 @@ public class LicensingConfigurations {
 		if (configuration instanceof String[]) {
 			String[] strings = (String[]) configuration;
 			return findProductIdentifier(strings);
+		}
+		return null;
+	}
+
+	public static String resolveProductVersion(Object configuration) {
+		if (configuration instanceof Map<?,?>) {
+			Map<?,?> map = (Map<?,?>) configuration;
+			Object value = map.get(LicensingProperties.LICENSING_PRODUCT_VERSION);
+			if (value instanceof String) {
+				return (String) value;
+			}
+		}
+		if (configuration instanceof String) {
+			return (String) configuration;
 		}
 		return null;
 	}
