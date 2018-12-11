@@ -69,9 +69,9 @@ public class LicensingVersionsTest {
 		assertEquals(true, isMatch(new String(), new String(), new String()));
 
 		assertEquals(true, isMatch("1.2.3", "1.2.3", null));
-		assertEquals(false, isMatch("1.2.3", "1.2.3.x3", null));
+		assertEquals(true, isMatch("1.2.3", "1.2.3.x3", null));
 		assertEquals(true, isMatch("1.2.3", "1.2.3", new String()));
-		assertEquals(false, isMatch("1.2.3", "1.2.3.x3", new String()));
+		assertEquals(true, isMatch("1.2.3", "1.2.3.x3", new String()));
 	}
 
 	@Test

@@ -61,13 +61,16 @@ public class RequestProducer {
 
 	private final Logger logger = Logger.getLogger(RequestProducer.class.getName());
 
-	public Map<String, String> initRequestParams(String host, String port, String modeId) {
+	public Map<String, String> initRequestParams(String host, String port, String modeId, String productId,
+			String productVersion) {
 		Map<String, String> requestAttributes = new HashMap<>();
 		requestAttributes.put(RequestParameters.HOST, host);
 		requestAttributes.put(RequestParameters.PORT, port);
 
 		requestAttributes.put(RequestParameters.CLIENT_TRUSTED_ID, "12345678");
 		requestAttributes.put(RequestParameters.SERVER_ACCESS_MODE_ID, modeId);
+		requestAttributes.put(RequestParameters.CONFIGURATION_PRODUCT_ID, productId);
+		requestAttributes.put(RequestParameters.CONFIGURATION_PRODUCT_VERSION, productVersion);
 		return requestAttributes;
 	}
 

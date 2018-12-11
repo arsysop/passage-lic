@@ -18,24 +18,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.base;
+package ru.arsysop.passage.lic.internal.equinox;
 
-import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import java.util.HashMap;
+import java.util.Map;
 
-public class FeaturePermissions {
+import org.osgi.service.event.Event;
 
-	private FeaturePermissions() {
-		// block
-	}
+public class EquinoxEvents {
 
-	public static BaseFeaturePermission createDefault(LicensingCondition condition) {
-		long leaseTime = System.currentTimeMillis();
-		long expireTime = leaseTime + 60 * 60 * 1000;
-		return new BaseFeaturePermission(condition, leaseTime, expireTime);
-	}
+	//@see org.eclipse.e4.core.services.events.IEventBroker.DATA
+	static final String PROPERTY_DATA = "org.eclipse.e4.data"; //$NON-NLS-1$
 
-	public static BaseFeaturePermission create(LicensingCondition condition, long leaseTime, long expireTime) {
-		return new BaseFeaturePermission(condition, leaseTime, expireTime);
+	static Event createEvent(String topic, Object data) {
+		Map<String, Object> properties = new HashMap<>();
+		properties.put(PROPERTY_DATA, data);
+		Event event = new Event(topic, properties);
+		return event;
 	}
 
 }

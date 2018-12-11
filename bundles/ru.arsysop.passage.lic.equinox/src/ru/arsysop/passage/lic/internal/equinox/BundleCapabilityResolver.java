@@ -46,8 +46,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 	
 	private Logger logger;
 	private BundleContext bundleContext;
-	private final String extractCrAudit = "Unable to extract configuration requirements: %s";
-	
+
 	@Activate
 	public void activate(BundleContext bundleContext) {
 		this.bundleContext = bundleContext;
@@ -61,7 +60,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 	@Override
 	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
 		if (bundleContext == null) {
-			logger.severe(String.format(extractCrAudit, BundleContext.class));
+			logger.severe("Unable to extract configuration requirements: invalid BundleContext");
 			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, this);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
@@ -76,7 +75,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 				if (extracted != null) {
 					result.add(extracted);
 				} else {
-					logger.severe(String.format(extractCrAudit, resource));
+					logger.severe(String.format("Unable to extract configuration requirements: %s", resource));
 					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, resource));
 					return result;
 				}

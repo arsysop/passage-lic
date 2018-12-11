@@ -27,11 +27,7 @@ package ru.arsysop.passage.lic.runtime;
  */
 public interface FeaturePermission {
 
-	String getFeatureIdentifier();
-
-	String getMatchVersion();
-
-	String getMatchRule();
+	LicensingCondition getLicensingCondition();
 
 	long getLeaseTime();
 

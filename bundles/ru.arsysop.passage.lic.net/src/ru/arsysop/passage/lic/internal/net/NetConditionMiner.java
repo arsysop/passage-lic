@@ -132,7 +132,8 @@ public class NetConditionMiner implements ConditionMiner {
 				return conditions;
 			}
 
-			Map<String, String> requestAttributes = requestProducer.initRequestParams(hostValue, portValue, MODE);
+			Map<String, String> requestAttributes = requestProducer.initRequestParams(hostValue, portValue, MODE,
+					"product.1", "1.0.0");
 			HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
 			URIBuilder requestBulder = requestProducer.createRequestURI(httpClient, host, requestAttributes,
 					MINER_LICENSING_CONDITION_TYPE);

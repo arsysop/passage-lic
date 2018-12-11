@@ -22,6 +22,7 @@ package ru.arsysop.passage.lic.oshi.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
@@ -65,9 +66,11 @@ public class OshiConditionEvaluatorTest {
 		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
-		assertEquals(OSHI_HARDWARE_FEATURE_ID, permission.getFeatureIdentifier());
-		assertEquals(OSHI_HARDWARE_MATCH_RULE, permission.getMatchRule());
-		assertEquals(OSHI_HARDWARE_MATCH_VERSION, permission.getMatchVersion());
+		LicensingCondition condition = permission.getLicensingCondition();
+		assertNotNull(condition);
+		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getFeatureIdentifier());
+		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getMatchRule());
+		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getMatchVersion());
 	}
 
 	@Test
