@@ -48,7 +48,6 @@ public class ComponentConfigurationResolver implements ConfigurationResolver {
 	private Logger logger;
 	private BundleContext bundleContext;
 	private ServiceComponentRuntime scr;
-	private final String extractCrAudit = "Unable to extract configuration requirements: %s";
 	
 	@Reference
 	public void bindLoggerFactory(LoggerFactory loggerFactory) {
@@ -81,11 +80,11 @@ public class ComponentConfigurationResolver implements ConfigurationResolver {
 	@Override
 	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
 		if (scr == null) {
-			logger.audit(String.format(extractCrAudit, ServiceComponentRuntime.class));
+			logger.audit("Unable to extract configuration requirements: invalid ServiceComponentRuntime");
 			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, this);
 		}
 		if (bundleContext == null) {
-			logger.audit(String.format(extractCrAudit, BundleContext.class));
+			logger.audit("Unable to extract configuration requirements: invalid BundleContext");
 			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, this);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();

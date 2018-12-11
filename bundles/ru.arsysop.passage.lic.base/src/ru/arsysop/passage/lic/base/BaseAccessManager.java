@@ -48,42 +48,50 @@ public abstract class BaseAccessManager implements AccessManager {
 	private final Map<String, ConditionEvaluator> conditionEvaluators = new HashMap<>();
 	private final List<RestrictionExecutor> restrictionExecutors = new ArrayList<>();
 
-	private PermissionExaminer examiner;
+	private PermissionExaminer permissionExaminer;
 
-	public void bindConfigurationResolver(ConfigurationResolver configurationResolver) {
+	protected void bindConfigurationResolver(ConfigurationResolver configurationResolver) {
 		configurationResolvers.add(configurationResolver);
 	}
 
-	public void unbindConfigurationResolver(ConfigurationResolver configurationResolver) {
+	protected void unbindConfigurationResolver(ConfigurationResolver configurationResolver) {
 		configurationResolvers.remove(configurationResolver);
 	}
 
-	public void bindConditionMiner(ConditionMiner conditionMiner) {
+	protected void bindConditionMiner(ConditionMiner conditionMiner) {
 		conditionMiners.add(conditionMiner);
 	}
 
-	public void unbindConditionMiner(ConditionMiner conditionMiner) {
+	protected void unbindConditionMiner(ConditionMiner conditionMiner) {
 		conditionMiners.remove(conditionMiner);
 	}
 
-	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+	protected void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
 		String type = String.valueOf(conditionType);
 		// FIXME: check permissions
 		conditionEvaluators.put(type, conditionEvaluator);
 	}
 
-	public void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+	protected void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
 		String type = String.valueOf(conditionType);
 		conditionEvaluators.remove(type);
 	}
 
-	public void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
+	protected void bindPermissionExaminer(PermissionExaminer permissionExaminer) {
+		this.permissionExaminer = permissionExaminer;
+	}
+
+	protected void unbindPermissionExaminer(PermissionExaminer permissionExaminer) {
+		this.permissionExaminer = null;
+	}
+
+	protected void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		restrictionExecutors.add(restrictionExecutor);
 	}
 
-	public void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
+	protected void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		restrictionExecutors.remove(restrictionExecutor);
 	}
 
@@ -162,10 +170,16 @@ public abstract class BaseAccessManager implements AccessManager {
 	@Override
 	public Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements,
 			Iterable<FeaturePermission> permissions, Object configuration) {
-		if (examiner == null) {
-			examiner = new BasePermissionExaminer();
+		if (permissionExaminer == null) {
+			// FIXME: log error;
+			List<RestrictionVerdict> verdicts = new ArrayList<>();
+			for (ConfigurationRequirement requirement : requirements) {
+				RestrictionVerdict verdict = new BaseRestrictionVerdict(requirement, requirement.getRestrictionLevel());
+				verdicts.add(verdict);
+			}
+			return verdicts;
 		}
-		Iterable<RestrictionVerdict> examined = examiner.examine(requirements, permissions, configuration);
+		Iterable<RestrictionVerdict> examined = permissionExaminer.examine(requirements, permissions, configuration);
 		postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, examined);
 		return examined;
 	}

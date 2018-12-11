@@ -22,6 +22,7 @@ package ru.arsysop.passage.lic.net.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
@@ -69,9 +70,11 @@ public class NtpConditionEvaluatorTest {
 		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
-		assertEquals(NET_TIME_FEATURE_ID, permission.getFeatureIdentifier());
-		assertEquals(NET_TIME_MATCH_RULE, permission.getMatchRule());
-		assertEquals(NET_TIME_MATCH_VERSION, permission.getMatchVersion());
+		LicensingCondition condition = permission.getLicensingCondition();
+		assertNotNull(condition);
+		assertEquals(NET_TIME_FEATURE_ID, condition.getFeatureIdentifier());
+		assertEquals(NET_TIME_MATCH_RULE, condition.getMatchRule());
+		assertEquals(NET_TIME_MATCH_VERSION, condition.getMatchVersion());
 	}
 
 	@Test

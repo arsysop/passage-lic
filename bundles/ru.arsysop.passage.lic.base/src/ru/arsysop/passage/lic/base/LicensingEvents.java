@@ -41,7 +41,7 @@ public class LicensingEvents {
 	 */
 	public static final String LicensingTopicBase = "ru/arsysop/passage/lic/base"; //$NON-NLS-1$
 	
-	public class LicensingLifeCycle {
+	public static final class LicensingLifeCycle {
 		
 		/**
 		 * Base name for all Licensing life cycle events
@@ -66,12 +66,26 @@ public class LicensingEvents {
 		/**
 		 * Sent when {@link FeaturePermission}(s) are examined
 		 */
-		public static final String PERMISSIONS_EXAMINED = TOPIC + TOPIC_SEP + "permissionsExamained"; //$NON-NLS-1$
+		public static final String PERMISSIONS_EXAMINED = TOPIC + TOPIC_SEP + "permissionsExamined"; //$NON-NLS-1$
 
 		/**
 		 * Sent when restrictions are executed
 		 */
 		public static final String RESTRICTION_EXECUTED = TOPIC + TOPIC_SEP + "restrictionExecuted"; //$NON-NLS-1$
+
+	}
+	
+	public static final class LicensingConditionEvents {
+	
+		/**
+		 * Base name for all Licensing condition events
+		 */
+		public static final String TOPIC = LicensingTopicBase + TOPIC_SEP + "ConditionEvents"; //$NON-NLS-1$
+
+		/**
+		 * Sent when conditions are leased
+		 */
+		public static final String CONDITIONS_LEASED = TOPIC + TOPIC_SEP + "conditionsLeased"; //$NON-NLS-1$
 
 	}
 

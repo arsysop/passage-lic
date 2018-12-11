@@ -22,6 +22,9 @@ package ru.arsysop.passage.lic.base;
 
 public final class LicensingProperties {
 
+	public static final String LICENSING_PRODUCT_IDENTIFIER = "licensing.product.identifier"; //$NON-NLS-1$
+	public static final String LICENSING_PRODUCT_VERSION = "licensing.product.version"; //$NON-NLS-1$
+
 	public static final String LICENSING_FEATURE_IDENTIFIER = "licensing.feature.identifier"; //$NON-NLS-1$
 	public static final String LICENSING_FEATURE_VERSION = "licensing.feature.version"; //$NON-NLS-1$
 	

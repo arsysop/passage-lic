@@ -59,9 +59,9 @@ import ru.arsysop.passage.lic.runtime.io.StreamCodec;
 
 public abstract class LicIntegrationBase {
 
-	private static final String EXTENSION_SERVER_SETTINGS = ".settings";
-	private static final String PASSAGE_SERVER_PORT_DEF = "passage.server.port=8080";
-	private static final String PASSAGE_SERVER_HOST_DEF = "passage.server.host=localhost";
+	private static final String EXTENSION_SERVER_SETTINGS = ".settings"; //$NON-NLS-1$
+	private static final String PASSAGE_SERVER_PORT_DEF = "passage.server.port=8080"; //$NON-NLS-1$
+	private static final String PASSAGE_SERVER_HOST_DEF = "passage.server.host=localhost"; //$NON-NLS-1$
 	static final String SOME_BUNDLE_ID = "some.licensed.bundle"; //$NON-NLS-1$
 	static final String SOME_COMPONENT_ID = "some.licensed.component"; //$NON-NLS-1$
 	static final String SOME_COMPONENT_VERSION = "1.2.0"; //$NON-NLS-1$
@@ -151,9 +151,9 @@ public abstract class LicIntegrationBase {
 
 	protected void createProductLicense(Product product, LicensePack license) throws IOException {
 		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path path = LicensingPaths.resolveConfigurationPath(install, product);
-		Files.createDirectories(path);
 		String identifier = product.getIdentifier();
+		Path path = LicensingPaths.resolveConfigurationPath(install, identifier);
+		Files.createDirectories(path);
 		File publicFile = path.resolve(identifier + LicensingPaths.EXTENSION_PRODUCT_PUBLIC).toFile();
 		File privateFile = path.resolve(identifier + ".scr").toFile(); //$NON-NLS-1$
 		File licFile = path.resolve(identifier + ".lic").toFile(); //$NON-NLS-1$
@@ -180,7 +180,7 @@ public abstract class LicIntegrationBase {
 
 	protected void deleteProductLicense(Product product) throws IOException {
 		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path path = LicensingPaths.resolveConfigurationPath(install, product);
+		Path path = LicensingPaths.resolveConfigurationPath(install, product.getIdentifier());
 		FileVisitor<Path> visitor = new SimpleFileVisitor<Path>() {
 
 			@Override
