@@ -9,8 +9,7 @@ Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit;bundle-version="4.12.0",
  org.slf4j.api;bundle-version="0.0.0",
- ru.arsysop.passage.brc.jna;bundle-version="4.5.2",
- ru.arsysop.passage.brc.oshi;bundle-version="3.8.4",
+ ru.arsysop.passage.brc.oshi;bundle-version="0.0.0",
  ru.arsysop.passage.lic.runtime;bundle-version="0.0.0",
  ru.arsysop.passage.lic.base;bundle-version="0.0.0",
  ru.arsysop.passage.lic.oshi;bundle-version="0.0.0"
