@@ -59,9 +59,10 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 
 	@Override
 	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
+		String lmName = "License Management";
 		if (bundleContext == null) {
 			logger.severe("Unable to extract configuration requirements: invalid BundleContext");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
@@ -76,7 +77,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 					result.add(extracted);
 				} else {
 					logger.severe(String.format("Unable to extract configuration requirements: %s", resource));
-					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, resource));
+					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, resource));
 					return result;
 				}
 			}

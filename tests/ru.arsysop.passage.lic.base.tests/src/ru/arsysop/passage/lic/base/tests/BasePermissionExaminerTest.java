@@ -25,6 +25,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.junit.Test;
@@ -68,15 +69,19 @@ public class BasePermissionExaminerTest {
 		Object configuration = new Object();
 
 		BaseConfigurationRequirement fooRequirement = ConfigurationRequirements.createDefault(FOO_FEATURE_ID,
-				FOO_FEATURE_VERSION, source);
+				FOO_FEATURE_VERSION, FOO_FEATURE_ID, source);
 		BaseConfigurationRequirement barRequirement = ConfigurationRequirements.createDefault(BAR_FEATURE_ID,
-				BAR_FEATURE_VERSION, source);
+				BAR_FEATURE_VERSION, BAR_FEATURE_ID, source);
 		Iterable<ConfigurationRequirement> requirements = Arrays.asList(fooRequirement, barRequirement);
 
+		Date fooFrom = null;
+		Date foorUntil = null;
+		Date bazFrom = null;
+		Date bazUntil = null;
 		LicensingCondition fooCondition = LicensingConditions.create(FOO_FEATURE_ID, "0.4.0", //$NON-NLS-1$
-				LicensingVersions.RULE_GREATER_OR_EQUAL, null, null);
+				LicensingVersions.RULE_GREATER_OR_EQUAL, fooFrom, foorUntil, null, null);
 		LicensingCondition bazCondition = LicensingConditions.create(BAZ_FEATURE_ID, "1.0.0", //$NON-NLS-1$
-				LicensingVersions.RULE_GREATER_OR_EQUAL, null, null);
+				LicensingVersions.RULE_GREATER_OR_EQUAL, bazFrom, bazUntil, null, null);
 		BaseFeaturePermission fooPermission = FeaturePermissions.createDefault(fooCondition);
 		BaseFeaturePermission bazPermission = FeaturePermissions.create(bazCondition, 0, 0);
 		Iterable<FeaturePermission> permissions = Arrays.asList(fooPermission, bazPermission);

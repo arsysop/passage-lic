@@ -6,6 +6,7 @@ import static org.junit.Assume.assumeNoException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -64,7 +65,9 @@ public class NetFeaturePermissionTransportTest {
 
 	private FeaturePermissionAggregator createFeaturePermissionAggregator() {
 		FeaturePermissionAggregator permissionAggregator = new FeaturePermissionAggregator();
-		BaseLicensingCondition condition = LicensingConditions.create(FEATURE_TEST_ID, FEATURE_TEST_VERSION, FEATURE_TEST_RULE, null, null);
+		Date from = null;
+		Date until = null;
+		BaseLicensingCondition condition = LicensingConditions.create(FEATURE_TEST_ID, FEATURE_TEST_VERSION, FEATURE_TEST_RULE, from, until, null, null);
 		BaseFeaturePermission permission = FeaturePermissions.create(condition, FEATURE_TEST_LEASE_TIME, FEATURE_TEST_EXPIRE_TIME);
 		permissionAggregator.addFeaturePermission(permission);
 		return permissionAggregator;

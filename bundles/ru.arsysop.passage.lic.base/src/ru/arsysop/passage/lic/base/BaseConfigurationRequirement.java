@@ -28,19 +28,16 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	
 	private final String featureIdentifier;
 	private final String featureVersion;
+	private final String featureName;
 	private final String restrictionLevel;
 	private final Object source;
 
-	BaseConfigurationRequirement(String id, String version, String level, Object source) {
+	BaseConfigurationRequirement(String id, String version, String name, String level, Object source) {
 		this.featureIdentifier = id;
 		this.featureVersion = version;
+		this.featureName = name;
 		this.restrictionLevel = level;
 		this.source = source;
-	}
-
-	@Override
-	public Object getRequirementSource() {
-		return source;
 	}
 
 	@Override
@@ -52,6 +49,11 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	public String getFeatureVersion() {
 		return featureVersion;
 	}
+	
+	@Override
+	public String getFeatureName() {
+		return featureName;
+	}
 
 	@Override
 	public String getRestrictionLevel() {
@@ -59,10 +61,16 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	}
 	
 	@Override
+	public Object getRequirementSource() {
+		return source;
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureIdentifier).append(';');
 		sb.append(LICENSING_FEATURE_VERSION).append('=').append(featureVersion).append(';');
+		sb.append(LICENSING_FEATURE_NAME).append('=').append(featureName).append(';');
 		sb.append(LICENSING_RESTRICTION_LEVEL).append('=').append(restrictionLevel).append(';');
 		sb.append("source").append('=').append(source); //$NON-NLS-1$
 		return sb.toString();

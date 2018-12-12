@@ -26,6 +26,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -92,8 +93,13 @@ public class NtpConditionEvaluatorTest {
 	}
 
 	public static LicensingCondition createNetCondition(String expression) {
-		return LicensingConditions.create(NET_TIME_FEATURE_ID, NET_TIME_MATCH_VERSION, NET_TIME_MATCH_RULE,
-				TimeConditions.CONDITION_TYPE_TIME, expression);
+		String id = NET_TIME_FEATURE_ID;
+		String version = NET_TIME_MATCH_VERSION;
+		String rule = NET_TIME_MATCH_RULE;
+		String type = TimeConditions.CONDITION_TYPE_TIME;
+		Date from = null;
+		Date until = null;
+		return LicensingConditions.create(id, version, rule, from, until, type, expression);
 	}
 
 }

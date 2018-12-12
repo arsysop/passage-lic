@@ -6,6 +6,7 @@ import static org.junit.Assume.assumeNoException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -23,11 +24,11 @@ import ru.arsysop.passage.lic.runtime.LicensingCondition;
 @SuppressWarnings("restriction")
 public class NetConditionDescriptorTransportTest {
 
-	private static final String FEATURE_TEST_CONDITION_TYPE = "test.content.type";
-	private static final String FEATURE_TEST_RULE = "test.rule";
-	private static final String FEATURE_TEST_VERSION = "test.version.1";
-	private static final String FEATURE_TEST_ID = "test.id";
-	private static final String FEATURE_TEST_EXPRESSION = "test.expression";
+	private static final String FEATURE_TEST_CONDITION_TYPE = "test.content.type"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_RULE = "test.rule"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_VERSION = "test.version.1"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_ID = "test.id"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_EXPRESSION = "test.expression"; //$NON-NLS-1$
 
 	@Test
 	public void netConditionDescriptorTransportTest() {
@@ -59,8 +60,14 @@ public class NetConditionDescriptorTransportTest {
 
 	private ConditionDescriptorAggregator createConditionDescriptorAggregator() {
 		ConditionDescriptorAggregator conditionAggregator = new ConditionDescriptorAggregator();
-		BaseLicensingCondition descriptor = LicensingConditions.create(FEATURE_TEST_ID, FEATURE_TEST_VERSION,
-				FEATURE_TEST_RULE, FEATURE_TEST_CONDITION_TYPE, FEATURE_TEST_EXPRESSION);
+		String id = FEATURE_TEST_ID;
+		String version = FEATURE_TEST_VERSION;
+		String rule = FEATURE_TEST_RULE;
+		Date from = null;
+		Date until = null;
+		String type = FEATURE_TEST_CONDITION_TYPE;
+		String expression = FEATURE_TEST_EXPRESSION;
+		BaseLicensingCondition descriptor = LicensingConditions.create(id, version, rule, from, until, type, expression);
 		conditionAggregator.addLicensingCondition(descriptor);
 		return conditionAggregator;
 	}

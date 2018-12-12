@@ -26,6 +26,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -88,7 +89,13 @@ public class OshiConditionEvaluatorTest {
 	}
 
 	public static LicensingCondition createOshiCondition(String expression) {
-		return LicensingConditions.create(OSHI_HARDWARE_FEATURE_ID, OSHI_HARDWARE_MATCH_VERSION, OSHI_HARDWARE_MATCH_RULE, OshiHal.CONDITION_TYPE_HARDWARE, expression);
+		String id = OSHI_HARDWARE_FEATURE_ID;
+		String version = OSHI_HARDWARE_MATCH_VERSION;
+		String rule = OSHI_HARDWARE_MATCH_RULE;
+		String type = OshiHal.CONDITION_TYPE_HARDWARE;
+		Date from = null;
+		Date until = null;
+		return LicensingConditions.create(id, version, rule, from, until, type, expression);
 	}
 
 }
