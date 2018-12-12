@@ -30,8 +30,8 @@ public class NetFeaturePermissionTransportTest {
 	private static final String FEATURE_TEST_VERSION = "test.version.1"; //$NON-NLS-1$
 	private static final String FEATURE_TEST_ID = "test.id"; //$NON-NLS-1$
 	private static final String FEATURE_TEST_RULE = "test.rule"; //$NON-NLS-1$
-	private static final long FEATURE_TEST_LEASE_TIME = 3000l;
-	private static final long FEATURE_TEST_EXPIRE_TIME = 4000l;
+	private static final Date FEATURE_TEST_LEASE_TIME = new Date(System.currentTimeMillis() - 3000l);
+	private static final Date FEATURE_TEST_EXPIRE_TIME = new Date(System.currentTimeMillis() + 4000l);
 
 	@Test
 	public void netFeaturePermissionTransportTest() {
@@ -52,8 +52,8 @@ public class NetFeaturePermissionTransportTest {
 				assertTrue(condition.getFeatureIdentifier().equals(FEATURE_TEST_ID));
 				assertTrue(condition.getMatchVersion().equals(FEATURE_TEST_VERSION));
 				assertTrue(condition.getMatchRule().equals(FEATURE_TEST_RULE));
-				assertTrue(permission.getLeaseTime() == FEATURE_TEST_LEASE_TIME);
-				assertTrue(permission.getExpireTime() == FEATURE_TEST_EXPIRE_TIME);
+				assertTrue(permission.getLeaseDate() == FEATURE_TEST_LEASE_TIME);
+				assertTrue(permission.getExpireDate() == FEATURE_TEST_EXPIRE_TIME);
 			}
 
 		} catch (JsonProcessingException e) {

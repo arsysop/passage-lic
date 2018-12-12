@@ -63,12 +63,15 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 				}
 			}
 			if (passed) {
-				FeaturePermission permission = FeaturePermissions.createDefault(condition);
-				result.add(permission);
+				result.add(createPermission(condition));
 			}
 		}
 		
 		return result;
+	}
+
+	protected FeaturePermission createPermission(LicensingCondition condition) {
+		return FeaturePermissions.createDefault(condition);
 	}
 
 	protected abstract boolean evaluateSegment(String key, String value);

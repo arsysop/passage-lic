@@ -20,6 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.runtime;
 
+import java.util.Date;
+
 /**
  * Permission to use the component of given name and version range obtained from
  * {@link ConditionEvaluator} as a result of evaluation for
@@ -29,7 +31,7 @@ public interface FeaturePermission {
 
 	LicensingCondition getLicensingCondition();
 
-	long getLeaseTime();
+	Date getLeaseDate();
 
-	long getExpireTime();
+	Date getExpireDate();
 }
