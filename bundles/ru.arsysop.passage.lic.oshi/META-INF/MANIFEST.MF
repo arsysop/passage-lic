@@ -11,7 +11,9 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
  ru.arsysop.passage.lic.runtime;bundle-version="0.0.0",
  ru.arsysop.passage.lic.inspector;bundle-version="0.0.0";visibility:=reexport,
  ru.arsysop.passage.lic.base;bundle-version="0.0.0",
- ru.arsysop.passage.brc.oshi;bundle-version="0.0.0"
+ ru.arsysop.passage.brc.oshi;bundle-version="0.0.0",
+ com.sun.jna;bundle-version="4.5.1",
+ com.sun.jna.platform;bundle-version="4.5.1"
 Export-Package: ru.arsysop.passage.lic.internal.oshi;x-internal:=true,
  ru.arsysop.passage.lic.oshi
 Bundle-ActivationPolicy: lazy
