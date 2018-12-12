@@ -56,7 +56,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNS_URI = "http://www.arsysop.ru/passage/lic/0.3.1"; //$NON-NLS-1$
+  String eNS_URI = "http://www.arsysop.ru/passage/lic/0.3.2"; //$NON-NLS-1$
 
   /**
 	 * The package namespace name.
@@ -741,22 +741,13 @@ public interface LicPackage extends EPackage {
 	int PRODUCT_VERSION__VERSION = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 0;
 
 		/**
-	 * The feature id for the '<em><b>Product</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_VERSION__PRODUCT = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 1;
-
-		/**
 	 * The feature id for the '<em><b>Installation Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__INSTALLATION_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 2;
+	int PRODUCT_VERSION__INSTALLATION_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 1;
 
 		/**
 	 * The feature id for the '<em><b>Secure Token</b></em>' attribute.
@@ -765,16 +756,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__SECURE_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
-
-		/**
-	 * The feature id for the '<em><b>Product Version Features</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_VERSION__PRODUCT_VERSION_FEATURES = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 4;
+	int PRODUCT_VERSION__SECURE_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 2;
 
 		/**
 	 * The feature id for the '<em><b>News</b></em>' attribute.
@@ -783,7 +765,25 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__NEWS = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 5;
+	int PRODUCT_VERSION__NEWS = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
+
+		/**
+	 * The feature id for the '<em><b>Product</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_VERSION__PRODUCT = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 4;
+
+		/**
+	 * The feature id for the '<em><b>Product Version Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_VERSION__PRODUCT_VERSION_FEATURES = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 5;
 
 		/**
 	 * The number of structural features of the '<em>Product Version</em>' class.
@@ -1114,13 +1114,31 @@ public interface LicPackage extends EPackage {
 	int LICENSE_GRANT__MATCH_RULE = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 2;
 
 		/**
+	 * The feature id for the '<em><b>Valid From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_GRANT__VALID_FROM = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 3;
+
+		/**
+	 * The feature id for the '<em><b>Valid Until</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_GRANT__VALID_UNTIL = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 4;
+
+		/**
 	 * The feature id for the '<em><b>Condition Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__CONDITION_TYPE = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 3;
+	int LICENSE_GRANT__CONDITION_TYPE = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
 
 		/**
 	 * The feature id for the '<em><b>Condition Expression</b></em>' attribute.
@@ -1129,7 +1147,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__CONDITION_EXPRESSION = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 4;
+	int LICENSE_GRANT__CONDITION_EXPRESSION = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 6;
 
 		/**
 	 * The feature id for the '<em><b>Capacity</b></em>' attribute.
@@ -1138,7 +1156,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__CAPACITY = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
+	int LICENSE_GRANT__CAPACITY = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 7;
 
 		/**
 	 * The feature id for the '<em><b>License Pack</b></em>' container reference.
@@ -1147,7 +1165,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__LICENSE_PACK = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 6;
+	int LICENSE_GRANT__LICENSE_PACK = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 8;
 
 		/**
 	 * The number of structural features of the '<em>License Grant</em>' class.
@@ -1156,7 +1174,7 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT_FEATURE_COUNT = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 7;
+	int LICENSE_GRANT_FEATURE_COUNT = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 9;
 
 		/**
 	 * The number of operations of the '<em>License Grant</em>' class.
@@ -1719,6 +1737,28 @@ public interface LicPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLicenseGrant_MatchRule();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getValidFrom <em>Valid From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Valid From</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getValidFrom()
+	 * @see #getLicenseGrant()
+	 * @generated
+	 */
+	EAttribute getLicenseGrant_ValidFrom();
+
+		/**
+	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getValidUntil <em>Valid Until</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Valid Until</em>'.
+	 * @see ru.arsysop.passage.lic.model.api.LicenseGrant#getValidUntil()
+	 * @see #getLicenseGrant()
+	 * @generated
+	 */
+	EAttribute getLicenseGrant_ValidUntil();
 
 		/**
 	 * Returns the meta object for the attribute '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}'.
@@ -2449,6 +2489,22 @@ public interface LicPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LICENSE_GRANT__MATCH_RULE = eINSTANCE.getLicenseGrant_MatchRule();
+
+				/**
+		 * The meta object literal for the '<em><b>Valid From</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LICENSE_GRANT__VALID_FROM = eINSTANCE.getLicenseGrant_ValidFrom();
+
+				/**
+		 * The meta object literal for the '<em><b>Valid Until</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LICENSE_GRANT__VALID_UNTIL = eINSTANCE.getLicenseGrant_ValidUntil();
 
 				/**
 		 * The meta object literal for the '<em><b>Condition Type</b></em>' attribute feature.

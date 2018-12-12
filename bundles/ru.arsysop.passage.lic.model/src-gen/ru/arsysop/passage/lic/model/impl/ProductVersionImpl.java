@@ -53,11 +53,11 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  * </p>
  * <ul>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductVersionImpl#getVersion <em>Version</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductVersionImpl#getProduct <em>Product</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductVersionImpl#getInstallationToken <em>Installation Token</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductVersionImpl#getSecureToken <em>Secure Token</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductVersionImpl#getProductVersionFeatures <em>Product Version Features</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductVersionImpl#getNews <em>News</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductVersionImpl#getProduct <em>Product</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.ProductVersionImpl#getProductVersionFeatures <em>Product Version Features</em>}</li>
  * </ul>
  *
  * @generated
@@ -124,16 +124,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	protected String secureToken = SECURE_TOKEN_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProductVersionFeatures() <em>Product Version Features</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProductVersionFeatures()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ProductVersionFeature> productVersionFeatures;
-
-	/**
 	 * The default value of the '{@link #getNews() <em>News</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -152,6 +142,16 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String news = NEWS_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getProductVersionFeatures() <em>Product Version Features</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProductVersionFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ProductVersionFeature> productVersionFeatures;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -368,16 +368,16 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 			case LicPackage.PRODUCT_VERSION__VERSION:
 				return getVersion();
-			case LicPackage.PRODUCT_VERSION__PRODUCT:
-				return getProduct();
 			case LicPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
 				return getInstallationToken();
 			case LicPackage.PRODUCT_VERSION__SECURE_TOKEN:
 				return getSecureToken();
-			case LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
-				return getProductVersionFeatures();
 			case LicPackage.PRODUCT_VERSION__NEWS:
 				return getNews();
+			case LicPackage.PRODUCT_VERSION__PRODUCT:
+				return getProduct();
+			case LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
+				return getProductVersionFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -394,21 +394,21 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 			case LicPackage.PRODUCT_VERSION__VERSION:
 				setVersion((String)newValue);
 				return;
-			case LicPackage.PRODUCT_VERSION__PRODUCT:
-				setProduct((Product)newValue);
-				return;
 			case LicPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
 				setInstallationToken((String)newValue);
 				return;
 			case LicPackage.PRODUCT_VERSION__SECURE_TOKEN:
 				setSecureToken((String)newValue);
 				return;
+			case LicPackage.PRODUCT_VERSION__NEWS:
+				setNews((String)newValue);
+				return;
+			case LicPackage.PRODUCT_VERSION__PRODUCT:
+				setProduct((Product)newValue);
+				return;
 			case LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
 				getProductVersionFeatures().clear();
 				getProductVersionFeatures().addAll((Collection<? extends ProductVersionFeature>)newValue);
-				return;
-			case LicPackage.PRODUCT_VERSION__NEWS:
-				setNews((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -425,20 +425,20 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 			case LicPackage.PRODUCT_VERSION__VERSION:
 				setVersion(VERSION_EDEFAULT);
 				return;
-			case LicPackage.PRODUCT_VERSION__PRODUCT:
-				setProduct((Product)null);
-				return;
 			case LicPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
 				setInstallationToken(INSTALLATION_TOKEN_EDEFAULT);
 				return;
 			case LicPackage.PRODUCT_VERSION__SECURE_TOKEN:
 				setSecureToken(SECURE_TOKEN_EDEFAULT);
 				return;
-			case LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
-				getProductVersionFeatures().clear();
-				return;
 			case LicPackage.PRODUCT_VERSION__NEWS:
 				setNews(NEWS_EDEFAULT);
+				return;
+			case LicPackage.PRODUCT_VERSION__PRODUCT:
+				setProduct((Product)null);
+				return;
+			case LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
+				getProductVersionFeatures().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -454,16 +454,16 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 			case LicPackage.PRODUCT_VERSION__VERSION:
 				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
-			case LicPackage.PRODUCT_VERSION__PRODUCT:
-				return getProduct() != null;
 			case LicPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
 				return INSTALLATION_TOKEN_EDEFAULT == null ? installationToken != null : !INSTALLATION_TOKEN_EDEFAULT.equals(installationToken);
 			case LicPackage.PRODUCT_VERSION__SECURE_TOKEN:
 				return SECURE_TOKEN_EDEFAULT == null ? secureToken != null : !SECURE_TOKEN_EDEFAULT.equals(secureToken);
-			case LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
-				return productVersionFeatures != null && !productVersionFeatures.isEmpty();
 			case LicPackage.PRODUCT_VERSION__NEWS:
 				return NEWS_EDEFAULT == null ? news != null : !NEWS_EDEFAULT.equals(news);
+			case LicPackage.PRODUCT_VERSION__PRODUCT:
+				return getProduct() != null;
+			case LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
+				return productVersionFeatures != null && !productVersionFeatures.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -149,7 +149,7 @@ public class UserOriginItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_description_feature", "_UI_UserOrigin_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LicPackage.Literals.USER_ORIGIN__DESCRIPTION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -266,6 +266,9 @@ public class UserOriginItemProvider
 			case LicPackage.USER_ORIGIN__NAME:
 			case LicPackage.USER_ORIGIN__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case LicPackage.USER_ORIGIN__USERS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);

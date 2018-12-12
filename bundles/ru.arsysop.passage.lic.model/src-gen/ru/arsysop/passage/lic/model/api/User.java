@@ -56,7 +56,7 @@ public interface User extends EObject, UserDescriptor {
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getUser_Identifier()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getIdentifier();

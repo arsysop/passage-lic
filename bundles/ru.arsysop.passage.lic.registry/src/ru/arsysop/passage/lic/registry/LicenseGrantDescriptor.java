@@ -20,11 +20,17 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.registry;
 
+import java.util.Date;
+
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public interface LicenseGrantDescriptor extends LicensingCondition {
 
-	public int getCapacity();
+	Date getValidFrom();
+	
+	Date getValidUntil();
+
+	int getCapacity();
 	
 	LicensePackDescriptor getLicensePack();
 	

@@ -21,6 +21,7 @@
  */
 package ru.arsysop.passage.lic.model.impl;
 
+import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -47,6 +48,8 @@ import ru.arsysop.passage.lic.model.meta.LicPackage;
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getFeatureIdentifier <em>Feature Identifier</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getMatchVersion <em>Match Version</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getMatchRule <em>Match Rule</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getValidFrom <em>Valid From</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getValidUntil <em>Valid Until</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getConditionType <em>Condition Type</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getConditionExpression <em>Condition Expression</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.impl.LicenseGrantImpl#getCapacity <em>Capacity</em>}</li>
@@ -115,6 +118,46 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @ordered
 	 */
 	protected String matchRule = MATCH_RULE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValidFrom()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date VALID_FROM_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValidFrom()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date validFrom = VALID_FROM_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValidUntil()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date VALID_UNTIL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValidUntil()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date validUntil = VALID_UNTIL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getConditionType() <em>Condition Type</em>}' attribute.
@@ -256,6 +299,48 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		matchRule = newMatchRule;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE_GRANT__MATCH_RULE, oldMatchRule, matchRule));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getValidFrom() {
+		return validFrom;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValidFrom(Date newValidFrom) {
+		Date oldValidFrom = validFrom;
+		validFrom = newValidFrom;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE_GRANT__VALID_FROM, oldValidFrom, validFrom));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getValidUntil() {
+		return validUntil;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValidUntil(Date newValidUntil) {
+		Date oldValidUntil = validUntil;
+		validUntil = newValidUntil;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.LICENSE_GRANT__VALID_UNTIL, oldValidUntil, validUntil));
 	}
 
 	/**
@@ -420,6 +505,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 				return getMatchVersion();
 			case LicPackage.LICENSE_GRANT__MATCH_RULE:
 				return getMatchRule();
+			case LicPackage.LICENSE_GRANT__VALID_FROM:
+				return getValidFrom();
+			case LicPackage.LICENSE_GRANT__VALID_UNTIL:
+				return getValidUntil();
 			case LicPackage.LICENSE_GRANT__CONDITION_TYPE:
 				return getConditionType();
 			case LicPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
@@ -448,6 +537,12 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 				return;
 			case LicPackage.LICENSE_GRANT__MATCH_RULE:
 				setMatchRule((String)newValue);
+				return;
+			case LicPackage.LICENSE_GRANT__VALID_FROM:
+				setValidFrom((Date)newValue);
+				return;
+			case LicPackage.LICENSE_GRANT__VALID_UNTIL:
+				setValidUntil((Date)newValue);
 				return;
 			case LicPackage.LICENSE_GRANT__CONDITION_TYPE:
 				setConditionType((String)newValue);
@@ -482,6 +577,12 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			case LicPackage.LICENSE_GRANT__MATCH_RULE:
 				setMatchRule(MATCH_RULE_EDEFAULT);
 				return;
+			case LicPackage.LICENSE_GRANT__VALID_FROM:
+				setValidFrom(VALID_FROM_EDEFAULT);
+				return;
+			case LicPackage.LICENSE_GRANT__VALID_UNTIL:
+				setValidUntil(VALID_UNTIL_EDEFAULT);
+				return;
 			case LicPackage.LICENSE_GRANT__CONDITION_TYPE:
 				setConditionType(CONDITION_TYPE_EDEFAULT);
 				return;
@@ -512,6 +613,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 				return MATCH_VERSION_EDEFAULT == null ? matchVersion != null : !MATCH_VERSION_EDEFAULT.equals(matchVersion);
 			case LicPackage.LICENSE_GRANT__MATCH_RULE:
 				return MATCH_RULE_EDEFAULT == null ? matchRule != null : !MATCH_RULE_EDEFAULT.equals(matchRule);
+			case LicPackage.LICENSE_GRANT__VALID_FROM:
+				return VALID_FROM_EDEFAULT == null ? validFrom != null : !VALID_FROM_EDEFAULT.equals(validFrom);
+			case LicPackage.LICENSE_GRANT__VALID_UNTIL:
+				return VALID_UNTIL_EDEFAULT == null ? validUntil != null : !VALID_UNTIL_EDEFAULT.equals(validUntil);
 			case LicPackage.LICENSE_GRANT__CONDITION_TYPE:
 				return CONDITION_TYPE_EDEFAULT == null ? conditionType != null : !CONDITION_TYPE_EDEFAULT.equals(conditionType);
 			case LicPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
@@ -540,6 +645,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		result.append(matchVersion);
 		result.append(", matchRule: "); //$NON-NLS-1$
 		result.append(matchRule);
+		result.append(", validFrom: "); //$NON-NLS-1$
+		result.append(validFrom);
+		result.append(", validUntil: "); //$NON-NLS-1$
+		result.append(validUntil);
 		result.append(", conditionType: "); //$NON-NLS-1$
 		result.append(conditionType);
 		result.append(", conditionExpression: "); //$NON-NLS-1$
