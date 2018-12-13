@@ -79,7 +79,7 @@ public class LicensingEvents {
 		/**
 		 * Sent when restrictions are executed
 		 */
-		public static final String RESTRICTION_EXECUTED = TOPIC + TOPIC_SEP + "restrictionExecuted"; //$NON-NLS-1$
+		public static final String RESTRICTIONS_EXECUTED = TOPIC + TOPIC_SEP + "restrictionsExecuted"; //$NON-NLS-1$
 
 	}
 	

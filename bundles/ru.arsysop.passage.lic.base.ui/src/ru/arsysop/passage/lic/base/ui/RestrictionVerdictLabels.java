@@ -61,6 +61,11 @@ public class RestrictionVerdictLabels {
 		}
 	}
 
+	public static String resolveLabel(Iterable<RestrictionVerdict> verdicts) {
+		RestrictionVerdict last = resolveLastVerdict(verdicts);
+		return resolveLabel(last);
+	}
+
 	public static String resolveLabel(RestrictionVerdict verdict) {
 		if (verdict == null) {
 			return "OK";
@@ -93,6 +98,9 @@ public class RestrictionVerdictLabels {
 	}
 
 	public static RestrictionVerdict resolveLastVerdict(Iterable<RestrictionVerdict> verdicts) {
+		if (verdicts == null) {
+			return null;
+		}
 		List<RestrictionVerdict> list = new ArrayList<>();
 		verdicts.forEach(list::add);
 		if (list.isEmpty()) {

@@ -198,7 +198,7 @@ public abstract class BaseAccessManager implements AccessManager {
 				logError(message, e);
 			}
 		}
-		postEvent(LicensingLifeCycle.RESTRICTION_EXECUTED, restrictions);
+		postEvent(LicensingLifeCycle.RESTRICTIONS_EXECUTED, restrictions);
 	}
 	
 	protected abstract void postEvent(String topic, Object data);

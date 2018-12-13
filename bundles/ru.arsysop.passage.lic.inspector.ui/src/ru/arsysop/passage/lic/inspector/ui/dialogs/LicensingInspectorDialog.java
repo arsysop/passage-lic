@@ -21,7 +21,9 @@
 package ru.arsysop.passage.lic.inspector.ui.dialogs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -58,16 +60,17 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 	private final LicensingImages licensingImages;
 	private HardwareInspector hardwareInspector;
 
-	private String contactText = "";
+	private String contactText = ""; //$NON-NLS-1$
 
+	private final List<ConfigurationRequirement> requirements = new ArrayList<>();
 	private final List<RestrictionVerdict> restrictions = new ArrayList<>();
+	private final Map<String, List<RestrictionVerdict>> map = new HashMap<>();
 
-	public LicensingInspectorDialog(Shell shell, LicensingImages images, Iterable<RestrictionVerdict> verdicts, String contacts) {
+	private TableViewer tableViewer;
+
+	public LicensingInspectorDialog(Shell shell, LicensingImages images, String contacts) {
 		super(shell);
 		this.licensingImages = images;
-		for (RestrictionVerdict restrictionVerdict : verdicts) {
-			restrictions.add(restrictionVerdict);
-		}
 		if (contacts != null) {
 			contactText = contacts;
 		}
@@ -105,84 +108,74 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 		tableDetails.setHeaderVisible(true);
 		tableDetails.setLinesVisible(true);
 
-		TableViewer tableViewDetails = new TableViewer(tableDetails);
-		tableViewDetails.setContentProvider(new ArrayContentProvider());
+		tableViewer = new TableViewer(tableDetails);
+		tableViewer.setContentProvider(new ArrayContentProvider());
 
-		TableViewerColumn columnStatusImage = createColumnViewer(tableViewDetails, "", 20);
+		TableViewerColumn columnStatusImage = createColumnViewer(tableViewer, "", 20);
 		columnStatusImage.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public Image getImage(Object element) {
-				if (element instanceof RestrictionVerdict) {
-					RestrictionVerdict verdict = (RestrictionVerdict) element;
-					String imageKey = RestrictionVerdictLabels.resolveImageKey(verdict);
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement req = (ConfigurationRequirement) element;
+					List<RestrictionVerdict> verdicts = map.get(req.getFeatureIdentifier());
+					String imageKey = RestrictionVerdictLabels.resolveImageKey(verdicts);
 					return licensingImages.getImage(imageKey);
 				}
 				return super.getImage(element);
 			}
 
 		});
-		TableViewerColumn columnFeatureId = createColumnViewer(tableViewDetails, "Feature Id", 200);
+		TableViewerColumn columnFeatureId = createColumnViewer(tableViewer, "Feature Id", 200);
 		columnFeatureId.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-
-				if (element instanceof RestrictionVerdict) {
-					RestrictionVerdict verdict = (RestrictionVerdict) element;
-					ConfigurationRequirement configurationRequirement = verdict.getConfigurationRequirement();
-					if (configurationRequirement != null) {
-						return configurationRequirement.getFeatureIdentifier();
-					}
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement requirement = (ConfigurationRequirement) element;
+					return requirement.getFeatureIdentifier();
 				}
 				return super.getText(element);
 			}
 		});
-		TableViewerColumn columnFeatureName = createColumnViewer(tableViewDetails, "Feature Name", 200);
+		TableViewerColumn columnFeatureName = createColumnViewer(tableViewer, "Feature Name", 200);
 		columnFeatureName.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-
-				if (element instanceof RestrictionVerdict) {
-					RestrictionVerdict verdict = (RestrictionVerdict) element;
-					ConfigurationRequirement configurationRequirement = verdict.getConfigurationRequirement();
-					if (configurationRequirement != null) {
-						return configurationRequirement.getFeatureName();
-					}
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement requirement = (ConfigurationRequirement) element;
+					return requirement.getFeatureName();
 				}
 				return super.getText(element);
 			}
 		});
-		TableViewerColumn columnFeatureVersion = createColumnViewer(tableViewDetails, "Version",
+		TableViewerColumn columnFeatureVersion = createColumnViewer(tableViewer, "Version",
 				100);
 		columnFeatureVersion.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-
-				if (element instanceof RestrictionVerdict) {
-					RestrictionVerdict verdict = (RestrictionVerdict) element;
-					ConfigurationRequirement configurationRequirement = verdict.getConfigurationRequirement();
-					if (configurationRequirement != null) {
-						return configurationRequirement.getFeatureVersion();
-					}
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement requirement = (ConfigurationRequirement) element;
+					return requirement.getFeatureVersion();
 				}
 				return super.getText(element);
 			}
 		});
 
-		TableViewerColumn columnLicenseStatus = createColumnViewer(tableViewDetails, "Status",
+		TableViewerColumn columnLicenseStatus = createColumnViewer(tableViewer, "Status",
 				200);
 		columnLicenseStatus.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				if (element instanceof RestrictionVerdict) {
-					RestrictionVerdict verdict = (RestrictionVerdict) element;
-					return RestrictionVerdictLabels.resolveLabel(verdict);
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement req = (ConfigurationRequirement) element;
+					List<RestrictionVerdict> verdicts = map.get(req.getFeatureIdentifier());
+					return RestrictionVerdictLabels.resolveLabel(verdicts);
 				}
 				return super.getText(element);
 			}
 
 		});
 
-		tableViewDetails.setInput(restrictions);
+		tableViewer.setInput(requirements);
 
 		Group contactsGroup = new Group(area, SWT.NONE);
 		contactsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -215,6 +208,23 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 
 	public void setHardwareInspector(HardwareInspector hardwareInspector) {
 		this.hardwareInspector = hardwareInspector;
+	}
+	
+	public void updateLicensingStatus(Iterable<ConfigurationRequirement> required, Iterable<RestrictionVerdict> verdicts) {
+		requirements.clear();
+		restrictions.clear();
+		required.forEach(requirements::add);
+		for (RestrictionVerdict verdict : verdicts) {
+			ConfigurationRequirement requirement = verdict.getConfigurationRequirement();
+			
+			String featureId = requirement.getFeatureIdentifier();
+			List<RestrictionVerdict> list = map.computeIfAbsent(featureId, key -> new ArrayList<>());
+			list.add(verdict);
+			restrictions.add(verdict);
+		}
+		if (tableViewer != null && !tableViewer.getControl().isDisposed()) {
+			tableViewer.setInput(requirements);
+		}
 	}
 
 	@Override
