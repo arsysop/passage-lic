@@ -44,6 +44,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
 import ru.arsysop.passage.lic.base.ui.LicensingImages;
+import ru.arsysop.passage.lic.base.ui.RestrictionVerdictLabels;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.inspector.ui.LicInspectorUi;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
@@ -51,46 +52,43 @@ import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
 public class LicensingInspectorDialog extends TitleAreaDialog {
 
-	private static final String LICENSING_MSG_ERROR = "The following features are not licensed.";
-	private static final String LICENSING_MSG_OK = "The product is licensed properly.";
-	private static final String DETAIL_MSG = "Please contact your Licensing Operator for details.";
-	private static final String DIALOG_TITLE = "Licensing";
-	private static final String HEAD_MSG = "Licensing status";
-	private static final String COLUMN_FEATURE_ID = "Feature id";
-	private static final String COLUMN_FEATURE_NAME = "Feature name";
-	private static final String COLUMN_FEATURE_VERSION = "Feature version";
-	private static final String COLUMN_LISENCING_STATUS = "Licensing status";
-
 	public static final int HARDWARE_INSPECTOR_ID = IDialogConstants.CLIENT_ID + 1;
 
 	private final LicensingImages licensingImages;
 	private HardwareInspector hardwareInspector;
 
+	private String contacts;
+
 	private final List<RestrictionVerdict> restrictions = new ArrayList<>();
 
-	public LicensingInspectorDialog(Shell shell, LicensingImages images, Iterable<RestrictionVerdict> verdicts) {
+	public LicensingInspectorDialog(Shell shell, LicensingImages images, Iterable<RestrictionVerdict> verdicts, String hint) {
 		super(shell);
 		this.licensingImages = images;
 		for (RestrictionVerdict restrictionVerdict : verdicts) {
 			restrictions.add(restrictionVerdict);
+		}
+		if (hint != null) {
+			contacts = hint;
+		} else {
+			contacts = "Please contact your Licensing Operator for details.";
 		}
 	}
 
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		newShell.setText(DIALOG_TITLE);
+		newShell.setText("Licensing");
 		newShell.setImage(licensingImages.getImage(LicensingImages.IMG_DEFAULT));
-		;
 	}
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		setTitle(HEAD_MSG);
-		if (restrictions.size() == 0) {
-			setMessage(LICENSING_MSG_OK);
+		setTitle("Licensing status");
+		RestrictionVerdict last = RestrictionVerdictLabels.resolveLastVerdict(restrictions);
+		if (last == null) {
+			setMessage(RestrictionVerdictLabels.resolveSummary(last));
 		} else {
-			setErrorMessage(LICENSING_MSG_ERROR);
+			setErrorMessage(RestrictionVerdictLabels.resolveSummary(last));
 		}
 		Composite area = (Composite) super.createDialogArea(parent);
 		createAreaContent(area);
@@ -111,8 +109,21 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 		TableViewer tableViewDetails = new TableViewer(tableDetails);
 		tableViewDetails.setContentProvider(new ArrayContentProvider());
 
-		TableViewerColumn columnFeatureIdViewer = createColumnViewer(tableViewDetails, COLUMN_FEATURE_ID, 200);
-		columnFeatureIdViewer.setLabelProvider(new ColumnLabelProvider() {
+		TableViewerColumn columnStatusImage = createColumnViewer(tableViewDetails, "", 20);
+		columnStatusImage.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public Image getImage(Object element) {
+				if (element instanceof RestrictionVerdict) {
+					RestrictionVerdict verdict = (RestrictionVerdict) element;
+					String imageKey = RestrictionVerdictLabels.resolveImageKey(verdict);
+					return licensingImages.getImage(imageKey);
+				}
+				return super.getImage(element);
+			}
+
+		});
+		TableViewerColumn columnFeatureId = createColumnViewer(tableViewDetails, "Identifier", 200);
+		columnFeatureId.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
 
@@ -123,11 +134,11 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 						return configurationRequirement.getFeatureIdentifier();
 					}
 				}
-				return "";
+				return super.getText(element);
 			}
 		});
-		TableViewerColumn columnFeatureNameViewer = createColumnViewer(tableViewDetails, COLUMN_FEATURE_NAME, 200);
-		columnFeatureNameViewer.setLabelProvider(new ColumnLabelProvider() {
+		TableViewerColumn columnFeatureName = createColumnViewer(tableViewDetails, "Name", 200);
+		columnFeatureName.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
 
@@ -138,12 +149,12 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 						return configurationRequirement.getFeatureName();
 					}
 				}
-				return "";
+				return super.getText(element);
 			}
 		});
-		TableViewerColumn columnFeatureVersionViewer = createColumnViewer(tableViewDetails, COLUMN_FEATURE_VERSION,
+		TableViewerColumn columnFeatureVersion = createColumnViewer(tableViewDetails, "Version",
 				100);
-		columnFeatureVersionViewer.setLabelProvider(new ColumnLabelProvider() {
+		columnFeatureVersion.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
 
@@ -154,35 +165,20 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 						return configurationRequirement.getFeatureVersion();
 					}
 				}
-				return "";
+				return super.getText(element);
 			}
 		});
 
-		TableViewerColumn columnLicenseStatusViewer = createColumnViewer(tableViewDetails, COLUMN_LISENCING_STATUS,
+		TableViewerColumn columnLicenseStatus = createColumnViewer(tableViewDetails, "Status",
 				200);
-		columnLicenseStatusViewer.setLabelProvider(new ColumnLabelProvider() {
+		columnLicenseStatus.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
 				if (element instanceof RestrictionVerdict) {
 					RestrictionVerdict verdict = (RestrictionVerdict) element;
-					ConfigurationRequirement configurationRequirement = verdict.getConfigurationRequirement();
-					if (configurationRequirement != null) {
-						return configurationRequirement.getRestrictionLevel();
-					}
+					return RestrictionVerdictLabels.resolveLabel(verdict);
 				}
-				return "";
-			}
-
-			@Override
-			public Image getImage(Object element) {
-				if (element instanceof RestrictionVerdict) {
-					RestrictionVerdict verdict = (RestrictionVerdict) element;
-					ConfigurationRequirement configurationRequirement = verdict.getConfigurationRequirement();
-					if (configurationRequirement != null) {
-						getImageByResctrictionLevel(configurationRequirement.getRestrictionLevel());
-					}
-				}
-				return null;
+				return super.getText(element);
 			}
 
 		});
@@ -190,9 +186,9 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 		tableViewDetails.setInput(restrictions);
 
 		GridData layoutDataOperatorText = new GridData(SWT.FILL, SWT.FILL, true, false);
-		Label contacts = new Label(area, SWT.NONE);
+		Label contacts = new Label(area, SWT.CENTER);
 		contacts.setLayoutData(layoutDataOperatorText);
-		contacts.setText(DETAIL_MSG);
+		contacts.setText(this.contacts);
 		contacts.setFont(JFaceResources.getDialogFont());
 	}
 
@@ -238,28 +234,6 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 	@Override
 	protected boolean isResizable() {
 		return true;
-	}
-
-	private Image getImageByResctrictionLevel(String restrictionLevel) {
-		Image levelImg = null;
-		if (licensingImages == null) {
-			return levelImg;
-		}
-		switch (restrictionLevel) {
-		case "warn":
-			levelImg = licensingImages.getImage(LicensingImages.IMG_LEVEL_WARN);
-			break;
-
-		case "error":
-			levelImg = licensingImages.getImage(LicensingImages.IMG_LEVEL_ERROR);
-			break;
-
-		default:
-			levelImg = licensingImages.getImage(LicensingImages.IMG_LEVEL_OK);
-			break;
-		}
-
-		return levelImg;
 	}
 
 }
