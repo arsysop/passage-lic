@@ -31,12 +31,14 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.osgi.service.log.LogService;
 
 import ru.arsysop.passage.lic.base.LicensingConditions;
 import ru.arsysop.passage.lic.internal.net.NtpConditionEvaluator;
 import ru.arsysop.passage.lic.net.TimeConditions;
-import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 @SuppressWarnings("restriction")
 public class NtpConditionEvaluatorTest {
@@ -52,6 +54,7 @@ public class NtpConditionEvaluatorTest {
 	@Test
 	public void testEvaluateConditionNegative() throws Exception {
 		NtpConditionEvaluator evaluator = new NtpConditionEvaluator();
+		evaluator.bindLogService(Mockito.mock(LogService.class));
 		assertEmpty(evaluator.evaluateConditions(null));
 
 		Set<LicensingCondition> empty = Collections.singleton(createNetCondition(new String()));
@@ -67,6 +70,7 @@ public class NtpConditionEvaluatorTest {
 	@Test
 	public void testEvaluateConditionPositive() throws Exception {
 		NtpConditionEvaluator evaluator = new NtpConditionEvaluator();
+		evaluator.bindLogService(Mockito.mock(LogService.class));
 		Set<LicensingCondition> future = Collections.singleton(createNetCondition(EXPRESSION_FUTURE));
 		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
 		assertTrue(iterator.hasNext());
