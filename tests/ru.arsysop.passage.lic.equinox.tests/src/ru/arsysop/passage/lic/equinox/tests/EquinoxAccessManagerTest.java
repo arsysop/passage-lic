@@ -23,6 +23,7 @@ package ru.arsysop.passage.lic.equinox.tests;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.osgi.service.event.EventAdmin;
+import org.osgi.service.log.LogService;
 
 import ru.arsysop.passage.lic.internal.equinox.EquinoxAccessManager;
 
@@ -33,6 +34,7 @@ public class EquinoxAccessManagerTest {
 	public void testExecuteRestrictions() {
 		EquinoxAccessManager accessManager = new EquinoxAccessManager();
 		accessManager.bindEventAdmin(Mockito.mock(EventAdmin.class));
+		accessManager.bindLogService(Mockito.mock(LogService.class));
 		accessManager.executeAccessRestrictions(null);
 	}
 
