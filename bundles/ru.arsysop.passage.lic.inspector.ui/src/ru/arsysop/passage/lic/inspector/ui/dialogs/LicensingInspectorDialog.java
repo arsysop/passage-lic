@@ -32,13 +32,14 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -57,20 +58,18 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 	private final LicensingImages licensingImages;
 	private HardwareInspector hardwareInspector;
 
-	private String contacts;
+	private String contactText = "";
 
 	private final List<RestrictionVerdict> restrictions = new ArrayList<>();
 
-	public LicensingInspectorDialog(Shell shell, LicensingImages images, Iterable<RestrictionVerdict> verdicts, String hint) {
+	public LicensingInspectorDialog(Shell shell, LicensingImages images, Iterable<RestrictionVerdict> verdicts, String contacts) {
 		super(shell);
 		this.licensingImages = images;
 		for (RestrictionVerdict restrictionVerdict : verdicts) {
 			restrictions.add(restrictionVerdict);
 		}
-		if (hint != null) {
-			contacts = hint;
-		} else {
-			contacts = "Please contact your Licensing Operator for details.";
+		if (contacts != null) {
+			contactText = contacts;
 		}
 	}
 
@@ -122,7 +121,7 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 			}
 
 		});
-		TableViewerColumn columnFeatureId = createColumnViewer(tableViewDetails, "Identifier", 200);
+		TableViewerColumn columnFeatureId = createColumnViewer(tableViewDetails, "Feature Id", 200);
 		columnFeatureId.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
@@ -137,7 +136,7 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 				return super.getText(element);
 			}
 		});
-		TableViewerColumn columnFeatureName = createColumnViewer(tableViewDetails, "Name", 200);
+		TableViewerColumn columnFeatureName = createColumnViewer(tableViewDetails, "Feature Name", 200);
 		columnFeatureName.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
@@ -185,11 +184,15 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 
 		tableViewDetails.setInput(restrictions);
 
-		GridData layoutDataOperatorText = new GridData(SWT.FILL, SWT.FILL, true, false);
-		Label contacts = new Label(area, SWT.CENTER);
-		contacts.setLayoutData(layoutDataOperatorText);
-		contacts.setText(this.contacts);
-		contacts.setFont(JFaceResources.getDialogFont());
+		Group contactsGroup = new Group(area, SWT.NONE);
+		contactsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		contactsGroup.setText("Please contact your Licensing Operator for details");
+		contactsGroup.setFont(JFaceResources.getDialogFont());
+		contactsGroup.setLayout(new GridLayout());
+		StyledText contactsText = new StyledText(contactsGroup, SWT.READ_ONLY | SWT.MULTI);
+		contactsText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		contactsText.setText(contactText);
+		contactsText.setFont(JFaceResources.getDialogFont());
 	}
 
 	private TableViewerColumn createColumnViewer(TableViewer tableViewDetails, String columnName, int width) {

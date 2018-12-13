@@ -65,11 +65,15 @@ public class RestrictionVerdictLabels {
 		if (verdict == null) {
 			return "OK";
 		}
-		String level = verdict.getRestrictionLevel();
-		if (level == null) {
-			level = LICENSING_RESTRICTION_LEVEL_DEFAULT;
+		return resolveLabel(verdict.getRestrictionLevel());
+	}
+
+	public static String resolveLabel(String level) {
+		String restriction = level;
+		if (restriction == null) {
+			restriction = LICENSING_RESTRICTION_LEVEL_DEFAULT;
 		}
-		switch (level) {
+		switch (restriction) {
 		case LICENSING_RESTRICTION_LEVEL_WARN:
 			return "Warning";
 		case LICENSING_RESTRICTION_LEVEL_ERROR:
