@@ -137,13 +137,15 @@ public abstract class BaseAccessManager implements AccessManager {
 	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
-			// FIXME: log error;
+			String message = "Evaluation rejected for invalid conditions";
+			logError(message, new NullPointerException());
 			return result;
 		}
 		Map<String, List<LicensingCondition>> map = new HashMap<>();
 		for (LicensingCondition condition : conditions) {
 			if (condition == null) {
-				// FIXME: log error;
+				String message = "Evaluation rejected for invalid condition";
+				logError(message, new NullPointerException());
 				continue;
 			}
 			String type = condition.getConditionType();
@@ -154,7 +156,8 @@ public abstract class BaseAccessManager implements AccessManager {
 		for (String type : types) {
 			ConditionEvaluator evaluator = conditionEvaluators.get(type);
 			if (evaluator == null) {
-				// FIXME: log error;
+				String message = String.format("No evaluator available for type %s", type);
+				logError(message, new NullPointerException());
 				continue;
 			}
 			Iterable<FeaturePermission> permissions = evaluator.evaluateConditions(map.get(type));
@@ -171,7 +174,8 @@ public abstract class BaseAccessManager implements AccessManager {
 	public Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements,
 			Iterable<FeaturePermission> permissions, Object configuration) {
 		if (permissionExaminer == null) {
-			// FIXME: log error;
+			String message = String.format("No permission examiner defined, rejecting all %s", requirements);
+			logError(message, new NullPointerException());
 			List<RestrictionVerdict> verdicts = new ArrayList<>();
 			for (ConfigurationRequirement requirement : requirements) {
 				RestrictionVerdict verdict = new BaseRestrictionVerdict(requirement, requirement.getRestrictionLevel());
@@ -190,7 +194,8 @@ public abstract class BaseAccessManager implements AccessManager {
 			try {
 				executor.execute(restrictions);
 			} catch (Exception e) {
-				// TODO: handle exception
+				String message = String.format("%s failed to execute %s", executor, restrictions);
+				logError(message, e);
 			}
 		}
 		postEvent(LicensingLifeCycle.RESTRICTION_EXECUTED, restrictions);
@@ -199,4 +204,7 @@ public abstract class BaseAccessManager implements AccessManager {
 	protected abstract void postEvent(String topic, Object data);
 
 	protected abstract void sendEvent(String topic, Object data);
+
+	protected abstract void logError(String message, Throwable e);
+
 }

@@ -20,10 +20,15 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.internal.net;
 
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.log.LogService;
+
 import ru.arsysop.passage.lic.base.BaseConditionEvaluator;
 import ru.arsysop.passage.lic.net.TimeConditions;
 
 public class NtpConditionEvaluator extends BaseConditionEvaluator {
+
+	private LogService logService;
 
 	@Override
 	protected boolean evaluateSegment(String key, String value) {
@@ -33,6 +38,22 @@ public class NtpConditionEvaluator extends BaseConditionEvaluator {
 		default:
 			return false;
 		}
+	}
+
+	@Reference
+	public void bindLogService(LogService logService) {
+		this.logService = logService;
+	}
+	
+	public void unbindLogService(LogService logService) {
+		this.logService = logService;
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	protected void logError(String message, Throwable e) {
+		//FIXME: rework after removing Eclipse Mars support
+		logService.log(LogService.LOG_ERROR, message, e);
 	}
 
 }

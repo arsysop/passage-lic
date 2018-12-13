@@ -140,6 +140,8 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 					for (LicensingCondition condition : extracted) {
 						mined.add(condition);
 					}
+				} catch (Exception e) {
+					logger.log(Level.SEVERE, "Failed to extract conditions", e);
 				}
 			} catch (Exception e) {
 				logger.log(Level.FINEST, e.getMessage(), e);

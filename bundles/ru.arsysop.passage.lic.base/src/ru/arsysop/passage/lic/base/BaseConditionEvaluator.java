@@ -35,14 +35,16 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
-			//FIXME: log error;
+			String message = "Evaluation rejected for invalid conditions";
+			logError(message, new NullPointerException());
 			return result;
 		}
 		for (LicensingCondition condition : conditions) {
 			String expression = condition.getConditionExpression();
 			Map<String,String> checks = LicensingConditions.parseExpression(expression);
 			if (checks.isEmpty()) {
-				//FIXME: log error;
+				String message = String.format("Expression checks are empty for condition %s", condition);
+				logError(message, new Exception());
 				continue;
 			}
 			Set<String> keySet = checks.keySet();
@@ -54,11 +56,12 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 					passed = evaluateSegment(key, value);
 				} catch (Exception e) {
 					passed = false;
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					String message = String.format("Failed for evaluate condition %s : key=%s, value=%s", condition, key, value);
+					logError(message, new Exception());
 				}
 				if (!passed) {
-					//FIXME: report check failure;
+					String message = String.format("Condition %s rejected: key=%s, value=%s", condition, key, value);
+					logError(message, new Exception());
 					break;
 				}
 			}
@@ -75,5 +78,7 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 	}
 
 	protected abstract boolean evaluateSegment(String key, String value);
+
+	protected abstract void logError(String message, Throwable e);
 
 }
