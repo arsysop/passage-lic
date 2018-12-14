@@ -82,7 +82,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 		keyKeepers.remove(key, keyKeeper);
 	}
 
-	@Reference
+	@Reference(cardinality=ReferenceCardinality.OPTIONAL)
 	public void bindStreamCodec(StreamCodec codec) {
 		this.streamCodec = codec;
 	}
@@ -141,19 +141,30 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 			logger.log(Level.FINEST, e.getMessage(), e);
 		}
 		for (Path path : licenseFiles) {
-			try (FileInputStream encoded = new FileInputStream(path.toFile()); ByteArrayOutputStream decoded = new ByteArrayOutputStream(); InputStream keyRing = keyKeeper.openKeyStream(configuration)){
-				streamCodec.decodeStream(encoded, decoded, keyRing, null);
-				byte[] byteArray = decoded.toByteArray();
-				try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
-					Iterable<LicensingCondition> extracted = conditionDescriptorTransport.readConditionDescriptors(input);
+			if (streamCodec == null) {
+				try (FileInputStream raw = new FileInputStream(path.toFile())){
+					Iterable<LicensingCondition> extracted = conditionDescriptorTransport.readConditionDescriptors(raw);
 					for (LicensingCondition condition : extracted) {
 						mined.add(condition);
 					}
 				} catch (Exception e) {
-					logger.log(Level.SEVERE, "Failed to extract conditions", e);
+					logger.log(Level.FINEST, e.getMessage(), e);
 				}
-			} catch (Exception e) {
-				logger.log(Level.FINEST, e.getMessage(), e);
+			} else {
+				try (FileInputStream encoded = new FileInputStream(path.toFile()); ByteArrayOutputStream decoded = new ByteArrayOutputStream(); InputStream keyRing = keyKeeper.openKeyStream(configuration)){
+					streamCodec.decodeStream(encoded, decoded, keyRing, null);
+					byte[] byteArray = decoded.toByteArray();
+					try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
+						Iterable<LicensingCondition> extracted = conditionDescriptorTransport.readConditionDescriptors(input);
+						for (LicensingCondition condition : extracted) {
+							mined.add(condition);
+						}
+					} catch (Exception e) {
+						logger.log(Level.SEVERE, "Failed to extract conditions", e);
+					}
+				} catch (Exception e) {
+					logger.log(Level.FINEST, e.getMessage(), e);
+				}
 			}
 		}
 		return mined;
