@@ -56,7 +56,7 @@ import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	
 	private final Logger logger = Logger.getLogger(OsgiInstallAreaConditionMiner.class.getName());
-	private final Map<LicensingConfiguration, KeyKeeper> keyKeepers = new HashMap<>();
+	private final Map<String, KeyKeeper> keyKeepers = new HashMap<>();
 
 	private EnvironmentInfo environmentInfo;
 	private StreamCodec streamCodec;
@@ -74,7 +74,7 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindKeyKeeper(KeyKeeper keyKeeper, Map<String, Object> properties) {
 		LicensingConfiguration key = LicensingConfigurations.create(properties);
-		keyKeepers.put(key, keyKeeper);
+		keyKeepers.put(key.getProductIdentifier(), keyKeeper);
 	}
 
 	public void unbindKeyKeeper(KeyKeeper keyKeeper, Map<String, Object> properties) {
@@ -115,7 +115,10 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 		if (environmentInfo == null) {
 			return mined;
 		}
-		KeyKeeper keyKeeper = keyKeepers.get(configuration);
+		if (configuration == null) {
+			return mined;
+		}
+		KeyKeeper keyKeeper = keyKeepers.get(configuration.getProductIdentifier());
 		if (keyKeeper == null) {
 			return mined;
 		}

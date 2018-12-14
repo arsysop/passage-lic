@@ -32,6 +32,7 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
@@ -151,8 +152,12 @@ public abstract class LicIntegrationBase {
 		String install = environmentInfo.getProperty(PROPERTY_OSGI_INSTALL_AREA);
 		Path path = resolveConfigurationPath(install, configuration);
 		Files.createDirectories(path);
-		File publicFile = path.resolve(composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC)).toFile();
-		File privateFile = path.resolve(composeFileName(configuration, ".scr")).toFile(); //$NON-NLS-1$
+		String publicFileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
+		String privateFileName = composeFileName(configuration, ".scr"); //$NON-NLS-1$
+		String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
+		Path osgiInf = Paths.get(userDir, "OSGI-INF"); //$NON-NLS-1$
+		File publicFile = osgiInf.resolve(publicFileName).toFile();
+		File privateFile = osgiInf.resolve(privateFileName).toFile();
 		File licFile = path.resolve(composeFileName(configuration, ".lic")).toFile(); //$NON-NLS-1$
 		File licenFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_ENCRYPTED)).toFile();
 
@@ -202,5 +207,13 @@ public abstract class LicIntegrationBase {
 			}
 		};
 		Files.walkFileTree(path, visitor);
+		String publicFileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
+		String privateFileName = composeFileName(configuration, ".scr"); //$NON-NLS-1$
+		String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
+		Path osgiInf = Paths.get(userDir, "OSGI-INF"); //$NON-NLS-1$
+		File publicFile = osgiInf.resolve(publicFileName).toFile();
+		File privateFile = osgiInf.resolve(privateFileName).toFile();
+		publicFile.delete();
+		privateFile.delete();
 	}
 }
