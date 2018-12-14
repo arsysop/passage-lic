@@ -26,13 +26,14 @@ import java.util.Map;
 import java.util.Set;
 
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions) {
+	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
 			String message = "Evaluation rejected for invalid conditions";
@@ -66,14 +67,14 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 				}
 			}
 			if (passed) {
-				result.add(createPermission(condition));
+				result.add(createPermission(condition, configuration));
 			}
 		}
 		
 		return result;
 	}
 
-	protected FeaturePermission createPermission(LicensingCondition condition) {
+	protected FeaturePermission createPermission(LicensingCondition condition, LicensingConfiguration configuration) {
 		return FeaturePermissions.createDefault(condition);
 	}
 

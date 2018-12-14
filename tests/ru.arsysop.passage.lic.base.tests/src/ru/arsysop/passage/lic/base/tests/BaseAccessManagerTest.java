@@ -61,7 +61,7 @@ public class BaseAccessManagerTest {
 
 	@Test
 	public void testEvaluateConditions() {
-		manager.evaluateConditions(null);
+		manager.evaluateConditions(null, null);
 		assertEquals(1, log.size());
 		assertEquals(0, events.size());
 	}

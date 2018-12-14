@@ -24,23 +24,17 @@ package ru.arsysop.passage.lic.net;
 public class RequestParameters {
 
 	
-	public static final String CLIENT_ID = "user";
-	public static final String CLIENT_PRODUCT_ID = "product";
-	public static final String CLIENT_FEATURE_ID = "feature";
-	public static final String CLIENT_COMPONENT_ID = "component";
-	public static final String CLIENT_TRUSTED_ID = "clienttrustid";
+	public static final String PRODUCT = "product"; //$NON-NLS-1$
+	public static final String VERSION = "version"; //$NON-NLS-1$
+	public static final String USER = "user"; //$NON-NLS-1$
 	
-	public static final String SERVER_ACTION_ID = "action";
-	public static final String SERVER_ACCESS_MODE_ID = "accessmode";
-	public static final String SERVER_HANDLER_ID = "handler";
+	public static final String ACTION = "action";
+	public static final String MODE = "mode";
+	public static final String HANDLER = "handler";
 	
-	public static final String LICENSING_DATA = "licensingData";
 	public static final String PROTOCOL_TYPE_ID = "http";
 	public static final String HOST = "host";
 	public static final String PORT = "port";
 	public static final String CONTENT_TYPE = "content.type";
 	
-	public static final String CONFIGURATION_PRODUCT_ID = "configuration.product.id"; // NLS-$1
-	public static final String CONFIGURATION_PRODUCT_VERSION = "configuration.product.version"; // NLS-$1	
-
 }

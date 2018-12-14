@@ -57,7 +57,7 @@ public class BaseConditionEvaluatorTest {
 
 	@Test
 	public void testEvaluateConditions() {
-		evaluator.evaluateConditions(null);
+		evaluator.evaluateConditions(null, null);
 		assertEquals(1, log.size());
 	}
 

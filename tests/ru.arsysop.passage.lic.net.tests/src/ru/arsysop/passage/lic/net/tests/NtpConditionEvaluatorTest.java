@@ -55,16 +55,16 @@ public class NtpConditionEvaluatorTest {
 	public void testEvaluateConditionNegative() throws Exception {
 		NtpConditionEvaluator evaluator = new NtpConditionEvaluator();
 		evaluator.bindLogService(Mockito.mock(LogService.class));
-		assertEmpty(evaluator.evaluateConditions(null));
+		assertEmpty(evaluator.evaluateConditions(null, null));
 
 		Set<LicensingCondition> empty = Collections.singleton(createNetCondition(new String()));
-		assertEmpty(evaluator.evaluateConditions(empty));
+		assertEmpty(evaluator.evaluateConditions(empty, null));
 
 		Set<LicensingCondition> expired = Collections.singleton(createNetCondition(EXPRESSION_EXPIRED));
-		assertEmpty(evaluator.evaluateConditions(expired));
+		assertEmpty(evaluator.evaluateConditions(expired, null));
 
 		Set<LicensingCondition> unknown = Collections.singleton(createNetCondition(EXPRESSION_UNKNOWN));
-		assertEmpty(evaluator.evaluateConditions(unknown));
+		assertEmpty(evaluator.evaluateConditions(unknown, null));
 	}
 
 	@Test
@@ -72,7 +72,7 @@ public class NtpConditionEvaluatorTest {
 		NtpConditionEvaluator evaluator = new NtpConditionEvaluator();
 		evaluator.bindLogService(Mockito.mock(LogService.class));
 		Set<LicensingCondition> future = Collections.singleton(createNetCondition(EXPRESSION_FUTURE));
-		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
+		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future, null).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
 		LicensingCondition condition = permission.getLicensingCondition();

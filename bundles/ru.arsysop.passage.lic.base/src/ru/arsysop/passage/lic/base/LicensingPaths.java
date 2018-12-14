@@ -24,6 +24,8 @@ import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
+
 public class LicensingPaths {
 
 	public static String FOLDER_LICENSING_BASE = ".passage"; //$NON-NLS-1$
@@ -38,13 +40,33 @@ public class LicensingPaths {
 		return path.resolve(FOLDER_LICENSING_BASE);
 	}
 
-	public static Path resolveConfigurationPath(String from, Object configuration) {
+	public static Path resolveConfigurationPath(String from, LicensingConfiguration configuration) {
 		Path basePath = getBasePath(from);
-		String identifier = LicensingConfigurations.resolveProductIdentifier(configuration);
-		if (identifier != null) {
-			return basePath.resolve(identifier);
+		if (configuration == null) {
+			return basePath;
 		}
-		return basePath;
+		String product = configuration.getProductIdentifier();
+		if (product == null) {
+			return basePath;
+		}
+		Path productPath = basePath.resolve(product);
+		String version = configuration.getProductVersion();
+		if (version == null) {
+			return productPath;
+		}
+		return productPath.resolve(version);
+	}
+
+	public static String composeFileName(LicensingConfiguration configuration, String extension) {
+		String product = null;
+		String version = null;
+		if (configuration != null) {
+			product = configuration.getProductIdentifier();
+			version = configuration.getProductVersion();
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append(product).append('_').append(version).append(extension);
+		return sb.toString();
 	}
 
 }

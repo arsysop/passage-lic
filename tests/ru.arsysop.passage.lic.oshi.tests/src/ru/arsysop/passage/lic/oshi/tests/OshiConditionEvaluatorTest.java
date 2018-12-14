@@ -54,13 +54,13 @@ public class OshiConditionEvaluatorTest {
 	public void testEvaluateConditionNegative() throws Exception {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
 		evaluator.bindLogService(Mockito.mock(LogService.class));
-		assertEmpty(evaluator.evaluateConditions(null));
+		assertEmpty(evaluator.evaluateConditions(null, null));
 
 		Set<LicensingCondition> empty = Collections.singleton(createOshiCondition(new String()));
-		assertEmpty(evaluator.evaluateConditions(empty));
+		assertEmpty(evaluator.evaluateConditions(empty, null));
 
 		Set<LicensingCondition> unknown = Collections.singleton(createOshiCondition(EXPRESSION_OS_X3));
-		assertEmpty(evaluator.evaluateConditions(unknown));
+		assertEmpty(evaluator.evaluateConditions(unknown, null));
 	}
 
 	@Test
@@ -68,7 +68,7 @@ public class OshiConditionEvaluatorTest {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
 		evaluator.bindLogService(Mockito.mock(LogService.class));
 		Set<LicensingCondition> future = Collections.singleton(createOshiCondition(EXPRESSION_OS_ANY));
-		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
+		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future, null).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
 		LicensingCondition condition = permission.getLicensingCondition();

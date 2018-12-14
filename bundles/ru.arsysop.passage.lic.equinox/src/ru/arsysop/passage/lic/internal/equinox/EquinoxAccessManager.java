@@ -29,6 +29,7 @@ import org.osgi.framework.BundleListener;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 import org.osgi.service.log.LogService;
@@ -113,7 +114,7 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 		super.unbindPermissionExaminer(permissionExaminer);
 	}
 	
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	@Override
 	public void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		super.bindRestrictionExecutor(restrictionExecutor);

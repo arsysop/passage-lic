@@ -48,6 +48,7 @@ import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.net.RequestProducer;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
 import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 
@@ -80,7 +81,7 @@ public class NetConditionMiner implements ConditionMiner {
 	}
 
 	@Override
-	public Iterable<LicensingCondition> extractLicensingConditions(Object configuration) {
+	public Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration) {
 
 		List<LicensingCondition> conditions = new ArrayList<>();
 

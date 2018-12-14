@@ -18,26 +18,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.runtime.io;
+package ru.arsysop.passage.lic.runtime;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
-
-/**
- * Provides the key required for given configuration
- *
- */
-public interface KeyKeeper {
+public interface LicensingConfiguration {
 	
-	/**
-	 * 
-	 * @param configuration
-	 * @return the stream to read the key
-	 * @throws IOException
-	 */
-	
-	InputStream openKeyStream(LicensingConfiguration configuration) throws IOException;
+	String getProductIdentifier();
+
+	String getProductVersion();
 
 }

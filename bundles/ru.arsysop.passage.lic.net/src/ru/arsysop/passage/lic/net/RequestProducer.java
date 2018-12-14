@@ -67,16 +67,16 @@ public class RequestProducer {
 		requestAttributes.put(RequestParameters.HOST, host);
 		requestAttributes.put(RequestParameters.PORT, port);
 
-		requestAttributes.put(RequestParameters.CLIENT_TRUSTED_ID, "12345678");
-		requestAttributes.put(RequestParameters.SERVER_ACCESS_MODE_ID, modeId);
-		requestAttributes.put(RequestParameters.CONFIGURATION_PRODUCT_ID, productId);
-		requestAttributes.put(RequestParameters.CONFIGURATION_PRODUCT_VERSION, productVersion);
+		requestAttributes.put(RequestParameters.USER, "12345678");
+		requestAttributes.put(RequestParameters.MODE, modeId);
+		requestAttributes.put(RequestParameters.PRODUCT, productId);
+		requestAttributes.put(RequestParameters.VERSION, productVersion);
 		return requestAttributes;
 	}
 
 	public URIBuilder createRequestURI(CloseableHttpClient httpClient, HttpHost host,
 			Map<String, String> requestAttributes, String requestActionType) {
-		requestAttributes.put(RequestParameters.SERVER_ACTION_ID, requestActionType);
+		requestAttributes.put(RequestParameters.ACTION, requestActionType);
 		requestAttributes.put(RequestParameters.CONTENT_TYPE, "application/json");
 		return createRequestUriBuilder(requestAttributes);
 	}
@@ -85,7 +85,7 @@ public class RequestProducer {
 			HttpHost host, Map<String, String> requestAttributes, Iterable<LicensingCondition> conditions) {
 		Iterable<BaseFeaturePermission> permissions = new ArrayList<>();
 		try {
-			requestAttributes.put(RequestParameters.SERVER_ACTION_ID, REQUEST_ACTION_CONDITIONS_EVALUATE);
+			requestAttributes.put(RequestParameters.ACTION, REQUEST_ACTION_CONDITIONS_EVALUATE);
 			URIBuilder builder = createRequestUriBuilder(requestAttributes);
 			FeaturePermissionAggregator transferObject = processingEvaluateConditions(httpClient, host, builder,
 					conditions);

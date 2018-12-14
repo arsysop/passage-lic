@@ -28,23 +28,24 @@ import java.util.Collections;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
+import ru.arsysop.passage.lic.base.LicensingConfigurations;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.api.LicenseGrant;
-import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 
 	@Test
 	public void testEvaluateConditionsNegative() {
-		Iterable<FeaturePermission> permissionsNull = accessManager.evaluateConditions(null);
+		Iterable<FeaturePermission> permissionsNull = accessManager.evaluateConditions(null, null);
 		assertFalse(permissionsNull.iterator().hasNext());
 
-		Iterable<FeaturePermission> permissionsEmpty = accessManager.evaluateConditions(Collections.emptyList());
+		Iterable<FeaturePermission> permissionsEmpty = accessManager.evaluateConditions(Collections.emptyList(), null);
 		assertFalse(permissionsEmpty.iterator().hasNext());
 
 	}
@@ -52,9 +53,6 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 	@Test
 	public void testEvaluateConditionsPositive() throws Exception {
 		LicFactory factory = LicFactory.eINSTANCE;
-		Product product = factory.createProduct();
-		product.setIdentifier(SOME_PRODUCT_ID);
-
 		LicensePack license = factory.createLicensePack();
 		EList<LicenseGrant> licenseConditions = license.getLicenseGrants();
 		LicenseGrant conditionBundle = factory.createLicenseGrant();
@@ -63,12 +61,14 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
 		licenseConditions.add(conditionBundle);
 
-		createProductLicense(product, license);
-		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
+		String identifier = SOME_PRODUCT_ID;
+		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
+		createProductLicense(configuration, license);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());
-		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions);
+		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions, configuration);
 		assertTrue(permissions.iterator().hasNext());
-		deleteProductLicense(product);
+		deleteProductLicense(configuration);
 	}
 
 }
