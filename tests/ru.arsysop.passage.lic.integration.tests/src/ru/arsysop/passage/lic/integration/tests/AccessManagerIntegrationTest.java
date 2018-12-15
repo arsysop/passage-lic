@@ -23,6 +23,7 @@ package ru.arsysop.passage.lic.integration.tests;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
 import org.junit.Before;
@@ -60,12 +61,14 @@ public class AccessManagerIntegrationTest extends LicIntegrationBase {
 	public void testAccessManagerOsgiInstall() throws IOException {
 		LicFactory factory = LicFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
-		EList<LicenseGrant> licenseConditions = license.getLicenseGrants();
-		LicenseGrant conditionBundle = factory.createLicenseGrant();
-		conditionBundle.setFeatureIdentifier(SOME_BUNDLE_ID);
-		conditionBundle.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
-		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
-		licenseConditions.add(conditionBundle);
+		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
+		LicenseGrant grant = factory.createLicenseGrant();
+		grant.setFeatureIdentifier(SOME_BUNDLE_ID);
+		grant.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
+		grant.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
+		grant.setValidFrom(new Date(System.currentTimeMillis() - 100500));
+		grant.setValidUntil(new Date(System.currentTimeMillis() + 100500));
+		licenseGrants.add(grant);
 		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_PRODUCT_ID, null);
 
 		try {

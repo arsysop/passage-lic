@@ -24,19 +24,20 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
+import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
 import ru.arsysop.passage.lic.base.LicensingConfigurations;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
-import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.api.LicenseGrant;
+import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
+import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
-import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 
@@ -54,12 +55,14 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 	public void testEvaluateConditionsPositive() throws Exception {
 		LicFactory factory = LicFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
-		EList<LicenseGrant> licenseConditions = license.getLicenseGrants();
-		LicenseGrant conditionBundle = factory.createLicenseGrant();
-		conditionBundle.setFeatureIdentifier(SOME_BUNDLE_ID);
-		conditionBundle.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
-		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
-		licenseConditions.add(conditionBundle);
+		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
+		LicenseGrant grant = factory.createLicenseGrant();
+		grant.setFeatureIdentifier(SOME_BUNDLE_ID);
+		grant.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
+		grant.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
+		grant.setValidFrom(new Date(System.currentTimeMillis() - 100500));
+		grant.setValidUntil(new Date(System.currentTimeMillis() + 100500));
+		licenseGrants.add(grant);
 
 		String identifier = SOME_PRODUCT_ID;
 		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
