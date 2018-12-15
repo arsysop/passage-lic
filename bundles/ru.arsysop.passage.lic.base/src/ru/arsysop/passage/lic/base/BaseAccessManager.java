@@ -141,8 +141,11 @@ public abstract class BaseAccessManager implements AccessManager {
 		if (conditions == null) {
 			String message = "Evaluation rejected for invalid conditions";
 			logError(message, new NullPointerException());
-			return result;
-		}
+			List<FeaturePermission> empty = Collections.emptyList();
+			postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, empty);
+			return empty;
+		} 
+		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
 		Map<String, List<LicensingCondition>> map = new HashMap<>();
 		List<LicensingCondition> invalid = new ArrayList<>();
 		for (LicensingCondition condition : conditions) {
@@ -174,7 +177,6 @@ public abstract class BaseAccessManager implements AccessManager {
 				result.add(permission);
 			}
 		}
-		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
 		postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, unmodifiable);
 		return unmodifiable;
 	}
@@ -184,11 +186,15 @@ public abstract class BaseAccessManager implements AccessManager {
 			Iterable<FeaturePermission> permissions, LicensingConfiguration configuration) {
 		if (configuration == null) {
 			logError("Invalid configuration", new NullPointerException());
-			return Collections.emptyList();
+			List<RestrictionVerdict> examined = Collections.emptyList();
+			postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, examined);
+			return examined;
 		}
 		if (requirements == null) {
 			logError("Invalid configuration requirements", new NullPointerException());
-			return Collections.emptyList();
+			List<RestrictionVerdict> examined = Collections.emptyList();
+			postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, examined);
+			return examined;
 		}
 		if (permissionExaminer == null) {
 			String message = String.format("No permission examiner defined, rejecting all %s", requirements);
@@ -202,6 +208,7 @@ public abstract class BaseAccessManager implements AccessManager {
 				RestrictionVerdict verdict = new BaseRestrictionVerdict(requirement, requirement.getRestrictionLevel());
 				verdicts.add(verdict);
 			}
+			postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, Collections.unmodifiableList(verdicts));
 			return verdicts;
 		}
 		Iterable<RestrictionVerdict> examined = permissionExaminer.examine(requirements, permissions);
