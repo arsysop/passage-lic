@@ -26,16 +26,19 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.osgi.service.log.LogService;
 
 import ru.arsysop.passage.lic.base.LicensingConditions;
 import ru.arsysop.passage.lic.internal.net.NtpConditionEvaluator;
 import ru.arsysop.passage.lic.net.TimeConditions;
-import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 @SuppressWarnings("restriction")
 public class NtpConditionEvaluatorTest {
@@ -51,23 +54,25 @@ public class NtpConditionEvaluatorTest {
 	@Test
 	public void testEvaluateConditionNegative() throws Exception {
 		NtpConditionEvaluator evaluator = new NtpConditionEvaluator();
-		assertEmpty(evaluator.evaluateConditions(null));
+		evaluator.bindLogService(Mockito.mock(LogService.class));
+		assertEmpty(evaluator.evaluateConditions(null, null));
 
 		Set<LicensingCondition> empty = Collections.singleton(createNetCondition(new String()));
-		assertEmpty(evaluator.evaluateConditions(empty));
+		assertEmpty(evaluator.evaluateConditions(empty, null));
 
 		Set<LicensingCondition> expired = Collections.singleton(createNetCondition(EXPRESSION_EXPIRED));
-		assertEmpty(evaluator.evaluateConditions(expired));
+		assertEmpty(evaluator.evaluateConditions(expired, null));
 
 		Set<LicensingCondition> unknown = Collections.singleton(createNetCondition(EXPRESSION_UNKNOWN));
-		assertEmpty(evaluator.evaluateConditions(unknown));
+		assertEmpty(evaluator.evaluateConditions(unknown, null));
 	}
 
 	@Test
 	public void testEvaluateConditionPositive() throws Exception {
 		NtpConditionEvaluator evaluator = new NtpConditionEvaluator();
+		evaluator.bindLogService(Mockito.mock(LogService.class));
 		Set<LicensingCondition> future = Collections.singleton(createNetCondition(EXPRESSION_FUTURE));
-		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
+		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future, null).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
 		LicensingCondition condition = permission.getLicensingCondition();
@@ -92,8 +97,13 @@ public class NtpConditionEvaluatorTest {
 	}
 
 	public static LicensingCondition createNetCondition(String expression) {
-		return LicensingConditions.create(NET_TIME_FEATURE_ID, NET_TIME_MATCH_VERSION, NET_TIME_MATCH_RULE,
-				TimeConditions.CONDITION_TYPE_TIME, expression);
+		String id = NET_TIME_FEATURE_ID;
+		String version = NET_TIME_MATCH_VERSION;
+		String rule = NET_TIME_MATCH_RULE;
+		String type = TimeConditions.CONDITION_TYPE_TIME;
+		Date from = null;
+		Date until = null;
+		return LicensingConditions.create(id, version, rule, from, until, type, expression);
 	}
 
 }

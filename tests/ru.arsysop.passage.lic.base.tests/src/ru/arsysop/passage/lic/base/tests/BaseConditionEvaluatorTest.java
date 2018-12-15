@@ -18,23 +18,48 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.internal.net;
+package ru.arsysop.passage.lic.base.tests;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
-import ru.arsysop.passage.lic.base.BaseFeaturePermission;
+import java.util.HashMap;
+import java.util.Map;
 
-public class FeaturePermissionAggregator {
+import org.junit.After;
+import org.junit.Test;
 
-	private final List<BaseFeaturePermission> featurePermissions = new ArrayList<>();
+import ru.arsysop.passage.lic.base.BaseConditionEvaluator;
 
-	public void addFeaturePermission(BaseFeaturePermission p) {
-		featurePermissions.add(p);
+public class BaseConditionEvaluatorTest {
+	
+	private Map<String, Object> segments = new HashMap<>();
+	private Map<String, Object> log = new HashMap<>();
+	
+	private BaseConditionEvaluator evaluator = new BaseConditionEvaluator() {
+		
+		@Override
+		protected boolean evaluateSegment(String key, String value) {
+			return false;
+		}
+
+		@Override
+		protected void logError(String message, Throwable e) {
+			log.put(message, e);
+		}
+
+	};
+	
+	@After
+	public void tearDown() {
+		log.clear();
+		segments.clear();
 	}
 
-	public List<BaseFeaturePermission> getFeaturePermissions() {
-		return featurePermissions;
+	@Test
+	public void testEvaluateConditions() {
+		evaluator.evaluateConditions(null, null);
+		assertEquals(1, log.size());
 	}
+
 
 }

@@ -20,16 +20,20 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
-import java.util.HashMap;
 import java.util.Map;
+
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public class LicensingConfigurations {
 
-	public static Map<String, String> createProductConfiguration(String product, String version) {
-		Map<String, String> map = new HashMap<>();
-		map.put(LicensingProperties.LICENSING_PRODUCT_IDENTIFIER, product);
-		map.put(LicensingProperties.LICENSING_PRODUCT_VERSION, version);
-		return map;
+	public static LicensingConfiguration create(String product, String version) {
+		return new BaseLicensingConfiguration(product, version);
+	}
+
+	public static LicensingConfiguration create(Map<String, Object> properties) {
+		String product = String.valueOf(properties.get(LicensingProperties.LICENSING_PRODUCT_IDENTIFIER));
+		String version = String.valueOf(properties.get(LicensingProperties.LICENSING_PRODUCT_VERSION));
+		return new BaseLicensingConfiguration(product, version);
 	}
 
 	public static String findProductIdentifier(String[] args) {
@@ -45,38 +49,6 @@ public class LicensingConfigurations {
 				}
 	
 			}
-		}
-		return null;
-	}
-
-	public static String resolveProductIdentifier(Object configuration) {
-		if (Map.class.isInstance(configuration)) {
-			Map<?,?> map = (Map<?,?>) configuration;
-			Object value = map.get(LicensingProperties.LICENSING_PRODUCT_IDENTIFIER);
-			if (value instanceof String) {
-				return (String) value;
-			}
-		}
-		if (configuration instanceof String) {
-			return (String) configuration;
-		}
-		if (configuration instanceof String[]) {
-			String[] strings = (String[]) configuration;
-			return findProductIdentifier(strings);
-		}
-		return null;
-	}
-
-	public static String resolveProductVersion(Object configuration) {
-		if (configuration instanceof Map<?,?>) {
-			Map<?,?> map = (Map<?,?>) configuration;
-			Object value = map.get(LicensingProperties.LICENSING_PRODUCT_VERSION);
-			if (value instanceof String) {
-				return (String) value;
-			}
-		}
-		if (configuration instanceof String) {
-			return (String) configuration;
 		}
 		return null;
 	}

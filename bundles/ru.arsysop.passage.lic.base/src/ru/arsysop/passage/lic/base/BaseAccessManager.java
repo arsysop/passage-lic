@@ -37,6 +37,7 @@ import ru.arsysop.passage.lic.runtime.ConditionMiner;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 import ru.arsysop.passage.lic.runtime.PermissionExaminer;
 import ru.arsysop.passage.lic.runtime.RestrictionExecutor;
 import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
@@ -96,16 +97,16 @@ public abstract class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public void executeAccessRestrictions(Object configuration) {
+	public void executeAccessRestrictions(LicensingConfiguration configuration) {
 		Iterable<ConfigurationRequirement> requirements = resolveRequirements(configuration);
 		Iterable<LicensingCondition> conditions = extractConditions(configuration);
-		Iterable<FeaturePermission> permissions = evaluateConditions(conditions);
+		Iterable<FeaturePermission> permissions = evaluateConditions(conditions, configuration);
 		Iterable<RestrictionVerdict> verdicts = examinePermissons(requirements, permissions, configuration);
 		executeRestrictions(verdicts);
 	}
 
 	@Override
-	public Iterable<ConfigurationRequirement> resolveRequirements(Object configuration) {
+	public Iterable<ConfigurationRequirement> resolveRequirements(LicensingConfiguration configuration) {
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		for (ConfigurationResolver configurationResolver : configurationResolvers) {
 			Iterable<ConfigurationRequirement> requirements = configurationResolver
@@ -120,7 +121,7 @@ public abstract class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public Iterable<LicensingCondition> extractConditions(Object configuration) {
+	public Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration) {
 		List<LicensingCondition> result = new ArrayList<>();
 		for (ConditionMiner conditionMiner : conditionMiners) {
 			Iterable<LicensingCondition> conditions = conditionMiner.extractLicensingConditions(configuration);
@@ -134,16 +135,18 @@ public abstract class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions) {
+	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
-			// FIXME: log error;
+			String message = "Evaluation rejected for invalid conditions";
+			logError(message, new NullPointerException());
 			return result;
 		}
 		Map<String, List<LicensingCondition>> map = new HashMap<>();
 		for (LicensingCondition condition : conditions) {
 			if (condition == null) {
-				// FIXME: log error;
+				String message = "Evaluation rejected for invalid condition";
+				logError(message, new NullPointerException());
 				continue;
 			}
 			String type = condition.getConditionType();
@@ -154,10 +157,11 @@ public abstract class BaseAccessManager implements AccessManager {
 		for (String type : types) {
 			ConditionEvaluator evaluator = conditionEvaluators.get(type);
 			if (evaluator == null) {
-				// FIXME: log error;
+				String message = String.format("No evaluator available for type %s", type);
+				logError(message, new NullPointerException());
 				continue;
 			}
-			Iterable<FeaturePermission> permissions = evaluator.evaluateConditions(map.get(type));
+			Iterable<FeaturePermission> permissions = evaluator.evaluateConditions(map.get(type), configuration);
 			for (FeaturePermission permission : permissions) {
 				result.add(permission);
 			}
@@ -171,7 +175,8 @@ public abstract class BaseAccessManager implements AccessManager {
 	public Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements,
 			Iterable<FeaturePermission> permissions, Object configuration) {
 		if (permissionExaminer == null) {
-			// FIXME: log error;
+			String message = String.format("No permission examiner defined, rejecting all %s", requirements);
+			logError(message, new NullPointerException());
 			List<RestrictionVerdict> verdicts = new ArrayList<>();
 			for (ConfigurationRequirement requirement : requirements) {
 				RestrictionVerdict verdict = new BaseRestrictionVerdict(requirement, requirement.getRestrictionLevel());
@@ -190,13 +195,17 @@ public abstract class BaseAccessManager implements AccessManager {
 			try {
 				executor.execute(restrictions);
 			} catch (Exception e) {
-				// TODO: handle exception
+				String message = String.format("%s failed to execute %s", executor, restrictions);
+				logError(message, e);
 			}
 		}
-		postEvent(LicensingLifeCycle.RESTRICTION_EXECUTED, restrictions);
+		postEvent(LicensingLifeCycle.RESTRICTIONS_EXECUTED, restrictions);
 	}
 	
 	protected abstract void postEvent(String topic, Object data);
 
 	protected abstract void sendEvent(String topic, Object data);
+
+	protected abstract void logError(String message, Throwable e);
+
 }

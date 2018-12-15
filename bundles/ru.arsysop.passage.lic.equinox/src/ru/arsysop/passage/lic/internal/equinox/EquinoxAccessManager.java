@@ -29,8 +29,10 @@ import org.osgi.framework.BundleListener;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
+import org.osgi.service.log.LogService;
 
 import ru.arsysop.passage.lic.base.BaseAccessManager;
 import ru.arsysop.passage.lic.equinox.LicensingBundles;
@@ -45,6 +47,8 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 
 	private EventAdmin eventAdmin;
 	
+	private LogService logService;
+
 	@Activate
 	public void activate(BundleContext bundleContext) {
 		bundleContext.addBundleListener(this);
@@ -110,7 +114,7 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 		super.unbindPermissionExaminer(permissionExaminer);
 	}
 	
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	@Override
 	public void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		super.bindRestrictionExecutor(restrictionExecutor);
@@ -140,6 +144,22 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	protected void sendEvent(String topic, Object data) {
 		Event event = EquinoxEvents.createEvent(topic, data);
 		eventAdmin.sendEvent(event);
+	}
+
+	@Reference
+	public void bindLogService(LogService logService) {
+		this.logService = logService;
+	}
+	
+	public void unbindLogService(LogService logService) {
+		this.logService = logService;
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	protected void logError(String message, Throwable e) {
+		//FIXME: rework after removing Eclipse Mars support
+		logService.log(LogService.LOG_ERROR, message, e);
 	}
 
 }

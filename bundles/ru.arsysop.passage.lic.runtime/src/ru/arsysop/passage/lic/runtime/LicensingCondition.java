@@ -20,6 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.runtime;
 
+import java.util.Date;
+
 /**
  * 
  * Defines the condition to be evaluated {@link ConditionEvaluator} <br/>
@@ -34,8 +36,12 @@ public interface LicensingCondition {
 
 	String getMatchRule();
 
+	Date getValidFrom();
+	
+	Date getValidUntil();
+
 	/**
-	 * the type of condition like "nist" for time or "hdd" for disk-locked
+	 * the type of condition like "time" or "hardware"
 	 * 
 	 * @return
 	 */

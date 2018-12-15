@@ -24,7 +24,7 @@ import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public interface LicenseGrantDescriptor extends LicensingCondition {
 
-	public int getCapacity();
+	int getCapacity();
 	
 	LicensePackDescriptor getLicensePack();
 	

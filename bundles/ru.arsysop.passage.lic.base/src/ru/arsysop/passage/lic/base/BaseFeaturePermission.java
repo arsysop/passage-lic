@@ -22,19 +22,21 @@ package ru.arsysop.passage.lic.base;
 
 import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
+import java.util.Date;
+
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class BaseFeaturePermission implements FeaturePermission {
 
 	private final LicensingCondition licensingCondition;
-	private final long leaseTime;
-	private final long expireTime;
+	private final Date leaseDate;
+	private final Date expireDate;
 
-	BaseFeaturePermission(LicensingCondition licensingCondition, long leaseTime, long expireTime) {
+	BaseFeaturePermission(LicensingCondition licensingCondition, Date lease, Date expire) {
 		this.licensingCondition = licensingCondition;
-		this.leaseTime = leaseTime;
-		this.expireTime = expireTime;
+		this.leaseDate = lease;
+		this.expireDate = expire;
 	}
 
 	@Override
@@ -43,21 +45,21 @@ public class BaseFeaturePermission implements FeaturePermission {
 	}
 
 	@Override
-	public long getLeaseTime() {
-		return leaseTime;
+	public Date getLeaseDate() {
+		return leaseDate;
 	}
 
 	@Override
-	public long getExpireTime() {
-		return expireTime;
+	public Date getExpireDate() {
+		return expireDate;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(licensingCondition).append(';');
-		sb.append(LICENSING_LEASE_TIME).append('=').append(leaseTime).append(';');
-		sb.append(LICENSING_EXPIRE_TIME).append('=').append(expireTime);
+		sb.append(LICENSING_LEASE_TIME).append('=').append(leaseDate).append(';');
+		sb.append(LICENSING_EXPIRE_TIME).append('=').append(expireDate);
 		return sb.toString();
 	}
 

@@ -21,23 +21,33 @@
 package ru.arsysop.passage.lic.inspector.ui.dialogs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
-import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
 
 import ru.arsysop.passage.lic.base.ui.LicensingImages;
+import ru.arsysop.passage.lic.base.ui.RestrictionVerdictLabels;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.inspector.ui.LicInspectorUi;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
@@ -50,13 +60,19 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 	private final LicensingImages licensingImages;
 	private HardwareInspector hardwareInspector;
 
-	private final List<RestrictionVerdict> restrictions = new ArrayList<>();
+	private String contactText = ""; //$NON-NLS-1$
 
-	public LicensingInspectorDialog(Shell shell, LicensingImages images, Iterable<RestrictionVerdict> verdicts) {
+	private final List<ConfigurationRequirement> requirements = new ArrayList<>();
+	private final List<RestrictionVerdict> restrictions = new ArrayList<>();
+	private final Map<String, List<RestrictionVerdict>> map = new HashMap<>();
+
+	private TableViewer tableViewer;
+
+	public LicensingInspectorDialog(Shell shell, LicensingImages images, String contacts) {
 		super(shell);
 		this.licensingImages = images;
-		for (RestrictionVerdict restrictionVerdict : verdicts) {
-			restrictions.add(restrictionVerdict);
+		if (contacts != null) {
+			contactText = contacts;
 		}
 	}
 
@@ -64,23 +80,17 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Licensing");
-		newShell.setImage(licensingImages.getImage(LicensingImages.IMG_DEFAULT));;
+		newShell.setImage(licensingImages.getImage(LicensingImages.IMG_DEFAULT));
 	}
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		setTitle("Licensing status");
-		if (restrictions.size() == 0) {
-			setMessage("The product is licensed properly");
+		RestrictionVerdict last = RestrictionVerdictLabels.resolveLastVerdict(restrictions);
+		if (last == null) {
+			setMessage(RestrictionVerdictLabels.resolveSummary(last));
 		} else {
-			StringBuilder sb = new StringBuilder();
-			sb.append("The following features are not licensed:").append('\n');
-			for (RestrictionVerdict verdict : restrictions) {
-				ConfigurationRequirement requirement = verdict.getConfigurationRequirement();
-				String featureIdentifier = requirement.getFeatureIdentifier();
-				sb.append(featureIdentifier).append('\n');
-			}
-			setErrorMessage(sb.toString());
+			setErrorMessage(RestrictionVerdictLabels.resolveSummary(last));
 		}
 		Composite area = (Composite) super.createDialogArea(parent);
 		createAreaContent(area);
@@ -92,10 +102,99 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 		Composite contents = new Composite(area, SWT.NONE);
 		contents.setLayout(new GridLayout(1, false));
 		contents.setLayoutData(new GridData(GridData.FILL_BOTH));
-		Label contacts = new Label(area, SWT.NONE);
-		contacts.setLayoutData(GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.BEGINNING).grab(true, true).create());
-		contacts.setText("Please contact your Licensing Operator for details.");
-		contacts.setFont(JFaceResources.getHeaderFont());
+		Table tableDetails = new Table(contents, SWT.BORDER);
+		GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		tableDetails.setLayoutData(layoutData);
+		tableDetails.setHeaderVisible(true);
+		tableDetails.setLinesVisible(true);
+
+		tableViewer = new TableViewer(tableDetails);
+		tableViewer.setContentProvider(new ArrayContentProvider());
+
+		TableViewerColumn columnStatusImage = createColumnViewer(tableViewer, "", 20);
+		columnStatusImage.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public Image getImage(Object element) {
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement req = (ConfigurationRequirement) element;
+					List<RestrictionVerdict> verdicts = map.get(req.getFeatureIdentifier());
+					String imageKey = RestrictionVerdictLabels.resolveImageKey(verdicts);
+					return licensingImages.getImage(imageKey);
+				}
+				return super.getImage(element);
+			}
+
+		});
+		TableViewerColumn columnFeatureId = createColumnViewer(tableViewer, "Feature Id", 200);
+		columnFeatureId.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement requirement = (ConfigurationRequirement) element;
+					return requirement.getFeatureIdentifier();
+				}
+				return super.getText(element);
+			}
+		});
+		TableViewerColumn columnFeatureName = createColumnViewer(tableViewer, "Feature Name", 200);
+		columnFeatureName.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement requirement = (ConfigurationRequirement) element;
+					return requirement.getFeatureName();
+				}
+				return super.getText(element);
+			}
+		});
+		TableViewerColumn columnFeatureVersion = createColumnViewer(tableViewer, "Version",
+				100);
+		columnFeatureVersion.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement requirement = (ConfigurationRequirement) element;
+					return requirement.getFeatureVersion();
+				}
+				return super.getText(element);
+			}
+		});
+
+		TableViewerColumn columnLicenseStatus = createColumnViewer(tableViewer, "Status",
+				200);
+		columnLicenseStatus.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof ConfigurationRequirement) {
+					ConfigurationRequirement req = (ConfigurationRequirement) element;
+					List<RestrictionVerdict> verdicts = map.get(req.getFeatureIdentifier());
+					return RestrictionVerdictLabels.resolveLabel(verdicts);
+				}
+				return super.getText(element);
+			}
+
+		});
+
+		tableViewer.setInput(requirements);
+
+		Group contactsGroup = new Group(area, SWT.NONE);
+		contactsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		contactsGroup.setText("Please contact your Licensing Operator for details");
+		contactsGroup.setFont(JFaceResources.getDialogFont());
+		contactsGroup.setLayout(new GridLayout());
+		StyledText contactsText = new StyledText(contactsGroup, SWT.READ_ONLY | SWT.MULTI);
+		contactsText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		contactsText.setText(contactText);
+		contactsText.setFont(JFaceResources.getDialogFont());
+	}
+
+	private TableViewerColumn createColumnViewer(TableViewer tableViewDetails, String columnName, int width) {
+		TableViewerColumn columnViewer = new TableViewerColumn(tableViewDetails, SWT.NONE);
+		TableColumn column = columnViewer.getColumn();
+		column.setText(columnName);
+		column.setWidth(width);
+		column.setResizable(true);
+		return columnViewer;
 	}
 
 	@Override
@@ -109,6 +208,23 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 
 	public void setHardwareInspector(HardwareInspector hardwareInspector) {
 		this.hardwareInspector = hardwareInspector;
+	}
+	
+	public void updateLicensingStatus(Iterable<ConfigurationRequirement> required, Iterable<RestrictionVerdict> verdicts) {
+		requirements.clear();
+		restrictions.clear();
+		required.forEach(requirements::add);
+		for (RestrictionVerdict verdict : verdicts) {
+			ConfigurationRequirement requirement = verdict.getConfigurationRequirement();
+			
+			String featureId = requirement.getFeatureIdentifier();
+			List<RestrictionVerdict> list = map.computeIfAbsent(featureId, key -> new ArrayList<>());
+			list.add(verdict);
+			restrictions.add(verdict);
+		}
+		if (tableViewer != null && !tableViewer.getControl().isDisposed()) {
+			tableViewer.setInput(requirements);
+		}
 	}
 
 	@Override
@@ -126,6 +242,11 @@ public class LicensingInspectorDialog extends TitleAreaDialog {
 	protected void hardwareInspectorPressed() {
 		HardwareInspectorDialog dialog = new HardwareInspectorDialog(licensingImages, hardwareInspector, getShell());
 		dialog.open();
+	}
+
+	@Override
+	protected boolean isResizable() {
+		return true;
 	}
 
 }

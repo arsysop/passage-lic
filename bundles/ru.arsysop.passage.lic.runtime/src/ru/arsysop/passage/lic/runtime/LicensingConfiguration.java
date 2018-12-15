@@ -18,18 +18,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.internal.net;
+package ru.arsysop.passage.lic.runtime;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+public interface LicensingConfiguration {
+	
+	String getProductIdentifier();
 
-public abstract class LicensingConditionMixIn {
-
-	public LicensingConditionMixIn(@JsonProperty("featureIdentifier") String featureIdentifier,
-            @JsonProperty("matchVersion") String matchVersion,
-            @JsonProperty("matchRule") String matchRule,
-            @JsonProperty("conditionType") String conditionType,
-            @JsonProperty("conditionExpression") String conditionExpression
-            ) {
-	}
+	String getProductVersion();
 
 }

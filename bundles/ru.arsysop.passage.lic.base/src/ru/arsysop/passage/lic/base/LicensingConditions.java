@@ -20,6 +20,7 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,8 +59,8 @@ public class LicensingConditions {
 		return actual.matches(regexp);
 	}
 
-	public static BaseLicensingCondition create(String featureId, String version, String rule, String type, String expression) {
-		return new BaseLicensingCondition(featureId, version, rule, type, expression);
+	public static BaseLicensingCondition create(String identifier, String version, String rule, Date from, Date until, String type, String expression) {
+		return new BaseLicensingCondition(identifier, version, rule, from, until, type, expression);
 	}
 
 }

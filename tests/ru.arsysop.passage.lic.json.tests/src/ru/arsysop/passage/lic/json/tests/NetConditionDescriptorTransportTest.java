@@ -1,4 +1,4 @@
-package ru.arsysop.passage.lic.net.tests;
+package ru.arsysop.passage.lic.json.tests;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -6,6 +6,7 @@ import static org.junit.Assume.assumeNoException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -15,19 +16,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 import ru.arsysop.passage.lic.base.LicensingConditions;
-import ru.arsysop.passage.lic.internal.net.ConditionDescriptorAggregator;
-import ru.arsysop.passage.lic.internal.net.LicensingConditionMixIn;
-import ru.arsysop.passage.lic.internal.net.NetConditionDescriptorTransport;
+import ru.arsysop.passage.lic.internal.json.ConditionDescriptorAggregator;
+import ru.arsysop.passage.lic.internal.json.JsonLicensingConditionTransport;
+import ru.arsysop.passage.lic.internal.json.LicensingConditionMixIn;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 @SuppressWarnings("restriction")
 public class NetConditionDescriptorTransportTest {
 
-	private static final String FEATURE_TEST_CONDITION_TYPE = "test.content.type";
-	private static final String FEATURE_TEST_RULE = "test.rule";
-	private static final String FEATURE_TEST_VERSION = "test.version.1";
-	private static final String FEATURE_TEST_ID = "test.id";
-	private static final String FEATURE_TEST_EXPRESSION = "test.expression";
+	private static final String FEATURE_TEST_CONDITION_TYPE = "test.content.type"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_RULE = "test.rule"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_VERSION = "test.version.1"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_ID = "test.id"; //$NON-NLS-1$
+	private static final String FEATURE_TEST_EXPRESSION = "test.expression"; //$NON-NLS-1$
 
 	@Test
 	public void netConditionDescriptorTransportTest() {
@@ -39,7 +40,7 @@ public class NetConditionDescriptorTransportTest {
 		try {
 			byte[] byteValues = mapper.writeValueAsBytes(conditionAggregator);
 			ByteArrayInputStream bis = new ByteArrayInputStream(byteValues);
-			NetConditionDescriptorTransport transport = new NetConditionDescriptorTransport();
+			JsonLicensingConditionTransport transport = new JsonLicensingConditionTransport();
 			Iterable<LicensingCondition> conditions = transport.readConditionDescriptors(bis);
 			assertNotNull(conditions);
 			for (LicensingCondition condition : conditions) {
@@ -59,8 +60,14 @@ public class NetConditionDescriptorTransportTest {
 
 	private ConditionDescriptorAggregator createConditionDescriptorAggregator() {
 		ConditionDescriptorAggregator conditionAggregator = new ConditionDescriptorAggregator();
-		BaseLicensingCondition descriptor = LicensingConditions.create(FEATURE_TEST_ID, FEATURE_TEST_VERSION,
-				FEATURE_TEST_RULE, FEATURE_TEST_CONDITION_TYPE, FEATURE_TEST_EXPRESSION);
+		String id = FEATURE_TEST_ID;
+		String version = FEATURE_TEST_VERSION;
+		String rule = FEATURE_TEST_RULE;
+		Date from = null;
+		Date until = null;
+		String type = FEATURE_TEST_CONDITION_TYPE;
+		String expression = FEATURE_TEST_EXPRESSION;
+		BaseLicensingCondition descriptor = LicensingConditions.create(id, version, rule, from, until, type, expression);
 		conditionAggregator.addLicensingCondition(descriptor);
 		return conditionAggregator;
 	}

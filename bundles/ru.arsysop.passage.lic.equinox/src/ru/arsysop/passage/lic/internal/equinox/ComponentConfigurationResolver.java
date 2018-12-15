@@ -79,13 +79,14 @@ public class ComponentConfigurationResolver implements ConfigurationResolver {
 
 	@Override
 	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
+		String lmName = "License Management";
 		if (scr == null) {
 			logger.audit("Unable to extract configuration requirements: invalid ServiceComponentRuntime");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this);
 		}
 		if (bundleContext == null) {
 			logger.audit("Unable to extract configuration requirements: invalid BundleContext");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();

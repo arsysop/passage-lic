@@ -26,23 +26,26 @@ import java.util.Map;
 import java.util.Set;
 
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions) {
+	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
-			//FIXME: log error;
+			String message = "Evaluation rejected for invalid conditions";
+			logError(message, new NullPointerException());
 			return result;
 		}
 		for (LicensingCondition condition : conditions) {
 			String expression = condition.getConditionExpression();
 			Map<String,String> checks = LicensingConditions.parseExpression(expression);
 			if (checks.isEmpty()) {
-				//FIXME: log error;
+				String message = String.format("Expression checks are empty for condition %s", condition);
+				logError(message, new Exception());
 				continue;
 			}
 			Set<String> keySet = checks.keySet();
@@ -54,23 +57,29 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 					passed = evaluateSegment(key, value);
 				} catch (Exception e) {
 					passed = false;
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					String message = String.format("Failed for evaluate condition %s : key=%s, value=%s", condition, key, value);
+					logError(message, new Exception());
 				}
 				if (!passed) {
-					//FIXME: report check failure;
+					String message = String.format("Condition %s rejected: key=%s, value=%s", condition, key, value);
+					logError(message, new Exception());
 					break;
 				}
 			}
 			if (passed) {
-				FeaturePermission permission = FeaturePermissions.createDefault(condition);
-				result.add(permission);
+				result.add(createPermission(condition, configuration));
 			}
 		}
 		
 		return result;
 	}
 
+	protected FeaturePermission createPermission(LicensingCondition condition, LicensingConfiguration configuration) {
+		return FeaturePermissions.createDefault(condition);
+	}
+
 	protected abstract boolean evaluateSegment(String key, String value);
+
+	protected abstract void logError(String message, Throwable e);
 
 }

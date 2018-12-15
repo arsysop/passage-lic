@@ -26,13 +26,14 @@ import static org.junit.Assert.assertTrue;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
+import ru.arsysop.passage.lic.base.LicensingConfigurations;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.api.LicenseGrant;
-import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.model.meta.LicFactory;
 import ru.arsysop.passage.lic.oshi.OshiHal;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 
@@ -41,25 +42,19 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		Iterable<LicensingCondition> conditionsNull = accessManager.extractConditions(null);
 		assertFalse(conditionsNull.iterator().hasNext());
 
-		Iterable<LicensingCondition> conditionsObject = accessManager.extractConditions(new Object());
-		assertFalse(conditionsObject.iterator().hasNext());
-
+		
 		Iterable<LicensingCondition> conditionsProduct = accessManager
-				.extractConditions(LicFactory.eINSTANCE.createProduct());
+				.extractConditions(LicensingConfigurations.create(null, null));
 		assertFalse(conditionsProduct.iterator().hasNext());
 
-		Product product = LicFactory.eINSTANCE.createProduct();
-		product.setIdentifier(SOME_PRODUCT_ID);
-		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
+		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_PRODUCT_ID, null);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertFalse(conditions.iterator().hasNext());
 	}
 
 	@Test
 	public void testExtractConditionsPositive() throws Exception {
 		LicFactory factory = LicFactory.eINSTANCE;
-		Product product = factory.createProduct();
-		product.setIdentifier(SOME_PRODUCT_ID);
-
 		LicensePack license = factory.createLicensePack();
 		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
 		LicenseGrant conditionBundle = factory.createLicenseGrant();
@@ -68,18 +63,17 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
 		licenseGrants.add(conditionBundle);
 
-		createProductLicense(product, license);
-		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
+		String identifier = SOME_PRODUCT_ID;
+		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
+		createProductLicense(configuration, license);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());
-		deleteProductLicense(product);
+		deleteProductLicense(configuration);
 	}
 
 	@Test
 	public void testExtractConditionsServerPositive() throws Exception {
 		LicFactory factory = LicFactory.eINSTANCE;
-		Product product = factory.createProduct();
-		product.setIdentifier(SOME_PRODUCT_ID);
-
 		LicensePack license = factory.createLicensePack();
 		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
 		LicenseGrant conditionBundle = factory.createLicenseGrant();
@@ -88,11 +82,14 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
 		licenseGrants.add(conditionBundle);
 
-		createProductLicense(product, license);
-		createServerConfiguration(product);
-		Iterable<LicensingCondition> conditions = accessManager.extractConditions(product);
+		String identifier = SOME_PRODUCT_ID;
+		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
+		createProductLicense(configuration, license);
+		createServerConfiguration(configuration);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());
-		deleteProductLicense(product);
+		deleteProductLicense(configuration);
+		deleteServerConfiguration(configuration);
 	}
 
 }

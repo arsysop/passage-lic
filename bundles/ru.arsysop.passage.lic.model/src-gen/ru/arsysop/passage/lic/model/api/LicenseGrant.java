@@ -21,6 +21,7 @@
  */
 package ru.arsysop.passage.lic.model.api;
 
+import java.util.Date;
 import org.eclipse.emf.ecore.EObject;
 
 import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
@@ -37,6 +38,8 @@ import ru.arsysop.passage.lic.registry.LicenseGrantDescriptor;
  *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getFeatureIdentifier <em>Feature Identifier</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getMatchVersion <em>Match Version</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getMatchRule <em>Match Rule</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getValidFrom <em>Valid From</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getValidUntil <em>Valid Until</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getConditionExpression <em>Condition Expression</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getCapacity <em>Capacity</em>}</li>
@@ -126,6 +129,58 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	 * @generated
 	 */
 	void setMatchRule(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Valid From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Valid From</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Valid From</em>' attribute.
+	 * @see #setValidFrom(Date)
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicenseGrant_ValidFrom()
+	 * @model required="true"
+	 * @generated
+	 */
+	Date getValidFrom();
+
+	/**
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getValidFrom <em>Valid From</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Valid From</em>' attribute.
+	 * @see #getValidFrom()
+	 * @generated
+	 */
+	void setValidFrom(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Valid Until</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Valid Until</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Valid Until</em>' attribute.
+	 * @see #setValidUntil(Date)
+	 * @see ru.arsysop.passage.lic.model.meta.LicPackage#getLicenseGrant_ValidUntil()
+	 * @model required="true"
+	 * @generated
+	 */
+	Date getValidUntil();
+
+	/**
+	 * Sets the value of the '{@link ru.arsysop.passage.lic.model.api.LicenseGrant#getValidUntil <em>Valid Until</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Valid Until</em>' attribute.
+	 * @see #getValidUntil()
+	 * @generated
+	 */
+	void setValidUntil(Date value);
 
 	/**
 	 * Returns the value of the '<em><b>Condition Type</b></em>' attribute.

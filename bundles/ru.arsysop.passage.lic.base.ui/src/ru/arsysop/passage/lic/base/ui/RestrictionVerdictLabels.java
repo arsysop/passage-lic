@@ -41,11 +41,15 @@ public class RestrictionVerdictLabels {
 		if (verdict == null) {
 			return IMG_LEVEL_OK;
 		}
-		String level = verdict.getRestrictionLevel();
-		if (level == null) {
-			level = LICENSING_RESTRICTION_LEVEL_DEFAULT;
+		return resolveImageKey(verdict.getRestrictionLevel());
+	}
+
+	public static String resolveImageKey(String level) {
+		String restriction = level;
+		if (restriction == null) {
+			restriction = LICENSING_RESTRICTION_LEVEL_DEFAULT;
 		}
-		switch (level) {
+		switch (restriction) {
 		case LICENSING_RESTRICTION_LEVEL_WARN:
 			return IMG_LEVEL_WARN;
 		case LICENSING_RESTRICTION_LEVEL_ERROR:
@@ -57,15 +61,24 @@ public class RestrictionVerdictLabels {
 		}
 	}
 
+	public static String resolveLabel(Iterable<RestrictionVerdict> verdicts) {
+		RestrictionVerdict last = resolveLastVerdict(verdicts);
+		return resolveLabel(last);
+	}
+
 	public static String resolveLabel(RestrictionVerdict verdict) {
 		if (verdict == null) {
 			return "OK";
 		}
-		String level = verdict.getRestrictionLevel();
-		if (level == null) {
-			level = LICENSING_RESTRICTION_LEVEL_DEFAULT;
+		return resolveLabel(verdict.getRestrictionLevel());
+	}
+
+	public static String resolveLabel(String level) {
+		String restriction = level;
+		if (restriction == null) {
+			restriction = LICENSING_RESTRICTION_LEVEL_DEFAULT;
 		}
-		switch (level) {
+		switch (restriction) {
 		case LICENSING_RESTRICTION_LEVEL_WARN:
 			return "Warning";
 		case LICENSING_RESTRICTION_LEVEL_ERROR:
@@ -77,7 +90,7 @@ public class RestrictionVerdictLabels {
 		}
 	}
 
-	public static String resolveTooltip(RestrictionVerdict verdict) {
+	public static String resolveSummary(RestrictionVerdict verdict) {
 		if (verdict == null) {
 			return "The product in licensed properly";
 		}
@@ -85,6 +98,9 @@ public class RestrictionVerdictLabels {
 	}
 
 	public static RestrictionVerdict resolveLastVerdict(Iterable<RestrictionVerdict> verdicts) {
+		if (verdicts == null) {
+			return null;
+		}
 		List<RestrictionVerdict> list = new ArrayList<>();
 		verdicts.forEach(list::add);
 		if (list.isEmpty()) {

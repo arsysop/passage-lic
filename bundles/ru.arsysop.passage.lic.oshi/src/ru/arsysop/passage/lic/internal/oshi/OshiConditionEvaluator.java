@@ -21,6 +21,8 @@
 package ru.arsysop.passage.lic.internal.oshi;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.log.LogService;
 
 import ru.arsysop.passage.lic.base.BaseConditionEvaluator;
 import ru.arsysop.passage.lic.base.LicensingProperties;
@@ -31,9 +33,27 @@ import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
 		LicensingProperties.LICENSING_CONDITION_TYPE + '=' + OshiHal.CONDITION_TYPE_HARDWARE })
 public class OshiConditionEvaluator extends BaseConditionEvaluator implements ConditionEvaluator {
 
+	private LogService logService;
+
 	@Override
 	protected boolean evaluateSegment(String key, String value) {
 		return OshiHal.evaluateProperty(key, value);
+	}
+
+	@Reference
+	public void bindLogService(LogService logService) {
+		this.logService = logService;
+	}
+	
+	public void unbindLogService(LogService logService) {
+		this.logService = logService;
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	protected void logError(String message, Throwable e) {
+		//FIXME: rework after removing Eclipse Mars support
+		logService.log(LogService.LOG_ERROR, message, e);
 	}
 
 }

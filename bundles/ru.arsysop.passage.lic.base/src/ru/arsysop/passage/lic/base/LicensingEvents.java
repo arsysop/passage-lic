@@ -25,6 +25,10 @@ import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 
 public class LicensingEvents {
+	
+	private LicensingEvents() {
+		//block
+	}
 
 	/**
 	 * Topic separator character
@@ -43,6 +47,10 @@ public class LicensingEvents {
 	
 	public static final class LicensingLifeCycle {
 		
+		private LicensingLifeCycle() {
+			//block
+		}
+
 		/**
 		 * Base name for all Licensing life cycle events
 		 */
@@ -71,12 +79,16 @@ public class LicensingEvents {
 		/**
 		 * Sent when restrictions are executed
 		 */
-		public static final String RESTRICTION_EXECUTED = TOPIC + TOPIC_SEP + "restrictionExecuted"; //$NON-NLS-1$
+		public static final String RESTRICTIONS_EXECUTED = TOPIC + TOPIC_SEP + "restrictionsExecuted"; //$NON-NLS-1$
 
 	}
 	
 	public static final class LicensingConditionEvents {
 	
+		private LicensingConditionEvents() {
+			//block
+		}
+
 		/**
 		 * Base name for all Licensing condition events
 		 */

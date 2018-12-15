@@ -25,6 +25,7 @@
       <provide interface="ru.arsysop.passage.lic.runtime.AccessManager"/>
    </service>
    <reference bind="bindEventAdmin" cardinality="1..1" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" policy="static" unbind="unbindEventAdmin"/>
+   <reference bind="bindLogService" cardinality="1..1" interface="org.osgi.service.log.LogService" name="LogService" policy="static" unbind="unbindLogService"/>
    <reference bind="bindConfigurationResolver" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.ConfigurationResolver" name="ConfigurationResolver" policy="static" unbind="unbindConfigurationResolver"/>
    <reference bind="bindConditionMiner" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.ConditionMiner" name="ConditionMiner" policy="static" unbind="unbindConditionMiner"/>
    <reference bind="bindConditionEvaluator" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.ConditionEvaluator" name="ConditionEvaluator" policy="static" unbind="unbindConditionEvaluator"/>

@@ -151,7 +151,7 @@ public class FeatureSetItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureSet_description_feature", "_UI_FeatureSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LicPackage.Literals.FEATURE_SET__DESCRIPTION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,

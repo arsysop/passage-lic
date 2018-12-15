@@ -85,6 +85,8 @@ public class LicenseGrantItemProvider
 			addFeatureIdentifierPropertyDescriptor(object);
 			addMatchVersionPropertyDescriptor(object);
 			addMatchRulePropertyDescriptor(object);
+			addValidFromPropertyDescriptor(object);
+			addValidUntilPropertyDescriptor(object);
 			addConditionTypePropertyDescriptor(object);
 			addConditionExpressionPropertyDescriptor(object);
 			addCapacityPropertyDescriptor(object);
@@ -150,6 +152,50 @@ public class LicenseGrantItemProvider
 				 getString("_UI_LicenseGrant_matchRule_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_matchRule_feature", "_UI_LicenseGrant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LicPackage.Literals.LICENSE_GRANT__MATCH_RULE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Valid From feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addValidFromPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LicenseGrant_validFrom_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_validFrom_feature", "_UI_LicenseGrant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_GRANT__VALID_FROM,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Valid Until feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addValidUntilPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LicenseGrant_validUntil_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_validUntil_feature", "_UI_LicenseGrant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 LicPackage.Literals.LICENSE_GRANT__VALID_UNTIL,
 				 true,
 				 false,
 				 false,
@@ -282,6 +328,8 @@ public class LicenseGrantItemProvider
 			case LicPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
 			case LicPackage.LICENSE_GRANT__MATCH_VERSION:
 			case LicPackage.LICENSE_GRANT__MATCH_RULE:
+			case LicPackage.LICENSE_GRANT__VALID_FROM:
+			case LicPackage.LICENSE_GRANT__VALID_UNTIL:
 			case LicPackage.LICENSE_GRANT__CONDITION_TYPE:
 			case LicPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
 			case LicPackage.LICENSE_GRANT__CAPACITY:

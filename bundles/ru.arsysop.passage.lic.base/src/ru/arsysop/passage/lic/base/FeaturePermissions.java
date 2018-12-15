@@ -20,6 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
+import java.util.Date;
+
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class FeaturePermissions {
@@ -29,13 +31,13 @@ public class FeaturePermissions {
 	}
 
 	public static BaseFeaturePermission createDefault(LicensingCondition condition) {
-		long leaseTime = System.currentTimeMillis();
-		long expireTime = leaseTime + 60 * 60 * 1000;
+		Date leaseTime = new Date();
+		Date expireTime = condition.getValidUntil();
 		return new BaseFeaturePermission(condition, leaseTime, expireTime);
 	}
 
-	public static BaseFeaturePermission create(LicensingCondition condition, long leaseTime, long expireTime) {
-		return new BaseFeaturePermission(condition, leaseTime, expireTime);
+	public static BaseFeaturePermission create(LicensingCondition condition, Date lease, Date expire) {
+		return new BaseFeaturePermission(condition, lease, expire);
 	}
 
 }

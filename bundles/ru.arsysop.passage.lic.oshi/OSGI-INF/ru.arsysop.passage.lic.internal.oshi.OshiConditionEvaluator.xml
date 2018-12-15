@@ -4,5 +4,6 @@
    <service>
       <provide interface="ru.arsysop.passage.lic.runtime.ConditionEvaluator"/>
    </service>
+   <reference bind="bindLogService" interface="org.osgi.service.log.LogService" name="LogService" unbind="unbindLogService"/>
    <implementation class="ru.arsysop.passage.lic.internal.oshi.OshiConditionEvaluator"/>
 </scr:component>
