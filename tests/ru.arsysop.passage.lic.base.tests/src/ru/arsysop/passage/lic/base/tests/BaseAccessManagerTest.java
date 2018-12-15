@@ -24,37 +24,45 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.After;
 import org.junit.Test;
 
 import ru.arsysop.passage.lic.base.BaseAccessManager;
+import ru.arsysop.passage.lic.base.BaseLicensingCondition;
+import ru.arsysop.passage.lic.base.LicensingConditions;
+import ru.arsysop.passage.lic.base.LicensingConfigurations;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public class BaseAccessManagerTest {
-	
-	private Map<String, Object> events = new HashMap<>();
-	private Map<String, Object> log = new HashMap<>();
-	
+
+	private static final String PRODUCT_ID = "product.id"; //$NON-NLS-1$
+	private static final String PRODUCT_VERSION = "0.1.0"; //$NON-NLS-1$
+	private static final String FEATURE_ID = "feature.id"; //$NON-NLS-1$
+	private static final String FEATURE_VERSION = "0.1.0"; //$NON-NLS-1$
+
+	private List<String> events = new ArrayList<>();
+	private List<String> log = new ArrayList<>();
+
+	private LicensingConfiguration conf = LicensingConfigurations.create(PRODUCT_ID, PRODUCT_VERSION);
+
 	private BaseAccessManager manager = new BaseAccessManager() {
-		
-		@Override
-		protected void sendEvent(String topic, Object data) {
-			events.put(topic, data);
-		}
-		
+
 		@Override
 		protected void postEvent(String topic, Object data) {
-			events.put(topic, data);
+			events.add(topic);
 		}
-		
+
 		@Override
 		protected void logError(String message, Throwable e) {
-			log.put(message, e);
+			log.add(message);
 		}
 	};
-	
+
 	@After
 	public void tearDown() {
 		events.clear();
@@ -70,17 +78,48 @@ public class BaseAccessManagerTest {
 		logSize++;
 		checkMaps(logSize, eventSize);
 		manager.evaluateConditions(new ArrayList<>(), null);
-		eventSize++;
 		checkMaps(logSize, eventSize);
 		manager.evaluateConditions(Collections.singleton(null), null);
 		logSize++;
 		checkMaps(logSize, eventSize);
 	}
 
+	@Test
+	public void testEvaluateConditionDates() {
+		int logSize = 0;
+		int eventSize = 0;
+		manager.evaluateConditions(Collections.singleton(createCondition(null, null)), null);
+		logSize++;
+		checkMaps(logSize, eventSize);
+		manager.evaluateConditions(Collections.singleton(createCondition(new Date(), null)), null);
+		logSize++;
+		checkMaps(logSize, eventSize);
+		manager.evaluateConditions(Collections.singleton(createCondition(null, new Date())), null);
+		logSize++;
+		checkMaps(logSize, eventSize);
+		Date before = new Date(System.currentTimeMillis()-100500);
+		Date after = new Date(System.currentTimeMillis()+100500);
+		manager.evaluateConditions(Collections.singleton(createCondition(after, after)), null);
+		logSize++;
+		checkMaps(logSize, eventSize);
+		manager.evaluateConditions(Collections.singleton(createCondition(before, before)), null);
+		logSize++;
+		checkMaps(logSize, eventSize);
+		manager.evaluateConditions(Collections.singleton(createCondition(after, before)), null);
+		logSize++;
+		checkMaps(logSize, eventSize);
+		manager.evaluateConditions(Collections.singleton(createCondition(before, after)), null);
+		logSize++;
+		checkMaps(logSize, eventSize);
+	}
+
+	protected BaseLicensingCondition createCondition(Date from, Date until) {
+		return LicensingConditions.create(FEATURE_ID, FEATURE_VERSION, null, from, until, null, null);
+	}
+
 	protected void checkMaps(int logSize, int eventSize) {
 		assertEquals(logSize, log.size());
 		assertEquals(eventSize, events.size());
 	}
-
 
 }

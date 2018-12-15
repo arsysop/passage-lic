@@ -24,6 +24,7 @@ import static ru.arsysop.passage.lic.base.LicensingProperties.LICENSING_CONDITIO
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -143,15 +144,22 @@ public abstract class BaseAccessManager implements AccessManager {
 			return result;
 		}
 		Map<String, List<LicensingCondition>> map = new HashMap<>();
+		List<LicensingCondition> invalid = new ArrayList<>();
 		for (LicensingCondition condition : conditions) {
 			if (condition == null) {
 				String message = "Evaluation rejected for invalid condition";
 				logError(message, new NullPointerException());
 				continue;
 			}
-			String type = condition.getConditionType();
-			List<LicensingCondition> list = map.computeIfAbsent(type, key -> new ArrayList<>());
-			list.add(condition);
+			String validate = validate(condition);
+			if (validate == null) {
+				String type = condition.getConditionType();
+				List<LicensingCondition> list = map.computeIfAbsent(type, key -> new ArrayList<>());
+				list.add(condition);
+			} else {
+				logError(validate, null);
+				invalid.add(condition);
+			}
 		}
 		Set<String> types = map.keySet();
 		for (String type : types) {
@@ -167,7 +175,9 @@ public abstract class BaseAccessManager implements AccessManager {
 			}
 		}
 		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
-		postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, unmodifiable);
+		if (!unmodifiable.isEmpty()) {
+			postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, unmodifiable);
+		}
 		return unmodifiable;
 	}
 
@@ -202,9 +212,30 @@ public abstract class BaseAccessManager implements AccessManager {
 		postEvent(LicensingLifeCycle.RESTRICTIONS_EXECUTED, restrictions);
 	}
 	
+	protected String validate(LicensingCondition condition) {
+		Date validFrom = condition.getValidFrom();
+		if (validFrom == null) {
+			String format = "Valid from not specified for condition %s";
+			return String.format(format, condition);
+		}
+		Date now = new Date();
+		if (validFrom.after(now)) {
+			String format = "Valid from starts in the future for condition %s";
+			return String.format(format, condition);
+		}
+		Date validUntil = condition.getValidUntil();
+		if (validUntil == null) {
+			String format = "Valid until not specified for condition %s";
+			return String.format(format, condition);
+		}
+		if (validUntil.before(now)) {
+			String format = "Valid until ends in the past for condition %s";
+			return String.format(format, condition);
+		}
+		return null;
+	}
+	
 	protected abstract void postEvent(String topic, Object data);
-
-	protected abstract void sendEvent(String topic, Object data);
 
 	protected abstract void logError(String message, Throwable e);
 
