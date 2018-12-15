@@ -1,4 +1,4 @@
-package ru.arsysop.passage.lic.net.tests;
+package ru.arsysop.passage.lic.json.tests;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -18,9 +18,9 @@ import ru.arsysop.passage.lic.base.BaseFeaturePermission;
 import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 import ru.arsysop.passage.lic.base.FeaturePermissions;
 import ru.arsysop.passage.lic.base.LicensingConditions;
-import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
-import ru.arsysop.passage.lic.internal.net.FeaturePermissionMixln;
-import ru.arsysop.passage.lic.internal.net.NetFeaturePermissionTransport;
+import ru.arsysop.passage.lic.internal.json.FeaturePermissionAggregator;
+import ru.arsysop.passage.lic.internal.json.FeaturePermissionMixln;
+import ru.arsysop.passage.lic.internal.json.JsonFeaturePermissionTransport;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
@@ -43,7 +43,7 @@ public class NetFeaturePermissionTransportTest {
 		try {
 			byte[] byteValues = mapper.writeValueAsBytes(conditionAggregator);
 			ByteArrayInputStream bis = new ByteArrayInputStream(byteValues);
-			NetFeaturePermissionTransport transport = new NetFeaturePermissionTransport();
+			JsonFeaturePermissionTransport transport = new JsonFeaturePermissionTransport();
 			Iterable<FeaturePermission> permissions = transport.readFeaturePermissions(bis);
 			assertNotNull(permissions);
 			for (FeaturePermission permission : permissions) {

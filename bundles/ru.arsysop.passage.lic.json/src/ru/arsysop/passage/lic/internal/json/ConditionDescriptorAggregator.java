@@ -18,23 +18,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.internal.net;
+package ru.arsysop.passage.lic.internal.json;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.arsysop.passage.lic.base.BaseFeaturePermission;
+import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 
-public class FeaturePermissionAggregator {
+public class ConditionDescriptorAggregator {
 
-	private final List<BaseFeaturePermission> featurePermissions = new ArrayList<>();
+	private final List<BaseLicensingCondition> licensingConditions = new ArrayList<>();
 
-	public void addFeaturePermission(BaseFeaturePermission p) {
-		featurePermissions.add(p);
+	public List<BaseLicensingCondition> getLicensingConditions() {
+		return licensingConditions;
 	}
 
-	public List<BaseFeaturePermission> getFeaturePermissions() {
-		return featurePermissions;
+	public void addLicensingCondition(BaseLicensingCondition d) {
+		licensingConditions.add(d);
 	}
 
 }

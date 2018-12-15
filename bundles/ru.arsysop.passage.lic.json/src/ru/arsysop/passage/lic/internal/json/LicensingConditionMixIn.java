@@ -18,7 +18,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.internal.net;
+package ru.arsysop.passage.lic.internal.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

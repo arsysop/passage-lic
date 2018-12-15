@@ -27,12 +27,6 @@
 		<category name="ru.arsysop.passage.lic.category" />
 	</feature>
 	<feature
-		url="features/ru.arsysop.passage.lic.bc.feature_0.3.2.qualifier.jar"
-		id="ru.arsysop.passage.lic.bc.feature"
-		version="0.3.2.qualifier">
-		<category name="ru.arsysop.passage.lic.category" />
-	</feature>
-	<feature
 		url="features/ru.arsysop.passage.lic.net.feature_0.3.2.qualifier.jar"
 		id="ru.arsysop.passage.lic.net.feature"
 		version="0.3.2.qualifier">
@@ -59,6 +53,18 @@
 	<feature
 		url="features/ru.arsysop.passage.lic.feature_0.3.2.qualifier.jar"
 		id="ru.arsysop.passage.lic.feature"
+		version="0.3.2.qualifier">
+		<category name="ru.arsysop.passage.lic.category" />
+	</feature>
+	<feature
+		url="features/ru.arsysop.passage.lic.bc.feature_0.3.2.qualifier.jar"
+		id="ru.arsysop.passage.lic.bc.feature"
+		version="0.3.2.qualifier">
+		<category name="ru.arsysop.passage.lic.category" />
+	</feature>
+	<feature
+		url="features/ru.arsysop.passage.lic.json.feature_0.3.2.qualifier.jar"
+		id="ru.arsysop.passage.lic.json.feature"
 		version="0.3.2.qualifier">
 		<category name="ru.arsysop.passage.lic.category" />
 	</feature>

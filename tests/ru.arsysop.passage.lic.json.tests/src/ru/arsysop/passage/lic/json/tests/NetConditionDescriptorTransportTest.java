@@ -1,4 +1,4 @@
-package ru.arsysop.passage.lic.net.tests;
+package ru.arsysop.passage.lic.json.tests;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -16,9 +16,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 import ru.arsysop.passage.lic.base.LicensingConditions;
-import ru.arsysop.passage.lic.internal.net.ConditionDescriptorAggregator;
-import ru.arsysop.passage.lic.internal.net.LicensingConditionMixIn;
-import ru.arsysop.passage.lic.internal.net.NetConditionDescriptorTransport;
+import ru.arsysop.passage.lic.internal.json.ConditionDescriptorAggregator;
+import ru.arsysop.passage.lic.internal.json.JsonLicensingConditionTransport;
+import ru.arsysop.passage.lic.internal.json.LicensingConditionMixIn;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 @SuppressWarnings("restriction")
@@ -40,7 +40,7 @@ public class NetConditionDescriptorTransportTest {
 		try {
 			byte[] byteValues = mapper.writeValueAsBytes(conditionAggregator);
 			ByteArrayInputStream bis = new ByteArrayInputStream(byteValues);
-			NetConditionDescriptorTransport transport = new NetConditionDescriptorTransport();
+			JsonLicensingConditionTransport transport = new JsonLicensingConditionTransport();
 			Iterable<LicensingCondition> conditions = transport.readConditionDescriptors(bis);
 			assertNotNull(conditions);
 			for (LicensingCondition condition : conditions) {

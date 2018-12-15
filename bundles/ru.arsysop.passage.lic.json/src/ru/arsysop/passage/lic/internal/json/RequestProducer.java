@@ -18,15 +18,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.net;
+package ru.arsysop.passage.lic.internal.json;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import org.apache.http.HttpEntity;
@@ -46,47 +44,26 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.arsysop.passage.lic.base.BaseFeaturePermission;
 import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 import ru.arsysop.passage.lic.base.LicensingProperties;
-import ru.arsysop.passage.lic.internal.net.ConditionDescriptorAggregator;
-import ru.arsysop.passage.lic.internal.net.FeaturePermissionAggregator;
-import ru.arsysop.passage.lic.internal.net.LicensingConditionMixIn;
+import ru.arsysop.passage.lic.net.LicensingRequests;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 
 public class RequestProducer {
+
+	static Logger logger = Logger.getLogger(RequestProducer.class.getName());
 
 	private static final String REQUEST_ACTION_CONDITIONS_EVALUATE = "evaluateConditions"; // NLS-$1
 	private static final String CHARSET_UTF_8 = "UTF-8"; // NLS-$1
 
 	public static final String PARAMETER_CONFIGURATION = "configuration"; // NLS-$1
 
-	private final Logger logger = Logger.getLogger(RequestProducer.class.getName());
-
-	public Map<String, String> initRequestParams(String host, String port, String modeId, String productId,
-			String productVersion) {
-		Map<String, String> requestAttributes = new HashMap<>();
-		requestAttributes.put(RequestParameters.HOST, host);
-		requestAttributes.put(RequestParameters.PORT, port);
-
-		requestAttributes.put(RequestParameters.USER, "12345678");
-		requestAttributes.put(RequestParameters.MODE, modeId);
-		requestAttributes.put(RequestParameters.PRODUCT, productId);
-		requestAttributes.put(RequestParameters.VERSION, productVersion);
-		return requestAttributes;
-	}
-
-	public URIBuilder createRequestURI(CloseableHttpClient httpClient, HttpHost host,
-			Map<String, String> requestAttributes, String requestActionType) {
-		requestAttributes.put(RequestParameters.ACTION, requestActionType);
-		requestAttributes.put(RequestParameters.CONTENT_TYPE, "application/json");
-		return createRequestUriBuilder(requestAttributes);
-	}
 
 	public Iterable<? extends FeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient,
 			HttpHost host, Map<String, String> requestAttributes, Iterable<LicensingCondition> conditions) {
 		Iterable<BaseFeaturePermission> permissions = new ArrayList<>();
 		try {
-			requestAttributes.put(RequestParameters.ACTION, REQUEST_ACTION_CONDITIONS_EVALUATE);
-			URIBuilder builder = createRequestUriBuilder(requestAttributes);
+			requestAttributes.put(LicensingRequests.ACTION, REQUEST_ACTION_CONDITIONS_EVALUATE);
+			URIBuilder builder = LicensingRequests.createRequestUriBuilder(requestAttributes);
 			FeaturePermissionAggregator transferObject = processingEvaluateConditions(httpClient, host, builder,
 					conditions);
 			permissions = transferObject.getFeaturePermissions();
@@ -160,43 +137,6 @@ public class RequestProducer {
 			}
 		};
 		return httpClient.execute(host, httpPost, responseHandler);
-	}
-
-	private URIBuilder createRequestUriBuilder(Map<String, String> attributes) {
-		String host = "";
-		String port = "";
-		Object hostAttr = attributes.get(RequestParameters.HOST);
-		Object portAttr = attributes.get(RequestParameters.PORT);
-		if (hostAttr instanceof String) {
-			host = (String) hostAttr;
-		} else {
-			logger.info("Host value undefined.");
-			return null;
-		}
-
-		if (portAttr instanceof String) {
-			port = (String) portAttr;
-		} else {
-			logger.info("Port value undefined.");
-			return null;
-		}
-
-		String requestHead = String.format("%s://%s:%s", RequestParameters.PROTOCOL_TYPE_ID, host, port);
-		URIBuilder builder;
-		try {
-			builder = new URIBuilder(requestHead);
-			for (Entry<String, String> entry : attributes.entrySet()) {
-				if (entry.getKey().equals(RequestParameters.HOST) || entry.getKey().equals(RequestParameters.PORT)) {
-					continue;
-				}
-				builder.setParameter(entry.getKey(), entry.getValue());
-			}
-			return builder;
-
-		} catch (URISyntaxException e) {
-			logger.info(e.getMessage());
-		}
-		return null;
 	}
 
 }

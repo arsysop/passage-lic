@@ -18,23 +18,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
+package ru.arsysop.passage.lic.internal.json;
 
-package ru.arsysop.passage.lic.net;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RequestParameters {
+public class FeaturePermissionMixln {
 
-	
-	public static final String PRODUCT = "product"; //$NON-NLS-1$
-	public static final String VERSION = "version"; //$NON-NLS-1$
-	public static final String USER = "user"; //$NON-NLS-1$
-	
-	public static final String ACTION = "action";
-	public static final String MODE = "mode";
-	public static final String HANDLER = "handler";
-	
-	public static final String PROTOCOL_TYPE_ID = "http";
-	public static final String HOST = "host";
-	public static final String PORT = "port";
-	public static final String CONTENT_TYPE = "content.type";
-	
+	public FeaturePermissionMixln(@JsonProperty("featureIdentifier") String featureIdentifier,
+			@JsonProperty("matchVersion") String matchVersion, @JsonProperty("matchRule") String matchRule,
+			@JsonProperty("leaseTime") String leaseTime, @JsonProperty("expireTime") String expireTime) {
+	}
 }
