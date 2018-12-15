@@ -13,5 +13,4 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
  org.bouncycastle.bcpg;bundle-version="1.59.0",
  org.bouncycastle.bcpkix;bundle-version="1.59.0",
  org.bouncycastle.bcprov;bundle-version="1.59.0"
-Service-Component: OSGI-INF/*.xml
 Export-Package: ru.arsysop.passage.lic.bc;x-internal:=true

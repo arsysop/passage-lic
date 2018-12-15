@@ -79,12 +79,10 @@ import org.bouncycastle.openpgp.operator.jcajce.JcaPGPDigestCalculatorProviderBu
 import org.bouncycastle.openpgp.operator.jcajce.JcaPGPKeyPair;
 import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyDecryptorBuilder;
 import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyEncryptorBuilder;
-import org.osgi.service.component.annotations.Component;
 
 import ru.arsysop.passage.lic.runtime.io.StreamCodec;
 
-@Component
-public class BcConditionCodec implements StreamCodec {
+public class BcStreamCodec implements StreamCodec {
 
 	private static final String ALGORITM = "RSA"; //$NON-NLS-1$
 	private static final String BOUNCY_CASTLE_ID = "BC"; //$NON-NLS-1$

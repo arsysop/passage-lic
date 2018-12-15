@@ -34,10 +34,10 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import ru.arsysop.passage.lic.base.LicensingPaths;
-import ru.arsysop.passage.lic.bc.BcConditionCodec;
+import ru.arsysop.passage.lic.bc.BcStreamCodec;
 
 @SuppressWarnings("restriction")
-public class BcConditionCodecTest {
+public class BcStreamCodecTest {
 
 	/**
 	 * Passed through maven-surefire-plugin configuration
@@ -63,7 +63,7 @@ public class BcConditionCodecTest {
 
 	@Test
 	public void testCodecPositive() throws Exception {
-		BcConditionCodec codec = new BcConditionCodec();
+		BcStreamCodec codec = new BcStreamCodec();
 		String keyName = "key"; ////$NON-NLS-1$
 		File publicFile = keyFolder.newFile(keyName + LicensingPaths.EXTENSION_PRODUCT_PUBLIC);
 		String publicKey = publicFile.getPath();
