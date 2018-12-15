@@ -85,7 +85,6 @@ import ru.arsysop.passage.lic.runtime.io.StreamCodec;
 public class BcStreamCodec implements StreamCodec {
 
 	private static final String ALGORITM = "RSA"; //$NON-NLS-1$
-	private static final String BOUNCY_CASTLE_ID = "BC"; //$NON-NLS-1$
 
 	static {
 		Security.addProvider(new BouncyCastleProvider());
@@ -102,7 +101,7 @@ public class BcStreamCodec implements StreamCodec {
 
 		PGPKeyRingGenerator keyRingGen;
 		try {
-			KeyPairGenerator generator = KeyPairGenerator.getInstance(ALGORITM, BOUNCY_CASTLE_ID);
+			KeyPairGenerator generator = KeyPairGenerator.getInstance(ALGORITM, BouncyCastleProvider.PROVIDER_NAME);
 			generator.initialize(keySize);
 
 			KeyPair keyPair = generator.generateKeyPair();
@@ -118,11 +117,8 @@ public class BcStreamCodec implements StreamCodec {
 			JcePBESecretKeyEncryptorBuilder jcePBESecretKeyEncryptorBuilder = new JcePBESecretKeyEncryptorBuilder(
 					PGPEncryptedData.CAST5, sha1Calc);
 
-			PBESecretKeyEncryptor secretKeyEcriptor = jcePBESecretKeyEncryptorBuilder.setProvider(BOUNCY_CASTLE_ID)
+			PBESecretKeyEncryptor secretKeyEcriptor = jcePBESecretKeyEncryptorBuilder.setProvider(BouncyCastleProvider.PROVIDER_NAME)
 					.build(password.toCharArray());
-
-			PGPSecretKey secretKey = new PGPSecretKey(PGPSignature.DEFAULT_CERTIFICATION, pgpKeyPair, username,
-					sha1Calc, null, null, certificationSignerBuilder, secretKeyEcriptor);
 
 			PGPSignatureSubpacketGenerator subpacketGenerator = new PGPSignatureSubpacketGenerator();
 
