@@ -62,10 +62,6 @@ public class BasePermissionExaminerTest {
 				// do nothing
 			}
 
-			@Override
-			protected void sendEvent(String topic, Object data) {
-				// do nothing
-			}
 		};
 		Object source = new Object();
 		LicensingConfiguration configuration = LicensingConfigurations.create(null, null);

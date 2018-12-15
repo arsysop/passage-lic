@@ -21,13 +21,12 @@
 package ru.arsysop.passage.lic.base.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.After;
 import org.junit.Test;
@@ -36,7 +35,9 @@ import ru.arsysop.passage.lic.base.BaseAccessManager;
 import ru.arsysop.passage.lic.base.BaseLicensingCondition;
 import ru.arsysop.passage.lic.base.LicensingConditions;
 import ru.arsysop.passage.lic.base.LicensingConfigurations;
+import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
+import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
 public class BaseAccessManagerTest {
 
@@ -74,13 +75,22 @@ public class BaseAccessManagerTest {
 		int logSize = 0;
 		int eventSize = 0;
 		checkMaps(logSize, eventSize);
-		manager.evaluateConditions(null, null);
+
+		Iterable<FeaturePermission> permissions = Collections.emptyList();
+		permissions = manager.evaluateConditions(null, null);
+		assertFalse(permissions.iterator().hasNext());
 		logSize++;
 		checkMaps(logSize, eventSize);
-		manager.evaluateConditions(new ArrayList<>(), null);
+
+		permissions = manager.evaluateConditions(new ArrayList<>(), null);
+		assertFalse(permissions.iterator().hasNext());
+		eventSize++;
 		checkMaps(logSize, eventSize);
-		manager.evaluateConditions(Collections.singleton(null), null);
+
+		permissions = manager.evaluateConditions(Collections.singleton(null), null);
+		assertFalse(permissions.iterator().hasNext());
 		logSize++;
+		eventSize++;
 		checkMaps(logSize, eventSize);
 	}
 
@@ -88,33 +98,81 @@ public class BaseAccessManagerTest {
 	public void testEvaluateConditionDates() {
 		int logSize = 0;
 		int eventSize = 0;
-		manager.evaluateConditions(Collections.singleton(createCondition(null, null)), null);
+		Iterable<FeaturePermission> permissions = Collections.emptyList();
+		permissions = manager.evaluateConditions(Collections.singleton(createCondition(null, null)), null);
+		assertFalse(permissions.iterator().hasNext());
 		logSize++;
+		eventSize++;
 		checkMaps(logSize, eventSize);
-		manager.evaluateConditions(Collections.singleton(createCondition(new Date(), null)), null);
+
+		permissions = manager.evaluateConditions(Collections.singleton(createCondition(new Date(), null)), null);
+		assertFalse(permissions.iterator().hasNext());
 		logSize++;
+		eventSize++;
 		checkMaps(logSize, eventSize);
-		manager.evaluateConditions(Collections.singleton(createCondition(null, new Date())), null);
+
+		permissions = manager.evaluateConditions(Collections.singleton(createCondition(null, new Date())), null);
+		assertFalse(permissions.iterator().hasNext());
 		logSize++;
+		eventSize++;
 		checkMaps(logSize, eventSize);
+
 		Date before = new Date(System.currentTimeMillis()-100500);
 		Date after = new Date(System.currentTimeMillis()+100500);
-		manager.evaluateConditions(Collections.singleton(createCondition(after, after)), null);
+		permissions = manager.evaluateConditions(Collections.singleton(createCondition(after, after)), null);
+		assertFalse(permissions.iterator().hasNext());
 		logSize++;
+		eventSize++;
 		checkMaps(logSize, eventSize);
-		manager.evaluateConditions(Collections.singleton(createCondition(before, before)), null);
+		
+		permissions = manager.evaluateConditions(Collections.singleton(createCondition(before, before)), null);
+		assertFalse(permissions.iterator().hasNext());
 		logSize++;
+		eventSize++;
 		checkMaps(logSize, eventSize);
-		manager.evaluateConditions(Collections.singleton(createCondition(after, before)), null);
+		
+		permissions = manager.evaluateConditions(Collections.singleton(createCondition(after, before)), null);
+		assertFalse(permissions.iterator().hasNext());
 		logSize++;
+		eventSize++;
 		checkMaps(logSize, eventSize);
-		manager.evaluateConditions(Collections.singleton(createCondition(before, after)), null);
+		
+		permissions = manager.evaluateConditions(Collections.singleton(createCondition(before, after)), null);
+		assertFalse(permissions.iterator().hasNext());
 		logSize++;
+		eventSize++;
 		checkMaps(logSize, eventSize);
 	}
 
 	protected BaseLicensingCondition createCondition(Date from, Date until) {
 		return LicensingConditions.create(FEATURE_ID, FEATURE_VERSION, null, from, until, null, null);
+	}
+
+	@Test
+	public void testExaminePermissionsNegative() {
+		int logSize = 0;
+		int eventSize = 0;
+		Iterable<RestrictionVerdict> verdicts = Collections.emptyList();
+		verdicts = manager.examinePermissons(null, null, null);
+		assertFalse(verdicts.iterator().hasNext());
+		logSize++;
+		checkMaps(logSize, eventSize);
+
+		verdicts = manager.examinePermissons(null, null, conf);
+		assertFalse(verdicts.iterator().hasNext());
+		logSize++;
+		checkMaps(logSize, eventSize);
+
+		verdicts = manager.examinePermissons(new ArrayList<>(), null, conf);
+		assertFalse(verdicts.iterator().hasNext());
+		logSize++;
+		checkMaps(logSize, eventSize);
+
+		verdicts = manager.examinePermissons(Collections.singleton(null), null, conf);
+		assertFalse(verdicts.iterator().hasNext());
+		logSize++;
+		logSize++;
+		checkMaps(logSize, eventSize);
 	}
 
 	protected void checkMaps(int logSize, int eventSize) {

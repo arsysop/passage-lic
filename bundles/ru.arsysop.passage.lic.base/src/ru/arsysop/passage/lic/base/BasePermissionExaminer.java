@@ -32,7 +32,6 @@ import ru.arsysop.passage.lic.base.LicensingEvents.LicensingConditionEvents;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
-import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 import ru.arsysop.passage.lic.runtime.PermissionExaminer;
 import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
@@ -100,7 +99,5 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 	}
 
 	protected abstract void postEvent(String topic, Object data);
-
-	protected abstract void sendEvent(String topic, Object data);
 
 }

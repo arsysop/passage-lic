@@ -47,7 +47,7 @@ public interface AccessManager {
 
 	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration);
 
-	Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements, Iterable<FeaturePermission> permissions);
+	Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements, Iterable<FeaturePermission> permissions, LicensingConfiguration configuration);
 
 	void executeRestrictions(Iterable<RestrictionVerdict> restrictions);
 

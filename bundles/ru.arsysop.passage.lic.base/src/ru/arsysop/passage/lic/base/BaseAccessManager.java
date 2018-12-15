@@ -102,7 +102,7 @@ public abstract class BaseAccessManager implements AccessManager {
 		Iterable<ConfigurationRequirement> requirements = resolveRequirements(configuration);
 		Iterable<LicensingCondition> conditions = extractConditions(configuration);
 		Iterable<FeaturePermission> permissions = evaluateConditions(conditions, configuration);
-		Iterable<RestrictionVerdict> verdicts = examinePermissons(requirements, permissions);
+		Iterable<RestrictionVerdict> verdicts = examinePermissons(requirements, permissions, configuration);
 		executeRestrictions(verdicts);
 	}
 
@@ -175,20 +175,30 @@ public abstract class BaseAccessManager implements AccessManager {
 			}
 		}
 		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
-		if (!unmodifiable.isEmpty()) {
-			postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, unmodifiable);
-		}
+		postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, unmodifiable);
 		return unmodifiable;
 	}
 
 	@Override
 	public Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements,
-			Iterable<FeaturePermission> permissions) {
+			Iterable<FeaturePermission> permissions, LicensingConfiguration configuration) {
+		if (configuration == null) {
+			logError("Invalid configuration", new NullPointerException());
+			return Collections.emptyList();
+		}
+		if (requirements == null) {
+			logError("Invalid configuration requirements", new NullPointerException());
+			return Collections.emptyList();
+		}
 		if (permissionExaminer == null) {
 			String message = String.format("No permission examiner defined, rejecting all %s", requirements);
 			logError(message, new NullPointerException());
 			List<RestrictionVerdict> verdicts = new ArrayList<>();
 			for (ConfigurationRequirement requirement : requirements) {
+				if (requirement == null) {
+					logError("Invalid configuration requirement ignored", new NullPointerException());
+					continue;
+				}
 				RestrictionVerdict verdict = new BaseRestrictionVerdict(requirement, requirement.getRestrictionLevel());
 				verdicts.add(verdict);
 			}

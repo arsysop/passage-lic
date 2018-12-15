@@ -48,10 +48,4 @@ public class EquinoxPermissionExaminer extends BasePermissionExaminer implements
 		eventAdmin.postEvent(event);
 	}
 
-	@Override
-	protected void sendEvent(String topic, Object data) {
-		Event event = EquinoxEvents.createEvent(topic, data);
-		eventAdmin.sendEvent(event);
-	}
-
 }
