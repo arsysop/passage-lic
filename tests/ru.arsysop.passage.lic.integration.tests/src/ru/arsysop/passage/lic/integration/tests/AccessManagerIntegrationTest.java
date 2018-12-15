@@ -52,7 +52,7 @@ public class AccessManagerIntegrationTest extends LicIntegrationBase {
 	public void testAccessManagerNoLicense() {
 		assertEquals(UNDEFINED, System.getProperty(SOME_COMPONENT_ID, UNDEFINED));
 		assertEquals(UNDEFINED, System.getProperty(SOME_BUNDLE_ID, UNDEFINED));
-		accessManager.executeAccessRestrictions(null);
+		accessManager.executeAccessRestrictions(LicensingConfigurations.create(SOME_PRODUCT_ID, null));
 		assertEquals(LicensingNamespaces.ATTRIBUTE_LEVEL_ERROR, System.getProperty(SOME_COMPONENT_ID, UNDEFINED));
 		assertEquals(LicensingNamespaces.ATTRIBUTE_LEVEL_WARN, System.getProperty(SOME_BUNDLE_ID, UNDEFINED));
 	}
