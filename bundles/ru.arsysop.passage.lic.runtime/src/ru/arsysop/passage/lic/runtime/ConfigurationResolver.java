@@ -33,6 +33,6 @@ public interface ConfigurationResolver {
 	 * @param configuration
 	 * @return
 	 */
-	Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration);
+	Iterable<ConfigurationRequirement> resolveConfigurationRequirements(LicensingConfiguration configuration);
 
 }

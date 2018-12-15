@@ -32,6 +32,7 @@ import ru.arsysop.passage.lic.base.LicensingEvents.LicensingConditionEvents;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 import ru.arsysop.passage.lic.runtime.PermissionExaminer;
 import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
@@ -39,7 +40,7 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 
 	@Override
 	public Iterable<RestrictionVerdict> examine(Iterable<ConfigurationRequirement> requirements,
-			Iterable<FeaturePermission> permissions, Object configuration) {
+			Iterable<FeaturePermission> permissions) {
 		Map<String, List<ConfigurationRequirement>> required = new HashMap<>();
 		for (ConfigurationRequirement requirement : requirements) {
 			String featureId = requirement.getFeatureIdentifier();

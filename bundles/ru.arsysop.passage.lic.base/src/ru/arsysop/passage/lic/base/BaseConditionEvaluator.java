@@ -75,7 +75,7 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 	}
 
 	protected FeaturePermission createPermission(LicensingCondition condition, LicensingConfiguration configuration) {
-		return FeaturePermissions.createDefault(condition);
+		return FeaturePermissions.createDefault(condition, configuration);
 	}
 
 	protected abstract boolean evaluateSegment(String key, String value);

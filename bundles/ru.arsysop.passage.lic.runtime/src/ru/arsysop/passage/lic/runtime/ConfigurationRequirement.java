@@ -44,4 +44,6 @@ public interface ConfigurationRequirement {
 
 	Object getRequirementSource();
 	
+	LicensingConfiguration getLicensingConfiguration();
+
 }

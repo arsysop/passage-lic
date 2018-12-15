@@ -40,10 +40,11 @@ import ru.arsysop.passage.lic.base.LicensingVersions;
 import ru.arsysop.passage.lic.equinox.LicensingBundles;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 @Component
 public class BundleCapabilityResolver implements ConfigurationResolver {
-	
+
 	private Logger logger;
 	private BundleContext bundleContext;
 
@@ -58,11 +59,12 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 	}
 
 	@Override
-	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
+	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(LicensingConfiguration configuration) {
 		String lmName = "License Management";
 		if (bundleContext == null) {
 			logger.severe("Unable to extract configuration requirements: invalid BundleContext");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+					LicensingVersions.VERSION_DEFAULT, lmName, this, configuration);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
@@ -72,12 +74,15 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 				Map<String, Object> attributes = capability.getAttributes();
 				Map<String, String> directives = capability.getDirectives();
 				BundleRevision resource = capability.getResource();
-				BaseConfigurationRequirement extracted = ConfigurationRequirements.extractFromCapability(attributes, directives, resource);
+				BaseConfigurationRequirement extracted = ConfigurationRequirements.extractFromCapability(attributes,
+						directives, resource, configuration);
 				if (extracted != null) {
 					result.add(extracted);
 				} else {
 					logger.severe(String.format("Unable to extract configuration requirements: %s", resource));
-					result.add(ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, resource));
+					result.add(
+							ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+									LicensingVersions.VERSION_DEFAULT, lmName, resource, configuration));
 					return result;
 				}
 			}

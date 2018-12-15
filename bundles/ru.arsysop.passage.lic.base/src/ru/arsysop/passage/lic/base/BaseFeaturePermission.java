@@ -26,15 +26,18 @@ import java.util.Date;
 
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public class BaseFeaturePermission implements FeaturePermission {
 
 	private final LicensingCondition licensingCondition;
+	private final LicensingConfiguration licensingConfiguration;
 	private final Date leaseDate;
 	private final Date expireDate;
 
-	BaseFeaturePermission(LicensingCondition licensingCondition, Date lease, Date expire) {
-		this.licensingCondition = licensingCondition;
+	BaseFeaturePermission(LicensingCondition condition, LicensingConfiguration configuration, Date lease, Date expire) {
+		this.licensingCondition = condition;
+		this.licensingConfiguration = configuration;
 		this.leaseDate = lease;
 		this.expireDate = expire;
 	}
@@ -42,6 +45,10 @@ public class BaseFeaturePermission implements FeaturePermission {
 	@Override
 	public LicensingCondition getLicensingCondition() {
 		return licensingCondition;
+	}
+	
+	public LicensingConfiguration getLicensingConfiguration() {
+		return licensingConfiguration;
 	}
 
 	@Override

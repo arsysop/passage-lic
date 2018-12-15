@@ -22,6 +22,8 @@ package ru.arsysop.passage.lic.base.tests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,10 +62,24 @@ public class BaseAccessManagerTest {
 	}
 
 	@Test
-	public void testEvaluateConditions() {
+	public void testEvaluateConditionsNegative() {
+		int logSize = 0;
+		int eventSize = 0;
+		checkMaps(logSize, eventSize);
 		manager.evaluateConditions(null, null);
-		assertEquals(1, log.size());
-		assertEquals(0, events.size());
+		logSize++;
+		checkMaps(logSize, eventSize);
+		manager.evaluateConditions(new ArrayList<>(), null);
+		eventSize++;
+		checkMaps(logSize, eventSize);
+		manager.evaluateConditions(Collections.singleton(null), null);
+		logSize++;
+		checkMaps(logSize, eventSize);
+	}
+
+	protected void checkMaps(int logSize, int eventSize) {
+		assertEquals(logSize, log.size());
+		assertEquals(eventSize, events.size());
 	}
 
 

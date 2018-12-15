@@ -31,6 +31,8 @@ public interface FeaturePermission {
 
 	LicensingCondition getLicensingCondition();
 
+	LicensingConfiguration getLicensingConfiguration();
+
 	Date getLeaseDate();
 
 	Date getExpireDate();
