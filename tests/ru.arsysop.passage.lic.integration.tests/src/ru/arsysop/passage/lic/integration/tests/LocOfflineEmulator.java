@@ -46,7 +46,7 @@ public class LocOfflineEmulator {
 		String username = "user"; //$NON-NLS-1$
 		String password = "password"; //$NON-NLS-1$
 	
-		streamCodec.createKeyPair(publicKeyPath, privateKeyPath, username, password, 1024);
+		streamCodec.createKeyPair(publicKeyPath, privateKeyPath, username, password);
 	
 		try (FileOutputStream fos = new FileOutputStream(licFile)) {
 			Resource resource = new XMIResourceImpl();

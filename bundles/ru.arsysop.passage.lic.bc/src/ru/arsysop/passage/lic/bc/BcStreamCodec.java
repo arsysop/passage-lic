@@ -35,12 +35,12 @@ import java.security.KeyPairGenerator;
 import java.security.Security;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Objects;
 
 import org.bouncycastle.bcpg.ArmoredOutputStream;
 import org.bouncycastle.bcpg.BCPGOutputStream;
 import org.bouncycastle.bcpg.HashAlgorithmTags;
-import org.bouncycastle.crypto.digests.SHA512Digest;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openpgp.PGPCompressedData;
 import org.bouncycastle.openpgp.PGPCompressedDataGenerator;
@@ -79,29 +79,45 @@ import org.bouncycastle.openpgp.operator.jcajce.JcaPGPDigestCalculatorProviderBu
 import org.bouncycastle.openpgp.operator.jcajce.JcaPGPKeyPair;
 import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyDecryptorBuilder;
 import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyEncryptorBuilder;
+import org.osgi.service.component.annotations.Activate;
 
 import ru.arsysop.passage.lic.runtime.io.StreamCodec;
 
 public class BcStreamCodec implements StreamCodec {
 
-	private static final String ALGORITM = "RSA"; //$NON-NLS-1$
-
 	static {
 		Security.addProvider(new BouncyCastleProvider());
 	}
 
-	private int hashAlgorithm = PGPUtil.SHA512;
+	private String keyAlgo = BcProperties.KEY_ALGO_DEFAULT;
+	private int keySize = BcProperties.KEY_SIZE_DEFAULT;
+	private int hashAlgo = PGPUtil.SHA512;
+	
+	@Activate
+	public void activate(Map<String, Object> properties) {
+		keyAlgo = BcProperties.extractKeyAlgo(properties);
+		keySize = BcProperties.extractKeySize(properties);
+	}
+	
+	@Override
+	public String getKeyAlgo() {
+		return keyAlgo;
+	}
+	
+	@Override
+	public int getKeySize() {
+		return keySize;
+	}
 
 	@Override
-	public void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password,
-			int keySize) throws IOException {
+	public void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password) throws IOException {
 
 		Path pathPublicKey = Paths.get(publicKeyPath);
 		Path pathPrivateKey = Paths.get(privateKeyPath);
 
 		PGPKeyRingGenerator keyRingGen;
 		try {
-			KeyPairGenerator generator = KeyPairGenerator.getInstance(ALGORITM, BouncyCastleProvider.PROVIDER_NAME);
+			KeyPairGenerator generator = KeyPairGenerator.getInstance(keyAlgo, BouncyCastleProvider.PROVIDER_NAME);
 			generator.initialize(keySize);
 
 			KeyPair keyPair = generator.generateKeyPair();
@@ -166,7 +182,7 @@ public class BcStreamCodec implements StreamCodec {
 			PGPCompressedDataGenerator generator = new PGPCompressedDataGenerator(PGPCompressedData.ZLIB);
 			BCPGOutputStream generated = new BCPGOutputStream(generator.open(aos));
 			PGPContentSignerBuilder csBuilder = new JcaPGPContentSignerBuilder(key.getPublicKey().getAlgorithm(),
-					hashAlgorithm);
+					hashAlgo);
 
 			PGPSignatureGenerator signatureGenerator = new PGPSignatureGenerator(csBuilder);
 			PGPDigestCalculatorProvider calcProvider = new JcaPGPDigestCalculatorProviderBuilder()
@@ -238,7 +254,7 @@ public class BcStreamCodec implements StreamCodec {
 		}
 		byte[] publicKeyRing = baos.toByteArray();
 		if (digest != null) {
-			final byte[] calculatedDigest = calculateDigit(publicKeyRing);
+			final byte[] calculatedDigest = BcDigest.calculateDigest(publicKeyRing);
 			for (int i = 0; i < calculatedDigest.length; i++) {
 				if (calculatedDigest[i] != (digest[i])) {
 					throw new IOException("Key ring digest does not match.");
@@ -281,14 +297,5 @@ public class BcStreamCodec implements StreamCodec {
 		} catch (Exception e) {
 			throw new IOException("Decoding error", e);
 		}
-	}
-
-	public static byte[] calculateDigit(byte[] source) {
-		final SHA512Digest dig = new SHA512Digest();
-		dig.reset();
-		dig.update(source, 0, source.length);
-		final byte[] digest = new byte[dig.getDigestSize()];
-		dig.doFinal(digest, 0);
-		return digest;
 	}
 }

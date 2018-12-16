@@ -44,6 +44,12 @@ public final class LicensingProperties {
 	public static final String LICENSING_CONTENT_TYPE_JSON = "application/json"; //$NON-NLS-1$
 	public static final String LICENSING_CONTENT_TYPE_XML = "application/xml"; //$NON-NLS-1$
 
+	public static final String LICENSING_SECURITY_KEY_ALGO = "licensing.security.key.algo"; //$NON-NLS-1$
+	public static final String LICENSING_SECURITY_KEY_ALGO_RSA = "RSA"; //$NON-NLS-1$
+	public static final String LICENSING_SECURITY_KEY_SIZE = "licensing.security.key.size"; //$NON-NLS-1$
+	public static final int LICENSING_SECURITY_KEY_SIZE_1024 = 1024;
+	public static final String LICENSING_SECURITY_HASH_ALGO = "licensing.security.hash.algo"; //$NON-NLS-1$
+
 	private LicensingProperties() {
 		// block
 	}

@@ -18,26 +18,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.registry;
+package ru.arsysop.passage.lic.bc;
 
-public interface ProductRegistry extends DescriptorRegistry {
+import org.bouncycastle.crypto.digests.SHA512Digest;
 
-	Iterable<ProductLineDescriptor> getProductLines();
+public class BcDigest {
+	
+	private BcDigest() {
+		//block
+	}
 
-	ProductLineDescriptor getProductLine(String identifier);
-
-	ProductDescriptor getProduct(String identifier);
-
-	Iterable<ProductDescriptor> getProducts();
-
-	Iterable<ProductDescriptor> getProducts(String productLineId);
-
-	Iterable<ProductVersionDescriptor> getProductVersions();
-
-	Iterable<ProductVersionDescriptor> getProductVersions(String productId);
-
-	ProductVersionDescriptor getProductVersion(String product, String version);
-
-	String createPassword(ProductVersionDescriptor productVersion);
+	public static byte[] calculateDigest(byte[] source) {
+		final SHA512Digest dig = new SHA512Digest();
+		dig.reset();
+		dig.update(source, 0, source.length);
+		final byte[] digest = new byte[dig.getDigestSize()];
+		dig.doFinal(digest, 0);
+		return digest;
+	}
 
 }

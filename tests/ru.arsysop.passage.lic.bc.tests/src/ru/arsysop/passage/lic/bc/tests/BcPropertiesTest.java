@@ -18,26 +18,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.registry;
+package ru.arsysop.passage.lic.bc.tests;
 
-public interface ProductRegistry extends DescriptorRegistry {
+import static org.junit.Assert.assertEquals;
 
-	Iterable<ProductLineDescriptor> getProductLines();
+import static ru.arsysop.passage.lic.bc.BcProperties.*;
 
-	ProductLineDescriptor getProductLine(String identifier);
+import java.util.HashMap;
 
-	ProductDescriptor getProduct(String identifier);
+import org.junit.Test;
 
-	Iterable<ProductDescriptor> getProducts();
+@SuppressWarnings("restriction")
+public class BcPropertiesTest {
+	
+	@Test
+	public void testExtractKeyAlgo() {
+		assertEquals(KEY_ALGO_DEFAULT, extractKeyAlgo(null));
+		assertEquals(KEY_ALGO_DEFAULT, extractKeyAlgo(new HashMap<>()));
+	}
 
-	Iterable<ProductDescriptor> getProducts(String productLineId);
-
-	Iterable<ProductVersionDescriptor> getProductVersions();
-
-	Iterable<ProductVersionDescriptor> getProductVersions(String productId);
-
-	ProductVersionDescriptor getProductVersion(String product, String version);
-
-	String createPassword(ProductVersionDescriptor productVersion);
-
+	@Test
+	public void testExtractKeySize() {
+		assertEquals(KEY_SIZE_DEFAULT, extractKeySize(null));
+		assertEquals(KEY_SIZE_DEFAULT, extractKeySize(new HashMap<>()));
+	}
 }
