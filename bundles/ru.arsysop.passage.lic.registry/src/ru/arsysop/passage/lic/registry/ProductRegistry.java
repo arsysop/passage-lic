@@ -22,10 +22,22 @@ package ru.arsysop.passage.lic.registry;
 
 public interface ProductRegistry extends DescriptorRegistry {
 
-	ProductLineDescriptor getProductSet(String identifier);
+	Iterable<ProductLineDescriptor> getProductLines();
+
+	ProductLineDescriptor getProductLine(String identifier);
 
 	ProductDescriptor getProduct(String identifier);
 
-	String createPassword(String identifier, String version);
+	Iterable<ProductDescriptor> getProducts();
+
+	Iterable<ProductDescriptor> getProducts(String productLineId);
+
+	Iterable<ProductVersionDescriptor> getProductVersions();
+
+	Iterable<ProductVersionDescriptor> getProductVersions(String productId);
+
+	ProductVersionDescriptor getProductVersion(String product, String version);
+
+	String createPassword(ProductVersionDescriptor productVersion);
 
 }
