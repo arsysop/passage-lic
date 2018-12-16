@@ -21,6 +21,7 @@
 package ru.arsysop.passage.lic.bc.tests;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -28,12 +29,16 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import ru.arsysop.passage.lic.base.LicensingPaths;
+import ru.arsysop.passage.lic.base.LicensingProperties;
+import ru.arsysop.passage.lic.bc.BcProperties;
 import ru.arsysop.passage.lic.bc.BcStreamCodec;
 
 @SuppressWarnings("restriction")
@@ -62,6 +67,21 @@ public class BcStreamCodecTest {
 	}
 
 	@Test
+	public void testActivate() throws Exception {
+		BcStreamCodec codec = new BcStreamCodec();
+		assertEquals(BcProperties.KEY_ALGO_DEFAULT, codec.getKeyAlgo());
+		assertEquals(BcProperties.KEY_SIZE_DEFAULT, codec.getKeySize());
+		Map<String, Object> properties = new HashMap<>();
+		String keyAlgo = "algo"; //$NON-NLS-1$
+		Integer keySize = Integer.valueOf("512"); //$NON-NLS-1$
+		properties.put(LicensingProperties.LICENSING_SECURITY_KEY_ALGO, keyAlgo);
+		properties.put(LicensingProperties.LICENSING_SECURITY_KEY_SIZE, keySize);
+		codec.activate(properties);
+		assertEquals(keyAlgo, codec.getKeyAlgo());
+		assertEquals(keySize.intValue(), codec.getKeySize());
+	}
+
+	@Test
 	public void testCodecPositive() throws Exception {
 		BcStreamCodec codec = new BcStreamCodec();
 		String keyName = "key"; ////$NON-NLS-1$
@@ -71,7 +91,7 @@ public class BcStreamCodecTest {
 		String privateKey = privateFile.getPath();
 		String username = "user"; //$NON-NLS-1$
 		String password = "password"; //$NON-NLS-1$
-		codec.createKeyPair(publicKey, privateKey, username, password, 1024);
+		codec.createKeyPair(publicKey, privateKey, username, password);
 		assertTrue(publicFile.exists());
 		assertTrue(privateFile.exists());
 

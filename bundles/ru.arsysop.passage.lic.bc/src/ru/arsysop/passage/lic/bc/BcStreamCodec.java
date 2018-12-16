@@ -98,10 +98,19 @@ public class BcStreamCodec implements StreamCodec {
 		keyAlgo = BcProperties.extractKeyAlgo(properties);
 		keySize = BcProperties.extractKeySize(properties);
 	}
+	
+	@Override
+	public String getKeyAlgo() {
+		return keyAlgo;
+	}
+	
+	@Override
+	public int getKeySize() {
+		return keySize;
+	}
 
 	@Override
-	public void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password,
-			int keySize) throws IOException {
+	public void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password) throws IOException {
 
 		Path pathPublicKey = Paths.get(publicKeyPath);
 		Path pathPrivateKey = Paths.get(privateKeyPath);

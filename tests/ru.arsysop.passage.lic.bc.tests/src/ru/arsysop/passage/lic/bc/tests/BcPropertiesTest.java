@@ -18,30 +18,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.runtime.io;
+package ru.arsysop.passage.lic.bc.tests;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import static org.junit.Assert.assertEquals;
 
-import ru.arsysop.passage.lic.runtime.ConditionMiner;
+import static ru.arsysop.passage.lic.bc.BcProperties.*;
 
-/**
- * Coder and decoder for licensing data, used by {@link ConditionMiner}
- *
- */
-public interface StreamCodec {
+import java.util.HashMap;
+
+import org.junit.Test;
+
+@SuppressWarnings("restriction")
+public class BcPropertiesTest {
 	
-	String getKeyAlgo();
+	@Test
+	public void testExtractKeyAlgo() {
+		assertEquals(KEY_ALGO_DEFAULT, extractKeyAlgo(null));
+		assertEquals(KEY_ALGO_DEFAULT, extractKeyAlgo(new HashMap<>()));
+	}
 
-	int getKeySize();
-
-	void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password)
-			throws IOException;
-
-	void encodeStream(InputStream input, OutputStream output, InputStream key, String username, String password)
-			throws IOException;
-
-	Object decodeStream(InputStream input, OutputStream output, InputStream key, byte[] digest) throws IOException;
-
+	@Test
+	public void testExtractKeySize() {
+		assertEquals(KEY_SIZE_DEFAULT, extractKeySize(null));
+		assertEquals(KEY_SIZE_DEFAULT, extractKeySize(new HashMap<>()));
+	}
 }
