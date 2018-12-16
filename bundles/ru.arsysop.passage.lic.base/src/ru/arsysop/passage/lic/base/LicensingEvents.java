@@ -95,6 +95,14 @@ public class LicensingEvents {
 		public static final String TOPIC = LicensingTopicBase + TOPIC_SEP + "ConditionEvents"; //$NON-NLS-1$
 
 		/**
+		 * Sent when conditions are rejected as invalid
+		 */
+		public static final String CONDITIONS_NOT_VALID = TOPIC + TOPIC_SEP + "conditionsNotValid"; //$NON-NLS-1$
+		/**
+		 * Sent when conditions are rejected as invalid
+		 */
+		public static final String CONDITIONS_NOT_EVALUATED = TOPIC + TOPIC_SEP + "conditionsNotEvaluated"; //$NON-NLS-1$
+		/**
 		 * Sent when conditions are leased
 		 */
 		public static final String CONDITIONS_LEASED = TOPIC + TOPIC_SEP + "conditionsLeased"; //$NON-NLS-1$

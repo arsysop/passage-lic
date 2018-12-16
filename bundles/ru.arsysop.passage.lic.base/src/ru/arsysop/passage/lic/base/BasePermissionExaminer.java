@@ -39,7 +39,7 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 
 	@Override
 	public Iterable<RestrictionVerdict> examine(Iterable<ConfigurationRequirement> requirements,
-			Iterable<FeaturePermission> permissions, Object configuration) {
+			Iterable<FeaturePermission> permissions) {
 		Map<String, List<ConfigurationRequirement>> required = new HashMap<>();
 		for (ConfigurationRequirement requirement : requirements) {
 			String featureId = requirement.getFeatureIdentifier();
@@ -99,7 +99,5 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 	}
 
 	protected abstract void postEvent(String topic, Object data);
-
-	protected abstract void sendEvent(String topic, Object data);
 
 }

@@ -41,6 +41,7 @@ import ru.arsysop.passage.lic.base.LicensingNamespaces;
 import ru.arsysop.passage.lic.base.LicensingVersions;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 @Component
 public class ComponentConfigurationResolver implements ConfigurationResolver {
@@ -78,21 +79,21 @@ public class ComponentConfigurationResolver implements ConfigurationResolver {
 	}
 
 	@Override
-	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(Object configuration) {
+	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(LicensingConfiguration configuration) {
 		String lmName = "License Management";
 		if (scr == null) {
 			logger.audit("Unable to extract configuration requirements: invalid ServiceComponentRuntime");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this, configuration);
 		}
 		if (bundleContext == null) {
 			logger.audit("Unable to extract configuration requirements: invalid BundleContext");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this, configuration);
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
 		Collection<ComponentDescriptionDTO> components = scr.getComponentDescriptionDTOs(bundles);
 		for (ComponentDescriptionDTO component : components) {
-			BaseConfigurationRequirement requirement = ConfigurationRequirements.extractFromProperties(component.properties, component);
+			BaseConfigurationRequirement requirement = ConfigurationRequirements.extractFromProperties(component.properties, component, configuration);
 			if (requirement != null) {
 				result.add(requirement);
 			}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.integration.tests.SomeStreamCodec">
+   <implementation class="ru.arsysop.passage.lic.bc.BcStreamCodec"/>
+   <service>
+      <provide interface="ru.arsysop.passage.lic.runtime.io.StreamCodec"/>
+   </service>
+   <property name="licensing.product.identifier" type="String" value="some.licensed.product"/>
+</scr:component>

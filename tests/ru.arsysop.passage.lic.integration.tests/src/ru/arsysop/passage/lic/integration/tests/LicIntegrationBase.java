@@ -25,8 +25,6 @@ import static org.junit.Assert.assertNotNull;
 import static ru.arsysop.passage.lic.base.LicensingPaths.*;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
@@ -35,10 +33,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.HashMap;
 
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -93,8 +88,6 @@ public abstract class LicIntegrationBase {
 	protected static AccessManager accessManager;
 	private static ServiceReference<EnvironmentInfo> environmentInfoReference;
 	protected static EnvironmentInfo environmentInfo;
-	private static ServiceReference<StreamCodec> conditionCodecReference;
-	protected static StreamCodec conditionCodec;
 
 	@BeforeClass
 	public static void startup() {
@@ -104,23 +97,18 @@ public abstract class LicIntegrationBase {
 		accessManager = bundleContext.getService(accessManagerReference);
 		environmentInfoReference = bundleContext.getServiceReference(EnvironmentInfo.class);
 		environmentInfo = bundleContext.getService(environmentInfoReference);
-		conditionCodecReference = bundleContext.getServiceReference(StreamCodec.class);
-		conditionCodec = bundleContext.getService(conditionCodecReference);
 	}
 
 	@AfterClass
 	public static void shutdown() {
 		accessManager = null;
 		environmentInfo = null;
-		conditionCodec = null;
 		Bundle bundle = FrameworkUtil.getBundle(LicIntegrationBase.class);
 		BundleContext bundleContext = bundle.getBundleContext();
 		bundleContext.ungetService(accessManagerReference);
 		accessManagerReference = null;
 		bundleContext.ungetService(environmentInfoReference);
 		environmentInfoReference = null;
-		bundleContext.ungetService(conditionCodecReference);
-		conditionCodecReference = null;
 	}
 
 	@Test
@@ -161,23 +149,7 @@ public abstract class LicIntegrationBase {
 		File licFile = path.resolve(composeFileName(configuration, ".lic")).toFile(); //$NON-NLS-1$
 		File licenFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_ENCRYPTED)).toFile();
 
-		String publicKeyPath = publicFile.getPath();
-		String privateKeyPath = privateFile.getPath();
-		String username = "user"; //$NON-NLS-1$
-		String password = "password"; //$NON-NLS-1$
-
-		conditionCodec.createKeyPair(publicKeyPath, privateKeyPath, username, password, 1024);
-
-		try (FileOutputStream fos = new FileOutputStream(licFile)) {
-			Resource resource = new XMIResourceImpl();
-			resource.getContents().add(license);
-			resource.save(fos, new HashMap<>());
-		}
-		try (FileInputStream open = new FileInputStream(licFile);
-				FileOutputStream encoded = new FileOutputStream(licenFile);
-				FileInputStream key = new FileInputStream(privateFile)) {
-			conditionCodec.encodeStream(open, encoded, key, username, password);
-		}
+		LocOfflineEmulator.encodeLicense(license, publicFile, privateFile, licFile, licenFile);
 	}
 
 	protected void deleteProductLicense(LicensingConfiguration configuration) throws IOException {

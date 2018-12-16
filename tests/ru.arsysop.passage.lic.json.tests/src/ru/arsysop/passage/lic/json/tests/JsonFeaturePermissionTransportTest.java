@@ -23,9 +23,10 @@ import ru.arsysop.passage.lic.internal.json.FeaturePermissionMixln;
 import ru.arsysop.passage.lic.internal.json.JsonFeaturePermissionTransport;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 @SuppressWarnings("restriction")
-public class NetFeaturePermissionTransportTest {
+public class JsonFeaturePermissionTransportTest {
 
 	private static final String FEATURE_TEST_VERSION = "test.version.1"; //$NON-NLS-1$
 	private static final String FEATURE_TEST_ID = "test.id"; //$NON-NLS-1$
@@ -65,10 +66,12 @@ public class NetFeaturePermissionTransportTest {
 
 	private FeaturePermissionAggregator createFeaturePermissionAggregator() {
 		FeaturePermissionAggregator permissionAggregator = new FeaturePermissionAggregator();
+		//FIXME: rework nulls and check the result 
+		LicensingConfiguration configuration = null;
 		Date from = null;
 		Date until = null;
 		BaseLicensingCondition condition = LicensingConditions.create(FEATURE_TEST_ID, FEATURE_TEST_VERSION, FEATURE_TEST_RULE, from, until, null, null);
-		BaseFeaturePermission permission = FeaturePermissions.create(condition, FEATURE_TEST_LEASE_TIME, FEATURE_TEST_EXPIRE_TIME);
+		BaseFeaturePermission permission = FeaturePermissions.create(condition, configuration, FEATURE_TEST_LEASE_TIME, FEATURE_TEST_EXPIRE_TIME);
 		permissionAggregator.addFeaturePermission(permission);
 		return permissionAggregator;
 

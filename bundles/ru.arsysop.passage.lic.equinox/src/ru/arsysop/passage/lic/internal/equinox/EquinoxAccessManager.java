@@ -140,12 +140,6 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 		eventAdmin.postEvent(event);
 	}
 
-	@Override
-	protected void sendEvent(String topic, Object data) {
-		Event event = EquinoxEvents.createEvent(topic, data);
-		eventAdmin.sendEvent(event);
-	}
-
 	@Reference
 	public void bindLogService(LogService logService) {
 		this.logService = logService;

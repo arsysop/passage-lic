@@ -36,11 +36,13 @@ import ru.arsysop.passage.lic.base.BasePermissionExaminer;
 import ru.arsysop.passage.lic.base.ConfigurationRequirements;
 import ru.arsysop.passage.lic.base.FeaturePermissions;
 import ru.arsysop.passage.lic.base.LicensingConditions;
+import ru.arsysop.passage.lic.base.LicensingConfigurations;
 import ru.arsysop.passage.lic.base.LicensingProperties;
 import ru.arsysop.passage.lic.base.LicensingVersions;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
 public class BasePermissionExaminerTest {
@@ -60,18 +62,14 @@ public class BasePermissionExaminerTest {
 				// do nothing
 			}
 
-			@Override
-			protected void sendEvent(String topic, Object data) {
-				// do nothing
-			}
 		};
 		Object source = new Object();
-		Object configuration = new Object();
+		LicensingConfiguration configuration = LicensingConfigurations.create(null, null);
 
 		BaseConfigurationRequirement fooRequirement = ConfigurationRequirements.createDefault(FOO_FEATURE_ID,
-				FOO_FEATURE_VERSION, FOO_FEATURE_ID, source);
+				FOO_FEATURE_VERSION, FOO_FEATURE_ID, source, configuration);
 		BaseConfigurationRequirement barRequirement = ConfigurationRequirements.createDefault(BAR_FEATURE_ID,
-				BAR_FEATURE_VERSION, BAR_FEATURE_ID, source);
+				BAR_FEATURE_VERSION, BAR_FEATURE_ID, source, configuration);
 		Iterable<ConfigurationRequirement> requirements = Arrays.asList(fooRequirement, barRequirement);
 
 		Date fooFrom = null;
@@ -82,11 +80,11 @@ public class BasePermissionExaminerTest {
 				LicensingVersions.RULE_GREATER_OR_EQUAL, fooFrom, foorUntil, null, null);
 		LicensingCondition bazCondition = LicensingConditions.create(BAZ_FEATURE_ID, "1.0.0", //$NON-NLS-1$
 				LicensingVersions.RULE_GREATER_OR_EQUAL, bazFrom, bazUntil, null, null);
-		BaseFeaturePermission fooPermission = FeaturePermissions.createDefault(fooCondition);
-		BaseFeaturePermission bazPermission = FeaturePermissions.create(bazCondition, new Date(0), new Date(0));
+		BaseFeaturePermission fooPermission = FeaturePermissions.createDefault(fooCondition, configuration);
+		BaseFeaturePermission bazPermission = FeaturePermissions.create(bazCondition, configuration, new Date(0), new Date(0));
 		Iterable<FeaturePermission> permissions = Arrays.asList(fooPermission, bazPermission);
 
-		Iterable<RestrictionVerdict> verdicts = examiner.examine(requirements, permissions, configuration);
+		Iterable<RestrictionVerdict> verdicts = examiner.examine(requirements, permissions);
 		Iterator<RestrictionVerdict> iterator = verdicts.iterator();
 		RestrictionVerdict next = iterator.next();
 		assertNotNull(next);

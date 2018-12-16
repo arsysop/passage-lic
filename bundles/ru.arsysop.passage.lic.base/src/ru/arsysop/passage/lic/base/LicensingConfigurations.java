@@ -27,7 +27,7 @@ import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 public class LicensingConfigurations {
 
 	public static LicensingConfiguration create(String product, String version) {
-		return new BaseLicensingConfiguration(product, version);
+		return new BaseLicensingConfiguration(String.valueOf(product), String.valueOf(version));
 	}
 
 	public static LicensingConfiguration create(Map<String, Object> properties) {

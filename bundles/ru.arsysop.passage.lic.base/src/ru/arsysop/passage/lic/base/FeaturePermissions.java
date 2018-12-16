@@ -23,6 +23,7 @@ package ru.arsysop.passage.lic.base;
 import java.util.Date;
 
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public class FeaturePermissions {
 
@@ -30,14 +31,14 @@ public class FeaturePermissions {
 		// block
 	}
 
-	public static BaseFeaturePermission createDefault(LicensingCondition condition) {
+	public static BaseFeaturePermission createDefault(LicensingCondition condition, LicensingConfiguration configuration) {
 		Date leaseTime = new Date();
 		Date expireTime = condition.getValidUntil();
-		return new BaseFeaturePermission(condition, leaseTime, expireTime);
+		return new BaseFeaturePermission(condition, configuration, leaseTime, expireTime);
 	}
 
-	public static BaseFeaturePermission create(LicensingCondition condition, Date lease, Date expire) {
-		return new BaseFeaturePermission(condition, lease, expire);
+	public static BaseFeaturePermission create(LicensingCondition condition, LicensingConfiguration configuration, Date lease, Date expire) {
+		return new BaseFeaturePermission(condition, configuration, lease, expire);
 	}
 
 }

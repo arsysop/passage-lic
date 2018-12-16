@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.internal.equinox.OsgiInstallAreaConditionMiner">
-   <implementation class="ru.arsysop.passage.lic.internal.equinox.OsgiInstallAreaConditionMiner"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.internal.equinox.EnvironmentBasedConditionMiner">
+   <implementation class="ru.arsysop.passage.lic.internal.equinox.EnvironmentBasedConditionMiner"/>
    <service>
       <provide interface="ru.arsysop.passage.lic.runtime.ConditionMiner"/>
    </service>
    <reference bind="bindConditionDescriptorTransport" cardinality="1..n" interface="ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport" name="ConditionDescriptorTransport" unbind="unbindConditionDescriptorTransport"/>
    <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
    <reference bind="bindKeyKeeper" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.io.KeyKeeper" name="KeyKeeper" unbind="unbindKeyKeeper"/>
-   <reference bind="bindStreamCodec" cardinality="0..1" interface="ru.arsysop.passage.lic.runtime.io.StreamCodec" name="StreamCodec" unbind="unbindStreamCodec"/>
+   <reference bind="bindStreamCodec" cardinality="0..n" interface="ru.arsysop.passage.lic.runtime.io.StreamCodec" name="StreamCodec" unbind="unbindStreamCodec"/>
 </scr:component>

@@ -53,13 +53,14 @@ import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 import ru.arsysop.passage.lic.runtime.io.KeyKeeper;
 
 @Component
-public class OsgiInstallAreaConditionMiner implements ConditionMiner {
+public class EnvironmentBasedConditionMiner implements ConditionMiner {
 	
-	private final Logger logger = Logger.getLogger(OsgiInstallAreaConditionMiner.class.getName());
-	private final Map<String, KeyKeeper> keyKeepers = new HashMap<>();
+	private final Logger logger = Logger.getLogger(EnvironmentBasedConditionMiner.class.getName());
+
+	private final Map<LicensingConfiguration, StreamCodec> streamCodecs = new HashMap<>();
+	private final Map<LicensingConfiguration, KeyKeeper> keyKeepers = new HashMap<>();
 
 	private EnvironmentInfo environmentInfo;
-	private StreamCodec streamCodec;
 	private LicensingConditionTransport conditionDescriptorTransport;
 
 	@Reference
@@ -72,23 +73,25 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
-	public void bindKeyKeeper(KeyKeeper keyKeeper, Map<String, Object> properties) {
+	public void bindKeyKeeper(KeyKeeper keeper, Map<String, Object> properties) {
 		LicensingConfiguration key = LicensingConfigurations.create(properties);
-		keyKeepers.put(key.getProductIdentifier(), keyKeeper);
+		keyKeepers.put(key, keeper);
 	}
 
-	public void unbindKeyKeeper(KeyKeeper keyKeeper, Map<String, Object> properties) {
+	public void unbindKeyKeeper(KeyKeeper keeper, Map<String, Object> properties) {
 		LicensingConfiguration key = LicensingConfigurations.create(properties);
-		keyKeepers.remove(key, keyKeeper);
+		keyKeepers.remove(key, keeper);
 	}
 
-	@Reference(cardinality=ReferenceCardinality.OPTIONAL)
-	public void bindStreamCodec(StreamCodec codec) {
-		this.streamCodec = codec;
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
+	public void bindStreamCodec(StreamCodec codec, Map<String, Object> properties) {
+		LicensingConfiguration key = LicensingConfigurations.create(properties);
+		streamCodecs.put(key, codec);
 	}
 
-	public void unbindStreamCodec(StreamCodec codec) {
-		this.streamCodec = null;
+	public void unbindStreamCodec(StreamCodec codec, Map<String, Object> properties) {
+		LicensingConfiguration key = LicensingConfigurations.create(properties);
+		streamCodecs.remove(key, codec);
 	}
 
 	@Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
@@ -109,40 +112,27 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 	@Override
 	public Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration) {
 		List<LicensingCondition> mined = new ArrayList<>();
+		if (configuration == null) {
+			return mined;
+		}
 		if (conditionDescriptorTransport == null) {
 			return mined;
 		}
 		if (environmentInfo == null) {
 			return mined;
 		}
-		if (configuration == null) {
+		KeyKeeper keyKeeper = keyKeepers.get(configuration);
+		StreamCodec streamCodec = streamCodecs.get(configuration);
+		if (!isConsistens(streamCodec, keyKeeper)) {
 			return mined;
 		}
-		KeyKeeper keyKeeper = keyKeepers.get(configuration.getProductIdentifier());
-		if (keyKeeper == null) {
-			return mined;
-		}
+		
 		String areaValue = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
 		Path configurationPath = LicensingPaths.resolveConfigurationPath(areaValue, configuration);
 		if (!Files.isDirectory(configurationPath)) {
 			return mined;
 		}
-		List<Path> licenseFiles = new ArrayList<>();
-		try {
-			Files.walkFileTree(configurationPath, new SimpleFileVisitor<Path>() {
-
-				@Override
-				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-					if (file.toString().toLowerCase().endsWith(LicensingPaths.EXTENSION_LICENSE_ENCRYPTED)) {
-						licenseFiles.add(file);
-					}
-					return FileVisitResult.CONTINUE;
-				}
-
-			});
-		} catch (IOException e) {
-			logger.log(Level.FINEST, e.getMessage(), e);
-		}
+		List<Path> licenseFiles = collectPacks(configurationPath);
 		for (Path path : licenseFiles) {
 			if (streamCodec == null) {
 				try (FileInputStream raw = new FileInputStream(path.toFile())){
@@ -171,6 +161,39 @@ public class OsgiInstallAreaConditionMiner implements ConditionMiner {
 			}
 		}
 		return mined;
+	}
+
+	protected List<Path> collectPacks(Path configurationPath) {
+		List<Path> licenseFiles = new ArrayList<>();
+		try {
+			Files.walkFileTree(configurationPath, new SimpleFileVisitor<Path>() {
+
+				@Override
+				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+					if (file.toString().toLowerCase().endsWith(LicensingPaths.EXTENSION_LICENSE_ENCRYPTED)) {
+						licenseFiles.add(file);
+					}
+					return FileVisitResult.CONTINUE;
+				}
+
+			});
+		} catch (IOException e) {
+			logger.log(Level.FINEST, e.getMessage(), e);
+		}
+		return licenseFiles;
+	}
+
+	protected boolean isConsistens(StreamCodec streamCodec, KeyKeeper keyKeeper) {
+		if (streamCodec == null && keyKeeper == null) {
+			//not encrypted
+			return true;
+		}
+		if (streamCodec != null && keyKeeper != null) {
+			//encrypted
+			return true;
+		}
+		//invalid
+		return false;
 	}
 
 }
