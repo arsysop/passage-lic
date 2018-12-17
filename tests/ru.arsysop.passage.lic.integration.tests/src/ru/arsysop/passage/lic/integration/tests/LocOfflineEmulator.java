@@ -48,15 +48,18 @@ public class LocOfflineEmulator {
 	
 		streamCodec.createKeyPair(publicKeyPath, privateKeyPath, username, password);
 	
-		try (FileOutputStream fos = new FileOutputStream(licFile)) {
-			Resource resource = new XMIResourceImpl();
-			resource.getContents().add(license);
-			resource.save(fos, new HashMap<>());
-		}
 		try (FileInputStream open = new FileInputStream(licFile);
 				FileOutputStream encoded = new FileOutputStream(licenFile);
 				FileInputStream key = new FileInputStream(privateFile)) {
 			streamCodec.encodeStream(open, encoded, key, username, password);
+		}
+	}
+
+	static void storeLicense(LicensePack license, File licFile) throws IOException, FileNotFoundException {
+		try (FileOutputStream fos = new FileOutputStream(licFile)) {
+			Resource resource = new XMIResourceImpl();
+			resource.getContents().add(license);
+			resource.save(fos, new HashMap<>());
 		}
 	}
 

@@ -49,7 +49,6 @@ import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.runtime.AccessManager;
 import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
-import ru.arsysop.passage.lic.runtime.io.StreamCodec;
 
 public abstract class LicIntegrationBase {
 
@@ -60,8 +59,8 @@ public abstract class LicIntegrationBase {
 	static final String SOME_COMPONENT_ID = "some.licensed.component"; //$NON-NLS-1$
 	static final String SOME_COMPONENT_VERSION = "1.2.0"; //$NON-NLS-1$
 
-	static final String SOME_PRODUCT_ID = "some.licensed.product"; //$NON-NLS-1$
-	static final String SOME_CONFIGURATION_ID = "some.licensed.configuration"; //$NON-NLS-1$
+	static final String SOME_DECRYPTED_PRODUCT = "some.decrypted.product"; //$NON-NLS-1$
+	static final String SOME_ENCRYPTED_PRODUCT = "some.encrypted.product"; //$NON-NLS-1$
 
 	static final String EXECUTOR_1 = "executor.1"; //$NON-NLS-1$
 	static final String EXECUTOR_2 = "executor.2"; //$NON-NLS-1$
@@ -136,23 +135,28 @@ public abstract class LicIntegrationBase {
 		Files.deleteIfExists(settings);
 	}
 
-	protected void createProductLicense(LicensingConfiguration configuration, LicensePack license) throws IOException {
+	protected void createProductLicense(LicensingConfiguration configuration, LicensePack license, boolean encrypted) throws IOException {
 		String install = environmentInfo.getProperty(PROPERTY_OSGI_INSTALL_AREA);
 		Path path = resolveConfigurationPath(install, configuration);
 		Files.createDirectories(path);
-		String publicFileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
-		String privateFileName = composeFileName(configuration, ".scr"); //$NON-NLS-1$
-		String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
-		Path osgiInf = Paths.get(userDir, "OSGI-INF"); //$NON-NLS-1$
-		File publicFile = osgiInf.resolve(publicFileName).toFile();
-		File privateFile = osgiInf.resolve(privateFileName).toFile();
-		File licFile = path.resolve(composeFileName(configuration, ".lic")).toFile(); //$NON-NLS-1$
-		File licenFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_ENCRYPTED)).toFile();
 
-		LocOfflineEmulator.encodeLicense(license, publicFile, privateFile, licFile, licenFile);
+		File licFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_DECRYPTED)).toFile();
+		LocOfflineEmulator.storeLicense(license, licFile);
+		
+		if (encrypted) {
+			String publicFileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
+			String privateFileName = composeFileName(configuration, ".scr"); //$NON-NLS-1$
+			String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
+			Path osgiInf = Paths.get(userDir, "OSGI-INF"); //$NON-NLS-1$
+			File publicFile = osgiInf.resolve(publicFileName).toFile();
+			File privateFile = osgiInf.resolve(privateFileName).toFile();
+			File licenFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_ENCRYPTED)).toFile();
+			
+			LocOfflineEmulator.encodeLicense(license, publicFile, privateFile, licFile, licenFile);
+		}
 	}
 
-	protected void deleteProductLicense(LicensingConfiguration configuration) throws IOException {
+	protected void deleteProductLicense(LicensingConfiguration configuration, boolean encrypted) throws IOException {
 		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
 		Path path = LicensingPaths.resolveConfigurationPath(install, configuration);
 		FileVisitor<Path> visitor = new SimpleFileVisitor<Path>() {
@@ -179,13 +183,15 @@ public abstract class LicIntegrationBase {
 			}
 		};
 		Files.walkFileTree(path, visitor);
-		String publicFileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
-		String privateFileName = composeFileName(configuration, ".scr"); //$NON-NLS-1$
-		String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
-		Path osgiInf = Paths.get(userDir, "OSGI-INF"); //$NON-NLS-1$
-		File publicFile = osgiInf.resolve(publicFileName).toFile();
-		File privateFile = osgiInf.resolve(privateFileName).toFile();
-		publicFile.delete();
-		privateFile.delete();
+		if (encrypted) {
+			String publicFileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
+			String privateFileName = composeFileName(configuration, ".scr"); //$NON-NLS-1$
+			String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
+			Path osgiInf = Paths.get(userDir, "OSGI-INF"); //$NON-NLS-1$
+			File publicFile = osgiInf.resolve(publicFileName).toFile();
+			File privateFile = osgiInf.resolve(privateFileName).toFile();
+			publicFile.delete();
+			privateFile.delete();
+		}
 	}
 }

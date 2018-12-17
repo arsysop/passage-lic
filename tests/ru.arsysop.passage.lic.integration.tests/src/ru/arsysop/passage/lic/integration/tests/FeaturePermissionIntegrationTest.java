@@ -52,7 +52,7 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 	}
 
 	@Test
-	public void testEvaluateConditionsPositive() throws Exception {
+	public void testEvaluateConditionsDecryptedPositive() throws Exception {
 		LicFactory factory = LicFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
 		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
@@ -64,14 +64,37 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 		grant.setValidUntil(new Date(System.currentTimeMillis() + 100500));
 		licenseGrants.add(grant);
 
-		String identifier = SOME_PRODUCT_ID;
+		String identifier = SOME_DECRYPTED_PRODUCT;
 		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
-		createProductLicense(configuration, license);
+		createProductLicense(configuration, license, false);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());
 		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions, configuration);
 		assertTrue(permissions.iterator().hasNext());
-		deleteProductLicense(configuration);
+		deleteProductLicense(configuration, false);
+	}
+
+	@Test
+	public void testEvaluateConditionsEncryptedPositive() throws Exception {
+		LicFactory factory = LicFactory.eINSTANCE;
+		LicensePack license = factory.createLicensePack();
+		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
+		LicenseGrant grant = factory.createLicenseGrant();
+		grant.setFeatureIdentifier(SOME_BUNDLE_ID);
+		grant.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
+		grant.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
+		grant.setValidFrom(new Date(System.currentTimeMillis() - 100500));
+		grant.setValidUntil(new Date(System.currentTimeMillis() + 100500));
+		licenseGrants.add(grant);
+
+		String identifier = SOME_ENCRYPTED_PRODUCT;
+		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
+		createProductLicense(configuration, license, true);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
+		assertTrue(conditions.iterator().hasNext());
+		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions, configuration);
+		assertTrue(permissions.iterator().hasNext());
+		deleteProductLicense(configuration, true);
 	}
 
 }
