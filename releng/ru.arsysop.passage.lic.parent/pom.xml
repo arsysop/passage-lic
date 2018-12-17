@@ -28,7 +28,7 @@
 
 	<groupId>ru.arsysop.passage.lic</groupId>
 	<artifactId>ru.arsysop.passage.lic.parent</artifactId>
-	<version>0.3.2-SNAPSHOT</version>
+	<version>0.3.2</version>
 	<packaging>pom</packaging>
 
 	<prerequisites>
