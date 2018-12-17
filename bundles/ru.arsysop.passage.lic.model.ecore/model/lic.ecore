@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="lic" nsURI="http://www.arsysop.ru/passage/lic/0.3.1" nsPrefix="ru.arsysop.passage.lic">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="lic" nsURI="http://www.arsysop.ru/passage/lic/0.3.2" nsPrefix="ru.arsysop.passage.lic">
   <eClassifiers xsi:type="ecore:EClass" name="FeatureSetDescriptor" instanceClassName="ru.arsysop.passage.lic.registry.FeatureSetDescriptor"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureDescriptor" instanceClassName="ru.arsysop.passage.lic.registry.FeatureDescriptor"
@@ -69,13 +69,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="ProductVersion" eSuperTypes="#//ProductVersionDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="product" lowerBound="1"
-        eType="#//Product" eOpposite="#//Product/productVersions"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="installationToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="secureToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="news" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="product" lowerBound="1"
+        eType="#//Product" eOpposite="#//Product/productVersions"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="productVersionFeatures"
         upperBound="-1" eType="#//ProductVersionFeature" containment="true" eOpposite="#//ProductVersionFeature/productVersion"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="news" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProductVersionFeature" eSuperTypes="#//ProductVersionFeatureDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureIdentifier" lowerBound="1"
@@ -95,8 +95,7 @@
         eType="#//User" containment="true" eOpposite="#//User/userOrigin"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//UserDescriptor">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="email" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -122,6 +121,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="matchVersion" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral="0.0.0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="matchRule" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validFrom" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validUntil" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="conditionType" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="conditionExpression" lowerBound="1"

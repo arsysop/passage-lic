@@ -37,11 +37,11 @@ import ru.arsysop.passage.lic.registry.ProductVersionDescriptor;
  * </p>
  * <ul>
  *   <li>{@link ru.arsysop.passage.lic.model.api.ProductVersion#getVersion <em>Version</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.ProductVersion#getProduct <em>Product</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.ProductVersion#getInstallationToken <em>Installation Token</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.ProductVersion#getSecureToken <em>Secure Token</em>}</li>
- *   <li>{@link ru.arsysop.passage.lic.model.api.ProductVersion#getProductVersionFeatures <em>Product Version Features</em>}</li>
  *   <li>{@link ru.arsysop.passage.lic.model.api.ProductVersion#getNews <em>News</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.ProductVersion#getProduct <em>Product</em>}</li>
+ *   <li>{@link ru.arsysop.passage.lic.model.api.ProductVersion#getProductVersionFeatures <em>Product Version Features</em>}</li>
  * </ul>
  *
  * @see ru.arsysop.passage.lic.model.meta.LicPackage#getProductVersion()

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: ru.arsysop.passage.lic.equinox
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: ru.arsysop.passage.lic.equinox
-Bundle-Version: 0.3.1.qualifier
+Bundle-Version: 0.3.2.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -15,6 +15,5 @@ Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: ru.arsysop.passage.lic.equinox,
  ru.arsysop.passage.lic.internal.equinox;x-internal:=true
-Provide-Capability: licensing.management;licensing.management="equinox"
-
+Provide-Capability: licensing.management;licensing.management="equinox";version="0.3.2"
 

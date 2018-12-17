@@ -22,24 +22,18 @@ package ru.arsysop.passage.lic.integration.tests;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.io.BufferedWriter;
+import static ru.arsysop.passage.lic.base.LicensingPaths.*;
+
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -53,21 +47,20 @@ import org.osgi.framework.ServiceReference;
 
 import ru.arsysop.passage.lic.base.LicensingPaths;
 import ru.arsysop.passage.lic.model.api.LicensePack;
-import ru.arsysop.passage.lic.model.api.Product;
 import ru.arsysop.passage.lic.runtime.AccessManager;
-import ru.arsysop.passage.lic.runtime.io.StreamCodec;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public abstract class LicIntegrationBase {
 
-	private static final String EXTENSION_SERVER_SETTINGS = ".settings";
-	private static final String PASSAGE_SERVER_PORT_DEF = "passage.server.port=8080";
-	private static final String PASSAGE_SERVER_HOST_DEF = "passage.server.host=localhost";
+	private static final String EXTENSION_SERVER_SETTINGS = ".settings"; //$NON-NLS-1$
+	private static final String PASSAGE_SERVER_PORT_DEF = "passage.server.port=8080"; //$NON-NLS-1$
+	private static final String PASSAGE_SERVER_HOST_DEF = "passage.server.host=localhost"; //$NON-NLS-1$
 	static final String SOME_BUNDLE_ID = "some.licensed.bundle"; //$NON-NLS-1$
 	static final String SOME_COMPONENT_ID = "some.licensed.component"; //$NON-NLS-1$
 	static final String SOME_COMPONENT_VERSION = "1.2.0"; //$NON-NLS-1$
 
-	static final String SOME_PRODUCT_ID = "some.licensed.product"; //$NON-NLS-1$
-	static final String SOME_CONFIGURATION_ID = "some.licensed.configuration"; //$NON-NLS-1$
+	static final String SOME_DECRYPTED_PRODUCT = "some.decrypted.product"; //$NON-NLS-1$
+	static final String SOME_ENCRYPTED_PRODUCT = "some.encrypted.product"; //$NON-NLS-1$
 
 	static final String EXECUTOR_1 = "executor.1"; //$NON-NLS-1$
 	static final String EXECUTOR_2 = "executor.2"; //$NON-NLS-1$
@@ -94,8 +87,6 @@ public abstract class LicIntegrationBase {
 	protected static AccessManager accessManager;
 	private static ServiceReference<EnvironmentInfo> environmentInfoReference;
 	protected static EnvironmentInfo environmentInfo;
-	private static ServiceReference<StreamCodec> conditionCodecReference;
-	protected static StreamCodec conditionCodec;
 
 	@BeforeClass
 	public static void startup() {
@@ -105,23 +96,18 @@ public abstract class LicIntegrationBase {
 		accessManager = bundleContext.getService(accessManagerReference);
 		environmentInfoReference = bundleContext.getServiceReference(EnvironmentInfo.class);
 		environmentInfo = bundleContext.getService(environmentInfoReference);
-		conditionCodecReference = bundleContext.getServiceReference(StreamCodec.class);
-		conditionCodec = bundleContext.getService(conditionCodecReference);
 	}
 
 	@AfterClass
 	public static void shutdown() {
 		accessManager = null;
 		environmentInfo = null;
-		conditionCodec = null;
 		Bundle bundle = FrameworkUtil.getBundle(LicIntegrationBase.class);
 		BundleContext bundleContext = bundle.getBundleContext();
 		bundleContext.ungetService(accessManagerReference);
 		accessManagerReference = null;
 		bundleContext.ungetService(environmentInfoReference);
 		environmentInfoReference = null;
-		bundleContext.ungetService(conditionCodecReference);
-		conditionCodecReference = null;
 	}
 
 	@Test
@@ -129,58 +115,50 @@ public abstract class LicIntegrationBase {
 		assertNotNull(accessManager);
 	}
 
-	protected void createServerConfiguration(Product product) throws IOException {
-		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path path = LicensingPaths.resolveConfigurationPath(install, product);
+	protected void createServerConfiguration(LicensingConfiguration configuration) throws IOException {
+		StringBuilder sb = new StringBuilder();
+		sb.append(PASSAGE_SERVER_HOST_DEF).append('\n');
+		sb.append(PASSAGE_SERVER_PORT_DEF).append('\n');
+		String content = sb.toString();
+
+		String install = environmentInfo.getProperty(PROPERTY_OSGI_INSTALL_AREA);
+		Path path = resolveConfigurationPath(install, configuration);
 		Files.createDirectories(path);
-		String identifier = product.getIdentifier();
-		File serverConfigurationFile = path.resolve(identifier + EXTENSION_SERVER_SETTINGS).toFile();
-
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(serverConfigurationFile));) {
-			bw.write(PASSAGE_SERVER_HOST_DEF);
-			bw.newLine();
-			bw.write(PASSAGE_SERVER_PORT_DEF);
-			bw.newLine();
-			bw.flush();
-		} catch (Exception e) {
-			Logger logger = Logger.getLogger(LicIntegrationBase.class.getName());
-			logger.log(Level.FINER, e.getMessage(), e);
-		}
-
+		Path settings = path.resolve(composeFileName(configuration, EXTENSION_SERVER_SETTINGS));
+		Files.write(settings, content.getBytes());
 	}
 
-	protected void createProductLicense(Product product, LicensePack license) throws IOException {
-		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path path = LicensingPaths.resolveConfigurationPath(install, product);
+	protected void deleteServerConfiguration(LicensingConfiguration configuration) throws IOException {
+		String install = environmentInfo.getProperty(PROPERTY_OSGI_INSTALL_AREA);
+		Path path = resolveConfigurationPath(install, configuration);
+		Path settings = path.resolve(composeFileName(configuration, EXTENSION_SERVER_SETTINGS));
+		Files.deleteIfExists(settings);
+	}
+
+	protected void createProductLicense(LicensingConfiguration configuration, LicensePack license, boolean encrypted) throws IOException {
+		String install = environmentInfo.getProperty(PROPERTY_OSGI_INSTALL_AREA);
+		Path path = resolveConfigurationPath(install, configuration);
 		Files.createDirectories(path);
-		String identifier = product.getIdentifier();
-		File publicFile = path.resolve(identifier + LicensingPaths.EXTENSION_PRODUCT_PUBLIC).toFile();
-		File privateFile = path.resolve(identifier + ".scr").toFile(); //$NON-NLS-1$
-		File licFile = path.resolve(identifier + ".lic").toFile(); //$NON-NLS-1$
-		File licenFile = path.resolve(identifier + LicensingPaths.EXTENSION_LICENSE_ENCRYPTED).toFile();
 
-		String publicKeyPath = publicFile.getPath();
-		String privateKeyPath = privateFile.getPath();
-		String username = "user"; //$NON-NLS-1$
-		String password = "password"; //$NON-NLS-1$
-
-		conditionCodec.createKeyPair(publicKeyPath, privateKeyPath, username, password, 1024);
-
-		try (FileOutputStream fos = new FileOutputStream(licFile)) {
-			Resource resource = new XMIResourceImpl();
-			resource.getContents().add(license);
-			resource.save(fos, new HashMap<>());
-		}
-		try (FileInputStream open = new FileInputStream(licFile);
-				FileOutputStream encoded = new FileOutputStream(licenFile);
-				FileInputStream key = new FileInputStream(privateFile)) {
-			conditionCodec.encodeStream(open, encoded, key, username, password);
+		File licFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_DECRYPTED)).toFile();
+		LocOfflineEmulator.storeLicense(license, licFile);
+		
+		if (encrypted) {
+			String publicFileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
+			String privateFileName = composeFileName(configuration, ".scr"); //$NON-NLS-1$
+			String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
+			Path osgiInf = Paths.get(userDir, "OSGI-INF"); //$NON-NLS-1$
+			File publicFile = osgiInf.resolve(publicFileName).toFile();
+			File privateFile = osgiInf.resolve(privateFileName).toFile();
+			File licenFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_ENCRYPTED)).toFile();
+			
+			LocOfflineEmulator.encodeLicense(license, publicFile, privateFile, licFile, licenFile);
 		}
 	}
 
-	protected void deleteProductLicense(Product product) throws IOException {
+	protected void deleteProductLicense(LicensingConfiguration configuration, boolean encrypted) throws IOException {
 		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path path = LicensingPaths.resolveConfigurationPath(install, product);
+		Path path = LicensingPaths.resolveConfigurationPath(install, configuration);
 		FileVisitor<Path> visitor = new SimpleFileVisitor<Path>() {
 
 			@Override
@@ -205,5 +183,15 @@ public abstract class LicIntegrationBase {
 			}
 		};
 		Files.walkFileTree(path, visitor);
+		if (encrypted) {
+			String publicFileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
+			String privateFileName = composeFileName(configuration, ".scr"); //$NON-NLS-1$
+			String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
+			Path osgiInf = Paths.get(userDir, "OSGI-INF"); //$NON-NLS-1$
+			File publicFile = osgiInf.resolve(publicFileName).toFile();
+			File privateFile = osgiInf.resolve(privateFileName).toFile();
+			publicFile.delete();
+			privateFile.delete();
+		}
 	}
 }

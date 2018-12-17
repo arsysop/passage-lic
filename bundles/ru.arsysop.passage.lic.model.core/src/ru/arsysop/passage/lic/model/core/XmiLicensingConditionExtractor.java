@@ -31,17 +31,23 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.osgi.service.component.annotations.Component;
 
 import ru.arsysop.passage.lic.model.api.LicensePack;
+import ru.arsysop.passage.lic.model.meta.LicPackage;
 import ru.arsysop.passage.lic.model.api.LicenseGrant;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_XML })
 public class XmiLicensingConditionExtractor implements LicensingConditionTransport {
+	
+	public XmiLicensingConditionExtractor() {
+		EPackage.Registry.INSTANCE.put("http://www.arsysop.ru/passage/lic/0.3.1", LicPackage.eINSTANCE);
+	}
 
 	@Override
 	public Iterable<LicensingCondition> readConditionDescriptors(InputStream input) throws IOException {

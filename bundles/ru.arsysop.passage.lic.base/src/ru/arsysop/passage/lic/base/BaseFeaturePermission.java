@@ -22,58 +22,51 @@ package ru.arsysop.passage.lic.base;
 
 import static ru.arsysop.passage.lic.base.LicensingProperties.*;
 
+import java.util.Date;
+
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public class BaseFeaturePermission implements FeaturePermission {
 
-	private final String featureIdentifier;
-	private final String matchVersion;
-	private final String matchRule;
-	private final long leaseTime;
-	private final long expireTime;
+	private final LicensingCondition licensingCondition;
+	private final LicensingConfiguration licensingConfiguration;
+	private final Date leaseDate;
+	private final Date expireDate;
 
-	BaseFeaturePermission(String featureIdentifier, String matchVersion, String matchRule, long leaseTime,
-			long expireTime) {
-		this.featureIdentifier = featureIdentifier;
-		this.matchVersion = matchVersion;
-		this.matchRule = matchRule;
-		this.leaseTime = leaseTime;
-		this.expireTime = expireTime;
+	BaseFeaturePermission(LicensingCondition condition, LicensingConfiguration configuration, Date lease, Date expire) {
+		this.licensingCondition = condition;
+		this.licensingConfiguration = configuration;
+		this.leaseDate = lease;
+		this.expireDate = expire;
 	}
 
 	@Override
-	public String getFeatureIdentifier() {
-		return featureIdentifier;
+	public LicensingCondition getLicensingCondition() {
+		return licensingCondition;
+	}
+	
+	public LicensingConfiguration getLicensingConfiguration() {
+		return licensingConfiguration;
 	}
 
 	@Override
-	public String getMatchVersion() {
-		return matchVersion;
+	public Date getLeaseDate() {
+		return leaseDate;
 	}
 
 	@Override
-	public String getMatchRule() {
-		return matchRule;
-	}
-
-	@Override
-	public long getLeaseTime() {
-		return leaseTime;
-	}
-
-	@Override
-	public long getExpireTime() {
-		return expireTime;
+	public Date getExpireDate() {
+		return expireDate;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureIdentifier).append(';');
-		sb.append(LICENSING_MATCH_VERSION).append('=').append(matchVersion).append(';');
-		sb.append(LICENSING_MATCH_RULE).append('=').append(matchRule).append(';');
-		sb.append(LICENSING_LEASE_TIME).append('=').append(leaseTime).append(';');
-		sb.append(LICENSING_EXPIRE_TIME).append('=').append(expireTime);
+		sb.append(licensingCondition).append(';');
+		sb.append(LICENSING_LEASE_TIME).append('=').append(leaseDate).append(';');
+		sb.append(LICENSING_EXPIRE_TIME).append('=').append(expireDate);
 		return sb.toString();
 	}
 

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.internal.net.NetConditionDescriptorTransport">
-   <implementation class="ru.arsysop.passage.lic.internal.net.NetConditionDescriptorTransport"/>
-   <property name="licensing.content.type" type="String" value="application/json"/>
-   <service>
-      <provide interface="ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport"/>
-   </service>
-</scr:component>

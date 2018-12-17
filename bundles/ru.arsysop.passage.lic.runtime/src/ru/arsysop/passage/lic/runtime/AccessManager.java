@@ -39,15 +39,15 @@ public interface AccessManager {
 	 * @param configuration
 	 * @return the composite result of execution
 	 */
-	void executeAccessRestrictions(Object configuration);
+	void executeAccessRestrictions(LicensingConfiguration configuration);
 
-	Iterable<ConfigurationRequirement> resolveRequirements(Object configuration);
+	Iterable<ConfigurationRequirement> resolveRequirements(LicensingConfiguration configuration);
 
-	Iterable<LicensingCondition> extractConditions(Object configuration);
+	Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration);
 
-	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions);
+	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration);
 
-	Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements, Iterable<FeaturePermission> permissions, Object configuration);
+	Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements, Iterable<FeaturePermission> permissions, LicensingConfiguration configuration);
 
 	void executeRestrictions(Iterable<RestrictionVerdict> restrictions);
 

@@ -46,9 +46,15 @@ public class RestrictionVerdictComparator implements Comparator<RestrictionVerdi
 		if (o2 == null) {
 			return 1;
 		}
-		Integer level1 = resolveLevel(o1.getRestrictionLevel());
-		Integer level2 = resolveLevel(o2.getRestrictionLevel());
-		return level1.compareTo(level2);
+		String level1 = o1.getRestrictionLevel();
+		String level2 = o2.getRestrictionLevel();
+		return compareLevels(level1, level2);
+	}
+
+	public static int compareLevels(String level1, String level2) {
+		Integer resolved1 = resolveLevel(level1);
+		Integer resolved2 = resolveLevel(level2);
+		return resolved1.compareTo(resolved2);
 	}
 
 	private static Integer resolveLevel(String level) {

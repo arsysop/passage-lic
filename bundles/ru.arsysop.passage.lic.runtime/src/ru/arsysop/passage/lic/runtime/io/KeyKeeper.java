@@ -23,6 +23,8 @@ package ru.arsysop.passage.lic.runtime.io;
 import java.io.IOException;
 import java.io.InputStream;
 
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
+
 /**
  * Provides the key required for given configuration
  *
@@ -36,6 +38,6 @@ public interface KeyKeeper {
 	 * @throws IOException
 	 */
 	
-	InputStream openKeyStream(Object configuration) throws IOException;
+	InputStream openKeyStream(LicensingConfiguration configuration) throws IOException;
 
 }

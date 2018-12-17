@@ -20,7 +20,10 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
+import java.util.Date;
+
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public class FeaturePermissions {
 
@@ -28,25 +31,14 @@ public class FeaturePermissions {
 		// block
 	}
 
-	public static BaseFeaturePermission createDefault(String featureId, String version) {
-		String rule = LicensingVersions.RULE_DEFAULT;
-		long leaseTime = System.currentTimeMillis();
-		long expireTime = leaseTime + 60 * 60 * 1000;
-		return new BaseFeaturePermission(featureId, version, rule, leaseTime, expireTime);
+	public static BaseFeaturePermission createDefault(LicensingCondition condition, LicensingConfiguration configuration) {
+		Date leaseTime = new Date();
+		Date expireTime = condition.getValidUntil();
+		return new BaseFeaturePermission(condition, configuration, leaseTime, expireTime);
 	}
 
-	public static BaseFeaturePermission createDefault(LicensingCondition condition) {
-		long leaseTime = System.currentTimeMillis();
-		long expireTime = leaseTime + 60 * 60 * 1000;
-		String featureId = condition.getFeatureIdentifier();
-		String matchVersion = condition.getMatchVersion();
-		String matchRule = condition.getMatchRule();
-		return new BaseFeaturePermission(featureId, matchVersion, matchRule, leaseTime, expireTime);
-	}
-
-	public static BaseFeaturePermission create(String featureId, String matchVersion, String matchRule, long leaseTime,
-			long expireTime) {
-		return new BaseFeaturePermission(featureId, matchVersion, matchRule, leaseTime, expireTime);
+	public static BaseFeaturePermission create(LicensingCondition condition, LicensingConfiguration configuration, Date lease, Date expire) {
+		return new BaseFeaturePermission(condition, configuration, lease, expire);
 	}
 
 }

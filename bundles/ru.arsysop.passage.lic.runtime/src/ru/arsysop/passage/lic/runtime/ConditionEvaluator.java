@@ -27,6 +27,6 @@ package ru.arsysop.passage.lic.runtime;
  */
 public interface ConditionEvaluator {
 
-	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions);
+	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration);
 
 }

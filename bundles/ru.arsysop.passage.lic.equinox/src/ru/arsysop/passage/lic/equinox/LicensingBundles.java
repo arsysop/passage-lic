@@ -47,12 +47,4 @@ public class LicensingBundles {
 		return Collections.emptyList();
 	}
 	
-	public static Iterable<BundleCapability> extractLicensingConfigurations(Bundle bundle) {
-		BundleWiring wiring = bundle.adapt(BundleWiring.class);
-		if (wiring != null) {
-			return wiring.getCapabilities(LicensingNamespaces.CAPABILITY_LICENSING_CONFIGURATION);
-		}
-		return Collections.emptyList();
-	}
-	
 }

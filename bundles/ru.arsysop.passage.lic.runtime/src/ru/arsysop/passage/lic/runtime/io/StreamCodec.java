@@ -31,8 +31,12 @@ import ru.arsysop.passage.lic.runtime.ConditionMiner;
  *
  */
 public interface StreamCodec {
+	
+	String getKeyAlgo();
 
-	void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password, int keySize)
+	int getKeySize();
+
+	void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password)
 			throws IOException;
 
 	void encodeStream(InputStream input, OutputStream output, InputStream key, String username, String password)

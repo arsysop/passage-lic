@@ -22,11 +22,12 @@ package ru.arsysop.passage.lic.base;
 
 public final class LicensingProperties {
 
+	public static final String LICENSING_PRODUCT_IDENTIFIER = "licensing.product.identifier"; //$NON-NLS-1$
+	public static final String LICENSING_PRODUCT_VERSION = "licensing.product.version"; //$NON-NLS-1$
+
 	public static final String LICENSING_FEATURE_IDENTIFIER = "licensing.feature.identifier"; //$NON-NLS-1$
 	public static final String LICENSING_FEATURE_VERSION = "licensing.feature.version"; //$NON-NLS-1$
-	
-	public static final String LICENSING_MATCH_VERSION = "licensing.match.version"; //$NON-NLS-1$
-	public static final String LICENSING_MATCH_RULE = "licensing.match.rule"; //$NON-NLS-1$
+	public static final String LICENSING_FEATURE_NAME = "licensing.feature.name"; //$NON-NLS-1$
 	
 	public static final String LICENSING_RESTRICTION_LEVEL = "licensing.restriction.level"; //$NON-NLS-1$
 	public static final String LICENSING_RESTRICTION_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
@@ -38,10 +39,17 @@ public final class LicensingProperties {
 	public static final String LICENSING_EXPIRE_TIME = "licensing.expire.time"; //$NON-NLS-1$
 
 	public static final String LICENSING_CONDITION_TYPE = "licensing.condition.type"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_AREA = "licensing.condition.area"; //$NON-NLS-1$
 
 	public static final String LICENSING_CONTENT_TYPE = "licensing.content.type"; //$NON-NLS-1$
 	public static final String LICENSING_CONTENT_TYPE_JSON = "application/json"; //$NON-NLS-1$
 	public static final String LICENSING_CONTENT_TYPE_XML = "application/xml"; //$NON-NLS-1$
+
+	public static final String LICENSING_SECURITY_KEY_ALGO = "licensing.security.key.algo"; //$NON-NLS-1$
+	public static final String LICENSING_SECURITY_KEY_ALGO_RSA = "RSA"; //$NON-NLS-1$
+	public static final String LICENSING_SECURITY_KEY_SIZE = "licensing.security.key.size"; //$NON-NLS-1$
+	public static final int LICENSING_SECURITY_KEY_SIZE_1024 = 1024;
+	public static final String LICENSING_SECURITY_HASH_ALGO = "licensing.security.hash.algo"; //$NON-NLS-1$
 
 	private LicensingProperties() {
 		// block

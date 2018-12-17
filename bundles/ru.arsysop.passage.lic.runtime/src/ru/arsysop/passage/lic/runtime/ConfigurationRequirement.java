@@ -31,6 +31,8 @@ public interface ConfigurationRequirement {
 
 	String getFeatureVersion();
 
+	String getFeatureName();
+
 	/**
 	 * The default restriction level, as defined by component vendor, may be
 	 * redefined by specific configuration. Used as a hint for
@@ -42,4 +44,6 @@ public interface ConfigurationRequirement {
 
 	Object getRequirementSource();
 	
+	LicensingConfiguration getLicensingConfiguration();
+
 }

@@ -22,13 +22,12 @@ package ru.arsysop.passage.lic.runtime;
 
 /**
  * Examines how {@link FeaturePermission}(s) cover the
- * {@link ConfigurationRequirement}(s) with given configuration and produce
- * {@link RestrictionVerdict}(s) to be consumed by
- * {@link RestrictionExecutor}(s)
+ * {@link ConfigurationRequirement}(s) and produce {@link RestrictionVerdict}(s)
+ * to be consumed by {@link RestrictionExecutor}(s)
  */
 public interface PermissionExaminer {
 
 	Iterable<RestrictionVerdict> examine(Iterable<ConfigurationRequirement> requirements,
-			Iterable<FeaturePermission> permissions, Object configuration);
+			Iterable<FeaturePermission> permissions);
 
 }

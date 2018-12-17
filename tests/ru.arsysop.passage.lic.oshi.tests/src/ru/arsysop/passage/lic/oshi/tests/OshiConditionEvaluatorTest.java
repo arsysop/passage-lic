@@ -22,13 +22,17 @@ package ru.arsysop.passage.lic.oshi.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.osgi.service.log.LogService;
 
 import ru.arsysop.passage.lic.base.LicensingConditions;
 import ru.arsysop.passage.lic.internal.oshi.OshiConditionEvaluator;
@@ -49,25 +53,29 @@ public class OshiConditionEvaluatorTest {
 	@Test
 	public void testEvaluateConditionNegative() throws Exception {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
-		assertEmpty(evaluator.evaluateConditions(null));
+		evaluator.bindLogService(Mockito.mock(LogService.class));
+		assertEmpty(evaluator.evaluateConditions(null, null));
 
 		Set<LicensingCondition> empty = Collections.singleton(createOshiCondition(new String()));
-		assertEmpty(evaluator.evaluateConditions(empty));
+		assertEmpty(evaluator.evaluateConditions(empty, null));
 
 		Set<LicensingCondition> unknown = Collections.singleton(createOshiCondition(EXPRESSION_OS_X3));
-		assertEmpty(evaluator.evaluateConditions(unknown));
+		assertEmpty(evaluator.evaluateConditions(unknown, null));
 	}
 
 	@Test
 	public void testEvaluateConditionPositive() throws Exception {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
+		evaluator.bindLogService(Mockito.mock(LogService.class));
 		Set<LicensingCondition> future = Collections.singleton(createOshiCondition(EXPRESSION_OS_ANY));
-		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future).iterator();
+		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future, null).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
-		assertEquals(OSHI_HARDWARE_FEATURE_ID, permission.getFeatureIdentifier());
-		assertEquals(OSHI_HARDWARE_MATCH_RULE, permission.getMatchRule());
-		assertEquals(OSHI_HARDWARE_MATCH_VERSION, permission.getMatchVersion());
+		LicensingCondition condition = permission.getLicensingCondition();
+		assertNotNull(condition);
+		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getFeatureIdentifier());
+		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getMatchRule());
+		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getMatchVersion());
 	}
 
 	@Test
@@ -85,7 +93,13 @@ public class OshiConditionEvaluatorTest {
 	}
 
 	public static LicensingCondition createOshiCondition(String expression) {
-		return LicensingConditions.create(OSHI_HARDWARE_FEATURE_ID, OSHI_HARDWARE_MATCH_VERSION, OSHI_HARDWARE_MATCH_RULE, OshiHal.CONDITION_TYPE_HARDWARE, expression);
+		String id = OSHI_HARDWARE_FEATURE_ID;
+		String version = OSHI_HARDWARE_MATCH_VERSION;
+		String rule = OSHI_HARDWARE_MATCH_RULE;
+		String type = OshiHal.CONDITION_TYPE_HARDWARE;
+		Date from = null;
+		Date until = null;
+		return LicensingConditions.create(id, version, rule, from, until, type, expression);
 	}
 
 }

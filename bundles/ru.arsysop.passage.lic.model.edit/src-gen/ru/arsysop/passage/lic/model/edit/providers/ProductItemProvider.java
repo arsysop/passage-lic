@@ -150,7 +150,7 @@ public class ProductItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_Product_description_feature", "_UI_Product_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 LicPackage.Literals.PRODUCT__DESCRIPTION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,

@@ -100,16 +100,17 @@ public class LicensingVersions {
 	}
 
 	public static boolean isMatch(String required, String allowed, String match) {
-		if (RULE_GREATER_OR_EQUAL.equals(match)) {
+		String rule = toRuleValue(match);
+		if (RULE_GREATER_OR_EQUAL.equals(rule)) {
 			return isGreaterOrEqual(required, allowed);
 		}
-		if (RULE_COMPATIBLE.equals(match)) {
+		if (RULE_COMPATIBLE.equals(rule)) {
 			return isCompatible(required, allowed);
 		}
-		if (RULE_EQUIVALENT.equals(match)) {
+		if (RULE_EQUIVALENT.equals(rule)) {
 			return isEquivalent(required, allowed);
 		}
-		if (RULE_PERFECT.equals(match)) {
+		if (RULE_PERFECT.equals(rule)) {
 			return isPerfect(required, allowed);
 		}
 		if (required == null || allowed == null) {

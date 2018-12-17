@@ -20,9 +20,21 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
-import ru.arsysop.passage.lic.registry.ProductDescriptor;
+import java.util.Map;
+
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public class LicensingConfigurations {
+
+	public static LicensingConfiguration create(String product, String version) {
+		return new BaseLicensingConfiguration(String.valueOf(product), String.valueOf(version));
+	}
+
+	public static LicensingConfiguration create(Map<String, Object> properties) {
+		String product = String.valueOf(properties.get(LicensingProperties.LICENSING_PRODUCT_IDENTIFIER));
+		String version = String.valueOf(properties.get(LicensingProperties.LICENSING_PRODUCT_VERSION));
+		return new BaseLicensingConfiguration(product, version);
+	}
 
 	public static String findProductIdentifier(String[] args) {
 		if (args == null) {
@@ -37,21 +49,6 @@ public class LicensingConfigurations {
 				}
 	
 			}
-		}
-		return null;
-	}
-
-	public static String resolveProductIdentifier(Object configuration) {
-		if (configuration instanceof ProductDescriptor) {
-			ProductDescriptor product = (ProductDescriptor) configuration;
-			return product.getIdentifier();
-		}
-		if (configuration instanceof String) {
-			return (String) configuration;
-		}
-		if (configuration instanceof String[]) {
-			String[] strings = (String[]) configuration;
-			return findProductIdentifier(strings);
 		}
 		return null;
 	}

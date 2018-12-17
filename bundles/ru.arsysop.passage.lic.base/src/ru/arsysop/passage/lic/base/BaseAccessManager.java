@@ -20,10 +20,11 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
-import static ru.arsysop.passage.lic.base.LicensingProperties.*;
+import static ru.arsysop.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,12 +32,13 @@ import java.util.Set;
 
 import ru.arsysop.passage.lic.base.LicensingEvents.LicensingLifeCycle;
 import ru.arsysop.passage.lic.runtime.AccessManager;
-import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.ConditionEvaluator;
 import ru.arsysop.passage.lic.runtime.ConditionMiner;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.ConfigurationResolver;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 import ru.arsysop.passage.lic.runtime.PermissionExaminer;
 import ru.arsysop.passage.lic.runtime.RestrictionExecutor;
 import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
@@ -48,56 +50,64 @@ public abstract class BaseAccessManager implements AccessManager {
 	private final Map<String, ConditionEvaluator> conditionEvaluators = new HashMap<>();
 	private final List<RestrictionExecutor> restrictionExecutors = new ArrayList<>();
 
-	private PermissionExaminer examiner;
+	private PermissionExaminer permissionExaminer;
 
-	public void bindConfigurationResolver(ConfigurationResolver configurationResolver) {
+	protected void bindConfigurationResolver(ConfigurationResolver configurationResolver) {
 		configurationResolvers.add(configurationResolver);
 	}
 
-	public void unbindConfigurationResolver(ConfigurationResolver configurationResolver) {
+	protected void unbindConfigurationResolver(ConfigurationResolver configurationResolver) {
 		configurationResolvers.remove(configurationResolver);
 	}
 
-	public void bindConditionMiner(ConditionMiner conditionMiner) {
+	protected void bindConditionMiner(ConditionMiner conditionMiner) {
 		conditionMiners.add(conditionMiner);
 	}
 
-	public void unbindConditionMiner(ConditionMiner conditionMiner) {
+	protected void unbindConditionMiner(ConditionMiner conditionMiner) {
 		conditionMiners.remove(conditionMiner);
 	}
 
-	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+	protected void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
 		String type = String.valueOf(conditionType);
 		// FIXME: check permissions
 		conditionEvaluators.put(type, conditionEvaluator);
 	}
 
-	public void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+	protected void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
 		String type = String.valueOf(conditionType);
 		conditionEvaluators.remove(type);
 	}
 
-	public void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
+	protected void bindPermissionExaminer(PermissionExaminer permissionExaminer) {
+		this.permissionExaminer = permissionExaminer;
+	}
+
+	protected void unbindPermissionExaminer(PermissionExaminer permissionExaminer) {
+		this.permissionExaminer = null;
+	}
+
+	protected void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		restrictionExecutors.add(restrictionExecutor);
 	}
 
-	public void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
+	protected void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		restrictionExecutors.remove(restrictionExecutor);
 	}
 
 	@Override
-	public void executeAccessRestrictions(Object configuration) {
+	public void executeAccessRestrictions(LicensingConfiguration configuration) {
 		Iterable<ConfigurationRequirement> requirements = resolveRequirements(configuration);
 		Iterable<LicensingCondition> conditions = extractConditions(configuration);
-		Iterable<FeaturePermission> permissions = evaluateConditions(conditions);
+		Iterable<FeaturePermission> permissions = evaluateConditions(conditions, configuration);
 		Iterable<RestrictionVerdict> verdicts = examinePermissons(requirements, permissions, configuration);
 		executeRestrictions(verdicts);
 	}
 
 	@Override
-	public Iterable<ConfigurationRequirement> resolveRequirements(Object configuration) {
+	public Iterable<ConfigurationRequirement> resolveRequirements(LicensingConfiguration configuration) {
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		for (ConfigurationResolver configurationResolver : configurationResolvers) {
 			Iterable<ConfigurationRequirement> requirements = configurationResolver
@@ -112,7 +122,7 @@ public abstract class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public Iterable<LicensingCondition> extractConditions(Object configuration) {
+	public Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration) {
 		List<LicensingCondition> result = new ArrayList<>();
 		for (ConditionMiner conditionMiner : conditionMiners) {
 			Iterable<LicensingCondition> conditions = conditionMiner.extractLicensingConditions(configuration);
@@ -126,46 +136,82 @@ public abstract class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions) {
+	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
-			// FIXME: log error;
-			return result;
-		}
+			String message = "Evaluation rejected for invalid conditions";
+			logError(message, new NullPointerException());
+			List<FeaturePermission> empty = Collections.emptyList();
+			postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, empty);
+			return empty;
+		} 
+		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
 		Map<String, List<LicensingCondition>> map = new HashMap<>();
+		List<LicensingCondition> invalid = new ArrayList<>();
 		for (LicensingCondition condition : conditions) {
 			if (condition == null) {
-				// FIXME: log error;
+				String message = "Evaluation rejected for invalid condition";
+				logError(message, new NullPointerException());
 				continue;
 			}
-			String type = condition.getConditionType();
-			List<LicensingCondition> list = map.computeIfAbsent(type, key -> new ArrayList<>());
-			list.add(condition);
+			String validate = validate(condition);
+			if (validate == null) {
+				String type = condition.getConditionType();
+				List<LicensingCondition> list = map.computeIfAbsent(type, key -> new ArrayList<>());
+				list.add(condition);
+			} else {
+				logError(validate, null);
+				invalid.add(condition);
+			}
 		}
 		Set<String> types = map.keySet();
 		for (String type : types) {
 			ConditionEvaluator evaluator = conditionEvaluators.get(type);
 			if (evaluator == null) {
-				// FIXME: log error;
+				String message = String.format("No evaluator available for type %s", type);
+				logError(message, new NullPointerException());
 				continue;
 			}
-			Iterable<FeaturePermission> permissions = evaluator.evaluateConditions(map.get(type));
+			Iterable<FeaturePermission> permissions = evaluator.evaluateConditions(map.get(type), configuration);
 			for (FeaturePermission permission : permissions) {
 				result.add(permission);
 			}
 		}
-		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
 		postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, unmodifiable);
 		return unmodifiable;
 	}
 
 	@Override
 	public Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements,
-			Iterable<FeaturePermission> permissions, Object configuration) {
-		if (examiner == null) {
-			examiner = new BasePermissionExaminer();
+			Iterable<FeaturePermission> permissions, LicensingConfiguration configuration) {
+		if (configuration == null) {
+			logError("Invalid configuration", new NullPointerException());
+			List<RestrictionVerdict> examined = Collections.emptyList();
+			postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, examined);
+			return examined;
 		}
-		Iterable<RestrictionVerdict> examined = examiner.examine(requirements, permissions, configuration);
+		if (requirements == null) {
+			logError("Invalid configuration requirements", new NullPointerException());
+			List<RestrictionVerdict> examined = Collections.emptyList();
+			postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, examined);
+			return examined;
+		}
+		if (permissionExaminer == null) {
+			String message = String.format("No permission examiner defined, rejecting all %s", requirements);
+			logError(message, new NullPointerException());
+			List<RestrictionVerdict> verdicts = new ArrayList<>();
+			for (ConfigurationRequirement requirement : requirements) {
+				if (requirement == null) {
+					logError("Invalid configuration requirement ignored", new NullPointerException());
+					continue;
+				}
+				RestrictionVerdict verdict = new BaseRestrictionVerdict(requirement, requirement.getRestrictionLevel());
+				verdicts.add(verdict);
+			}
+			postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, Collections.unmodifiableList(verdicts));
+			return verdicts;
+		}
+		Iterable<RestrictionVerdict> examined = permissionExaminer.examine(requirements, permissions);
 		postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, examined);
 		return examined;
 	}
@@ -176,13 +222,38 @@ public abstract class BaseAccessManager implements AccessManager {
 			try {
 				executor.execute(restrictions);
 			} catch (Exception e) {
-				// TODO: handle exception
+				String message = String.format("%s failed to execute %s", executor, restrictions);
+				logError(message, e);
 			}
 		}
-		postEvent(LicensingLifeCycle.RESTRICTION_EXECUTED, restrictions);
+		postEvent(LicensingLifeCycle.RESTRICTIONS_EXECUTED, restrictions);
+	}
+	
+	protected String validate(LicensingCondition condition) {
+		Date validFrom = condition.getValidFrom();
+		if (validFrom == null) {
+			String format = "Valid from not specified for condition %s";
+			return String.format(format, condition);
+		}
+		Date now = new Date();
+		if (validFrom.after(now)) {
+			String format = "Valid from starts in the future for condition %s";
+			return String.format(format, condition);
+		}
+		Date validUntil = condition.getValidUntil();
+		if (validUntil == null) {
+			String format = "Valid until not specified for condition %s";
+			return String.format(format, condition);
+		}
+		if (validUntil.before(now)) {
+			String format = "Valid until ends in the past for condition %s";
+			return String.format(format, condition);
+		}
+		return null;
 	}
 	
 	protected abstract void postEvent(String topic, Object data);
 
-	protected abstract void sendEvent(String topic, Object data);
+	protected abstract void logError(String message, Throwable e);
+
 }

@@ -28,48 +28,48 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import ru.arsysop.passage.lic.base.LicensingEvents.LicensingConditionEvents;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.FeaturePermission;
+import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.PermissionExaminer;
 import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 
-public class BasePermissionExaminer implements PermissionExaminer {
+public abstract class BasePermissionExaminer implements PermissionExaminer {
 
 	@Override
 	public Iterable<RestrictionVerdict> examine(Iterable<ConfigurationRequirement> requirements,
-			Iterable<FeaturePermission> permissions, Object configuration) {
+			Iterable<FeaturePermission> permissions) {
 		Map<String, List<ConfigurationRequirement>> required = new HashMap<>();
-		Map<String, List<FeaturePermission>> allowed = new HashMap<>();
 		for (ConfigurationRequirement requirement : requirements) {
 			String featureId = requirement.getFeatureIdentifier();
 			List<ConfigurationRequirement> list = required.computeIfAbsent(featureId, key -> new ArrayList<>());
 			list.add(requirement);
 		}
-		for (FeaturePermission permission : permissions) {
-			String featureId = permission.getFeatureIdentifier();
-			List<FeaturePermission> list = allowed.computeIfAbsent(featureId, key -> new ArrayList<>());
-			list.add(permission);
-		}
 		
 		List<RestrictionVerdict> verdicts = new ArrayList<>();
 		
 		Set<String> features = required.keySet();
+		List<LicensingCondition> leased = new ArrayList<>();
 		for (String featureId : features) {
 			List<ConfigurationRequirement> requirementList = required.get(featureId);
-			List<FeaturePermission> permissionList = allowed.computeIfAbsent(featureId, key -> new ArrayList<>());
-			List<RestrictionVerdict> examined = examineFeatures(requirementList, permissionList);
+			List<RestrictionVerdict> examined = examineFeatures(requirementList, permissions, leased);
 			verdicts.addAll(examined);
+		}
+		if (!leased.isEmpty()) {
+			postEvent(LicensingConditionEvents.CONDITIONS_LEASED, Collections.unmodifiableList(leased));
 		}
 		return Collections.unmodifiableList(verdicts);
 	}
 	
-	protected List<RestrictionVerdict> examineFeatures(List<ConfigurationRequirement> requirements, List<FeaturePermission> permissions) {
+	protected List<RestrictionVerdict> examineFeatures(List<ConfigurationRequirement> requirements, Iterable<FeaturePermission> permissions, List<LicensingCondition> conditions) {
 		List<ConfigurationRequirement> unsatisfied = new ArrayList<>(requirements);
 		for (FeaturePermission permission : permissions) {
 			List<ConfigurationRequirement> covered = new ArrayList<>();
 			for (ConfigurationRequirement requirement : unsatisfied) {
 				if (isCovered(requirement, permission)) {
 					covered.add(requirement);
+					conditions.add(permission.getLicensingCondition());
 				}
 			}
 			unsatisfied.removeAll(covered);
@@ -88,10 +88,16 @@ public class BasePermissionExaminer implements PermissionExaminer {
 	}
 	
 	protected boolean isCovered(ConfigurationRequirement requirement, FeaturePermission permission) {
-		if (!Objects.equals(requirement.getFeatureIdentifier(), permission.getFeatureIdentifier())) {
+		LicensingCondition condition = permission.getLicensingCondition();
+		if (condition == null) {
 			return false;
 		}
-		return LicensingVersions.isMatch(requirement.getFeatureVersion(), permission.getMatchVersion(), permission.getMatchRule());
+		if (!Objects.equals(requirement.getFeatureIdentifier(), condition.getFeatureIdentifier())) {
+			return false;
+		}
+		return LicensingVersions.isMatch(requirement.getFeatureVersion(), condition.getMatchVersion(), condition.getMatchRule());
 	}
+
+	protected abstract void postEvent(String topic, Object data);
 
 }

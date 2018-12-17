@@ -22,8 +22,20 @@ package ru.arsysop.passage.lic.registry;
 
 public interface FeatureRegistry extends DescriptorRegistry {
 	
-	FeatureSetDescriptor getFeatureSet(String identifier);
+	Iterable<FeatureSetDescriptor> getFeatureSets();
 
-	FeatureDescriptor getFeature(String identifier);
+	FeatureSetDescriptor getFeatureSet(String featureSetId);
+
+	Iterable<FeatureDescriptor> getFeatures();
+
+	Iterable<FeatureDescriptor> getFeatures(String featureSetId);
+
+	FeatureDescriptor getFeature(String featureId);
+
+	Iterable<FeatureVersionDescriptor> getFeatureVersions();
+
+	Iterable<FeatureVersionDescriptor> getFeatureVersions(String featureId);
+
+	FeatureVersionDescriptor getFeatureVersion(String featureId, String version);
 
 }

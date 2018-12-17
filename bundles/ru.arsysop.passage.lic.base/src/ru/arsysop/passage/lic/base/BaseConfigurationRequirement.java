@@ -20,27 +20,30 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.base;
 
-import static ru.arsysop.passage.lic.base.LicensingProperties.*;
+import static ru.arsysop.passage.lic.base.LicensingProperties.LICENSING_FEATURE_IDENTIFIER;
+import static ru.arsysop.passage.lic.base.LicensingProperties.LICENSING_FEATURE_NAME;
+import static ru.arsysop.passage.lic.base.LicensingProperties.LICENSING_FEATURE_VERSION;
+import static ru.arsysop.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL;
 
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
+import ru.arsysop.passage.lic.runtime.LicensingConfiguration;
 
 public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	
 	private final String featureIdentifier;
 	private final String featureVersion;
+	private final String featureName;
 	private final String restrictionLevel;
 	private final Object source;
+	private final LicensingConfiguration configuration;
 
-	BaseConfigurationRequirement(String id, String version, String level, Object source) {
+	BaseConfigurationRequirement(String id, String version, String name, String level, Object source, LicensingConfiguration configuration) {
 		this.featureIdentifier = id;
 		this.featureVersion = version;
+		this.featureName = name;
 		this.restrictionLevel = level;
 		this.source = source;
-	}
-
-	@Override
-	public Object getRequirementSource() {
-		return source;
+		this.configuration = configuration;
 	}
 
 	@Override
@@ -52,6 +55,11 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	public String getFeatureVersion() {
 		return featureVersion;
 	}
+	
+	@Override
+	public String getFeatureName() {
+		return featureName;
+	}
 
 	@Override
 	public String getRestrictionLevel() {
@@ -59,12 +67,24 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	}
 	
 	@Override
+	public Object getRequirementSource() {
+		return source;
+	}
+	
+	@Override
+	public LicensingConfiguration getLicensingConfiguration() {
+		return configuration;
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureIdentifier).append(';');
 		sb.append(LICENSING_FEATURE_VERSION).append('=').append(featureVersion).append(';');
+		sb.append(LICENSING_FEATURE_NAME).append('=').append(featureName).append(';');
 		sb.append(LICENSING_RESTRICTION_LEVEL).append('=').append(restrictionLevel).append(';');
-		sb.append("source").append('=').append(source); //$NON-NLS-1$
+		sb.append("source").append('=').append(source).append(';'); //$NON-NLS-1$
+		sb.append("configuration").append('=').append(configuration); //$NON-NLS-1$
 		return sb.toString();
 	}
 
