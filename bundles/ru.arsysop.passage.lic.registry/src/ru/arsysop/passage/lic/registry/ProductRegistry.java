@@ -24,20 +24,22 @@ public interface ProductRegistry extends DescriptorRegistry {
 
 	Iterable<ProductLineDescriptor> getProductLines();
 
-	ProductLineDescriptor getProductLine(String identifier);
-
-	ProductDescriptor getProduct(String identifier);
+	ProductLineDescriptor getProductLine(String productLineId);
 
 	Iterable<ProductDescriptor> getProducts();
 
 	Iterable<ProductDescriptor> getProducts(String productLineId);
+	
+	ProductDescriptor getProduct(String productId);
 
 	Iterable<ProductVersionDescriptor> getProductVersions();
 
 	Iterable<ProductVersionDescriptor> getProductVersions(String productId);
 
-	ProductVersionDescriptor getProductVersion(String product, String version);
+	ProductVersionDescriptor getProductVersion(String productId, String version);
 
-	String createPassword(ProductVersionDescriptor productVersion);
+	Iterable<ProductVersionFeatureDescriptor> getProductVersionFeatures();
+
+	Iterable<ProductVersionFeatureDescriptor> getProductVersionFeatures(String productId, String version);
 
 }

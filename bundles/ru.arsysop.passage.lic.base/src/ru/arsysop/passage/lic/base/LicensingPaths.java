@@ -30,6 +30,7 @@ public class LicensingPaths {
 
 	public static String FOLDER_LICENSING_BASE = ".passage"; //$NON-NLS-1$
 
+	public static String EXTENSION_LICENSE_DECRYPTED = ".lic"; //$NON-NLS-1$
 	public static String EXTENSION_LICENSE_ENCRYPTED = ".licen"; //$NON-NLS-1$
 	public static String EXTENSION_PRODUCT_PUBLIC = ".pub"; //$NON-NLS-1$
 	

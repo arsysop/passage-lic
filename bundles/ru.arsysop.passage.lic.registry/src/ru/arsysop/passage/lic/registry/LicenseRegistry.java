@@ -22,6 +22,12 @@ package ru.arsysop.passage.lic.registry;
 
 public interface LicenseRegistry extends DescriptorRegistry {
 	
-	LicensePackDescriptor getLicensPack(String identifier);
+	Iterable<LicensePackDescriptor> getLicensePacks();
+
+	Iterable<LicensePackDescriptor> getUserLicensePacks(String userId);
+
+	Iterable<LicensePackDescriptor> getProductVersionLicensePacks(String productId, String version);
+
+	LicensePackDescriptor getLicensePack(String licensePackId);
 
 }

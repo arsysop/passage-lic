@@ -47,13 +47,27 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 				.extractConditions(LicensingConfigurations.create(null, null));
 		assertFalse(conditionsProduct.iterator().hasNext());
 
-		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_PRODUCT_ID, null);
+		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT, null);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertFalse(conditions.iterator().hasNext());
 	}
 
 	@Test
-	public void testExtractConditionsPositive() throws Exception {
+	public void testExtractConditionsDecryptedNegative() {
+		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_DECRYPTED_PRODUCT, null);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
+		assertFalse(conditions.iterator().hasNext());
+	}
+
+	@Test
+	public void testExtractConditionsEncryptedNegative() {
+		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT, null);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
+		assertFalse(conditions.iterator().hasNext());
+	}
+
+	@Test
+	public void testExtractConditionsDecryptedPositive() throws Exception {
 		LicFactory factory = LicFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
 		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
@@ -63,12 +77,31 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
 		licenseGrants.add(conditionBundle);
 
-		String identifier = SOME_PRODUCT_ID;
+		String identifier = SOME_DECRYPTED_PRODUCT;
 		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
-		createProductLicense(configuration, license);
+		createProductLicense(configuration, license, false);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());
-		deleteProductLicense(configuration);
+		deleteProductLicense(configuration, false);
+	}
+
+	@Test
+	public void testExtractConditionsEncryptedPositive() throws Exception {
+		LicFactory factory = LicFactory.eINSTANCE;
+		LicensePack license = factory.createLicensePack();
+		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
+		LicenseGrant conditionBundle = factory.createLicenseGrant();
+		conditionBundle.setFeatureIdentifier(SOME_BUNDLE_ID);
+		conditionBundle.setConditionType(OshiHal.CONDITION_TYPE_HARDWARE);
+		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
+		licenseGrants.add(conditionBundle);
+
+		String identifier = SOME_ENCRYPTED_PRODUCT;
+		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
+		createProductLicense(configuration, license, true);
+		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
+		assertTrue(conditions.iterator().hasNext());
+		deleteProductLicense(configuration, true);
 	}
 
 	@Test
@@ -82,13 +115,13 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		conditionBundle.setConditionExpression(HardwareInspector.PROPERTY_OS_FAMILY + '=' + '*');
 		licenseGrants.add(conditionBundle);
 
-		String identifier = SOME_PRODUCT_ID;
+		String identifier = SOME_ENCRYPTED_PRODUCT;
 		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
-		createProductLicense(configuration, license);
+		createProductLicense(configuration, license, true);
 		createServerConfiguration(configuration);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());
-		deleteProductLicense(configuration);
+		deleteProductLicense(configuration, true);
 		deleteServerConfiguration(configuration);
 	}
 

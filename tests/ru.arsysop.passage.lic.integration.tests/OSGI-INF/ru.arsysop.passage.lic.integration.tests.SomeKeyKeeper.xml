@@ -4,5 +4,5 @@
    <service>
       <provide interface="ru.arsysop.passage.lic.runtime.io.KeyKeeper"/>
    </service>
-   <property name="licensing.product.identifier" type="String" value="some.licensed.product"/>
+   <property name="licensing.product.identifier" type="String" value="some.encrypted.product"/>
 </scr:component>

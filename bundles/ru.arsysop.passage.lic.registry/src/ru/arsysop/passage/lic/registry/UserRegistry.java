@@ -22,8 +22,14 @@ package ru.arsysop.passage.lic.registry;
 
 public interface UserRegistry extends DescriptorRegistry {
 
-	UserOriginDescriptor getUserOrigin(String identifier);
+	Iterable<UserOriginDescriptor> getUserOrigins();
 
-	UserDescriptor getUser(String identifier);
+	UserOriginDescriptor getUserOrigin(String userOriginId);
+
+	Iterable<UserDescriptor> getUsers();
+
+	Iterable<UserDescriptor> getUsers(String userOriginId);
+
+	UserDescriptor getUser(String userId);
 
 }
