@@ -39,6 +39,7 @@ public final class LicensingProperties {
 	public static final String LICENSING_EXPIRE_TIME = "licensing.expire.time"; //$NON-NLS-1$
 
 	public static final String LICENSING_CONDITION_TYPE = "licensing.condition.type"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_AREA = "licensing.condition.area"; //$NON-NLS-1$
 
 	public static final String LICENSING_CONTENT_TYPE = "licensing.content.type"; //$NON-NLS-1$
 	public static final String LICENSING_CONTENT_TYPE_JSON = "application/json"; //$NON-NLS-1$
