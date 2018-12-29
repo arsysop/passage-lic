@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: ru.arsysop.passage.lic.model
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: ru.arsysop.passage.lic.model;singleton:=true
-Bundle-Version: 0.3.2.qualifier
+Bundle-Version: 0.3.3.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Copyright: %pluginCopyright

@@ -56,7 +56,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNS_URI = "http://www.arsysop.ru/passage/lic/0.3.2"; //$NON-NLS-1$
+  String eNS_URI = "http://www.arsysop.ru/passage/lic/0.3.3"; //$NON-NLS-1$
 
   /**
 	 * The package namespace name.

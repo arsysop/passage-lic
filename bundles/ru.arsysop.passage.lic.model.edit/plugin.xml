@@ -28,7 +28,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated lic -->
       <factory
-            uri="http://www.arsysop.ru/passage/lic/0.3.2"
+            uri="http://www.arsysop.ru/passage/lic/0.3.3"
             class="ru.arsysop.passage.lic.model.edit.providers.LicItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
