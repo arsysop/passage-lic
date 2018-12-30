@@ -25,7 +25,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated passage -->
       <package
-            uri="http://www.arsysop.ru/passage/lic/0.3.3/"
+            uri="http://www.arsysop.ru/passage/lic/0.3.2/"
             class="ru.arsysop.passage.lic.model.meta.LicPackage"
             genModel="model/lic.genmodel"/>
    </extension>
