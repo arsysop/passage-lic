@@ -26,7 +26,7 @@ To find out more about the Passage Licensing solution, check out the following r
 
 ### License
 
-Copyright 2018 ArSysOp
+Copyright 2018-2019 ArSysOp
 
 Licensed under the [Apache License, Version 2.0](https://projects.eclipse.org/content/apache-license-version-2.0) license, see the [LICENSE](https://github.com/arsysop/passage-lic/blob/develop/LICENSE) file for details.
 
