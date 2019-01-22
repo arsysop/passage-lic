@@ -20,7 +20,7 @@
 
 	<groupId>org.eclipse.passage.lic</groupId>
 	<artifactId>org.eclipse.passage.lic.parent</artifactId>
-	<version>0.3.3-SNAPSHOT</version>
+	<version>0.3.3</version>
 	<packaging>pom</packaging>
 
 	<prerequisites>
