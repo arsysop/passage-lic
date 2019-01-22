@@ -19,25 +19,35 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<project
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
->
-	<modelVersion>4.0.0</modelVersion>
+<feature
+      id="org.eclipse.passage.lic.net.feature"
+      label="%featureName"
+      version="0.3.3.qualifier"
+      provider-name="%providerName"
+      license-feature="org.eclipse.license"
+      license-feature-version="0.0.0">
 
-	<artifactId>org.eclipse.passage.lic.root</artifactId>
-	<packaging>pom</packaging>
+   <description>
+      %description
+   </description>
 
-	<parent>
-		<groupId>org.eclipse.passage.lic</groupId>
-		<artifactId>org.eclipse.passage.lic.parent</artifactId>
-		<version>0.3.3-SNAPSHOT</version>
-		<relativePath>./releng/org.eclipse.passage.lic.parent</relativePath>
-	</parent>
+   <copyright>
+      %copyright
+   </copyright>
 
-	<modules>
-		<module>./releng/org.eclipse.passage.lic.aggregator</module>
-	</modules>
+   <license url="%licenseURL">
+      %license
+   </license>
 
-</project>
+   <requires>
+      <import feature="org.eclipse.passage.lic.equinox.feature" version="0.0.0"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.passage.lic.net"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
