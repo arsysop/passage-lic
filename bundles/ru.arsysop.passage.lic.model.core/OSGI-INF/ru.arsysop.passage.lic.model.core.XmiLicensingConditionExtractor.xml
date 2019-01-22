@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.model.core.XmiLicensingConditionExtractor">
-   <property name="licensing.content.type" value="application/xml"/>
-   <service>
-      <provide interface="ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport"/>
-   </service>
-   <implementation class="ru.arsysop.passage.lic.model.core.XmiLicensingConditionExtractor"/>
-</scr:component>

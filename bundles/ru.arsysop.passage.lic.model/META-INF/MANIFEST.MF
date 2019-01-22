@@ -12,9 +12,9 @@ Require-Bundle: org.eclipse.core.runtime;resolution:=optional;x-installation:=gr
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.passage.lic.runtime;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.registry;bundle-version="0.0.0";visibility:=reexport
-Export-Package: ru.arsysop.passage.lic.model.api,
- ru.arsysop.passage.lic.model.impl,
- ru.arsysop.passage.lic.model.meta,
- ru.arsysop.passage.lic.model.util
+Export-Package: org.eclipse.passage.lic.model.api,
+ org.eclipse.passage.lic.model.impl,
+ org.eclipse.passage.lic.model.meta,
+ org.eclipse.passage.lic.model.util
 Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy

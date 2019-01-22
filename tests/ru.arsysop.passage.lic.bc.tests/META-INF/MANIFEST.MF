@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Automatic-Module-Name: ru.arsysop.passage.lic.bc.tests
+Automatic-Module-Name: org.eclipse.passage.lic.bc.tests
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.bc.tests
 Bundle-Version: 0.3.3.qualifier
