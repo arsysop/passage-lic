@@ -46,10 +46,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-import ru.arsysop.passage.lic.base.ui.LicensingImages;
-import ru.arsysop.passage.lic.base.ui.RestrictionVerdictLabels;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.inspector.ui.LicInspectorUi;
+import ru.arsysop.passage.lic.jface.LicensingImages;
+import ru.arsysop.passage.lic.jface.RestrictionVerdictLabels;
 import ru.arsysop.passage.lic.runtime.ConfigurationRequirement;
 import ru.arsysop.passage.lic.runtime.RestrictionVerdict;
 

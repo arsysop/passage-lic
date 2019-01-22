@@ -45,7 +45,7 @@
    </requires>
 
    <plugin
-         id="ru.arsysop.passage.lic.base.ui"
+         id="ru.arsysop.passage.lic.emf.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"

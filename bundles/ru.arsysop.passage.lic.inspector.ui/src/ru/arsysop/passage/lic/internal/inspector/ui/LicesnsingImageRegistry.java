@@ -30,8 +30,8 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
-import ru.arsysop.passage.lic.base.ui.LicensingImages;
 import ru.arsysop.passage.lic.inspector.ui.LicInspectorUi;
+import ru.arsysop.passage.lic.jface.LicensingImages;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
 
 @Component
@@ -48,7 +48,7 @@ public class LicesnsingImageRegistry implements LicensingImages {
 	}
 
 	protected void addBaseImages() {
-		String pattern = "platform:/plugin/ru.arsysop.passage.lic.base.ui/icons/obj16/%s"; //$NON-NLS-1$
+		String pattern = "platform:/plugin/ru.arsysop.passage.lic.jface/icons/obj16/%s"; //$NON-NLS-1$
 		register(IMG_DEFAULT, String.format(pattern, "passage.png")); //$NON-NLS-1$
 		register(IMG_LEVEL_OK, String.format(pattern, "ok.png")); //$NON-NLS-1$
 		register(IMG_LEVEL_INFO, String.format(pattern, "info.png")); //$NON-NLS-1$

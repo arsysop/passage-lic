@@ -23,9 +23,9 @@ package ru.arsysop.passage.lic.inspector.ui.hadlers;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.widgets.Shell;
 
-import ru.arsysop.passage.lic.base.ui.LicensingImages;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.inspector.ui.dialogs.HardwareInspectorDialog;
+import ru.arsysop.passage.lic.jface.LicensingImages;
 
 public class InspectHardwareHandler {
 

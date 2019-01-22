@@ -18,10 +18,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package ru.arsysop.passage.lic.base.ui;
+package ru.arsysop.passage.lic.jface;
 
 import static ru.arsysop.passage.lic.base.LicensingProperties.*;
-import static ru.arsysop.passage.lic.base.ui.LicensingImages.*;
+import static ru.arsysop.passage.lic.jface.LicensingImages.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

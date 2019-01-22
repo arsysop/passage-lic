@@ -30,9 +30,9 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import ru.arsysop.passage.lic.base.ui.LicensingImages;
 import ru.arsysop.passage.lic.inspector.HardwareInspector;
 import ru.arsysop.passage.lic.inspector.ui.LicInspectorUi;
+import ru.arsysop.passage.lic.jface.LicensingImages;
 
 public class HardwareInspectorDialog extends TrayDialog {
 	
