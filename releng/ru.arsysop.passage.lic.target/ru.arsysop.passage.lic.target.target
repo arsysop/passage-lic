@@ -24,12 +24,12 @@
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
-			<repository location="http://download.eclipse.org/releases/2018-09/"/>
+			<repository location="http://download.eclipse.org/releases/2018-12/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.platform.sdk" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
-			<repository location="http://download.eclipse.org/eclipse/updates/4.9/"/>
+			<repository location="http://download.eclipse.org/eclipse/updates/4.10/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.slf4j.api" version="0.0.0"/>
@@ -54,9 +54,8 @@
 			<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20180905201904/repository"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<unit id="ru.arsysop.passage.brc.license.feature.feature.group" version="0.0.0"/>
-			<unit id="ru.arsysop.passage.brc.oshi.feature.feature.group" version="0.0.0"/>
-			<repository location="http://dl.bintray.com/arsysop/passage-brc/0.3.2/"/>
+			<unit id="org.eclipse.passage.brc.oshi.feature.feature.group" version="0.0.0"/>
+			<repository location="http://dl.bintray.com/arsysop/passage-brc/0.3.3/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="com.fasterxml.jackson.core.jackson-annotations" version="2.9.2.v20180207-1730"/>
