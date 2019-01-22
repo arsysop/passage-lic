@@ -20,7 +20,8 @@
  *******************************************************************************/
 package ru.arsysop.passage.lic.model.core;
 
-import static ru.arsysop.passage.lic.base.LicensingProperties.*;
+import static ru.arsysop.passage.lic.base.LicensingProperties.LICENSING_CONTENT_TYPE;
+import static ru.arsysop.passage.lic.base.LicensingProperties.LICENSING_CONTENT_TYPE_XML;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,9 +37,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.osgi.service.component.annotations.Component;
 
-import ru.arsysop.passage.lic.model.api.LicensePack;
 import ru.arsysop.passage.lic.model.meta.LicPackage;
-import ru.arsysop.passage.lic.model.api.LicenseGrant;
+import ru.arsysop.passage.lic.registry.LicensePackDescriptor;
 import ru.arsysop.passage.lic.runtime.LicensingCondition;
 import ru.arsysop.passage.lic.runtime.io.LicensingConditionTransport;
 
@@ -56,10 +56,10 @@ public class XmiLicensingConditionExtractor implements LicensingConditionTranspo
 		List<LicensingCondition> extracted = new ArrayList<>();
 		EList<EObject> contents = resource.getContents();
 		for (EObject eObject : contents) {
-			if (eObject instanceof LicensePack) {
-				LicensePack license = (LicensePack) eObject;
-				EList<LicenseGrant> conditions = license.getLicenseGrants();
-				extracted.addAll(conditions);
+			if (eObject instanceof LicensePackDescriptor) {
+				LicensePackDescriptor license = (LicensePackDescriptor) eObject;
+				Iterable<? extends LicensingCondition> conditions = license.getLicenseGrants();
+				conditions.forEach(extracted::add);
 			}
 		}
 		return extracted;
