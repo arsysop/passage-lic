@@ -1,6 +1,6 @@
 ## Passage Licensing Integration Components (LIC) 
 
-The Passage LIC is a part of the [Passage Licensing](https://projects.eclipse.org/proposals/eclipse-passage) solution.
+The Passage LIC is a part of the [Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) solution.
 This component verifies that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
 
@@ -17,16 +17,12 @@ The Passage LIC works inside your product installed on the user side. Its basic 
 4. Use the system configuration and the evaluated license state to make a decision.
 5. If there are uncovered licensing requirements, call the required constraint functions to impose restrictions: limit certain functionality or disable everything.
 
-### Related repositories
-
-To find out more about the Passage Licensing solution, check out the following repositories:
-- [Passage Binary Resources and Components](https://github.com/arsysop/passage-brc)
-- [Passage Licensing Operator](https://github.com/arsysop/passage-loc)
-- [Passage Licensing Backend](https://github.com/arsysop/passage-lbc)
-
 ### License
 
-Copyright 2018 ArSysOp
+Copyright (c) 2018-2019 ArSysOp and others
 
-Licensed under the [Apache License, Version 2.0](https://projects.eclipse.org/content/apache-license-version-2.0) license, see the [LICENSE](https://github.com/arsysop/passage-lic/blob/develop/LICENSE) file for details.
+This program and the accompanying materials are made available under the
+terms of the Eclipse Public License 2.0 which is available at
+[http://www.eclipse.org/legal/epl-2.0](http://www.eclipse.org/legal/epl-2.0).
 
+SPDX-License-Identifier: EPL-2.0

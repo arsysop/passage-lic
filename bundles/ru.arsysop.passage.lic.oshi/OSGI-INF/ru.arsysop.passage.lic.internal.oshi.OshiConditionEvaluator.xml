@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ru.arsysop.passage.lic.internal.oshi.OshiConditionEvaluator">
-   <property name="licensing.condition.type" value="hardware"/>
-   <service>
-      <provide interface="ru.arsysop.passage.lic.runtime.ConditionEvaluator"/>
-   </service>
-   <reference bind="bindLogService" interface="org.osgi.service.log.LogService" name="LogService" unbind="unbindLogService"/>
-   <implementation class="ru.arsysop.passage.lic.internal.oshi.OshiConditionEvaluator"/>
-</scr:component>
